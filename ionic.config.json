@@ -1,0 +1,7 @@
+{
+  "name": "2DAM-DI-AD-P1-Frontend",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
