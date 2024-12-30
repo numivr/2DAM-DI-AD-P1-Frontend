@@ -4,6 +4,7 @@ import {RegistroComponent} from "./registro/registro.component";
 import {PrincipalComponent} from "./principal/principal.component";
 import {PerfilComponent} from "./perfil/perfil.component";
 import {PerfilPropioComponent} from "./perfil-propio/perfil-propio.component";
+import {ChatComponent} from "./chat/chat.component";
 
 export const routes: Routes = [
   {
@@ -31,6 +32,10 @@ export const routes: Routes = [
   {
     path: 'perfil_propio/:idUsuario',
     component: PerfilPropioComponent,
+  },
+  {
+    path: 'chat/:idUsuario',
+    component: ChatComponent,
   },
 
 

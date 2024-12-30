@@ -15,7 +15,6 @@ import {addIcons} from "ionicons";
   ]
 })
 export class PrincipalComponent  implements OnInit {
-
   constructor() { }
 
   ngOnInit() {
@@ -24,5 +23,9 @@ export class PrincipalComponent  implements OnInit {
       'chatbubbles-outline': chatbubblesOutline,
       'person-circle': personCircle,
     });
+  }
+
+  ModalCrearPost() {
+    //modal
   }
 }
