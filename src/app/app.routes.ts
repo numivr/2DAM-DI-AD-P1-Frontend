@@ -24,9 +24,6 @@ export const routes: Routes = [
     path: 'ChatMensajes',
     component: ChatMensajesComponent,
   },
-
-
-
   {
     path: 'ChatsPersonas',
     component: ChatsPersonasComponent,
