@@ -1,3 +1,34 @@
-<p>
-  registro-cualidades works!
-</p>
+<ion-content class="login-page">
+  <div class="login-container">
+    <img src="assets/logo_beige.png" alt="Logo" class="logo">
+    <h1 class="titulo">Santuario</h1>
+
+    <ion-label>Nombre de usuario</ion-label>
+    <ion-item>
+      <ion-input type="text"></ion-input>
+    </ion-item>
+
+    <ion-label>Email</ion-label>
+    <ion-item>
+      <ion-input type="email"></ion-input>
+    </ion-item>
+
+    <ion-label>Contraseña</ion-label>
+    <ion-item>
+      <ion-input type="password"></ion-input>
+    </ion-item>
+
+    <ion-label>Repetir contraseña</ion-label>
+    <ion-item>
+      <ion-input type="password"></ion-input>
+    </ion-item>
+
+
+    <ion-icon [routerLink]="'/registroperro'" style="color: #ffffff; width: 40px; height: 40px" name="arrow-forward-outline"></ion-icon>
+
+
+    <ion-text class="register-link">
+      <a [routerLink]="'/inicio'">Ya tengo cuenta</a>
+    </ion-text>
+  </div>
+</ion-content>

@@ -32,7 +32,4 @@ export class PrincipalComponent implements OnInit {
         });
     }
 
-    ModalCrearPost() {
-        // aun no se ha creado el modal
-    }
 }
