@@ -1,21 +1,22 @@
 <ion-content class="login-page">
   <div class="login-container">
-    <h1 class="title">Santuario</h1>
+    <img src="assets/logo_beige.png" alt="Logo" class="logo">
+    <h1 class="titulo">Santuario</h1>
 
-    <ion-label position="floating">Nombre de usuario</ion-label>
-    <ion-item class="input-field">
-      <ion-input type="text"></ion-input>
+    <ion-label>Nombre de usuario</ion-label>
+    <ion-item>
+      <ion-input id="usuario" type="text"></ion-input>
     </ion-item>
 
-    <ion-label position="floating">Contraseña</ion-label>
-    <ion-item class="input-field">
-      <ion-input type="password"></ion-input>
+    <ion-label>Contraseña</ion-label>
+    <ion-item>
+      <ion-input id="contrasena" type="password"></ion-input>
     </ion-item>
 
-    <ion-button expand="block" class="login-button" >Entrar</ion-button>
+    <ion-button class="login-button" expand="block" [routerLink]="'/principal'">Entrar</ion-button>
 
     <ion-text class="register-link">
-      <a>Aún no tengo cuenta</a>
+      <a [routerLink]="'/registrocuenta'">Aún no tengo cuenta</a>
     </ion-text>
   </div>
 </ion-content>
