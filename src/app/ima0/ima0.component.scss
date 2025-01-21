@@ -2,6 +2,8 @@
 .imagen
 {
   border-radius: 50%;
+  box-shadow: 0 6px 18px 0 rgba(0,0,0,0.8);
+  border: 2px solid #f5f5dc;
   //background-size: contain !important; // Utilizar en caso de cambiar a div.
 }
 
