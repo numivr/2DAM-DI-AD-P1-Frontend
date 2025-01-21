@@ -1,12 +1,13 @@
 <ion-content class="login-page">
   <div class="login-container">
+    <!-- Logo -->
     <img src="assets/logo_beige.png" alt="Logo" class="logo">
     <h1 class="titulo">Santuario</h1>
 
+    <!-- Image -->
+    <img src="../../assets/icono_app.jpg" alt="Your Image" class="item-image">
 
-    <img src="src/app/icono_app.jpg" alt="Your Image" class="item-image">
-
-
+    <!-- Raza -->
     <ion-label>Raza</ion-label>
     <ion-item>
       <ion-select>
@@ -23,10 +24,11 @@
       </ion-select>
     </ion-item>
 
+    <!-- Género -->
     <ion-label>Género</ion-label>
     <ion-list>
       <ion-radio-group class="radio-group-horizontal">
-        <ion-item>
+        <ion-item style="margin-right: 30px;">
           <ion-label>♂</ion-label>
           <ion-radio slot="start" value="left"></ion-radio>
         </ion-item>
@@ -37,8 +39,26 @@
       </ion-radio-group>
     </ion-list>
 
+    <!-- Edad -->
     <ion-label>Edad</ion-label>
+    <ion-list>
+      <ion-radio-group>
+        <ion-item>
+          <ion-label>cachorro</ion-label>
+          <ion-radio></ion-radio>
+        </ion-item>
+        <ion-item>
+          <ion-label>adulto</ion-label>
+          <ion-radio></ion-radio>
+        </ion-item>
+        <ion-item>
+          <ion-label>senior</ion-label>
+          <ion-radio></ion-radio>
+        </ion-item>
+      </ion-radio-group>
+    </ion-list>
 
+    <!-- Navigation Icon -->
     <ion-icon [routerLink]="'/registrocualidades'" style="color: #ffffff; width: 40px; height: 40px"
               name="arrow-forward-outline"></ion-icon>
   </div>
