@@ -19,7 +19,6 @@
   justify-content: center;
   margin: 10% auto;
   width: 90%;
-  height: 90%;
   padding: 20px;
   text-align: center;
 }
@@ -45,6 +44,11 @@ ion-item {
   --placeholder-color: #fdf4c3;
   margin-bottom: 1rem;
   width: 100%;
+  color: #fdf4c3;
+}
+
+ion-radio {
+  color: #fdf4c3;
 }
 
 ion-input {
@@ -73,10 +77,9 @@ ion-input {
   justify-content: space-between;
 }
 
-#contra {
-  color: #fdf4c3;
-}
-
-#contra2 {
-  color: #fdf4c3;
+.item-image {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
 }
