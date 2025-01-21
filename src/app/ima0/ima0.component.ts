@@ -12,17 +12,17 @@ export class Ima0Component implements OnInit
 
   @Input() public enlace: string = '';
   @Input() public tamano: string = '';
-  protected _tamano_s: string = '';
+  protected p_tamano_s: string = 'chica';
 
   ngOnInit(): void
   {
     if (this.tamano == 'grande')
     {
-      this._tamano_s = "grande";
+      this.p_tamano_s = "grande";
     }
     else if (this.tamano == 'chica')
     {
-      this._tamano_s = "chica";
+      this.p_tamano_s = "chica";
     }
   }
 }
