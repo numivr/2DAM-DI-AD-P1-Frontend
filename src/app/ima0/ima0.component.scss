@@ -1,18 +1,19 @@
 
 .imagen
 {
-  border-radius: 100%;
+  border-radius: 50%;
+  //background-size: contain !important; // Utilizar en caso de cambiar a div.
 }
 
 
 .grande
 {
-  width: 70%;
-  height: 70%;
+  width: 70vw;
+  //height: 30vh;
 }
 
 .chica
 {
-  width: 20%;
-  height: 20%;
+  width: 20vw;
+  //height: 20vh;
 }

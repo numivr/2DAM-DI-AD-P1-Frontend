@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {IonContent} from "@ionic/angular/standalone";
+import {Ima0Component} from "../ima0/ima0.component";
 
 @Component({
   selector: 'app-perfil',
@@ -7,13 +8,13 @@ import {IonContent} from "@ionic/angular/standalone";
   styleUrls: ['./perfil.component.scss'],
   standalone: true,
   imports: [
-    IonContent
+    IonContent,
+    Ima0Component
   ]
 })
-export class PerfilComponent  implements OnInit {
-
+export class PerfilComponent
+{
   constructor() { }
 
-  ngOnInit() {}
 
 }
