@@ -5,41 +5,24 @@
         <ion-icon slot="icon-only" name="person-circle"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-title>
-      <div style="display: flex; justify-content: center;">
-        <img src="assets/icon/icono_app.jpg"
-              alt="Logo de la app"
-              style="height: 50px; width: 50px; border-radius: 50%;"/>
-      </div>
-    </ion-title>
+    <div style="display: flex; justify-content: center; align-items: center; width: 100%;">
+      <img src="assets/icon/icono_app.jpg"
+           alt="Logo de la app"
+           style="height: 50px; width: 50px; border-radius: 50%;margin-bottom: 10px;"/>
+    </div>
     <ion-buttons slot="end">
       <ion-button>
         <ion-icon name="chatbubbles-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
+    <ion-searchbar placeholder="Busca un post"></ion-searchbar>
   </ion-toolbar>
-
-  <ion-toolbar>
-  <ion-searchbar placeholder="Busca un post" ></ion-searchbar>
-</ion-toolbar>
-
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <ion-item >
-      <ion-avatar slot="start">
-        <img style="border-radius: 50%" src="assets/icon/icono_app.jpg" alt="imagen del usuario" />
-      </ion-avatar>
-      <ion-label>
-        <h2>persona</h2>
-        <p>texto</p>
-      </ion-label>
-    </ion-item>
-  </ion-list>
-
+  <app-componente-publicacion></app-componente-publicacion>
   <ion-fab vertical="bottom" horizontal="center" slot="fixed">
-    <ion-fab-button > <!-- pendiente -->
+    <ion-fab-button> <!-- pendiente -->
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
