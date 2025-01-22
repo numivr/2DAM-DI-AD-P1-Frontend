@@ -5,6 +5,7 @@ import {add, chatbubblesOutline, personCircle} from "ionicons/icons";
 import {addIcons} from "ionicons";
 import {Usuario} from "../models/Usuario";
 import {Publicacion} from "../models/Publicacion";
+import {ComponentePublicacionComponent} from "../componentes/componente-publicacion/componente-publicacion.component";
 
 @Component({
     selector: 'app-principal',
@@ -13,7 +14,8 @@ import {Publicacion} from "../models/Publicacion";
     standalone: true,
     imports: [
         IonicModule,
-        NgOptimizedImage
+        NgOptimizedImage,
+        ComponentePublicacionComponent
     ]
 })
 export class PrincipalComponent implements OnInit {

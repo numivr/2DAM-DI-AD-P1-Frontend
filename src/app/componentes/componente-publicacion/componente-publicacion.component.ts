@@ -1,17 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import {IonCard, IonCardContent, IonCardHeader, IonContent, IonRow} from "@ionic/angular/standalone";
+import {IonicModule} from "@ionic/angular";
 
 @Component({
-  selector: 'app-publicacion',
-  templateUrl: './publicacion.component.html',
-  styleUrls: ['./publicacion.component.scss'],
+  selector: 'app-componente-publicacion',
+  templateUrl: './componente-publicacion.component.html',
+  styleUrls: ['./componente-publicacion.component.scss'],
   standalone: true,
   imports: [
-    IonContent,
-    IonCard,
-    IonCardHeader,
-    IonCardContent,
-    IonRow
+    IonicModule
   ]
 })
 export class ComponentePublicacionComponent  implements OnInit {
