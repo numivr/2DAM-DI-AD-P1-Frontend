@@ -1,21 +1,41 @@
 import { Component, OnInit } from '@angular/core';
-import {IonicModule} from "@ionic/angular";
-import {RouterLink} from "@angular/router";
+import { IonicModule } from '@ionic/angular';
+import { Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 @Component({
-    selector: 'app-registro-cualidades',
-    templateUrl: './registro-cualidades.component.html',
-    styleUrls: ['./registro-cualidades.component.scss'],
-    standalone: true,
-  imports: [
-    IonicModule,
-    RouterLink
-  ]
+  selector: 'app-registro-cualidades',
+  templateUrl: './registro-cualidades.component.html',
+  styleUrls: ['./registro-cualidades.component.scss'],
+  standalone: true,
+  imports: [IonicModule, FormsModule],
 })
-export class RegistroCualidadesComponent  implements OnInit {
+export class RegistroCualidadesComponent implements OnInit {
+  selectedValue1: number = 5;
+  selectedValue2: number = 5;
+  selectedValue3: number = 5;
+  selectedValue4: number = 5;
+  selectedValue5: number = 5;
+  selectedValue6: number = 5;
+  selectedValue7: number = 5;
+  selectedValue8: number = 5;
+  selectedValue9: number = 5;
 
-  constructor() { }
+  // Botones del alert
+  alertButtons = [
+    {
+      text: 'Aceptar',
+      handler: () => {
+        this.router.navigate(['/inicio']);
+      },
+    },
+  ];
+
+  constructor(private router: Router) {}
 
   ngOnInit() {}
 
+  onRangeChange(event: any) {
+    console.log('New range value:', event.detail.value);
+  }
 }

@@ -1,34 +1,96 @@
 <ion-content class="login-page">
   <div class="login-container">
+    <!-- Logo -->
     <img src="assets/logo_beige.png" alt="Logo" class="logo">
     <h1 class="titulo">Santuario</h1>
 
-    <ion-label>Nombre de usuario</ion-label>
+    <!-- Image -->
+    <img src="../../assets/icono_app.jpg" alt="Your Image" class="item-image">
+
+    <img src="../../assets/conversacion.png" alt="que_soy" style="height: 100px; width: 200px; margin-bottom: 30px;">
+
     <ion-item>
-      <ion-input type="text"></ion-input>
+      <ion-label position="stacked">Nivel de energía: {{ selectedValue1 }} </ion-label>
+      <ion-range min="0" max="10" step="1" [(ngModel)]="selectedValue1" (ionChange)="onRangeChange($event)">
+        <ion-label slot="start">0</ion-label>
+        <ion-label slot="end">10</ion-label>
+      </ion-range>
     </ion-item>
 
-    <ion-label>Email</ion-label>
     <ion-item>
-      <ion-input type="email"></ion-input>
+      <ion-label position="stacked">Sociabilidad: {{ selectedValue2 }} </ion-label>
+      <ion-range min="0" max="10" step="1" [(ngModel)]="selectedValue2" (ionChange)="onRangeChange($event)">
+        <ion-label slot="start">0</ion-label>
+        <ion-label slot="end">10</ion-label>
+      </ion-range>
     </ion-item>
 
-    <ion-label>Contraseña</ion-label>
     <ion-item>
-      <ion-input type="password"></ion-input>
+      <ion-label position="stacked">Tamaño: {{ selectedValue3 }} </ion-label>
+      <ion-range min="0" max="10" step="1" [(ngModel)]="selectedValue3" (ionChange)="onRangeChange($event)">
+        <ion-label slot="start">0</ion-label>
+        <ion-label slot="end">10</ion-label>
+      </ion-range>
     </ion-item>
 
-    <ion-label>Repetir contraseña</ion-label>
     <ion-item>
-      <ion-input type="password"></ion-input>
+      <ion-label position="stacked">Dominancia: {{ selectedValue4 }} </ion-label>
+      <ion-range min="0" max="10" step="1" [(ngModel)]="selectedValue4" (ionChange)="onRangeChange($event)">
+        <ion-label slot="start">0</ion-label>
+        <ion-label slot="end">10</ion-label>
+      </ion-range>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Tendencia de juego: {{ selectedValue5 }} </ion-label>
+      <ion-range min="0" max="10" step="1" [(ngModel)]="selectedValue5" (ionChange)="onRangeChange($event)">
+        <ion-label slot="start">0</ion-label>
+        <ion-label slot="end">10</ion-label>
+      </ion-range>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Temperamento: {{ selectedValue6 }} </ion-label>
+      <ion-range min="0" max="10" step="1" [(ngModel)]="selectedValue6" (ionChange)="onRangeChange($event)">
+        <ion-label slot="start">0</ion-label>
+        <ion-label slot="end">10</ion-label>
+      </ion-range>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Experiencia : {{ selectedValue7 }} </ion-label>
+      <ion-range min="0" max="10" step="1" [(ngModel)]="selectedValue7" (ionChange)="onRangeChange($event)">
+        <ion-label slot="start">0</ion-label>
+        <ion-label slot="end">10</ion-label>
+      </ion-range>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Territorialidad: {{ selectedValue8 }} </ion-label>
+      <ion-range min="0" max="10" step="1" [(ngModel)]="selectedValue8" (ionChange)="onRangeChange($event)">
+        <ion-label slot="start">0</ion-label>
+        <ion-label slot="end">10</ion-label>
+      </ion-range>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Tolerancia a otras razas: {{ selectedValue9 }} </ion-label>
+      <ion-range min="0" max="10" step="1" [(ngModel)]="selectedValue9" (ionChange)="onRangeChange($event)">
+        <ion-label slot="start">0</ion-label>
+        <ion-label slot="end">10</ion-label>
+      </ion-range>
     </ion-item>
 
 
-    <ion-icon [routerLink]="'/registroperro'" style="color: #ffffff; width: 40px; height: 40px" name="arrow-forward-outline"></ion-icon>
+    <ion-button class="registro-button" expand="block" id="present-alert">Registrarse</ion-button>
+    <ion-alert
+      trigger="present-alert"
+      header="Registro casi completado"
+      message="Comprueba tu correo electrónico y confirma para finalizar el registro"
+      [buttons]="alertButtons"
+    ></ion-alert>
 
 
-    <ion-text class="register-link">
-      <a [routerLink]="'/inicio'">Ya tengo cuenta</a>
-    </ion-text>
+
   </div>
 </ion-content>

@@ -31,6 +31,7 @@
 }
 
 ion-label {
+  margin-top: 5px;
   padding-left: 10px;
   padding-bottom: 2px;
   align-self: flex-start;
@@ -78,8 +79,12 @@ ion-input {
 }
 
 .item-image {
-  width: 200px;
-  height: 200px;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
   object-fit: cover;
+}
+
+ion-item ion-label {
+  padding-top: 6px;
 }
