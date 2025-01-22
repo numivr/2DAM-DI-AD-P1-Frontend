@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {IonicModule} from "@ionic/angular";
 import {RouterLink} from "@angular/router";
+import {addIcons} from "ionicons";
+import {arrowForwardOutline} from "ionicons/icons";
 
 @Component({
     selector: 'app-registro-perro',
@@ -16,6 +18,9 @@ export class RegistroPerroComponent  implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {}
-
+  ngOnInit() {
+    addIcons({
+      'arrow-forward-outline': arrowForwardOutline,
+    });
+  }
 }
