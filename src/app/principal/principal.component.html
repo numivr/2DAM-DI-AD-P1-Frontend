@@ -1,21 +1,21 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-button [routerLink]="['/perfil']">
+      <ion-button>
         <ion-icon slot="icon-only" name="person-circle"></ion-icon>
       </ion-button>
     </ion-buttons>
 
     <ion-buttons slot="end">
-      <ion-button [routerLink]="['/chatspersonas']">
-        <ion-icon name="chatbubbles-outline"></ion-icon>
+      <ion-button>
+        <ion-icon name="chatbubbles-outline" [routerLink]="'/chatspersonas'"></ion-icon>
       </ion-button>
     </ion-buttons>
 
     <div style="display: flex; justify-content: center; align-items: center; width: 100%; margin-top: 10px;">
-      <img src="assets/logo_beige.png"
+      <img src="assets/icon/icono_app.jpg"
            alt="Logo de la app"
-           style="height: 50px; width: 50px; margin-bottom: 10px;"/>
+           style="height: 50px; width: 50px; border-radius: 50%;margin-bottom: 10px;"/>
     </div>
 
     <ion-searchbar placeholder="Busca un post"></ion-searchbar>
@@ -26,7 +26,7 @@
 <ion-content>
   <app-componente-publicacion></app-componente-publicacion>
   <ion-fab vertical="bottom" horizontal="center" slot="fixed">
-    <ion-fab-button (click)="presentAlert()">
+    <ion-fab-button> <!-- pendiente -->
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
