@@ -1,0 +1,49 @@
+
+ion-content {
+  font-color: #5D1D38;
+  --background: #96305A; /* Color de fondo */
+}
+ion-header {
+  --background: #520D3A; /* Color de barra superior */
+}
+toolbar-container{
+  --background: #520D3A; /* Color de barra superior */
+}
+
+ion-toolbar {
+  --background: #5D1D38; /* Color de barra superior */
+  --color: #FFFFFF;      /* Color del texto */
+}
+
+input {
+  --background: #FFFFFF;
+  border-radius: 8px;
+  padding: 5px;
+}
+.search-bar {
+  --background: #FFFFFF;
+  border-radius: 8px;
+  padding: 5px;
+}
+
+ion-card {
+  border-radius: 12px;
+  background: #5D1D38;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+ion-avatar {
+  border: 2px solid #F5F5DC;
+}
+
+ion-title {
+  color: #F5F5DC;
+}
+ion-searchbar {
+  --background: #f1ead0;
+  --color: #96305A;
+}
+
+ion-text {
+  color: #F5F5DC;
+}

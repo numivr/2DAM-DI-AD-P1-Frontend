@@ -6,6 +6,9 @@ import {addIcons} from "ionicons";
 import {Usuario} from "../models/Usuario";
 import {Publicacion} from "../models/Publicacion";
 import {ComponentePublicacionComponent} from "../componentes/componente-publicacion/componente-publicacion.component";
+import {RouterLink} from "@angular/router";
+
+
 
 @Component({
     selector: 'app-principal',
@@ -15,7 +18,8 @@ import {ComponentePublicacionComponent} from "../componentes/componente-publicac
     imports: [
         IonicModule,
         NgOptimizedImage,
-        ComponentePublicacionComponent
+        ComponentePublicacionComponent,
+      RouterLink
     ]
 })
 export class PrincipalComponent implements OnInit {
