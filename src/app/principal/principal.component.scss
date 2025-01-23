@@ -17,3 +17,17 @@ ion-searchbar {
   --background: #f1ead0;
   --color: #96305A;
 }
+
+.custom-alert .alert-wrapper {
+  background-color: #f1ead0;
+  color: #96305A;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.custom-alert textarea {
+  background-color: #f1ead0;
+  color: #96305A;
+  border-radius: 8px;
+  padding: 10px;
+}
