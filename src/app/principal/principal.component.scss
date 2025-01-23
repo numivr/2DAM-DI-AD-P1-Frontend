@@ -4,5 +4,16 @@ ion-toolbar {
 }
 
 ion-content {
-  --ion-background-color: #E5DAB5;
+  --ion-background-color: #f1ead0;
+}
+
+
+ion-button {
+  margin-top: 20px;
+  --color: #f1ead0;
+}
+
+ion-searchbar {
+  --background: #f1ead0;
+  --color: #96305A;
 }
