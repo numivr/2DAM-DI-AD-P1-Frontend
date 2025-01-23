@@ -1,3 +1,52 @@
-<p>
-  chats-personas works!
-</p>
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Chats</ion-title>
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon slot="icon-only" name="add-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="fondo">
+
+  <ion-grid>
+    <!-- Barra de búsqueda -->
+    <ion-row class="ion-justify-content-center" style="margin-top: 20px;">
+      <ion-col size="10">
+        <ion-item color="secundario" lines="none" class="search-bar">
+          <ion-searchbar placeholder="¡Busca a tus grupos y amigos!"></ion-searchbar>
+          <ion-icon slot="end" name="search-outline"></ion-icon>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <!-- Lista de Chats -->
+    <ion-row *ngFor="let chat of chats" class="ion-justify-content-center" style="margin-top: 15px;">
+      <ion-col size="10">
+        <ion-card color="secundario">
+          <ion-card-header>
+            <ion-row>
+              <ion-col size="3" style="align-items: center; display: flex; justify-content: center;">
+                <ion-avatar>
+                  <ion-img [src]="chat.avatar"></ion-img>
+                </ion-avatar>
+              </ion-col>
+              <ion-col size="9">
+                <ion-title style="font-size: 14pt; padding-bottom: 5px;">
+                  <b>{{ chat.username }}</b>
+                </ion-title>
+                <ion-text style="font-size: 12pt;">{{ chat.descripcion }}</ion-text>
+              </ion-col>
+            </ion-row>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>
