@@ -18,16 +18,22 @@ ion-searchbar {
   --color: #96305A;
 }
 
-.custom-alert .alert-wrapper {
-  background-color: #f1ead0;
-  color: #96305A;
-  border-radius: 8px;
-  padding: 10px;
+::ng-deep .custom-alert .alert-wrapper {
+  --background: #7C274B; /* Fondo negro */
+  border-radius: 12px; /* Opcional: redondear los bordes */
+  padding: 16px; /* Opcional: ajustar padding */
 }
 
-.custom-alert textarea {
-  background-color: #f1ead0;
-  color: #96305A;
-  border-radius: 8px;
-  padding: 10px;
+::ng-deep .custom-alert .alert-button {
+  --background: #7C274B; /* Button background color */
+  font-weight: bold; /* Optional: bold text */
 }
+
+::ng-deep .custom-alert .alert-button-inner {
+  color: #FFFFFF !important; /* Ensure inner text is white */
+}
+
+::ng-deep .custom-alert .alert-title {
+  color: #FFFFFF !important; /* Ensure the header text is white */
+}
+
