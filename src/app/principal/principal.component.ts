@@ -1,12 +1,12 @@
-import {Component, OnInit} from '@angular/core';
-import {AlertController, IonAlert, IonicModule} from "@ionic/angular";
-import {NgOptimizedImage} from "@angular/common";
-import {add, chatbubblesOutline, personCircle} from "ionicons/icons";
-import {addIcons} from "ionicons";
-import {Usuario} from "../models/Usuario";
-import {Publicacion} from "../models/Publicacion";
-import {ComponentePublicacionComponent} from "../componentes/componente-publicacion/componente-publicacion.component";
-import {RouterLink} from "@angular/router";
+import { Component, OnInit } from '@angular/core';
+import { AlertController, IonicModule } from "@ionic/angular";
+import {NgIf, NgOptimizedImage} from "@angular/common";
+import { add, chatbubblesOutline, personCircle } from "ionicons/icons";
+import { addIcons } from "ionicons";
+import { Usuario } from "../models/Usuario";
+import { Publicacion } from "../models/Publicacion";
+import { ComponentePublicacionComponent } from "../componentes/componente-publicacion/componente-publicacion.component";
+import { RouterLink } from "@angular/router";
 
 @Component({
   selector: 'app-principal',
@@ -17,21 +17,24 @@ import {RouterLink} from "@angular/router";
     IonicModule,
     NgOptimizedImage,
     ComponentePublicacionComponent,
-    RouterLink
-  ]
+    RouterLink,
+    NgIf
+  ],
 })
 export class PrincipalComponent implements OnInit {
-  constructor(private alertController: AlertController) {
-  }
-
+  selectedSegment: string = 'Recomendado';
   usuarios: Usuario[] = [];
   publicaciones: Publicacion[] = [];
 
-  public alertButtons = ['OK'];
+  public alertButtons = ['Post'];
   public alertInputs = [
     {
       type: 'textarea' as const,
       placeholder: 'Escribe tu publicación',
+      attributes: {
+        rows: 15,
+      },
+      cssClass: 'textarea-margin'
     },
   ];
 
@@ -40,11 +43,13 @@ export class PrincipalComponent implements OnInit {
       header: '¡Cuéntanos!',
       buttons: this.alertButtons,
       inputs: this.alertInputs,
-      cssClass: 'custom-alert' // Clase CSS aplicada
+      cssClass: 'custom-alert'
     });
 
     await alert.present();
   }
+
+  constructor(private alertController: AlertController) {}
 
   ngOnInit() {
     addIcons({
@@ -52,5 +57,9 @@ export class PrincipalComponent implements OnInit {
       'chatbubbles-outline': chatbubblesOutline,
       'person-circle': personCircle,
     });
+  }
+
+  segmentChanged(event: any) {
+    this.selectedSegment = event.detail.value;
   }
 }

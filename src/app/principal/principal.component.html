@@ -13,18 +13,29 @@
     </ion-buttons>
 
     <div style="display: flex; justify-content: center; align-items: center; width: 100%; margin-top: 10px;">
-      <img src="assets/logo_beige.png"
+      <img ngSrc="assets/logo_beige.png"
            alt="Logo de la app"
-           style="height: 50px; width: 50px; margin-bottom: 10px;"/>
+           style="height: 50px; width: 50px; margin-bottom: 10px;" height="512" width="512"/>
     </div>
 
-    <ion-searchbar placeholder="Busca un post"></ion-searchbar>
-
+    <ion-searchbar placeholder="Busca algo..."></ion-searchbar>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <app-componente-publicacion></app-componente-publicacion>
+  <ion-segment [value]="selectedSegment" (ionChange)="segmentChanged($event)">
+    <ion-segment-button value="Recomendado">
+      <ion-label>Recomendado</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="Siguiendo">
+      <ion-label>Siguiendo</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <app-componente-publicacion *ngIf="selectedSegment === 'Recomendado'"></app-componente-publicacion>
+
+
+
   <ion-fab vertical="bottom" horizontal="center" slot="fixed">
     <ion-fab-button (click)="presentAlert()">
       <ion-icon name="add"></ion-icon>
