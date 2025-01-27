@@ -1,4 +1,3 @@
-
 ion-toolbar {
   --background: #96305A;
 }
@@ -7,56 +6,35 @@ ion-content {
   --ion-background-color: #f1ead0;
 }
 
-
 ion-button {
   margin-top: 20px;
   --color: #f1ead0;
 }
 
-ion-searchbar {
+ion-searchbar, .barrita {
   --background: #f1ead0;
   --color: #96305A;
 }
 
-
-::ng-deep .custom-alert .alert-wrapper {
-  --background: #7C274B;
-  border-radius: 12px;
-  max-width: 90%;
-  width: 400px;
+ion-modal {
+  --background: #96305A;
+  width: 70%;
+  height: 50%;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
+  margin: 0 auto;
+  margin-top: 30%;
 }
 
-::ng-deep .custom-alert .alert-input {
-  --ion-background-color: #f1ead0;
-  color: #2d3e50;
-  border-radius: 8px;
-  padding: 10px;
-}
-
-::ng-deep .custom-alert .alert-footer {
+.modal-content {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  padding: 10px 20px;
+  justify-content: center;
+  align-items: flex-start;
+  height: 100%;
+  padding-top: 20%;
 }
 
-::ng-deep .custom-alert .chat-icon {
-  font-size: 24px;
-  color: #f1ead0;
+.centered-content {
+  width: 80%;
 }
-::ng-deep .custom-alert .alert-button {
-  --background: #f1ead0;
-  --color: #F1EAD0FF;
-  border-radius: 8px;
-}
-
-::ng-deep .custom-alert .alert-title {
-  color: #f1ead0;
-  text-align: center;
-  font-size: 1.5rem;
-}
-
