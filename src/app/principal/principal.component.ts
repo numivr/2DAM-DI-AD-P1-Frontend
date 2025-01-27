@@ -26,24 +26,34 @@ export class PrincipalComponent implements OnInit {
   usuarios: Usuario[] = [];
   publicaciones: Publicacion[] = [];
 
-  public alertButtons = ['Post'];
   public alertInputs = [
     {
       type: 'textarea' as const,
       placeholder: 'Escribe tu publicación',
       attributes: {
         rows: 15,
-      },
-      cssClass: 'textarea-margin'
+        cols: 35
+      }
     },
   ];
 
   async presentAlert() {
     const alert = await this.alertController.create({
       header: '¡Cuéntanos!',
-      buttons: this.alertButtons,
       inputs: this.alertInputs,
-      cssClass: 'custom-alert'
+      cssClass: 'custom-alert',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel'
+        },
+        {
+          text: 'Publicar',
+          handler: (data) => {
+            console.log('Publicación:', data);
+          }
+        }
+      ]
     });
 
     await alert.present();
