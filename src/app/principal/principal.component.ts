@@ -28,6 +28,7 @@ export class PrincipalComponent implements OnInit {
   usuarios: Usuario[] = [];
   publicaciones: Publicacion[] = [];
   isModalOpen: boolean = false;
+  searchTerm: string = '';
 
   ngOnInit() {
     addIcons({
@@ -40,6 +41,12 @@ export class PrincipalComponent implements OnInit {
     const modal = document.querySelector('ion-modal');
     if (modal) {
       modal.classList.add('closed');
+    }
+  }
+
+  handleSearch(event: any) {
+    if (event.key === 'Enter') {
+      this.openModal();
     }
   }
 
@@ -58,12 +65,10 @@ export class PrincipalComponent implements OnInit {
       modal.classList.remove('open');
       modal.classList.add('closed');
     }
-    // Usa un delay para sincronizar el cambio de estado con la animación
     setTimeout(() => {
       this.isModalOpen = false;
     }, 300);
   }
-
 
   segmentChanged(event: any) {
     this.selectedSegment = event.detail.value;
