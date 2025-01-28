@@ -12,19 +12,30 @@ ion-button {
 }
 
 ion-searchbar, .barrita {
+  pointer-events: auto;
   --background: #f1ead0;
   --color: #96305A;
 }
 
 ion-modal {
-  --background: #96305A;
-  width: 70%;
+  border-radius: 10px;
+  width: 90%;
+  height: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 0 auto;
-  margin-top: 30%;
-  visibility: hidden;
+  margin-top: 32%;
+  transition: height 0.3s ease;
+  overflow: hidden;
+}
+
+ion-modal.closed {
+  height: 0 !important;
+}
+
+ion-modal.open {
+  height: 50% !important;
 }
 
 .modal-content {

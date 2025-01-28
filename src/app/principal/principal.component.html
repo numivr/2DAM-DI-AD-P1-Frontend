@@ -1,3 +1,4 @@
+
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
@@ -18,7 +19,13 @@
            style="height: 50px; width: 50px; margin-bottom: 10px;" height="512" width="512"/>
     </div>
 
-    <ion-searchbar class="custom-searchbar" placeholder="Busca algo..." (click)="openModal()"></ion-searchbar>
+    <ion-searchbar
+      class="custom-searchbar"
+      placeholder="Busca algo..."
+      (click)="openModal()">
+    </ion-searchbar>
+
+
   </ion-toolbar>
 </ion-header>
 
@@ -40,9 +47,9 @@
   </ion-fab>
 </ion-content>
 
-<ion-modal #modal [isOpen]="isModalOpen" >
+<ion-modal [isOpen]="isModalOpen" (ionModalDidDismiss)="closeModal()">
   <ng-template>
-    <ion-content>
+    <ion-content >
       <div class="modal-container" (click)="$event.stopPropagation()">
         <ion-list>
           <ion-item>
