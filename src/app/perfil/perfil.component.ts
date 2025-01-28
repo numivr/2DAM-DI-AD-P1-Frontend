@@ -35,10 +35,10 @@ export class PerfilComponent implements OnInit
   ngOnInit()
   {
     if (this.m_seguidores_i > 999999)
-      this.m_seguidores_s = (this.m_seguidores_i / 1000).toFixed(1) + 'K';
+      this.m_seguidores_s = (this.m_seguidores_i / 1000000).toFixed(1) + 'M';
 
     else if (this.m_seguidores_i > 999)
-      this.m_seguidores_s = (this.m_seguidores_i / 1000000).toFixed(1) + 'M';
+      this.m_seguidores_s = (this.m_seguidores_i / 1000).toFixed(1) + 'K';
 
     else
       this.m_seguidores_s = this.m_seguidores_i.toString();
