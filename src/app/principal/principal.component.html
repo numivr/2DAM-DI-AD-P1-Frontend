@@ -1,46 +1,61 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-button>
+      <ion-button [routerLink]="['/perfil']">
         <ion-icon slot="icon-only" name="person-circle"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-title>
-      <div style="display: flex; justify-content: center;">
-        <img src="assets/icon/icono_app.jpg"
-              alt="Logo de la app"
-              style="height: 50px; width: 50px; border-radius: 50%;"/>
-      </div>
-    </ion-title>
+
     <ion-buttons slot="end">
-      <ion-button>
+      <ion-button [routerLink]="['/chatspersonas']">
         <ion-icon name="chatbubbles-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
+
+    <div style="display: flex; justify-content: center; align-items: center; width: 100%; margin-top: 10px;">
+      <img ngSrc="assets/logo_beige.png"
+           alt="Logo de la app"
+           style="height: 50px; width: 50px; margin-bottom: 10px;" height="512" width="512"/>
+    </div>
+
+    <ion-searchbar class="custom-searchbar" placeholder="Busca algo..." (click)="openModal()"></ion-searchbar>
   </ion-toolbar>
-
-  <ion-toolbar>
-  <ion-searchbar placeholder="Busca un post" ></ion-searchbar>
-</ion-toolbar>
-
 </ion-header>
 
-<ion-content>
-  <ion-list>
-    <ion-item >
-      <ion-avatar slot="start">
-        <img style="border-radius: 50%" src="assets/icon/icono_app.jpg" alt="imagen del usuario" />
-      </ion-avatar>
-      <ion-label>
-        <h2>persona</h2>
-        <p>texto</p>
-      </ion-label>
-    </ion-item>
-  </ion-list>
+<ion-content (click)="closeModal()">
+  <ion-segment [value]="selectedSegment" (ionChange)="segmentChanged($event)">
+    <ion-segment-button value="Recomendado">
+      <ion-label>Recomendado</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="Siguiendo">
+      <ion-label>Siguiendo</ion-label>
+    </ion-segment-button>
+  </ion-segment>
 
+  <app-componente-publicacion *ngIf="selectedSegment === 'Recomendado'"></app-componente-publicacion>
   <ion-fab vertical="bottom" horizontal="center" slot="fixed">
-    <ion-fab-button (click)="(ModalCrearPost)"> <!-- pendiente -->
+    <ion-fab-button>
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
 </ion-content>
+
+<ion-modal #modal [isOpen]="isModalOpen" >
+  <ng-template>
+    <ion-content>
+      <div class="modal-container" (click)="$event.stopPropagation()">
+        <ion-list>
+          <ion-item>
+            <ion-avatar slot="start">
+              <ion-img src="https://i.pravatar.cc/300?u=b"></ion-img>
+            </ion-avatar>
+            <ion-label>
+              <h2> pepe</h2>
+              <p>{{ truncateText('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dignissim rhoncus mi in vulputate. Sed suscipit, diam vel tincidunt consequat, tortor aliquet turpis, sed elementum nibh mauris sit amet elit.') }}</p>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </div>
+    </ion-content>
+  </ng-template>
+</ion-modal>

@@ -1,3 +1,22 @@
-<p>
-  inicio works!
-</p>
+<ion-content class="login-page">
+  <div class="login-container">
+    <img src="assets/logo_beige.png" alt="Logo" class="logo">
+    <h1 class="titulo">Santuario</h1>
+
+    <ion-label>Nombre de usuario</ion-label>
+    <ion-item>
+      <ion-input id="usuario" type="text"></ion-input>
+    </ion-item>
+
+    <ion-label>Contraseña</ion-label>
+    <ion-item>
+      <ion-input id="contrasena" type="password"></ion-input>
+    </ion-item>
+
+    <ion-button class="login-button" expand="block" [routerLink]="'/principal'">Entrar</ion-button>
+
+    <ion-text class="register-link">
+      <a [routerLink]="'/registrocuenta'">Aún no tengo cuenta</a>
+    </ion-text>
+  </div>
+</ion-content>

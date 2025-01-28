@@ -1,0 +1,84 @@
+.login-page {
+  --ion-background-color: #2d3e50;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  color: #f1ead0;
+}
+
+.logo {
+  width: 200px;
+  height: 200px;
+}
+
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 10% auto;
+  width: 90%;
+  padding: 20px;
+  text-align: center;
+}
+
+.titulo {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  color: #f1ead0;
+}
+
+ion-label {
+  margin-top: 5px;
+  padding-left: 10px;
+  padding-bottom: 2px;
+  align-self: flex-start;
+  font-size: 0.9rem;
+  color: #f1ead0v;
+}
+
+ion-item {
+  --background: #7d2942;
+  --border-radius: 10px;
+  --placeholder-color: #f1ead0;
+  margin-bottom: 1rem;
+  width: 100%;
+  color: #f1ead0;
+}
+
+
+.register-link {
+  margin-top: 0.1rem;
+}
+
+.register-link a {
+  color: #f1ead0;
+  text-decoration: none;
+}
+
+.radio-group-horizontal {
+  display: flex;
+  justify-content: space-between;
+}
+
+.item-image {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+ion-item ion-label {
+  padding-top: 6px;
+}
+
+
+.registro-button {
+  --background: #7d2942;
+  --border-radius: 10px;
+  --color: #f1ead0;
+  margin-top: 1rem;
+  width: 40%;
+}

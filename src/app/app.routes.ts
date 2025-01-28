@@ -17,27 +17,27 @@ export const routes: Routes = [
 
 
   {
-    path: 'Inicio',
+    path: 'inicio',
     component: InicioComponent,
   },
   {
-    path: 'ChatMensajes',
+    path: 'chatmensajes',
     component: ChatMensajesComponent,
   },
   {
-    path: 'ChatsPersonas',
+    path: 'chatspersonas',
     component: ChatsPersonasComponent,
   },
   {
-    path: 'RegistroCualidades',
+    path: 'registrocualidades',
     component: RegistroCualidadesComponent,
   },
   {
-    path: 'RegistroPerro',
+    path: 'registroperro',
     component: RegistroPerroComponent,
   },
   {
-    path: 'RegistroCuenta',
+    path: 'registrocuenta',
     component: RegistroCuentaComponent,
   },
   {
@@ -45,17 +45,16 @@ export const routes: Routes = [
     component: PublicacionComponent,
   },
   {
-    path: 'Principal',
+    path: 'principal',
     component: PrincipalComponent,
   },
   {
-    path: 'Perfil',
+    path: 'perfil',
     component: PerfilComponent,
   },
-
   {
     path: '',
-    redirectTo: 'principal',
+    redirectTo: 'inicio',
     pathMatch: 'full',
   },
 ];
