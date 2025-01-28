@@ -1,10 +1,9 @@
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" style="background-color: #96305a">
 
-  <body style="background-color: #96305a">
     <div>
       <!-- El escope es un constructo social -->
     </div>
-    <div >
+    <div>
       <img src="https://picsum.photos/80/80?random=2" class="ima0_grande centrar" alt="">
       <p class="labelGrande">{{m_nombre_s}}</p>
       <p class="labelChico">{{m_tipo_s}}</p>
@@ -26,10 +25,8 @@
     </ion-grid>
 
     <div>
-      <app-publicacion></app-publicacion>
+      <app-componente-publicacion></app-componente-publicacion>
     </div>
-
-
-  </body>
+    <app-componente-publicacion></app-componente-publicacion>
 
 </ion-content>
