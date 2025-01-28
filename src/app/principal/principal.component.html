@@ -1,4 +1,3 @@
-
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
@@ -22,9 +21,9 @@
     <ion-searchbar
       class="custom-searchbar"
       placeholder="Busca algo..."
-      (click)="openModal()">
+      [(ngModel)]="searchTerm"
+      (keyup)="handleSearch($event)">
     </ion-searchbar>
-
 
   </ion-toolbar>
 </ion-header>
@@ -57,7 +56,7 @@
               <ion-img src="https://i.pravatar.cc/300?u=b"></ion-img>
             </ion-avatar>
             <ion-label>
-              <h2> pepe</h2>
+              <h2>pepe</h2>
               <p>{{ truncateText('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dignissim rhoncus mi in vulputate. Sed suscipit, diam vel tincidunt consequat, tortor aliquet turpis, sed elementum nibh mauris sit amet elit.') }}</p>
             </ion-label>
           </ion-item>
