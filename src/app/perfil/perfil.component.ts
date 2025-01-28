@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {IonCol, IonContent, IonGrid, IonRow} from "@ionic/angular/standalone";
-import {Ima0Component} from "../ima0/ima0.component";
-import {LabelComponent} from "../label/label.component";
 import {PublicacionComponent} from "../publicacion/publicacion.component";
 
 @Component({
@@ -11,8 +9,6 @@ import {PublicacionComponent} from "../publicacion/publicacion.component";
   standalone: true,
   imports: [
     IonContent,
-    Ima0Component,
-    LabelComponent,
     PublicacionComponent,
     IonGrid,
     IonRow,
