@@ -5,9 +5,30 @@
       <!-- El escope es un constructo social -->
     </div>
     <div >
-      <app-ima0 enlace="https://picsum.photos/80/80?random=2" tamano="grande"></app-ima0>
-
+      <img src="https://picsum.photos/80/80?random=2" class="ima0_grande" alt="">
+      <p class="labelGrande">{{m_nombre_s}}</p>
+      <p class="labelChico">{{m_tipo_s}}</p>
     </div>
+
+    <ion-grid>
+
+      <ion-row>
+        <ion-col >
+          <p class="labelMeiano">Seguidores</p>
+          <p class="labelGrande">{{m_seguidores_s}}</p>
+        </ion-col>
+        <ion-col>
+          <p class="labelMeiano">Seguidos</p>
+          <p class="labelGrande">{{m_seguidos_s}}</p>
+        </ion-col>
+      </ion-row>
+
+    </ion-grid>
+
+    <div>
+      <app-publicacion></app-publicacion>
+    </div>
+
 
   </body>
 

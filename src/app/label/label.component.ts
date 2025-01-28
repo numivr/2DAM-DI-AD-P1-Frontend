@@ -9,8 +9,8 @@ import {Component, Input, OnInit} from '@angular/core';
 export class LabelComponent
 {
   // Delarciones //
-  @Input() _texto: string = '';
-  @Input() _css: string|null = '';
+  @Input() texto: string = '';
+  @Input() css: string|null = '';
 
   constructor() { }
 

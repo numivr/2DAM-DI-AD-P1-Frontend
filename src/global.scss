@@ -35,3 +35,60 @@
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import '@ionic/angular/css/palettes/dark.system.css';
+
+
+
+/* CSS especializado para label*/
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+.labelChico, .labelMeiano, .labelGrande
+{
+  font-family: "Inter", sans-serif !important;
+  color: #f5f5dc;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.labelChico
+{
+  font-size: 0.5em;
+  font-weight: normal !important;
+}
+.labelMeiano
+{
+  font-size: 1em;
+  font-weight: normal !important;
+}
+.labelGrande
+{
+  font-size: 1.5em;
+  font-weight: bold;
+}
+/* Fin de label */
+
+
+
+/* CSS de Ima0 */
+.ima0_chica, .ima0_grande
+{
+  border-radius: 50% !important;
+  box-shadow: 0 6px 18px 0 rgba(0,0,0,0.8);
+  border: 2px solid #f5f5dc;
+}
+
+.ima0_grande
+{
+  width: 60vw;
+}
+.ima0_chica
+{
+  width: 20vw;
+}
+/* Fin de Ima0 */
+
+
+
+
+
+

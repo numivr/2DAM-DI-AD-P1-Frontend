@@ -12,6 +12,7 @@ export class Ima0Component implements OnInit
 
   @Input() public enlace: string = '';
   @Input() public tamano: string = '';
+  @Input() public css: string = '';
   protected p_tamano_s: string = 'chica';
 
   ngOnInit(): void
