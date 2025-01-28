@@ -22,7 +22,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content (click)="closeModal()">
   <ion-segment [value]="selectedSegment" (ionChange)="segmentChanged($event)">
     <ion-segment-button value="Recomendado">
       <ion-label>Recomendado</ion-label>
@@ -40,9 +40,9 @@
   </ion-fab>
 </ion-content>
 
-<ion-modal [isOpen]="isModalOpen" (ionModalDidDismiss)="closeModal()">
+<ion-modal #modal [isOpen]="isModalOpen" >
   <ng-template>
-    <ion-content (click)="closeModal()">
+    <ion-content>
       <div class="modal-container" (click)="$event.stopPropagation()">
         <ion-list>
           <ion-item>
@@ -50,7 +50,7 @@
               <ion-img src="https://i.pravatar.cc/300?u=b"></ion-img>
             </ion-avatar>
             <ion-label>
-              <h2> connorsmith</h2>
+              <h2> pepe</h2>
               <p>{{ truncateText('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dignissim rhoncus mi in vulputate. Sed suscipit, diam vel tincidunt consequat, tortor aliquet turpis, sed elementum nibh mauris sit amet elit.') }}</p>
             </ion-label>
           </ion-item>
