@@ -19,12 +19,12 @@ ion-searchbar, .barrita {
 ion-modal {
   --background: #96305A;
   width: 70%;
-  height: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 0 auto;
   margin-top: 30%;
+  visibility: hidden;
 }
 
 .modal-content {
