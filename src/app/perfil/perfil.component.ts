@@ -3,6 +3,8 @@ import { IonicModule } from '@ionic/angular';
 import { ComponentePublicacionComponent } from '../componentes/componente-publicacion/componente-publicacion.component';
 import { NgIf, NgOptimizedImage } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import {addIcons} from "ionicons";
+import {add, chatbubblesOutline, personCircle} from "ionicons/icons";
 
 @Component({
   selector: 'app-perfil',
@@ -32,6 +34,12 @@ export class PerfilComponent implements OnInit
 
   ngOnInit()
   {
+    addIcons({
+      'add': add,
+      'chatbubbles-outline': chatbubblesOutline,
+      'person-circle': personCircle,
+    });
+
     if (this.m_seguidores_i > 999999)
       this.m_seguidores_s = (this.m_seguidores_i / 1000000).toFixed(1) + 'M';
 
