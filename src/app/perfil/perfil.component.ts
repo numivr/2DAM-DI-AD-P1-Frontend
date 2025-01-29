@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {IonCol, IonContent, IonGrid, IonRow} from "@ionic/angular/standalone";
+import {IonBackButton, IonButton, IonCol, IonContent, IonGrid, IonRow} from "@ionic/angular/standalone";
 import {PublicacionComponent} from "../publicacion/publicacion.component";
 import {ComponentePublicacionComponent} from "../componentes/componente-publicacion/componente-publicacion.component";
+import {IonicModule} from "@ionic/angular";
+import {NgIf} from "@angular/common";
 
 @Component({
   selector: 'app-perfil',
@@ -14,7 +16,11 @@ import {ComponentePublicacionComponent} from "../componentes/componente-publicac
     IonGrid,
     IonRow,
     IonCol,
-    ComponentePublicacionComponent
+    ComponentePublicacionComponent,
+    IonBackButton,
+    IonButton,
+    IonicModule,
+    NgIf
   ]
 })
 export class PerfilComponent implements OnInit
