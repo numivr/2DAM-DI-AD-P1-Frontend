@@ -113,6 +113,13 @@ ion-icon {
   width: 100%;
 }
 
-//prueba
+#modalPublicacion header {
+  color: #f1ead0;
+}
 
-
+ion-modal::part(backdrop) {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  display: none !important;
+  pointer-events: none !important;
+}
