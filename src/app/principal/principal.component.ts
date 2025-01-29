@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {IonicModule} from '@ionic/angular';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {IonicModule, IonModal} from '@ionic/angular';
 import {add, chatbubblesOutline, personCircle} from 'ionicons/icons';
 import {addIcons} from 'ionicons';
 import {Usuario} from '../models/Usuario';
@@ -33,6 +33,9 @@ export class PrincipalComponent implements OnInit {
   newPostTitle: string = '';
   newPostDescription: string = '';
 
+
+  @ViewChild('crearPublicacionModal') modal!: IonModal;
+
   ngOnInit() {
     addIcons({
       'add': add,
@@ -49,11 +52,6 @@ export class PrincipalComponent implements OnInit {
 
   openSearchModal() {
     this.isSearchModalOpen = true;
-  }
-
-  closeModal() {
-    this.isSearchModalOpen = false;
-    this.isFabModalOpen = false;
   }
 
   openFabModal() {
