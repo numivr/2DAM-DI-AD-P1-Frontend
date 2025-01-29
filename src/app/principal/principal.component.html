@@ -1,34 +1,33 @@
 <ion-header>
   <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-button [routerLink]="['/perfil']">
-        <ion-icon slot="icon-only" name="person-circle"></ion-icon>
-      </ion-button>
-    </ion-buttons>
+    <div class="toolbar-container">
+      <ion-buttons slot="start">
+        <ion-button [routerLink]="['/perfil']">
+          <ion-icon slot="icon-only" name="person-circle"></ion-icon>
+        </ion-button>
+      </ion-buttons>
 
-    <ion-buttons slot="end">
-      <ion-button [routerLink]="['/chatspersonas']">
-        <ion-icon name="chatbubbles-outline"></ion-icon>
-      </ion-button>
-    </ion-buttons>
+      <div class="logo-container">
+        <img src="assets/logo_beige.png" alt="Logo de la app"/>
+      </div>
 
-    <div style="display: flex; justify-content: center; align-items: center; width: 100%; margin-top: 10px;">
-      <img ngSrc="assets/logo_beige.png"
-           alt="Logo de la app"
-           style="height: 50px; width: 50px; margin-bottom: 10px;" height="512" width="512"/>
+      <ion-buttons slot="end">
+        <ion-button [routerLink]="['/chatspersonas']">
+          <ion-icon name="chatbubbles-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
     </div>
-
-    <ion-searchbar
-      class="custom-searchbar"
-      placeholder="Busca algo..."
-      [(ngModel)]="searchTerm"
-      (keyup)="handleSearch($event)">
-    </ion-searchbar>
-
   </ion-toolbar>
+
+  <ion-searchbar
+    class="custom-searchbar"
+    placeholder="Busca algo..."
+    [(ngModel)]="searchTerm"
+    (keyup)="handleSearch($event)">
+  </ion-searchbar>
 </ion-header>
 
-<ion-content (click)="closeModal()">
+<ion-content (click)="closeSearchModal()">
   <ion-segment [value]="selectedSegment" (ionChange)="segmentChanged($event)">
     <ion-segment-button value="Recomendado">
       <ion-label>Recomendado</ion-label>
@@ -39,16 +38,21 @@
   </ion-segment>
 
   <app-componente-publicacion *ngIf="selectedSegment === 'Recomendado'"></app-componente-publicacion>
+
   <ion-fab vertical="bottom" horizontal="center" slot="fixed">
-    <ion-fab-button>
+    <ion-fab-button (click)="openFabModal()">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
 </ion-content>
 
-<ion-modal [isOpen]="isModalOpen" (ionModalDidDismiss)="closeModal()">
+
+<!--------------------------------------------------------------------------------------------------------------------->
+
+
+<ion-modal id="modalBusqueda" [isOpen]="isSearchModalOpen" (ionModalDidDismiss)="closeSearchModal()">
   <ng-template>
-    <ion-content >
+    <ion-content>
       <div class="modal-container" (click)="$event.stopPropagation()">
         <ion-list>
           <ion-item>
@@ -61,6 +65,38 @@
             </ion-label>
           </ion-item>
         </ion-list>
+      </div>
+    </ion-content>
+  </ng-template>
+</ion-modal>
+
+
+<ion-modal  id="modalPublicacion" [isOpen]="isFabModalOpen" (ionModalDidDismiss)="closeSearchModal()">
+  <ng-template>
+    <ion-header>
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-button color="medium" (click)="cancel()">Cancelar</ion-button>
+        </ion-buttons>
+        <ion-title>Nuevo Post</ion-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="submitPost()" [strong]="true">Publicar</ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <div class="modal-content" (click)="$event.stopPropagation()">
+        <h2 style="text-align: center;">Crear Publicación</h2>
+        <ion-item>
+          <ion-label position="floating">Título</ion-label>
+          <ion-input [(ngModel)]="newPostTitle"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Descripción</ion-label>
+          <ion-textarea [(ngModel)]="newPostDescription"></ion-textarea>
+        </ion-item>
+
       </div>
     </ion-content>
   </ng-template>
