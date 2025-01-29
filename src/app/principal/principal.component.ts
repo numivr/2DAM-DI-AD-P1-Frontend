@@ -1,5 +1,5 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {IonModal, IonicModule} from '@ionic/angular';
+import {Component, OnInit} from '@angular/core';
+import {IonicModule} from '@ionic/angular';
 import {add, chatbubblesOutline, personCircle} from 'ionicons/icons';
 import {addIcons} from 'ionicons';
 import {Usuario} from '../models/Usuario';
@@ -27,8 +27,11 @@ export class PrincipalComponent implements OnInit {
   selectedSegment: string = 'Recomendado';
   usuarios: Usuario[] = [];
   publicaciones: Publicacion[] = [];
-  isModalOpen: boolean = false;
+  isSearchModalOpen: boolean = false;
+  isFabModalOpen: boolean = false;
   searchTerm: string = '';
+  newPostTitle: string = '';
+  newPostDescription: string = '';
 
   ngOnInit() {
     addIcons({
@@ -36,38 +39,46 @@ export class PrincipalComponent implements OnInit {
       'chatbubbles-outline': chatbubblesOutline,
       'person-circle': personCircle,
     });
-
-    // Ensure the modal is closed initially
-    const modal = document.querySelector('ion-modal');
-    if (modal) {
-      modal.classList.add('closed');
-    }
   }
 
   handleSearch(event: any) {
     if (event.key === 'Enter') {
-      this.openModal();
+      this.openSearchModal();
     }
   }
 
-  openModal() {
-    this.isModalOpen = true;
-    const modal = document.querySelector('ion-modal');
-    if (modal) {
-      modal.classList.remove('closed');
-      modal.classList.add('open');
-    }
+  openSearchModal() {
+    this.isSearchModalOpen = true;
   }
 
   closeModal() {
-    const modal = document.querySelector('ion-modal');
-    if (modal) {
-      modal.classList.remove('open');
-      modal.classList.add('closed');
+    this.isSearchModalOpen = false;
+    this.isFabModalOpen = false;
+  }
+
+  openFabModal() {
+    this.isFabModalOpen = true;
+  }
+
+  closeFabModal() {
+    this.isFabModalOpen = false;
+  }
+
+  closeSearchModal() {
+    this.isSearchModalOpen = false;
+  }
+
+  submitPost() {
+    if (this.newPostTitle && this.newPostDescription) {
+      console.log('Publicación creada:', this.newPostTitle, this.newPostDescription);
+      this.closeFabModal();
+    } else {
+      alert('Por favor, completa todos los campos.');
     }
-    setTimeout(() => {
-      this.isModalOpen = false;
-    }, 300);
+  }
+
+  cancel() {
+    this.closeFabModal();
   }
 
   segmentChanged(event: any) {
@@ -77,4 +88,6 @@ export class PrincipalComponent implements OnInit {
   truncateText(text: string, limit: number = 40): string {
     return text.length > limit ? `${text.substring(0, limit)}...` : text;
   }
+
+  protected readonly confirm = confirm;
 }
