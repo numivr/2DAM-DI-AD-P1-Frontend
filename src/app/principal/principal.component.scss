@@ -10,11 +10,13 @@ ion-content {
 }
 
 ion-button {
+  margin-top: 20px;
   --color: #f1ead0;
 }
 
-ion-searchbar {
+ion-searchbar, .barrita {
   --background: #f1ead0;
+  --color: #96305A;
   --border-radius: 20px;
   --box-shadow: none;
   --color: black;
@@ -117,9 +119,6 @@ ion-icon {
   color: #f1ead0;
 }
 
-ion-modal::part(backdrop) {
-  opacity: 0 !important;
-  visibility: hidden !important;
-  display: none !important;
-  pointer-events: none !important;
+.centered-content {
+  width: 80%;
 }
