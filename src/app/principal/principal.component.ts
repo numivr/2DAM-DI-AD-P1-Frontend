@@ -1,25 +1,26 @@
-import { Component, OnInit, ViewChild, ElementRef, Renderer2 } from '@angular/core';
-import { IonModal, IonicModule } from '@ionic/angular';
-import { add, chatbubblesOutline, personCircle } from 'ionicons/icons';
-import { addIcons } from 'ionicons';
-import { Usuario } from '../models/Usuario';
-import { Publicacion } from '../models/Publicacion';
-import { ComponentePublicacionComponent } from '../componentes/componente-publicacion/componente-publicacion.component';
-import { RouterLink } from '@angular/router';
-import { NgIf, NgOptimizedImage } from '@angular/common';
+import {Component, OnInit} from '@angular/core';
+import {IonicModule} from "@ionic/angular";
+import {NgOptimizedImage} from "@angular/common";
+import {add, chatbubblesOutline, personCircle} from "ionicons/icons";
+import {addIcons} from "ionicons";
+import {Usuario} from "../models/Usuario";
+import {Publicacion} from "../models/Publicacion";
+import {ComponentePublicacionComponent} from "../componentes/componente-publicacion/componente-publicacion.component";
+import {RouterLink} from "@angular/router";
+
+
 
 @Component({
-  selector: 'app-principal',
-  templateUrl: './principal.component.html',
-  styleUrls: ['./principal.component.scss'],
-  standalone: true,
-  imports: [
-    IonicModule,
-    NgOptimizedImage,
-    ComponentePublicacionComponent,
-    RouterLink,
-    NgIf
-  ],
+    selector: 'app-principal',
+    templateUrl: './principal.component.html',
+    styleUrls: ['./principal.component.scss'],
+    standalone: true,
+    imports: [
+        IonicModule,
+        NgOptimizedImage,
+        ComponentePublicacionComponent,
+      RouterLink
+    ]
 })
 export class PrincipalComponent implements OnInit {
   @ViewChild('modal', { static: true }) modal!: ElementRef;
