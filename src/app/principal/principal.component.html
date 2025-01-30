@@ -66,31 +66,32 @@
 
   <ion-modal  id="modalPublicacion" #crearPublicacionModal trigger="open-modal" (click)="closeSearchModal()">
     <ng-template>
-      <ion-header>
         <ion-toolbar>
           <ion-buttons slot="start">
             <ion-button color="medium" (click)="modal.dismiss()">Cancelar</ion-button>
           </ion-buttons>
-          <ion-title>Nuevo Post</ion-title>
+          <ion-title style="color: #f1ead0">Nuevo Post</ion-title>
           <ion-buttons slot="end">
             <ion-button (click)="submitPost()" [strong]="true">Publicar</ion-button>
           </ion-buttons>
         </ion-toolbar>
-      </ion-header>
       <ion-content>
         <div class="modal-content" (click)="$event.stopPropagation()">
-          <h2 style="text-align: center;">Crear Publicación</h2>
+          <ion-label position="floating">¡Cuéntanos!</ion-label>
           <ion-item>
-            <ion-label position="floating">Título</ion-label>
-            <ion-input [(ngModel)]="newPostTitle"></ion-input>
+            <ion-textarea
+              class="post-textarea"
+              placeholder="¿Qué deseas compartir de los perretes...?"
+              [(ngModel)]="newPostDescription">
+            </ion-textarea>
           </ion-item>
-
-          <ion-item>
-            <ion-label position="floating">Descripción</ion-label>
-            <ion-textarea [(ngModel)]="newPostDescription"></ion-textarea>
-          </ion-item>
-
+          <ion-buttons slot="end" style="margin-left: auto; margin-right: 30px">
+            <ion-button>
+              <ion-icon style="color: #7C274B" slot="icon-only" name="image-outline"></ion-icon>
+            </ion-button>
+          </ion-buttons>
         </div>
+
       </ion-content>
     </ng-template>
   </ion-modal>
