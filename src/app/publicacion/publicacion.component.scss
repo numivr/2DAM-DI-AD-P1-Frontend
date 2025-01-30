@@ -1,0 +1,49 @@
+.custom-card {
+  background-color: #5E2142; /* Color de fondo de la tarjeta */
+  border-radius: 15px; /* Esquinas redondeadas */
+  color: #F5F5DC; /* Color de texto */
+  margin: 7%;
+}
+
+.profile-container {
+  display: flex;
+  align-items: center; /* Centra verticalmente los elementos */
+}
+
+.profile-image {
+  width: 20%; /* Tamaño de la imagen */
+  height: 20%;
+  border-radius: 50%; /* Hace la imagen redonda */
+  margin-right: 15px; /* Espaciado entre la imagen y el texto */
+}
+
+.profile-info h2 {
+  font-size: 1.2rem; /* Tamaño del texto del nombre */
+  font-weight: bold; /* Negrita */
+  margin: 0; /* Elimina el margen */
+}
+
+ion-card-content p {
+  font-size: 0.7rem; /* Tamaño del texto */
+  line-height: 1.5; /* Espaciado entre líneas */
+  margin-top: 10px; /* Espaciado con respecto al header */
+  color: #F5F5DC;
+  font-family: 'Roboto', sans-serif;
+}
+
+h5{
+  color: #F5F5DC;
+  font-weight: bold;
+  font-family: 'Roboto', sans-serif;
+
+}
+
+.publication-image{
+  display: inline-block;
+  width: 100%;
+
+}
+
+img{
+  border-radius: 4%;
+}

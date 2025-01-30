@@ -41,7 +41,7 @@ export const routes: Routes = [
     component: RegistroCuentaComponent,
   },
   {
-    path: 'publicacion',
+    path:'publicacion',
     component: PublicacionComponent,
   },
   {
