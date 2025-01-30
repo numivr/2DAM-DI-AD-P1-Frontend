@@ -101,7 +101,7 @@ ion-icon {
   height: 50% !important;
 }
 
-#modalBusqueda .modal-container, {
+#modalBusqueda .modal-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -121,18 +121,4 @@ ion-icon {
 
 .centered-content {
   width: 80%;
-}
-
-.custom-alert .alert-wrapper {
-  background-color: #f1ead0;
-  color: #96305A;
-  border-radius: 8px;
-  padding: 10px;
-}
-
-.custom-alert textarea {
-  background-color: #f1ead0;
-  color: #96305A;
-  border-radius: 8px;
-  padding: 10px;
 }
