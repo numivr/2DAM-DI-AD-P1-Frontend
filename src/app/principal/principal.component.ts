@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, ViewChild, Renderer2, OnInit} from '@angular/core';
 import {IonicModule} from "@ionic/angular";
 import {NgOptimizedImage} from "@angular/common";
 import {add, chatbubblesOutline, personCircle} from "ionicons/icons";
@@ -7,6 +7,7 @@ import {Usuario} from "../models/Usuario";
 import {Publicacion} from "../models/Publicacion";
 import {ComponentePublicacionComponent} from "../componentes/componente-publicacion/componente-publicacion.component";
 import {RouterLink} from "@angular/router";
+
 
 
 
