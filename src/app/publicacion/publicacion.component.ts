@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {IonCard, IonCardContent, IonCardHeader, IonContent, IonRow} from "@ionic/angular/standalone";
+import {ComponentePublicacionComponent} from "../componentes/componente-publicacion/componente-publicacion.component";
+import {NgIf} from "@angular/common";
+import {IonContent} from "@ionic/angular/standalone";
 
 @Component({
   selector: 'app-publicacion',
@@ -7,11 +9,9 @@ import {IonCard, IonCardContent, IonCardHeader, IonContent, IonRow} from "@ionic
   styleUrls: ['./publicacion.component.scss'],
   standalone: true,
   imports: [
-    IonContent,
-    IonCard,
-    IonCardHeader,
-    IonCardContent,
-    IonRow
+    ComponentePublicacionComponent,
+    NgIf,
+    IonContent
   ]
 })
 export class PublicacionComponent  implements OnInit {
