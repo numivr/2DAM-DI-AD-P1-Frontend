@@ -10,6 +10,10 @@ import {
   IonTitle,
   IonToolbar
 } from "@ionic/angular/standalone";
+import {Chat} from "../models/Chat";
+import {ChatService} from "../servicio/chat.service";
+import {addIcons} from "ionicons";
+import {eye} from "ionicons/icons";
 
 @Component({
   selector: 'app-chats-personas',
@@ -40,7 +44,10 @@ import {
   ]
 })
 export class ChatsPersonasComponent implements OnInit {
-  chats = [
+
+  chats : Chat[] = [];
+
+  chatsss = [
     {
       avatar: 'https://img.freepik.com/fotos-premium/perfil-cabeza-perro-marron_138545-178.jpg', // URL de la imagen
       username: '@lucas.doggy',
@@ -58,7 +65,16 @@ export class ChatsPersonasComponent implements OnInit {
     }
   ];
 
-  constructor() { }
+  constructor(private chatService: ChatService) {
+    addIcons( {eye} )
+  }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.chatService.getChats().subscribe({
+      next: (data) => this.chats = data,
+      error: (error) => console.error('Error:', error),
+      complete: () => console.log('Completado')
+
+    })
+  }
 }
