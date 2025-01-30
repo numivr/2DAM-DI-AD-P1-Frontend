@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {IonicModule, IonModal} from '@ionic/angular';
-import {add, chatbubblesOutline, personCircle} from 'ionicons/icons';
+import {add, chatbubblesOutline, imageOutline, personCircle} from 'ionicons/icons';
 import {addIcons} from 'ionicons';
 import {Usuario} from '../models/Usuario';
 import {Publicacion} from '../models/Publicacion';
@@ -41,6 +41,7 @@ export class PrincipalComponent implements OnInit {
       'add': add,
       'chatbubbles-outline': chatbubblesOutline,
       'person-circle': personCircle,
+      'image-outline': imageOutline
     });
   }
 
@@ -67,8 +68,8 @@ export class PrincipalComponent implements OnInit {
   }
 
   submitPost() {
-    if (this.newPostTitle && this.newPostDescription) {
-      console.log('Publicación creada:', this.newPostTitle, this.newPostDescription);
+    if (this.newPostDescription.trim()) {
+      console.log('Publicación creada:', this.newPostDescription);
       this.closeFabModal();
     } else {
       alert('Por favor, completa todos los campos.');
