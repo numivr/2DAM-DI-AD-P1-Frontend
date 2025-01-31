@@ -10,10 +10,12 @@ import {IonicModule} from "@ionic/angular";
     IonicModule
   ]
 })
-export class ComponentePublicacionComponent  implements OnInit {
-
+export class ComponentePublicacionComponent  implements OnInit
+{
   constructor() { }
 
   ngOnInit() {}
+
+
 
 }
