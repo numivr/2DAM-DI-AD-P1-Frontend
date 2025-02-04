@@ -81,3 +81,12 @@
   display: flex;
   justify-content: space-between;
 }
+
+/* Estilo para los mensajes de error y validación */
+.mensaje-disponibilidad,
+.error-mensaje {
+  color: red;  /* 🔴 Cambiamos todos los mensajes a rojo */
+  font-size: 14px;
+  margin-top: 5px;
+  font-weight: bold;
+}

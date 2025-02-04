@@ -5,15 +5,19 @@
 
     <ion-label>Nombre de usuario</ion-label>
     <ion-item>
-      <ion-input id="usuario" type="text"></ion-input>
+      <ion-input id="usuario" type="text"
+                 [(ngModel)]="UsuarioLoggeado.username"
+      ></ion-input>
     </ion-item>
 
     <ion-label>Contraseña</ion-label>
     <ion-item>
-      <ion-input id="contrasena" type="password"></ion-input>
+      <ion-input id="contrasena" type="password"
+                  [(ngModel)]="UsuarioLoggeado.password"
+      ></ion-input>
     </ion-item>
 
-    <ion-button class="login-button" expand="block" [routerLink]="'/principal'">Entrar</ion-button>
+    <ion-button class="login-button" expand="block"  (click)="login()">Entrar</ion-button>
 
     <ion-text class="register-link">
       <a [routerLink]="'/registrocuenta'">Aún no tengo cuenta</a>
