@@ -1,8 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {IonicModule} from "@ionic/angular";
-import {RouterLink} from "@angular/router";
 import {addIcons} from "ionicons";
 import {chatbubbleOutline, heart, heartOutline} from "ionicons/icons";
+import {NgIf} from "@angular/common";
 
 @Component({
   selector: 'app-componente-publicacion',
@@ -11,7 +11,7 @@ import {chatbubbleOutline, heart, heartOutline} from "ionicons/icons";
   standalone: true,
   imports: [
     IonicModule,
-    RouterLink
+    NgIf,
   ]
 })
 export class ComponentePublicacionComponent  implements OnInit
@@ -19,6 +19,7 @@ export class ComponentePublicacionComponent  implements OnInit
 
   @Input() isFavorite: boolean = false;
   @Input() url: string|null = null;
+  @Input() alt: string|null = '';
   m_miNombre_s: string = "";
   @Input() nombre: string = 'nombre_ejemplo';
   @Input() texto: string = 'texto_ejemplo';
@@ -41,6 +42,8 @@ export class ComponentePublicacionComponent  implements OnInit
     })
 
     this.m_miNombre_s = '@' + this.nombre;
+
+    console.log(this.url);
   }
 
 }

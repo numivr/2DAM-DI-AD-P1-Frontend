@@ -9,8 +9,8 @@
       </div>
     </ion-card-header>
     <ion-card-content>
-      <ion-row *NgIf="url !== ''">
-        <img src="{{url}}" class="publication-image">
+      <ion-row *ngIf="url !== null">
+        <img src="{{url}}" class="publication-image" alt="{{alt}}">
       </ion-row>
       <ion-row>
         <p>
