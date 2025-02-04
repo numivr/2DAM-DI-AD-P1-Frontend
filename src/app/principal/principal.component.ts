@@ -12,16 +12,17 @@ import {RouterLink} from "@angular/router";
 
 
 @Component({
-    selector: 'app-principal',
-    templateUrl: './principal.component.html',
-    styleUrls: ['./principal.component.scss'],
-    standalone: true,
-    imports: [
-        IonicModule,
-        NgOptimizedImage,
-        ComponentePublicacionComponent,
-      RouterLink
-    ]
+  selector: 'app-principal',
+  templateUrl: './principal.component.html',
+  styleUrls: ['./principal.component.scss'],
+  standalone: true,
+  imports: [
+    IonicModule,
+    NgOptimizedImage,
+    ComponentePublicacionComponent,
+    RouterLink,
+    NgIf
+  ],
 })
 export class PrincipalComponent implements OnInit {
   @ViewChild('modal', { static: true }) modal!: ElementRef;
@@ -29,7 +30,40 @@ export class PrincipalComponent implements OnInit {
   usuarios: Usuario[] = [];
   publicaciones: Publicacion[] = [];
 
-  constructor(private renderer: Renderer2) {}
+  public alertInputs = [
+    {
+      type: 'textarea' as const,
+      placeholder: 'Escribe tu publicación',
+      attributes: {
+        rows: 15,
+        cols: 35
+      }
+    },
+  ];
+
+  async presentAlert() {
+    const alert = await this.alertController.create({
+      header: '¡Cuéntanos!',
+      inputs: this.alertInputs,
+      cssClass: 'custom-alert',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel'
+        },
+        {
+          text: 'Publicar',
+          handler: (data) => {
+            console.log('Publicación:', data);
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+
+  constructor(private alertController: AlertController) {}
 
   ngOnInit() {
     addIcons({

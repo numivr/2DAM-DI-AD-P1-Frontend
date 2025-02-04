@@ -2,13 +2,14 @@
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-button [routerLink]="['/perfil']">
+      <ion-button [routerLink]="['/perfil']">
         <ion-icon slot="icon-only" name="person-circle"></ion-icon>
       </ion-button>
     </ion-buttons>
 
     <ion-buttons slot="end">
-      <ion-button>
-        <ion-icon name="chatbubbles-outline" [routerLink]="'/chatspersonas'"></ion-icon>
+      <ion-button [routerLink]="['/chatspersonas']">
+        <ion-icon name="chatbubbles-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
 
@@ -34,7 +35,7 @@
 
   <app-componente-publicacion *ngIf="selectedSegment === 'Recomendado'"></app-componente-publicacion>
   <ion-fab vertical="bottom" horizontal="center" slot="fixed">
-    <ion-fab-button>
+    <ion-fab-button (click)="presentAlert()">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {IonCard, IonCardContent, IonCardHeader, IonContent, IonRow} from "@ionic/angular/standalone";
 import {ComponentePublicacionComponent} from "../componentes/componente-publicacion/componente-publicacion.component";
+import {NgIf} from "@angular/common";
+import {IonContent} from "@ionic/angular/standalone";
 
 @Component({
   selector: 'app-publicacion',

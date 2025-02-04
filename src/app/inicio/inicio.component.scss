@@ -3,6 +3,75 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 100vh;
+  color: #fdf4c3;
+}
+
+.logo {
+  width: 200px;
+  height: 200px;
+}
+
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 10% auto;
+  width: 90%;
+  height: 80%;
+  padding: 20px;
+  text-align: center;
+}
+
+.titulo {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  color: #fdf4c3;
+}
+
+ion-label {
+  padding-left: 10px;
+  padding-bottom: 2px;
+  align-self: flex-start;
+  font-size: 0.9rem;
+  color: #fdf4c3;
+}
+
+ion-item {
+  --background: #7d2942;
+  --border-radius: 10px;
+  --placeholder-color: #fdf4c3;
+  margin-bottom: 1rem;
+  width: 100%;
+}
+
+ion-input {
+  color: #fdf4c3;
+}
+
+.login-button {
+  --background: #7d2942;
+  --border-radius: 10px;
+  --color: #fdf4c3;
+  margin-top: 1rem;
+  width: 30%;
+}
+
+.register-link {
+  margin-top: 0.1rem;
+}
+
+.register-link a {
+  color: #fdf4c3;
+  text-decoration: none;
+}
+.login-page {
+  --ion-background-color: #2d3e50;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 100%;
   color: #fdf4c3;
 
