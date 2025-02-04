@@ -40,6 +40,82 @@
   --ion-color-primary: #7C274B;
   --ion-color-secondary: #5D1D38;
   --ion-color-tertiary: #f1ead0;
+
+  --color1: #7C274B;
+  --color2: #5D1D38;
+  --color3: #f1ead0;
+  --color4: #e5dab5;
+  --color5: #2c4251;
 }
 
+
+
+
+
+/* CSS especializado para label*/
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+.labelChico, .labelMeiano, .labelGrande
+{
+  font-family: "Inter", sans-serif !important;
+  color: var(--ion-color-tertiary);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+}
+
+.labelChico
+{
+  font-size: 0.5em;
+  font-weight: normal !important;
+}
+.labelMeiano
+{
+  font-size: 1em;
+  font-weight: normal !important;
+}
+.labelGrande
+{
+  font-size: 1.5em;
+  font-weight: bold;
+  margin: 0.2em 0 0.2em 0;
+}
+/* Fin de label */
+
+
+
+/* CSS de Ima0 */
+.ima0_chica, .ima0_grande
+{
+  border-radius: 50% !important;
+  box-shadow: 0 6px 18px 0 rgba(0,0,0,0.8);
+  border: 2px solid var(--ion-color-tertiary);
+
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ima0_grande
+{
+  width: 60vw;
+}
+.ima0_chica
+{
+  width: 20vw;
+}
+/* Fin de Ima0 */
+
+
+/* Boton beis */
+.btn_beige
+{
+  --background: var(--color4) !important;
+  --color: var(--color5) !important;
+  font-weight: bold;
+  font-family: "Inter", sans-serif;
+  --border-radius: 1em;
+}
+/* Fin Boton */
 

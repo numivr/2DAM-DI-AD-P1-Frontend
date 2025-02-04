@@ -33,14 +33,14 @@
             <ion-row>
               <ion-col size="3" style="align-items: center; display: flex; justify-content: center;">
                 <ion-avatar>
-                  <ion-img [src]="chat.avatar"></ion-img>
+                  <ion-img src="https://estaticos-cdn.prensaiberica.es/clip/ddd42d3e-7edd-4029-8ea1-00fc4eff1118_original-libre-aspect-ratio_default_0.jpg"></ion-img>
                 </ion-avatar>
               </ion-col>
               <ion-col size="9">
                 <ion-title style="font-size: 14pt; padding-bottom: 5px;">
-                  <b>{{ chat.username }}</b>
+                  <b>{{ chat.nombre }}</b>
                 </ion-title>
-                <ion-text style="font-size: 12pt;">{{ chat.descripcion }}</ion-text>
+                <ion-text style="font-size: 12pt;">{{ chat.ultimoMensaje }}</ion-text>
               </ion-col>
             </ion-row>
           </ion-card-header>
