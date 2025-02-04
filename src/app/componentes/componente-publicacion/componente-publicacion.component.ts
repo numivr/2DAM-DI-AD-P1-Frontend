@@ -16,8 +16,13 @@ import {chatbubbleOutline, heart, heartOutline} from "ionicons/icons";
 })
 export class ComponentePublicacionComponent  implements OnInit {
 
-  isFavorite: boolean = false;
-  @Input() url: string = '';
+  @Input() isFavorite: boolean = false;
+  @Input() url: string|null = null;
+  m_miNombre_s: string = "";
+  @Input() nombre: string = 'nombre_ejemplo';
+  @Input() texto: string = 'texto_ejemplo';
+  @Input() likes: number|null = null;
+  @Input() comentarios: number|null = null;
 
   constructor() { }
 
@@ -34,6 +39,7 @@ export class ComponentePublicacionComponent  implements OnInit {
       'heart': heart,
     })
 
+    this.m_miNombre_s = '@' + this.nombre;
   }
 
 }

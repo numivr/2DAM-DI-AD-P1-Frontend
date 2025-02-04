@@ -5,7 +5,7 @@
       <div class="profile-container">
         <img src="https://picsum.photos/80/80?random=2" alt="Profile" class="profile-image">
         <div class="profile-info">
-          <h5>loving_puppies</h5>
+          <h5>{{m_miNombre_s}}</h5>
         </div>
       </div>
     </ion-card-header>
@@ -15,24 +15,23 @@
       </ion-row>
       <ion-row>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dignissim rhoncus mi in vulputate. Sed suscipit,
-          diam vel tincidunt consequat, tortor aliquet turpis, sed elementum nibh mauris sit amet elit.
+          {{texto}}
         </p>
       </ion-row>
 
 
-        <ion-buttons slot="start">
+        <ion-buttons slot="start" *ngIf="likes !== null">
           <ion-button  (click)="toggleFavorite()">
             <ion-icon  [name]="isFavorite ? 'heart' : 'heart-outline'">
             </ion-icon>
-            <div>123</div>
+            <div>{{likes}}</div>
           </ion-button>
         </ion-buttons>
 
-        <ion-buttons slot="end" >
+        <ion-buttons slot="end" *ngIf="comentarios !== null">
           <ion-button >
             <ion-icon name="chatbubble-outline"></ion-icon>
-            <div>4314</div>
+            <div>{{comentarios}}</div>
           </ion-button>
         </ion-buttons>
 
