@@ -20,11 +20,13 @@ export class ComponentePublicacionComponent  implements OnInit
   @Input() isFavorite: boolean = false;
   @Input() url: string|null = null;
   @Input() alt: string|null = '';
-  m_miNombre_s: string = "";
-  @Input() nombre: string = 'nombre_ejemplo';
+  m_miNombre_s: string|null = "";
+  @Input() nombre: string|null = null;
   @Input() texto: string = 'texto_ejemplo';
   @Input({transform: numberAttribute}) likes: number|null = null;
   @Input({transform: numberAttribute}) comentarios: number|null = null;
+
+  @Input() miUrl: string|null = null;
 
   constructor() { }
 
@@ -41,7 +43,7 @@ export class ComponentePublicacionComponent  implements OnInit
       'heart': heart,
     })
 
-    this.m_miNombre_s = '@' + this.nombre;
+    this.m_miNombre_s = '@' + (this.nombre !== null ? this.nombre : null);
 
     console.log(this.url);
   }
