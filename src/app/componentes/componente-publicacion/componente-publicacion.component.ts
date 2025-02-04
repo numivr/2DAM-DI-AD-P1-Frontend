@@ -3,6 +3,7 @@ import {IonicModule} from "@ionic/angular";
 import {addIcons} from "ionicons";
 import {chatbubbleOutline, heart, heartOutline} from "ionicons/icons";
 import {NgIf} from "@angular/common";
+import {RouterLink} from "@angular/router";
 
 @Component({
   selector: 'app-componente-publicacion',
@@ -12,11 +13,12 @@ import {NgIf} from "@angular/common";
   imports: [
     IonicModule,
     NgIf,
+    RouterLink,
   ]
 })
 export class ComponentePublicacionComponent  implements OnInit
 {
-
+  @Input() enlace: string = '';
   @Input() isFavorite: boolean = false;
   @Input() url: string|null = null;
   @Input() alt: string|null = '';
