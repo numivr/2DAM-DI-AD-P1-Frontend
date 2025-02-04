@@ -10,8 +10,8 @@
       </div>
     </ion-card-header>
     <ion-card-content>
-      <ion-row>
-        <img src="https://picsum.photos/80/80?random=3" class="publication-image">
+      <ion-row *NgIf="url !== ''">
+        <img src="{{url}}" class="publication-image">
       </ion-row>
       <ion-row>
         <p>

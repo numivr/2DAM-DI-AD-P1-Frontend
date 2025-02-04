@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {IonicModule} from "@ionic/angular";
 import {RouterLink} from "@angular/router";
 import {addIcons} from "ionicons";
@@ -17,6 +17,7 @@ import {chatbubbleOutline, heart, heartOutline} from "ionicons/icons";
 export class ComponentePublicacionComponent  implements OnInit {
 
   isFavorite: boolean = false;
+  @Input() url: string = '';
 
   constructor() { }
 
