@@ -14,7 +14,8 @@ import {chatbubbleOutline, heart, heartOutline} from "ionicons/icons";
     RouterLink
   ]
 })
-export class ComponentePublicacionComponent  implements OnInit {
+export class ComponentePublicacionComponent  implements OnInit
+{
 
   @Input() isFavorite: boolean = false;
   @Input() url: string|null = null;
