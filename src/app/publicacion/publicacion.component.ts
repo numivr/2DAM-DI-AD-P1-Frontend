@@ -10,10 +10,6 @@ import {IonContent} from "@ionic/angular/standalone";
   standalone: true,
     imports: [
         IonContent,
-        IonCard,
-        IonCardHeader,
-        IonCardContent,
-        IonRow,
         ComponentePublicacionComponent
     ]
 })

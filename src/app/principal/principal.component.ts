@@ -1,6 +1,6 @@
 import {Component, ElementRef, ViewChild, Renderer2, OnInit} from '@angular/core';
-import {IonicModule} from "@ionic/angular";
-import {NgOptimizedImage} from "@angular/common";
+import {AlertController, IonicModule} from "@ionic/angular";
+import {NgIf, NgOptimizedImage} from "@angular/common";
 import {add, chatbubblesOutline, personCircle} from "ionicons/icons";
 import {addIcons} from "ionicons";
 import {Usuario} from "../models/Usuario";
