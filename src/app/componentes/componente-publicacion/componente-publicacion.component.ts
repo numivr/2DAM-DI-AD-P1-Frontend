@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, numberAttribute, OnInit} from '@angular/core';
 import {IonicModule} from "@ionic/angular";
 import {addIcons} from "ionicons";
 import {chatbubbleOutline, heart, heartOutline} from "ionicons/icons";
@@ -23,8 +23,8 @@ export class ComponentePublicacionComponent  implements OnInit
   m_miNombre_s: string = "";
   @Input() nombre: string = 'nombre_ejemplo';
   @Input() texto: string = 'texto_ejemplo';
-  @Input() likes: number|null = null;
-  @Input() comentarios: number|null = null;
+  @Input({transform: numberAttribute}) likes: number|null = null;
+  @Input({transform: numberAttribute}) comentarios: number|null = null;
 
   constructor() { }
 

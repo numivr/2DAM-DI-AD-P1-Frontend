@@ -32,16 +32,20 @@
 
 
       <!-- Preguntar al profesor porque no sale -->
-      <app-componente-publicacion url="https://picsum.photos/80/80?random=3"></app-componente-publicacion>
+      <app-componente-publicacion
+        url="https://picsum.photos/80/80?random=3"
+        nombre="Pablo"
+        texto="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dignissim rhoncus mi in vulputate. Sed suscipit,
+          diam vel tincidunt consequat, tortor aliquet turpis, sed elementum nibh mauris sit amet elit."
+        likes="10"
+      ></app-componente-publicacion>
       <app-componente-publicacion url="https://picsum.photos/80/80?random=3"></app-componente-publicacion>
 
-
-      <ion-fab vertical="bottom" horizontal="center" slot="fixed">
-        <ion-fab-button>
-          <ion-icon name="add"></ion-icon>
-        </ion-fab-button>
-      </ion-fab>
     </div>
 
-
+  <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+    <ion-fab-button>
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>
