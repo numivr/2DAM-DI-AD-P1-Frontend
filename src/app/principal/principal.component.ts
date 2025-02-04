@@ -1,15 +1,13 @@
-import {Component, ElementRef, ViewChild, Renderer2, OnInit} from '@angular/core';
-import {AlertController, IonicModule} from "@ionic/angular";
-import {NgIf, NgOptimizedImage} from "@angular/common";
-import {add, chatbubblesOutline, personCircle} from "ionicons/icons";
-import {addIcons} from "ionicons";
-import {Usuario} from "../models/Usuario";
-import {Publicacion} from "../models/Publicacion";
-import {ComponentePublicacionComponent} from "../componentes/componente-publicacion/componente-publicacion.component";
-import {RouterLink} from "@angular/router";
-
-
-
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {IonicModule, IonModal} from '@ionic/angular';
+import {add, chatbubblesOutline, imageOutline, personCircle} from 'ionicons/icons';
+import {addIcons} from 'ionicons';
+import {Usuario} from '../models/Usuario';
+import {Publicacion} from '../models/Publicacion';
+import {ComponentePublicacionComponent} from '../componentes/componente-publicacion/componente-publicacion.component';
+import {RouterLink} from '@angular/router';
+import {NgIf, NgOptimizedImage} from '@angular/common';
+import {FormsModule} from "@angular/forms";
 
 @Component({
   selector: 'app-principal',
@@ -21,77 +19,74 @@ import {RouterLink} from "@angular/router";
     NgOptimizedImage,
     ComponentePublicacionComponent,
     RouterLink,
-    NgIf
+    NgIf,
+    FormsModule
   ],
 })
 export class PrincipalComponent implements OnInit {
-  @ViewChild('modal', { static: true }) modal!: ElementRef;
   selectedSegment: string = 'Recomendado';
   usuarios: Usuario[] = [];
   publicaciones: Publicacion[] = [];
+  isSearchModalOpen: boolean = false;
+  isFabModalOpen: boolean = false;
+  searchTerm: string = '';
+  newPostTitle: string = '';
+  newPostDescription: string = '';
 
-  public alertInputs = [
-    {
-      type: 'textarea' as const,
-      placeholder: 'Escribe tu publicación',
-      attributes: {
-        rows: 15,
-        cols: 35
-      }
-    },
-  ];
 
-  async presentAlert() {
-    const alert = await this.alertController.create({
-      header: '¡Cuéntanos!',
-      inputs: this.alertInputs,
-      cssClass: 'custom-alert',
-      buttons: [
-        {
-          text: 'Cancelar',
-          role: 'cancel'
-        },
-        {
-          text: 'Publicar',
-          handler: (data) => {
-            console.log('Publicación:', data);
-          }
-        }
-      ]
-    });
-
-    await alert.present();
-  }
-
-  constructor(private alertController: AlertController) {}
+  @ViewChild('crearPublicacionModal') modal!: IonModal;
 
   ngOnInit() {
     addIcons({
       'add': add,
       'chatbubbles-outline': chatbubblesOutline,
       'person-circle': personCircle,
+      'image-outline': imageOutline
     });
+  }
+
+  handleSearch(event: any) {
+    if (event.key === 'Enter') {
+      this.openSearchModal();
+    }
+  }
+
+  openSearchModal() {
+    this.isSearchModalOpen = true;
+  }
+
+  openFabModal() {
+    this.isFabModalOpen = true;
+  }
+
+  closeFabModal() {
+    this.isFabModalOpen = false;
+  }
+
+  closeSearchModal() {
+    this.isSearchModalOpen = false;
+  }
+
+  submitPost() {
+    if (this.newPostDescription.trim()) {
+      console.log('Publicación creada:', this.newPostDescription);
+      this.closeFabModal();
+    } else {
+      alert('Por favor, completa todos los campos.');
+    }
+  }
+
+  cancel() {
+    this.closeFabModal();
   }
 
   segmentChanged(event: any) {
     this.selectedSegment = event.detail.value;
   }
 
-  isModalOpen = false; // Estado para controlar la visibilidad del modal
-
-  openModal() {
-    this.renderer.setStyle(this.modal.nativeElement, 'visibility', 'visible');
-    this.renderer.setStyle(this.modal.nativeElement, 'height', '50%');
-    this.isModalOpen = true; // Abre el modal
-  }
-
-  closeModal() {
-    this.isModalOpen = false; // Cierra el modal
-    this.renderer.setStyle(this.modal.nativeElement, 'visibility', 'hidden');
-    this.renderer.setStyle(this.modal.nativeElement, 'height', '0');
-  }
-
   truncateText(text: string, limit: number = 40): string {
     return text.length > limit ? `${text.substring(0, limit)}...` : text;
   }
+
+  protected readonly confirm = confirm;
 }
