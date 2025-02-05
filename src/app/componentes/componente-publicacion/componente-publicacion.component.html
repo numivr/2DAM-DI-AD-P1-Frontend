@@ -2,9 +2,9 @@
   <ion-card class="custom-card" [routerLink]="[enlace]">
     <ion-card-header>
       <div class="profile-container" *ngIf="miUrl !== null && m_miNombre_s !== null">
-        <img src="{{miUrl}}" alt="Profile" class="ima0_chica" *ngIf="miUrl !== null"> <!-- profile-image -->
+        <img [routerLink]="[enlaceUsuario]" src="{{miUrl}}" alt="Profile" class="ima0_chica" *ngIf="miUrl !== null"> <!-- profile-image -->
         <div class="profile-info" *ngIf="m_miNombre_s !== null">
-          <h5>{{m_miNombre_s}}</h5>
+          <h5 [routerLink]="[enlaceUsuario]">{{m_miNombre_s}}</h5>
         </div>
       </div>
     </ion-card-header>

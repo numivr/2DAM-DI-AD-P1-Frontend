@@ -18,7 +18,8 @@ import {RouterLink} from "@angular/router";
 })
 export class ComponentePublicacionComponent  implements OnInit
 {
-  @Input() enlace: string = '';
+  @Input() enlaceUsuario: string = '#';
+  @Input() enlace: string = '#';
   @Input() isFavorite: boolean = false;
   @Input() url: string|null = null;
   @Input() alt: string|null = '';
