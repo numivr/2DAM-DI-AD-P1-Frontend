@@ -13,10 +13,28 @@
         <p class="labelChico m-1 p-3">{{m_texto_s}}</p>
         <img src="https://picsum.photos/80/80?random=3" alt="" class="publication-image">
       </div>
+
+      <!--
+      <ion-buttons slot="start">
+        <ion-button  (click)="toggleFavorite()">
+          <ion-icon  [name]="isFavorite ? 'heart' : 'heart-outline'">
+          </ion-icon>
+          <div>{{likes}}</div>
+        </ion-button>
+      </ion-buttons>
+
+      <ion-buttons slot="end">
+        <ion-button >
+          <ion-icon name="chatbubble-outline"></ion-icon>
+          <div>{{comentarios}}</div>
+        </ion-button>
+      </ion-buttons>
+      -->
+
     </div>
 
     <!-- barra horizontal  -->
-    <hr class="hr">
+    <hr class="hr" style="border-top:2px solid var(--color3);">
 
     <app-componente-publicacion
       miUrl="https://picsum.photos/80/80?random=3"
