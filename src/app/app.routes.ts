@@ -47,6 +47,8 @@ export const routes: Routes = [
   {
     path: 'principal',
     component: PrincipalComponent,
+  },{
+  path: 'chatMensajes', component: ChatMensajesComponent,
   },
   {
     path: 'perfil',

@@ -13,7 +13,9 @@ import {
 import {Chat} from "../models/Chat";
 import {ChatService} from "../servicio/chat.service";
 import {addIcons} from "ionicons";
-import {eye} from "ionicons/icons";
+import {eye, paperPlaneOutline} from "ionicons/icons";
+import {style} from "@angular/animations";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-chats-personas',
@@ -38,8 +40,6 @@ import {eye} from "ionicons/icons";
     IonAvatar,
     IonImg,
     IonText,
-    IonItem,
-    IonInput,
     IonSearchbar,
   ]
 })
@@ -47,11 +47,14 @@ export class ChatsPersonasComponent implements OnInit {
 
   chats : Chat[] = [];
 
+
+
   chatsss = [
     {
       avatar: 'https://img.freepik.com/fotos-premium/perfil-cabeza-perro-marron_138545-178.jpg', // URL de la imagen
       username: '@lucas.doggy',
-      descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+      descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+
     },
     {
       avatar: 'https://estaticos-cdn.prensaiberica.es/clip/ddd42d3e-7edd-4029-8ea1-00fc4eff1118_original-libre-aspect-ratio_default_0.jpg',
@@ -65,8 +68,8 @@ export class ChatsPersonasComponent implements OnInit {
     }
   ];
 
-  constructor(private chatService: ChatService) {
-    addIcons( {eye} )
+  constructor(private chatService: ChatService, private router: Router) {
+    addIcons({eye})
   }
 
   ngOnInit() {
@@ -76,5 +79,14 @@ export class ChatsPersonasComponent implements OnInit {
       complete: () => console.log('Completado')
 
     })
+  }
+
+  protected readonly style = style;
+
+  goToPersonalChats(id: any) {
+    this.chatService.setUsuarioId(id);
+    console.log(this.chatService.getUsuarioId());
+    this.router.navigate(['chatMensajes'])
+
   }
 }

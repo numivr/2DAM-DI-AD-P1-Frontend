@@ -1,3 +1,62 @@
-<p>
-  chat-mensajes works!
-</p>
+<ion-content #content scroll-y="true">
+
+
+  <ion-row>
+    <ion-col size="2">
+      <ion-avatar>
+        <ion-img src="{{perfil.foto}}"></ion-img>
+      </ion-avatar>
+
+    </ion-col>
+    <ion-title>{{ perfil.nombre }} </ion-title>
+  </ion-row>
+
+  <ion-card>
+    <ion-list #chatList>
+
+      <ion-item lines="none" *ngFor="let m of mensajes">
+
+        <ion-avatar slot="start" *ngIf="m.idEmisor === idPerfil">
+          <ion-img src="{{perfil.foto}}"></ion-img>
+        </ion-avatar>
+        <ion-label class="message-bubble" *ngIf="m.idEmisor === idPerfil">
+          {{ m.mensaje }}
+          <br>
+          <ion-text style="font-size: 9pt">{{ m.fecha?.substring(11, 16) }}</ion-text>
+        </ion-label>
+
+
+        <ion-avatar slot="end" *ngIf="m.idEmisor !== idPerfil">
+          <ion-img src="{{sessionStorage.getItem('avatar')}}"></ion-img>
+        </ion-avatar>
+        <ion-label class="message-bubble" slot="end" *ngIf="m.idEmisor !== idPerfil">
+          {{ m.mensaje }}
+          <br>
+          <ion-text style="font-size: 9pt">{{ m.fecha?.substring(11, 16) }}</ion-text>
+        </ion-label>
+
+      </ion-item>
+
+
+    </ion-list>
+  </ion-card>
+
+
+  <ion-list>
+    <form [formGroup]="mensajeForm" id="formularioMensaje">
+      <ion-item id="input-chat">
+        <ion-input formControlName="texto" id="textoMensaje"
+                   name="texto" style="color: #0e6a95" placeholder="Escribe algo...."
+                   [value]="textoMensaje">
+          <ion-icon slot="end" name="paper-plane-outline" aria-hidden="true" size="large" style="color: #0e6a95"
+                    (click)="enviarMensaje()"></ion-icon>
+        </ion-input>
+      </ion-item>
+    </form>
+  </ion-list>
+
+</ion-content>
+
+
+
+
