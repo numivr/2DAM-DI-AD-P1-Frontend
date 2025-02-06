@@ -16,6 +16,11 @@ import { IonicModule } from '@ionic/angular';
 })
 export class PublicacionComponent  implements OnInit
 {
+
+
+
+
+
   constructor() { }
   ngOnInit() {}
 

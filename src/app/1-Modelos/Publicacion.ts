@@ -1,17 +1,19 @@
-import {Comentario} from "./Comentario";
+export class Publicacion {
+  perfil: string;
+  fotoPerfil: string;
+  texto: string;
+  fotoPublicacion: string;
+  numComentarios: number;
+  numLikes: number;
+  liked: boolean;
 
-export class Publicacion{
-  id?: number;
-  texto?: string;
-  fecha?: Date;
-  usuarioId?: number;
-  grupoId?: number;
-  usuarioNombre?: string;
-  grupoNombre?: string;
-  usuarioFoto?: string;
-  comentarios?: number;
-  likes?: number;
-  liked?: boolean;
-  comentariosPublicacion?: Comentario[];
-  constructor() {}
+  constructor(init?: Partial<Publicacion>) {
+    this.perfil = init?.perfil || "Usuario desconocido";
+    this.fotoPerfil = init?.fotoPerfil || "https://via.placeholder.com/80";
+    this.texto = init?.texto || "";
+    this.fotoPublicacion = init?.fotoPublicacion || "";
+    this.numComentarios = Number(init?.numComentarios) || 0; // Convertir a número
+    this.numLikes = init?.numLikes ?? 0;
+    this.liked = init?.liked ?? false;
+  }
 }
