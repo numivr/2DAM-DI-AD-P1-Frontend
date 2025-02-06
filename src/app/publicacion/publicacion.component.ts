@@ -29,6 +29,6 @@ export class PublicacionComponent  implements OnInit
   m_image_s: string = "";
 
   isFavorite: boolean = false;
-  likes: number|null = 10;
-  comentarios: number|null = 10;
+  likes: number|null = null;
+  comentarios: number|null = null;
 }
