@@ -3,7 +3,7 @@
     <div class="toolbar-container">
       <ion-buttons slot="start">
         <ion-button [routerLink]="['/perfil']">
-          <ion-icon slot="icon-only" name="person-circle"></ion-icon>
+          <ion-icon class="white-icon" slot="icon-only" name="person-circle"></ion-icon>
         </ion-button>
       </ion-buttons>
 
@@ -13,7 +13,7 @@
 
       <ion-buttons slot="end">
         <ion-button [routerLink]="['/chatspersonas']">
-          <ion-icon name="chatbubbles-outline"></ion-icon>
+          <ion-icon class="white-icon" name="chatbubbles-outline"></ion-icon>
         </ion-button>
       </ion-buttons>
     </div>
@@ -45,7 +45,7 @@
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
-  <ion-modal id="modalBusqueda" [isOpen]="isSearchModalOpen" (ionModalDidDismiss)="closeSearchModal()">
+  <ion-modal class="modalSearch" id="modalBusqueda" [isOpen]="isSearchModalOpen" (ionModalDidDismiss)="closeSearchModal()">
     <ng-template>
         <div class="modal-container" (click)="$event.stopPropagation()">
           <ion-list>
@@ -64,8 +64,9 @@
   </ion-modal>
 
 <!--  <ion-modal  id="modalPublicacion" #crearPublicacionModal trigger="open-modal" (click)="closeSearchModal()">-->
-  <ion-modal #crearPublicacionModal [isOpen]="isFabModalOpen" (ionModalDidDismiss)="isFabModalOpen = false">
+  <ion-modal class="modalPublicacion" #crearPublicacionModal [isOpen]="isFabModalOpen" (ionModalDidDismiss)="isFabModalOpen = false">
   <ng-template>
+    <div class="modal-content" (click)="$event.stopPropagation()">
         <ion-toolbar>
           <ion-buttons slot="start">
             <ion-button style="color: #f1ead0" (click)="modal.dismiss()">Cancelar</ion-button>
@@ -75,7 +76,6 @@
             <ion-button style="color: #f1ead0" (click)="submitPost()" [strong]="true">Publicar</ion-button>
           </ion-buttons>
         </ion-toolbar>
-        <div class="modal-content" (click)="$event.stopPropagation()">
           <ion-item>
             <ion-textarea
               class="post-textarea"

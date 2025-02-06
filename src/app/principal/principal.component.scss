@@ -1,141 +1,128 @@
 ion-toolbar {
-  --background: #96305A;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+    --background: #96305A;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
-ion-content {
-  --ion-background-color: #f1ead0;
-}
+  ion-content {
+    --ion-background-color: #f1ead0;
+  }
 
-ion-button {
-  --color: #f1ead0;
-}
+  ion-button {
+    --color: #f1ead0;
+  }
 
-ion-searchbar, .barrita {
-  --background: #f1ead0;
-  --color: #96305A;
-  --border-radius: 20px;
-  --box-shadow: none;
-  --color: #2d3e50;
-  width: 90%;
-  margin: 10px auto;
-}
+  ion-searchbar, .barrita {
+    --background: #f1ead0;
+    --color: #96305A;
+    --border-radius: 20px;
+    --box-shadow: none;
+    --color: #2d3e50;
+    width: 90%;
+    margin: 10px auto;
+  }
 
-.custom-searchbar {
-  --placeholder-color: rgba(0, 0, 0, 0.5);
-  --icon-color: #2d3e50;
-  margin: auto;
-}
+  .custom-searchbar {
+    --placeholder-color: rgba(0, 0, 0, 0.5);
+    --icon-color: #2d3e50;
+    margin: auto;
+  }
 
-ion-header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: #96305A;
-  padding-bottom: 10px;
-}
+  ion-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #96305A;
+    padding-bottom: 10px;
+  }
 
-.toolbar-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-}
+  .toolbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
 
-.logo-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  margin-top: 5px;
-}
+  .logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 5px;
+  }
 
-.logo-container img {
-  height: 50px;
-  width: 50px;
-}
+  .logo-container img {
+    height: 50px;
+    width: 50px;
+  }
 
+  #modalBusqueda {
+    border-radius: 10px;
+    width: 90%;
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    margin-top: 32%;
+    transition: height 0.3s ease;
+    overflow: hidden;
+  }
 
+  .modalPublicacion {
+    border-radius: 10px;
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    margin-top: 60%;
+    transition: height 0.3s ease;
+    overflow: hidden;
+  }
 
-#modalBusqueda{
-  border-radius: 10px;
-  width: 90%;
-  height: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0 auto;
-  margin-top: 32%;
-  transition: height 0.3s ease;
-  overflow: hidden;
-}
+  #modalBusqueda.closed, #modalPublicacion.closed {
+    height: 0 !important;
+  }
 
-#modalPublicacion{
-  border-radius: 10px;
-  width: 90%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0 auto;
-  margin-top: 60%;
-  transition: height 0.3s ease;
-  overflow: hidden;
-}
+  #modalBusqueda ion-list {
+    width: 100%;
+  }
 
-#modalBusqueda.closed, #modalPublicacion.closed {
-  height: 0 !important;
-}
+  ion-textarea {
+    height: 200px;
+    width: 300px;
+  }
 
-#modalBusqueda.open{
-  height: 50% !important;
-}
+  .white-icon {
+    color: #f1ead0;
+  }
 
-#modalBusqueda .modal-container, {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 90%;
-  padding: 20px;
-  border-radius: 10px;
-}
+  .post-textarea {
+    max-height: 200px;
+    overflow-y: auto;
+    resize: none;
+  }
 
-#modalBusqueda ion-list {
-  width: 100%;
-}
+  .modal-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
+  .modal-content ion-label {
+    color: #2d3e50;
+    text-align: center;
+  }
 
-.centered-content {
-  width: 80%;
-}
+  ion-modal {
+    --ion-background-color: #f1ead0;
+  }
 
-ion-textarea{
-  height: 200px;
-  width: 300px;
-}
+  .modalPublicacion ion-item {
+    margin-top: 20px; /* Adjust the value as needed */
+  }
 
-.modal-content {
-  margin-top: 20px;
-}
-
-
-.post-textarea {
-  max-height: 200px;
-  overflow-y: auto;
-  resize: none;
-}
-
-.modal-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.modal-content ion-label {
-  color: #2d3e50;
-  text-align: center;
-}
 
