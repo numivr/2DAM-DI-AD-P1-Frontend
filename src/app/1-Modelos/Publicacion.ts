@@ -1,3 +1,5 @@
+import {Comentario} from "./Comentario";
+
 export class Publicacion{
   id?: number;
   texto?: string;
