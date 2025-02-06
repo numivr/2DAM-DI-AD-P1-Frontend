@@ -33,8 +33,8 @@ export class PrincipalComponent implements OnInit {
   newPostTitle: string = '';
   newPostDescription: string = '';
 
-
   @ViewChild('crearPublicacionModal') modal!: IonModal;
+
 
   ngOnInit() {
     addIcons({
@@ -55,8 +55,9 @@ export class PrincipalComponent implements OnInit {
     this.isSearchModalOpen = true;
   }
 
-  openFabModal() {
-    this.isFabModalOpen = true;
+   openFabModal() {
+     this.isFabModalOpen = true;
+
   }
 
   closeFabModal() {

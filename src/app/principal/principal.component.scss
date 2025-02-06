@@ -76,7 +76,6 @@ ion-header {
 #modalPublicacion{
   border-radius: 10px;
   width: 90%;
-  height: 60%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -116,6 +115,17 @@ ion-header {
 ion-textarea{
   height: 200px;
   width: 300px;
+}
+
+.modal-content {
+  margin-top: 20px;
+}
+
+
+.post-textarea {
+  max-height: 200px;
+  overflow-y: auto;
+  resize: none;
 }
 
 .modal-content {

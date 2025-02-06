@@ -40,13 +40,13 @@
   <app-componente-publicacion *ngIf="selectedSegment === 'Recomendado'"></app-componente-publicacion>
 
   <ion-fab vertical="bottom" horizontal="center" slot="fixed">
-    <ion-fab-button id="open-modal">
+    <ion-fab-button (click)="openFabModal()">
+<!--      <ion-fab-button id="open-modal">-->
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
   <ion-modal id="modalBusqueda" [isOpen]="isSearchModalOpen" (ionModalDidDismiss)="closeSearchModal()">
     <ng-template>
-      <ion-content>
         <div class="modal-container" (click)="$event.stopPropagation()">
           <ion-list>
             <ion-item>
@@ -60,29 +60,28 @@
             </ion-item>
           </ion-list>
         </div>
-      </ion-content>
     </ng-template>
   </ion-modal>
 
-  <ion-modal  id="modalPublicacion" #crearPublicacionModal trigger="open-modal" (click)="closeSearchModal()">
-    <ng-template>
+<!--  <ion-modal  id="modalPublicacion" #crearPublicacionModal trigger="open-modal" (click)="closeSearchModal()">-->
+  <ion-modal #crearPublicacionModal [isOpen]="isFabModalOpen" (ionModalDidDismiss)="isFabModalOpen = false">
+  <ng-template>
         <ion-toolbar>
           <ion-buttons slot="start">
-            <ion-button color="medium" (click)="modal.dismiss()">Cancelar</ion-button>
+            <ion-button style="color: #f1ead0" (click)="modal.dismiss()">Cancelar</ion-button>
           </ion-buttons>
-          <ion-title style="color: #f1ead0">Nuevo Post</ion-title>
+          <ion-title style="color: #f1ead0;text-align: center">New Post</ion-title>
           <ion-buttons slot="end">
-            <ion-button (click)="submitPost()" [strong]="true">Publicar</ion-button>
+            <ion-button style="color: #f1ead0" (click)="submitPost()" [strong]="true">Publicar</ion-button>
           </ion-buttons>
         </ion-toolbar>
-      <ion-content>
         <div class="modal-content" (click)="$event.stopPropagation()">
-          <ion-label position="floating">¡Cuéntanos!</ion-label>
           <ion-item>
             <ion-textarea
               class="post-textarea"
               placeholder="¿Qué deseas compartir de los perretes...?"
-              [(ngModel)]="newPostDescription">
+              [(ngModel)]="newPostDescription"
+              autoGrow="true">
             </ion-textarea>
           </ion-item>
           <ion-buttons slot="end" style="margin-left: auto; margin-right: 30px">
@@ -91,7 +90,6 @@
             </ion-button>
           </ion-buttons>
         </div>
-      </ion-content>
     </ng-template>
   </ion-modal>
 </ion-content>
