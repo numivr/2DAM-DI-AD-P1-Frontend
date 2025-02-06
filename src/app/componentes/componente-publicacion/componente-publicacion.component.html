@@ -1,38 +1,36 @@
 
-<ion-content>
-  <ion-card class="custom-card">
+  <ion-card class="custom-card" [routerLink]="[enlace]">
     <ion-card-header>
-      <div class="profile-container">
-        <img src="https://picsum.photos/80/80?random=2" alt="Profile" class="profile-image">
-        <div class="profile-info">
-          <h5>loving_puppies</h5>
+      <div class="profile-container" *ngIf="miUrl !== null && m_miNombre_s !== null">
+        <img [routerLink]="[enlaceUsuario]" src="{{miUrl}}" alt="Profile" class="ima0_chica" *ngIf="miUrl !== null"> <!-- profile-image -->
+        <div class="profile-info" *ngIf="m_miNombre_s !== null">
+          <h5 [routerLink]="[enlaceUsuario]">{{m_miNombre_s}}</h5>
         </div>
       </div>
     </ion-card-header>
     <ion-card-content>
-      <ion-row>
-        <img src="https://picsum.photos/80/80?random=3" class="publication-image">
+      <ion-row *ngIf="url !== null">
+        <img src="{{url}}" class="publication-image" alt="{{alt}}">
       </ion-row>
       <ion-row>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dignissim rhoncus mi in vulputate. Sed suscipit,
-          diam vel tincidunt consequat, tortor aliquet turpis, sed elementum nibh mauris sit amet elit.
+          {{texto}}
         </p>
       </ion-row>
 
 
-        <ion-buttons slot="start">
+        <ion-buttons slot="start" *ngIf="likes !== null">
           <ion-button  (click)="toggleFavorite()">
             <ion-icon  [name]="isFavorite ? 'heart' : 'heart-outline'">
             </ion-icon>
-            <div>123</div>
+            <div>{{likes}}</div>
           </ion-button>
         </ion-buttons>
 
-        <ion-buttons slot="end" >
+        <ion-buttons slot="end" *ngIf="comentarios !== null">
           <ion-button >
             <ion-icon name="chatbubble-outline"></ion-icon>
-            <div>4314</div>
+            <div>{{comentarios}}</div>
           </ion-button>
         </ion-buttons>
 
@@ -40,4 +38,4 @@
 
     </ion-card-content>
   </ion-card>
-</ion-content>
+
