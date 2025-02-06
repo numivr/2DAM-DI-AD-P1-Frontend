@@ -1,38 +1,41 @@
-<ion-content [fullscreen]="true">
-  <div style="max-width: 400px; margin: 0 auto;">
-    <div class="cuerpo p-3 m-2">
-
+<ion-content>
+  <ion-card class="custom-card">
+    <ion-card-header>
       <!-- Contenedor del perfil -->
-      <div class="profile-container p-1">
-        <img [src]="fotoPerfil || 'https://picsum.photos/80/80?random=2'" class="ima0_chica" alt="Foto de perfil">
-        <div class="my-2">
-          <h5 class="labelMeiano">{{ perfil }}</h5>
+      <div class="profile-container">
+        <img [src]="fotoPerfil || 'https://picsum.photos/80/80?random=2'" alt="Foto de perfil" class="profile-image">
+        <div class="profile-info">
+          <h5>{{ perfil }}</h5>
         </div>
       </div>
+    </ion-card-header>
 
+    <ion-card-content>
       <!-- Contenido de la publicación -->
-      <div>
+      <ion-row>
         <p class="labelChico m-1 p-3">{{ texto }}</p>
-        <img *ngIf="fotoPublicacion" [src]="fotoPublicacion" alt="Imagen de la publicación" class="publication-image">
-      </div>
+      </ion-row>
+
+      <ion-row *ngIf="fotoPublicacion">
+        <img [src]="fotoPublicacion" alt="Imagen de la publicación" class="publication-image">
+      </ion-row>
 
       <!-- Botones de interacción -->
-      <div style="display: flex;">
-        <ion-buttons slot="start">
-          <ion-button (click)="toggleFavorite()">
+      <ion-row class="interaction-buttons">
+        <ion-col size="6">
+          <ion-button expand="block" fill="clear" (click)="toggleFavorite()">
             <ion-icon [name]="liked ? 'heart' : 'heart-outline'"></ion-icon>
-            <div>{{ numLikes }}</div>
+            <span>{{ numLikes }}</span>
           </ion-button>
-        </ion-buttons>
+        </ion-col>
 
-        <ion-buttons slot="end">
-          <ion-button>
+        <ion-col size="6">
+          <ion-button expand="block" fill="clear">
             <ion-icon name="chatbubble-outline"></ion-icon>
-            <div>{{ numComentarios }}</div>
+            <span>{{ numComentarios }}</span>
           </ion-button>
-        </ion-buttons>
-      </div>
-
-    </div>
-  </div>
+        </ion-col>
+      </ion-row>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
