@@ -1,96 +1,93 @@
 <ion-content class="login-page">
   <div class="login-container">
-    <!-- Logo -->
     <img src="assets/logo_beige.png" alt="Logo" class="logo">
     <h1 class="titulo">Santuario</h1>
 
-    <!-- Image -->
     <img src="../../assets/icono_app.jpg" alt="Your Image" class="item-image">
-
     <img src="../../assets/conversacion.png" alt="que_soy" style="height: 100px; width: 200px; margin-bottom: 30px;">
 
+    <!-- Rango para Nivel de Energía -->
     <ion-item>
-      <ion-label position="stacked">Nivel de energía: {{ selectedValue1 }} </ion-label>
-      <ion-range min="0" max="10" step="1" [(ngModel)]="selectedValue1" (ionChange)="onRangeChange($event)">
-        <ion-label slot="start">0</ion-label>
+      <ion-label position="stacked">Nivel de energía: {{ registroService.registro.nivelEnergia }} </ion-label>
+      <ion-range min="1" max="10" step="1" [(ngModel)]="registroService.registro.nivelEnergia">
+        <ion-label slot="start">1</ion-label>
         <ion-label slot="end">10</ion-label>
       </ion-range>
     </ion-item>
 
+    <!-- Rango para Sociabilidad -->
     <ion-item>
-      <ion-label position="stacked">Sociabilidad: {{ selectedValue2 }} </ion-label>
-      <ion-range min="0" max="10" step="1" [(ngModel)]="selectedValue2" (ionChange)="onRangeChange($event)">
-        <ion-label slot="start">0</ion-label>
+      <ion-label position="stacked">Sociabilidad: {{ registroService.registro.sociabilidad }} </ion-label>
+      <ion-range min="1" max="10" step="1" [(ngModel)]="registroService.registro.sociabilidad">
+        <ion-label slot="start">1</ion-label>
         <ion-label slot="end">10</ion-label>
       </ion-range>
     </ion-item>
 
+    <!-- Rango para Tamaño -->
     <ion-item>
-      <ion-label position="stacked">Tamaño: {{ selectedValue3 }} </ion-label>
-      <ion-range min="0" max="10" step="1" [(ngModel)]="selectedValue3" (ionChange)="onRangeChange($event)">
-        <ion-label slot="start">0</ion-label>
+      <ion-label position="stacked">Tamaño: {{ registroService.registro.tamano }} </ion-label>
+      <ion-range min="1" max="10" step="1" [(ngModel)]="registroService.registro.tamano">
+        <ion-label slot="start">1</ion-label>
         <ion-label slot="end">10</ion-label>
       </ion-range>
     </ion-item>
 
+    <!-- Rango para Tolerancia a Otras Especies -->
     <ion-item>
-      <ion-label position="stacked">Dominancia: {{ selectedValue4 }} </ion-label>
-      <ion-range min="0" max="10" step="1" [(ngModel)]="selectedValue4" (ionChange)="onRangeChange($event)">
-        <ion-label slot="start">0</ion-label>
+      <ion-label position="stacked">Tolerancia a otras especies: {{ registroService.registro.toleranciaEspecies }} </ion-label>
+      <ion-range min="1" max="10" step="1" [(ngModel)]="registroService.registro.toleranciaEspecies">
+        <ion-label slot="start">1</ion-label>
         <ion-label slot="end">10</ion-label>
       </ion-range>
     </ion-item>
 
+    <!-- Rango para Nivel de Dominancia -->
     <ion-item>
-      <ion-label position="stacked">Tendencia de juego: {{ selectedValue5 }} </ion-label>
-      <ion-range min="0" max="10" step="1" [(ngModel)]="selectedValue5" (ionChange)="onRangeChange($event)">
-        <ion-label slot="start">0</ion-label>
+      <ion-label position="stacked">Nivel de Dominancia: {{ registroService.registro.nivelDominancia }} </ion-label>
+      <ion-range min="1" max="10" step="1" [(ngModel)]="registroService.registro.nivelDominancia">
+        <ion-label slot="start">1</ion-label>
         <ion-label slot="end">10</ion-label>
       </ion-range>
     </ion-item>
 
+    <!-- Rango para Tendencia de Juego -->
     <ion-item>
-      <ion-label position="stacked">Temperamento: {{ selectedValue6 }} </ion-label>
-      <ion-range min="0" max="10" step="1" [(ngModel)]="selectedValue6" (ionChange)="onRangeChange($event)">
-        <ion-label slot="start">0</ion-label>
+      <ion-label position="stacked">Tendencia de Juego: {{ registroService.registro.tendenciaJuego }} </ion-label>
+      <ion-range min="1" max="10" step="1" [(ngModel)]="registroService.registro.tendenciaJuego">
+        <ion-label slot="start">1</ion-label>
         <ion-label slot="end">10</ion-label>
       </ion-range>
     </ion-item>
 
+    <!-- Rango para Temperamento -->
     <ion-item>
-      <ion-label position="stacked">Experiencia : {{ selectedValue7 }} </ion-label>
-      <ion-range min="0" max="10" step="1" [(ngModel)]="selectedValue7" (ionChange)="onRangeChange($event)">
-        <ion-label slot="start">0</ion-label>
+      <ion-label position="stacked">Temperamento: {{ registroService.registro.temperamento }} </ion-label>
+      <ion-range min="1" max="10" step="1" [(ngModel)]="registroService.registro.temperamento">
+        <ion-label slot="start">1</ion-label>
         <ion-label slot="end">10</ion-label>
       </ion-range>
     </ion-item>
 
+    <!-- Rango para Experiencia -->
     <ion-item>
-      <ion-label position="stacked">Territorialidad: {{ selectedValue8 }} </ion-label>
-      <ion-range min="0" max="10" step="1" [(ngModel)]="selectedValue8" (ionChange)="onRangeChange($event)">
-        <ion-label slot="start">0</ion-label>
+      <ion-label position="stacked">Experiencia: {{ registroService.registro.experiencia }} </ion-label>
+      <ion-range min="1" max="10" step="1" [(ngModel)]="registroService.registro.experiencia">
+        <ion-label slot="start">1</ion-label>
         <ion-label slot="end">10</ion-label>
       </ion-range>
     </ion-item>
 
+    <!-- Rango para Territorialidad -->
     <ion-item>
-      <ion-label position="stacked">Tolerancia a otras razas: {{ selectedValue9 }} </ion-label>
-      <ion-range min="0" max="10" step="1" [(ngModel)]="selectedValue9" (ionChange)="onRangeChange($event)">
-        <ion-label slot="start">0</ion-label>
+      <ion-label position="stacked">Territorialidad: {{ registroService.registro.territorialidad }} </ion-label>
+      <ion-range min="1" max="10" step="1" [(ngModel)]="registroService.registro.territorialidad">
+        <ion-label slot="start">1</ion-label>
         <ion-label slot="end">10</ion-label>
       </ion-range>
     </ion-item>
 
-
-    <ion-button class="registro-button" expand="block" id="present-alert">Registrarse</ion-button>
-    <ion-alert
-      trigger="present-alert"
-      header="Registro casi completado"
-      message="Comprueba tu correo electrónico y confirma para finalizar el registro"
-      [buttons]="alertButtons"
-    ></ion-alert>
-
-
-
+    <!-- Botón de registro -->
+    <ion-button class="registro-button" expand="block" (click)="registroService.registrar()">Registrarse</ion-button>
   </div>
 </ion-content>

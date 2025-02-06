@@ -1,9 +1,9 @@
-import {Component, Input, numberAttribute, OnInit} from '@angular/core';
-import {IonicModule} from "@ionic/angular";
-import {addIcons} from "ionicons";
-import {chatbubbleOutline, heart, heartOutline} from "ionicons/icons";
-import {NgIf} from "@angular/common";
-import {RouterLink} from "@angular/router";
+import { Component, Input, OnInit } from '@angular/core';
+import { IonicModule } from "@ionic/angular";
+import { addIcons } from "ionicons";
+import { chatbubbleOutline, heart, heartOutline } from "ionicons/icons";
+import { NgIf } from "@angular/common";
+import { RouterLink } from "@angular/router";
 
 @Component({
   selector: 'app-componente-publicacion',
@@ -16,39 +16,27 @@ import {RouterLink} from "@angular/router";
     RouterLink,
   ]
 })
-export class ComponentePublicacionComponent  implements OnInit
-{
-  @Input() enlaceUsuario: string = '#';
-  @Input() enlace: string = '#';
-  @Input() isFavorite: boolean = false;
-  @Input() url: string|null = null;
-  @Input() alt: string|null = '';
-  m_miNombre_s: string|null = "";
-  @Input() nombre: string|null = null;
-  @Input() texto: string = 'texto_ejemplo';
-  @Input({transform: numberAttribute}) likes: number|null = null;
-  @Input({transform: numberAttribute}) comentarios: number|null = null;
-
-  @Input() miUrl: string|null = null;
+export class ComponentePublicacionComponent implements OnInit {
+  @Input() perfil: string | null = null;  // Nombre del creador
+  @Input() fotoPerfil: string | null = null;  // URL de la foto de perfil
+  @Input() texto: string = 'Texto de ejemplo';
+  @Input() fotoPublicacion: string | null = null; // URL de la imagen de la publicación
+  @Input() numLikes: number | null = 0;
+  @Input() numComentarios: number | null = 0;
+  @Input() liked: boolean = false;
 
   constructor() { }
 
   async toggleFavorite() {
-    this.isFavorite = !this.isFavorite; // Alterna entre true y false
-    console.log("Estado cambiado a:", this.isFavorite); // Debug
+    this.liked = !this.liked; // Alterna entre true y false
+    this.numLikes = this.liked ? (this.numLikes || 0) + 1 : (this.numLikes || 1) - 1;
   }
-
 
   ngOnInit() {
     addIcons({
       'heart-outline': heartOutline,
       'chatbubble-outline': chatbubbleOutline,
       'heart': heart,
-    })
-
-    this.m_miNombre_s = '@' + (this.nombre !== null ? this.nombre : null);
-
-    console.log(this.url);
+    });
   }
-
 }

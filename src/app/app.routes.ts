@@ -8,6 +8,7 @@ import {RegistroCuentaComponent} from "./registro-cuenta/registro-cuenta.compone
 import {PublicacionComponent} from "./publicacion/publicacion.component";
 import {PrincipalComponent} from "./principal/principal.component";
 import {PerfilComponent} from "./perfil/perfil.component";
+import {authGuard} from "./1-Interceptor/Auth.guard";
 
 export const routes: Routes = [
   {
@@ -23,10 +24,12 @@ export const routes: Routes = [
   {
     path: 'chatmensajes',
     component: ChatMensajesComponent,
+    canActivate: [authGuard]
   },
   {
     path: 'chatspersonas',
     component: ChatsPersonasComponent,
+    canActivate: [authGuard]
   },
   {
     path: 'registrocualidades',
@@ -43,14 +46,17 @@ export const routes: Routes = [
   {
     path: 'publicacion',
     component: PublicacionComponent,
+    canActivate: [authGuard]
   },
   {
     path: 'principal',
     component: PrincipalComponent,
+    canActivate: [authGuard]
   },
   {
     path: 'perfil',
     component: PerfilComponent,
+    canActivate: [authGuard]
   },
   {
     path: '',

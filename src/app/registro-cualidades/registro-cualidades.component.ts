@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
-import { Router } from '@angular/router';
+import {Router, RouterLink} from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import {RegistroService} from "../1-Servicios/registro.service";
 
 @Component({
   selector: 'app-registro-cualidades',
@@ -31,7 +32,7 @@ export class RegistroCualidadesComponent implements OnInit {
     },
   ];
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, public registroService: RegistroService) {}
 
   ngOnInit() {}
 

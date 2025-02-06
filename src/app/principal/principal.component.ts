@@ -3,11 +3,12 @@ import {IonicModule, IonModal} from '@ionic/angular';
 import {add, chatbubblesOutline, imageOutline, personCircle} from 'ionicons/icons';
 import {addIcons} from 'ionicons';
 import {Usuario} from '../models/Usuario';
-import {Publicacion} from '../models/Publicacion';
+import {Publicacion} from '../1-Modelos/Publicacion';
 import {ComponentePublicacionComponent} from '../componentes/componente-publicacion/componente-publicacion.component';
 import {RouterLink} from '@angular/router';
-import {NgIf, NgOptimizedImage} from '@angular/common';
+import {NgForOf, NgIf, NgOptimizedImage} from '@angular/common';
 import {FormsModule} from "@angular/forms";
+import {PublicacionService} from "../1-Servicios/publicacion.service";
 
 @Component({
   selector: 'app-principal',
@@ -20,7 +21,8 @@ import {FormsModule} from "@angular/forms";
     ComponentePublicacionComponent,
     RouterLink,
     NgIf,
-    FormsModule
+    FormsModule,
+    NgForOf
   ],
 })
 export class PrincipalComponent implements OnInit {
@@ -33,6 +35,12 @@ export class PrincipalComponent implements OnInit {
   newPostTitle: string = '';
   newPostDescription: string = '';
 
+ //Cosas de publicaciones
+
+  constructor(private publicacionService: PublicacionService) {}
+
+
+
 
   @ViewChild('crearPublicacionModal') modal!: IonModal;
 
@@ -41,9 +49,30 @@ export class PrincipalComponent implements OnInit {
       'add': add,
       'chatbubbles-outline': chatbubblesOutline,
       'person-circle': personCircle,
-      'image-outline': imageOutline
+      'image-outline': imageOutline,
     });
+    this.cargarPublicaciones();
   }
+
+  cargarPublicaciones() {
+    this.publicacionService.listarPublicaciones().subscribe(
+      (data: Publicacion[]) => {
+        this.publicaciones = data.map(item => new Publicacion(item));
+      },
+      (error: any) => {
+        console.error('Error al cargar publicaciones:', error);
+      }
+    );
+  }
+
+
+
+
+
+
+
+
+
 
   handleSearch(event: any) {
     if (event.key === 'Enter') {

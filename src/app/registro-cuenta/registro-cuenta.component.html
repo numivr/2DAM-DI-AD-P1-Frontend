@@ -3,28 +3,76 @@
     <img src="assets/logo_beige.png" alt="Logo" class="logo">
     <h1 class="titulo">Santuario</h1>
 
+    <!-- Nombre de Usuario con verificación de disponibilidad -->
     <ion-label>Nombre de usuario</ion-label>
     <ion-item>
-      <ion-input type="text"></ion-input>
+      <ion-input
+        [(ngModel)]="registroService.registro.nombreUsuario"
+        (ionBlur)="verificarDisponibilidad()"
+        type="text">
+      </ion-input>
     </ion-item>
+    <p class="mensaje-disponibilidad">
+      {{ mensajeDisponibilidad }}
+    </p>
+    <p *ngIf="mostrarErrores && !esDisponible" class="error-mensaje">
+      ⚠️ El nombre de usuario no ha sido verificado o ya está en uso.
+    </p>
 
+    <!-- Email -->
     <ion-label>Email</ion-label>
     <ion-item>
-      <ion-input type="email"></ion-input>
+      <ion-input
+        [(ngModel)]="registroService.registro.email"
+        type="email"
+        (ionBlur)="onEmailBlur()">
+      </ion-input>
     </ion-item>
+    <!-- Se muestra el error cuando el email no es válido -->
+    <p *ngIf="!emailValido" class="error-mensaje">
+      ⚠️ Ingresa un email válido.
+    </p>
 
+    <!-- Contraseñas -->
     <ion-label>Contraseña</ion-label>
     <ion-item>
-      <ion-input type="password"></ion-input>
+      <ion-input
+        [(ngModel)]="registroService.registro.contrasena"
+        type="password"
+        (ionBlur)="onPasswordBlur()">
+      </ion-input>
     </ion-item>
 
     <ion-label>Repetir contraseña</ion-label>
     <ion-item>
-      <ion-input type="password"></ion-input>
+      <ion-input
+        [(ngModel)]="registroService.registro.contrasenaRepetida"
+        type="password"
+        (ionBlur)="onPasswordBlur()">
+      </ion-input>
     </ion-item>
+    <p *ngIf="!passwordsValid" class="error-mensaje">
+      ⚠️ Las contraseñas no coinciden.
+    </p>
 
-    <ion-icon [routerLink]="'/registroperro'" style="color: #ffffff; width: 40px; height: 40px" name="arrow-forward-outline"></ion-icon>
 
+    <!-- Repetir Contraseña -->
+    <ion-label>Repetir contraseña</ion-label>
+    <ion-item>
+      <ion-input
+        [(ngModel)]="registroService.registro.contrasenaRepetida"
+        type="password"
+        (ionBlur)="onPasswordBlur()">
+      </ion-input>
+    </ion-item>
+    <p *ngIf="mostrarErrores && !passwordsValid" class="error-mensaje">
+      ⚠️ Las contraseñas no coinciden.
+    </p>
+
+    <!-- Botón para continuar al registro de perro -->
+    <ion-button expand="block" (click)="continuarRegistro()">Continuar</ion-button>
+
+    <!-- Enlace a inicio de sesión -->
     <ion-text class="register-link">
       <a [routerLink]="'/inicio'">Ya tengo cuenta</a>
     </ion-text>
