@@ -16,6 +16,7 @@ import { RouterLink } from "@angular/router";
     RouterLink,
   ]
 })
+/* No tocar nada de los demas */
 export class ComponentePublicacionComponent implements OnInit {
   @Input() perfil: string | null = null;  // Nombre del creador
   @Input() fotoPerfil: string | null = null;  // URL de la foto de perfil
