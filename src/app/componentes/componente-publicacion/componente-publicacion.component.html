@@ -1,38 +1,41 @@
-<ion-content [fullscreen]="true">
-  <div style="max-width: 400px; margin: 0 auto;">
-    <div class="cuerpo p-3 m-2">
 
-      <!-- Contenedor del perfil -->
-      <div class="profile-container p-1">
-        <img [src]="fotoPerfil || 'https://picsum.photos/80/80?random=2'" class="ima0_chica" alt="Foto de perfil">
-        <div class="my-2">
-          <h5 class="labelMeiano">{{ perfil }}</h5>
-        </div>
+<ion-card class="custom-card" [routerLink]="[enlace]">
+  <ion-card-header>
+    <div class="profile-container" *ngIf="miUrl !== null && m_miNombre_s !== null">
+      <img [routerLink]="[enlaceUsuario]" src="{{miUrl}}" alt="Profile" class="ima0_chica" *ngIf="miUrl !== null"> <!-- profile-image -->
+      <div class="profile-info" *ngIf="m_miNombre_s !== null">
+        <h5 [routerLink]="[enlaceUsuario]">{{m_miNombre_s}}</h5>
       </div>
-
-      <!-- Contenido de la publicación -->
-      <div>
-        <p class="labelChico m-1 p-3">{{ texto }}</p>
-        <img *ngIf="fotoPublicacion" [src]="fotoPublicacion" alt="Imagen de la publicación" class="publication-image">
-      </div>
-
-      <!-- Botones de interacción -->
-      <div style="display: flex;">
-        <ion-buttons slot="start">
-          <ion-button (click)="toggleFavorite()">
-            <ion-icon [name]="liked ? 'heart' : 'heart-outline'"></ion-icon>
-            <div>{{ numLikes }}</div>
-          </ion-button>
-        </ion-buttons>
-
-        <ion-buttons slot="end">
-          <ion-button>
-            <ion-icon name="chatbubble-outline"></ion-icon>
-            <div>{{ numComentarios }}</div>
-          </ion-button>
-        </ion-buttons>
-      </div>
-
     </div>
-  </div>
-</ion-content>
+  </ion-card-header>
+  <ion-card-content>
+    <ion-row *ngIf="urlImagen !== null">
+      <img src="{{urlImagen}}" class="publication-image" alt="Imagen de la Publicacion">
+    </ion-row>
+    <ion-row>
+      <p>
+        {{texto}}
+      </p>
+    </ion-row>
+
+
+    <ion-buttons slot="start" *ngIf="likes !== null">
+      <ion-button  (click)="toggleFavorite()">
+        <ion-icon  [name]="isFavorite ? 'heart' : 'heart-outline'">
+        </ion-icon>
+        <div>{{likes}}</div>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-buttons slot="end" *ngIf="comentarios !== null">
+      <ion-button >
+        <ion-icon name="chatbubble-outline"></ion-icon>
+        <div>{{comentarios}}</div>
+      </ion-button>
+    </ion-buttons>
+
+
+
+  </ion-card-content>
+</ion-card>
+
