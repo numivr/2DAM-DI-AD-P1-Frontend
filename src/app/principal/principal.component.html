@@ -41,13 +41,13 @@
   <ng-container *ngIf="selectedSegment === 'Recomendado'">
     <app-componente-publicacion
       *ngFor="let publicacion of publicaciones"
-      [perfil]="publicacion.perfil"
+      [nombre]="publicacion.perfil"
       [texto]="publicacion.texto"
-      [numLikes]="publicacion.numLikes"
-      [numComentarios]="publicacion.numComentarios"
-      [fotoPerfil]="publicacion.fotoPerfil"
-      [fotoPublicacion]="publicacion.fotoPublicacion"
-      [liked]="publicacion.liked"
+      [likes]="publicacion.numLikes"
+      [comentarios]="publicacion.numComentarios"
+      [urlImagen]="publicacion.fotoPerfil"
+      [urlImgPerfil]="publicacion.fotoPublicacion"
+      [isFavorite]="publicacion.liked"
     ></app-componente-publicacion>
   </ng-container>
 

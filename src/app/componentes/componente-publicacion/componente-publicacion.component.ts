@@ -28,7 +28,7 @@ export class ComponentePublicacionComponent  implements OnInit
   @Input({transform: numberAttribute}) likes: number|null = null; // Número de likes
   @Input({transform: numberAttribute}) comentarios: number|null = null; // Número de comentarios
 
-  @Input() miUrl: string|null = null;
+  @Input() urlImgPerfil: string|null = null;
 
   constructor() { }
 
