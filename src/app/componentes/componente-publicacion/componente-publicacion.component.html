@@ -1,15 +1,16 @@
 
-<ion-content>
-  <ion-card class="custom-card">
+<ion-content >
+  <ion-card class="custom-card" >
     <ion-card-header>
       <div class="profile-container">
-        <img src="https://picsum.photos/80/80?random=2" alt="Profile" class="profile-image">
+        <img [routerLink]="['/perfilajeno']" src="https://picsum.photos/80/80?random=2" alt="Profile" class="profile-image">
         <div class="profile-info">
-          <h5>loving_puppies</h5>
+          <h5 [routerLink]="['/perfilajeno']">loving_puppies</h5>
         </div>
+        <ion-icon name="trash-outline" class="delete-icon"></ion-icon>
       </div>
     </ion-card-header>
-    <ion-card-content>
+    <ion-card-content [routerLink]="['/publicacion']">
       <ion-row>
         <img src="https://picsum.photos/80/80?random=3" class="publication-image">
       </ion-row>
@@ -30,7 +31,7 @@
         </ion-buttons>
 
         <ion-buttons slot="end" >
-          <ion-button >
+          <ion-button [routerLink]="['/publicacion']">
             <ion-icon class="white-icon" name="chatbubble-outline"></ion-icon>
             <div class="white-icon">4314</div>
           </ion-button>

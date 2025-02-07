@@ -13,9 +13,8 @@ ion-toolbar {
     --color: #f1ead0;
   }
 
-  ion-searchbar, .barrita {
+  ion-searchbar {
     --background: #f1ead0;
-    --color: #96305A;
     --border-radius: 20px;
     --box-shadow: none;
     --color: #2d3e50;
@@ -71,7 +70,7 @@ ion-toolbar {
     overflow: hidden;
   }
 
-  .modalPublicacion {
+  #modalPublicacion {
     border-radius: 10px;
     width: 90%;
     display: flex;
@@ -80,7 +79,6 @@ ion-toolbar {
     margin: 0 auto;
     margin-top: 60%;
     transition: height 0.3s ease;
-    overflow: hidden;
   }
 
   #modalBusqueda.closed, #modalPublicacion.closed {
@@ -122,7 +120,7 @@ ion-toolbar {
   }
 
   .modalPublicacion ion-item {
-    margin-top: 20px; /* Adjust the value as needed */
+    margin-top: 20px;
   }
 
 

@@ -64,7 +64,7 @@
   </ion-modal>
 
 <!--  <ion-modal  id="modalPublicacion" #crearPublicacionModal trigger="open-modal" (click)="closeSearchModal()">-->
-  <ion-modal class="modalPublicacion" #crearPublicacionModal [isOpen]="isFabModalOpen" (ionModalDidDismiss)="isFabModalOpen = false">
+  <ion-modal id="modalPublicacion" #crearPublicacionModal [isOpen]="isFabModalOpen" (ionModalDidDismiss)="isFabModalOpen = false">
   <ng-template>
     <div class="modal-content" (click)="$event.stopPropagation()">
         <ion-toolbar>

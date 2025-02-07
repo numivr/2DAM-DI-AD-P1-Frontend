@@ -8,6 +8,7 @@ import {RegistroCuentaComponent} from "./registro-cuenta/registro-cuenta.compone
 import {PublicacionComponent} from "./publicacion/publicacion.component";
 import {PrincipalComponent} from "./principal/principal.component";
 import {PerfilComponent} from "./perfil/perfil.component";
+import {PerfilAjenoComponent} from "./perfil-ajeno/perfil-ajeno.component";
 
 export const routes: Routes = [
   {
@@ -51,6 +52,10 @@ export const routes: Routes = [
   {
     path: 'perfil',
     component: PerfilComponent,
+  },
+  {
+    path: 'perfilajeno',
+    component: PerfilAjenoComponent,
   },
   {
     path: '',

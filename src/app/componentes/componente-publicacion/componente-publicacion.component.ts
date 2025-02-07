@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {IonicModule} from "@ionic/angular";
 import {RouterLink} from "@angular/router";
 import {addIcons} from "ionicons";
-import {chatbubbleOutline, heart, heartOutline} from "ionicons/icons";
+import {chatbubbleOutline, heart, heartOutline, trashOutline} from "ionicons/icons";
 
 @Component({
   selector: 'app-componente-publicacion',
@@ -31,6 +31,7 @@ export class ComponentePublicacionComponent  implements OnInit {
       'heart-outline': heartOutline,
       'chatbubble-outline': chatbubbleOutline,
       'heart': heart,
+      'trash-outline': trashOutline,
     })
 
   }
