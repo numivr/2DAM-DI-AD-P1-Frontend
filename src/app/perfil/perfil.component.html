@@ -6,8 +6,8 @@
           <img src="https://picsum.photos/80/80?random=2" class="ima0_grande" alt="">
         </div>
 
-        <p class="labelGrande">{{m_nombre_s}}</p>
-        <p class="labelChico">{{m_tipo_s}}</p>
+        <p class="labelGrande">{{_nombre_s}}</p>
+        <p class="labelChico">{{_tipo_s}}</p>
       </div>
 
       <ion-grid>
@@ -15,24 +15,20 @@
 
           <ion-col>
             <p class="labelMeiano">Seguidores</p>
-            <p class="labelGrande">{{m_seguidores_s}}</p>
+            <p class="labelGrande">{{_seguidores_s}}</p>
           </ion-col>
           <ion-col>
             <p class="labelMeiano">Seguidos</p>
-            <p class="labelGrande">{{m_seguidos_s}}</p>
+            <p class="labelGrande">{{_seguidos_s}}</p>
           </ion-col>
 
         </ion-row>
       </ion-grid>
 
-    <div class="">
       <div class="centrar">
-        <ion-button class="btn_beige">Seguir</ion-button>
+        <ion-button class="btn_beige" *ngIf="!_yoMismo_b" (click)="seguir()">Seguir</ion-button>
+        <ion-button class="btn_beige" *ngIf="_admin_b" (click)="ejeBan()">Banear</ion-button>
       </div>
-      <div class="centrar">
-        <ion-button class="btn_beige">Seguir</ion-button>
-      </div>
-    </div>
 
 
 

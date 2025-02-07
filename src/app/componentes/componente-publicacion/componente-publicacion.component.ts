@@ -18,17 +18,24 @@ import {RouterLink} from "@angular/router";
 })
 export class ComponentePublicacionComponent  implements OnInit
 {
+  // --- Declaración cabeza --- //
   @Input() enlaceUsuario: string = '#'; // Enlace al perfil del usuario
-  @Input() enlace: string = '#'; // Enlace a la publicación
-  @Input() isFavorite: boolean = false; // Indica si la publicación es favorita
-  @Input() urlImagen: string|null = null; // URL de la imagen
-  m_miNombre_s: string|null = ""; // Nombre del usuario, Porcesado
+  @Input() urlImgPerfil: string|null = null; // URL de la imagen de perfil
   @Input() nombre: string|null = null; // Nombre del usuario
+  m_miNombre_s: string|null = ""; // Nombre del usuario, Porcesado
+
+  // --- Declaración cuerpo --- //
+  @Input() urlImagen: string|null = null; // URL de la imagen
   @Input() texto: string = 'texto_ejemplo';  // Texto de la publicación
+  @Input() enlace: string = '#'; // Enlace a la publicación
+
+  // --- Declaración pie --- //
   @Input({transform: numberAttribute}) likes: number|null = null; // Número de likes
   @Input({transform: numberAttribute}) comentarios: number|null = null; // Número de comentarios
+  @Input() isFavorite: boolean = false; // Indica si la publicación es favorita
 
-  @Input() urlImgPerfil: string|null = null;
+
+
 
   constructor() { }
 
@@ -46,8 +53,6 @@ export class ComponentePublicacionComponent  implements OnInit
     })
 
     this.m_miNombre_s = '@' + (this.nombre !== null ? this.nombre : null);
-
-    // console.log(this.urlImagen);
   }
 
 }
