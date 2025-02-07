@@ -16,11 +16,6 @@ import { IonicModule } from '@ionic/angular';
 })
 export class PublicacionComponent  implements OnInit
 {
-
-
-
-
-
   constructor() { }
   ngOnInit() {}
 
@@ -29,6 +24,8 @@ export class PublicacionComponent  implements OnInit
     console.log("Estado cambiado a:", this.isFavorite); // Debug
   }
 
+
+  _admin_b: boolean = false;
   m_nombre_s: string = '@Lucas';
   m_texto_s: string = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dignissim rhoncus mi in vulputate. Sed suscipit, diam vel tincidunt consequat, tortor aliquet turpis, sed elementum nibh mauris sit amet elit. ';
   m_image_s: string = "";
