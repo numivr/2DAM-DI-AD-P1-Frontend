@@ -17,7 +17,11 @@ import { IonicModule } from '@ionic/angular';
 export class PublicacionComponent  implements OnInit
 {
   constructor() { }
-  ngOnInit() {}
+  ngOnInit()
+  {
+    this.likes = 0;
+    this.comentarios = 0;
+  }
 
   async toggleFavorite() {
     this.isFavorite = !this.isFavorite; // Alterna entre true y false
@@ -33,4 +37,15 @@ export class PublicacionComponent  implements OnInit
   isFavorite: boolean = false;
   likes: number|null = null;
   comentarios: number|null = null;
+
+
+  ejeBan(id:number)
+  {
+    console.log("Ejemplo de ban: " + id);
+  }
+
+  BanearComentario(datos: any[])
+  {
+    console.log("Comentario baneado con id: " + datos[0]);
+  }
 }

@@ -1,5 +1,5 @@
-
 <ion-card class="custom-card" [routerLink]="[enlace]">
+
   <ion-card-header>
     <div class="profile-container" *ngIf="urlImgPerfil !== null && m_miNombre_s !== null">
       <img [routerLink]="[enlaceUsuario]" src="{{urlImgPerfil}}" alt="Profile" class="ima0_chica" *ngIf="urlImgPerfil !== null"> <!-- profile-image -->
@@ -8,6 +8,7 @@
       </div>
     </div>
   </ion-card-header>
+
   <ion-card-content>
     <ion-row *ngIf="urlImagen !== null">
       <img src="{{urlImagen}}" class="publication-image" alt="Imagen de la Publicacion">
@@ -19,6 +20,7 @@
     </ion-row>
 
 
+    <!-- Botones de Like y Comentarios -->
     <ion-buttons slot="start" *ngIf="likes !== null">
       <ion-button  (click)="toggleFavorite()">
         <ion-icon  [name]="isFavorite ? 'heart' : 'heart-outline'">
@@ -26,7 +28,6 @@
         <div>{{likes}}</div>
       </ion-button>
     </ion-buttons>
-
     <ion-buttons slot="end" *ngIf="comentarios !== null">
       <ion-button >
         <ion-icon name="chatbubble-outline"></ion-icon>
@@ -35,6 +36,13 @@
     </ion-buttons>
 
 
+    <!-- Botones de Baneo -->
+    <ion-buttons slot="end" *ngIf="_admin_b">
+      <ion-button (click)="ejeFuncion()" class="btn_beige">
+        <!-- <ion-icon name=""></ion-icon> -->
+        <div>{{btnTexto}}</div>
+      </ion-button>
+    </ion-buttons>
 
   </ion-card-content>
 </ion-card>

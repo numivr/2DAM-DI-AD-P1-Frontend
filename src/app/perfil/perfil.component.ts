@@ -100,9 +100,9 @@ export class PerfilComponent implements OnInit
 
   }
 
-  ejeBan()
+  ejeBan(id:number)
   {
-    console.log("Ejemplo de ban");
+    console.log("Ejemplo de ban: " + id);
   }
 
   seguir()

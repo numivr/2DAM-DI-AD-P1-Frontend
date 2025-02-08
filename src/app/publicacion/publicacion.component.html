@@ -30,6 +30,8 @@
             <div>{{comentarios}}</div>
           </ion-button>
         </ion-buttons>
+
+        <ion-button class="btn_beige" *ngIf="_admin_b" (click)="ejeBan(1)">Banear Publicacion</ion-button>
       </div>
 
 
@@ -39,9 +41,23 @@
     <hr class="hr" style="border-top:2px solid var(--color3);">
 
     <app-componente-publicacion
-      miUrl="https://picsum.photos/80/80?random=3"
-      nombre="Pepe"
+      urlImgPerfil="https://picsum.photos/80/80?random=3"
+      nombre="Pepe 1"
       texto="lorem impsun kafjga jigibijg biwsbgb iwefgwgw ghsngjhsr jaghdfjg naorg"
+      _admin_b=true
+      btnTexto="Banear Comentario"
+      [btnFuncion]="BanearComentario"
+      [datos]=[1]
+    ></app-componente-publicacion>
+
+    <app-componente-publicacion
+      urlImgPerfil="https://picsum.photos/80/80?random=3"
+      nombre="Pepe 2"
+      texto="lorem impsun kafjga jigibijg biwsbgb iwefgwgw ghsngjhsr jaghdfjg naorg"
+      _admin_b=true
+      btnTexto="Banear Comentario"
+      [btnFuncion]="BanearComentario"
+      [datos]=[2]
     ></app-componente-publicacion>
 
   </div>

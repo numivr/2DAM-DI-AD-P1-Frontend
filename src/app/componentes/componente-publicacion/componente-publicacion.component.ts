@@ -1,4 +1,4 @@
-import {Component, Input, numberAttribute, OnInit} from '@angular/core';
+import {booleanAttribute, Component, Input, numberAttribute, OnInit} from '@angular/core';
 import {IonicModule} from "@ionic/angular";
 import {addIcons} from "ionicons";
 import {chatbubbleOutline, heart, heartOutline} from "ionicons/icons";
@@ -34,6 +34,11 @@ export class ComponentePublicacionComponent  implements OnInit
   @Input({transform: numberAttribute}) comentarios: number|null = null; // Número de comentarios
   @Input() isFavorite: boolean = false; // Indica si la publicación es favorita
 
+  // --- Declaración de administrador --- //
+  @Input({transform: booleanAttribute}) _admin_b: boolean = false; // Indica si el usuario es administrador
+  @Input() btnTexto: string = 'Eliminar'; // Texto del botón de administrador
+  @Input() btnFuncion: (datos: any[]) => void = () => {}; // Función del botón de administrador
+  @Input() datos: any[] = []; // pila de datos para la funcion
 
 
 
@@ -53,6 +58,14 @@ export class ComponentePublicacionComponent  implements OnInit
     })
 
     this.m_miNombre_s = '@' + (this.nombre !== null ? this.nombre : null);
+  }
+
+  ejeFuncion()
+  {
+    if (this.btnFuncion)
+    {
+      this.btnFuncion(this.datos);
+    }
   }
 
 }
