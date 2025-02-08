@@ -1,6 +1,6 @@
-<ion-card class="custom-card" [routerLink]="[enlace]">
+<ion-card class="custom-card">
 
-  <ion-card-header>
+  <ion-card-header [routerLink]="[enlaceUsuario]">
     <div class="profile-container" *ngIf="urlImgPerfil !== null && m_miNombre_s !== null">
       <img [routerLink]="[enlaceUsuario]" src="{{urlImgPerfil}}" alt="Profile" class="ima0_chica" *ngIf="urlImgPerfil !== null"> <!-- profile-image -->
       <div class="profile-info" *ngIf="m_miNombre_s !== null">
@@ -10,10 +10,10 @@
   </ion-card-header>
 
   <ion-card-content>
-    <ion-row *ngIf="urlImagen !== null">
+    <ion-row *ngIf="urlImagen !== null" [routerLink]="[enlace]">
       <img src="{{urlImagen}}" class="publication-image" alt="Imagen de la Publicacion">
     </ion-row>
-    <ion-row>
+    <ion-row [routerLink]="[enlace]">
       <p>
         {{texto}}
       </p>
