@@ -37,6 +37,10 @@
         texto="{{publicacion.texto}}"
         likes="{{publicacion.likes}}"
         comentarios="{{publicacion.comentarios}}"
+        _admin_b="{{_admin_b}}"
+        btnTexto="Banear Publicacion"
+        [btnFuncion]="banearPublicacion"
+        [datos]=[publicacion.id]
       ></app-componente-publicacion>
 
 

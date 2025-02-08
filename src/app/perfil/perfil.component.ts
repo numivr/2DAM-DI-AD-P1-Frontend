@@ -22,7 +22,7 @@ export class PerfilComponent implements OnInit
 {
   constructor() { }
 
-  _admin_b: boolean = false;
+  _admin_b: boolean = true;
 
   // Declaraciones //
   nombre: string = 'Lucas';
@@ -39,24 +39,28 @@ export class PerfilComponent implements OnInit
   publicacionesEjemplo =
   [
     {
+      id: 1,
       url: 'https://picsum.photos/80/80?random=3',
       texto: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dignissim rhoncus mi in vulputate. Sed suscipit, diam vel tincidunt consequat, tortor aliquet turpis, sed elementum nibh mauris sit amet elit. ',
       likes: 321,
       comentarios: 12
     },
     {
+      id: 2,
       url: 'https://picsum.photos/80/80?random=3',
       texto: '¡Hola! Soy Lucas, un Border Collie muy juguetón y amigable.',
       likes: 123,
       comentarios: 5
     },
     {
+      id: 3,
       url: 'https://picsum.photos/80/80?random=3',
       texto: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dignissim rhoncus mi in vulputate. Sed suscipit, diam vel tincidunt consequat, tortor aliquet turpis, sed elementum nibh mauris sit amet elit. ',
       likes: 52,
       comentarios: 8
     },
     {
+      id: 4,
       url: 'https://picsum.photos/80/80?random=3',
       texto: '¡anfasfjkbiaf!.',
       likes: 1,
@@ -108,6 +112,11 @@ export class PerfilComponent implements OnInit
   seguir()
   {
     console.log("Seguir");
+  }
+
+  banearPublicacion(datos: any[])
+  {
+    console.log("Publicación baneada con id: " + datos[0]);
   }
 
 }
