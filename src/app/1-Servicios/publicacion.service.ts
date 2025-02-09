@@ -15,26 +15,20 @@ export class PublicacionService {
     constructor(private http: HttpClient, private authService: AuthService) {}
 
 
-    obtenerPublicaciones(): Observable<Publicacion[]> {
-        const token = this.authService.getToken(); // Obtener el token desde AuthService
+  obtenerPublicaciones(): Observable<Publicacion[]> {
+    const token = sessionStorage.getItem('auth-token');
 
-        if (!token) {
-            console.warn('⚠️ No se encontró token en sessionStorage/localStorage.');
-            return throwError(() => new Error('No se encontró token de autenticación'));
-        }
-
-        console.log('✅ Token enviado en Authorization:', token); // Verificar si el token se envía correctamente
-
-        const headers = new HttpHeaders({
-            'Authorization': `Bearer ${token}`,
-            'Content-Type': 'application/json'
-        });
-
-        return this.http.get<Publicacion[]>('api/publicacion/listarPublicacion', { headers }).pipe(
-            catchError((error) => {
-                console.error('❌ Error al obtener publicaciones:', error);
-                return throwError(() => new Error('Error en la solicitud de publicaciones'));
-            })
-        );
+    if (!token) {
+      console.error('❌ No hay token en sessionStorage. Asegúrate de que el usuario haya iniciado sesión.');
+      return throwError(() => new Error('No hay token disponible'));
     }
+
+    console.log('✅ Token enviado en el header:', token); // Verifica si el token se está obteniendo correctamente
+
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`
+    });
+
+    return this.http.get<Publicacion[]>('api/publicacion/listarPublicaciones', { headers });
+  }
 }
