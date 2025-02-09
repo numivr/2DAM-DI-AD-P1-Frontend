@@ -36,37 +36,33 @@ export class ComponentePublicacionComponent  implements OnInit
   constructor(private publicacionService: PublicacionService) { }
 
   toggleFavorite() {
-    console.log("🟡 ID de la publicación:", this.id);
+    console.log("🟡 Click en like - ID de la publicación:", this.id);
 
     if (!this.id) {
       console.error("❌ Error: No se recibió un ID válido para la publicación.");
       return;
     }
 
+    // Alternar estado y actualizar número de likes
+    this.isFavorite = !this.isFavorite;
+    this.likes = this.isFavorite ? this.likes + 1 : this.likes - 1;
+
     if (this.isFavorite) {
-      console.log("🔽 Quitando like...");
-      this.publicacionService.quitarLike(this.id).subscribe({
-        next: () => {
-          console.log("✅ Like quitado. Recargando la página...");
-          window.location.reload(); // 👈 Fuerza la recarga de la página
-        },
-        error: (err) => {
-          console.error("❌ Error al quitar like:", err);
-        }
-      });
-    } else {
       console.log("🔼 Dando like...");
       this.publicacionService.darLike(this.id).subscribe({
-        next: () => {
-          console.log("✅ Like agregado. Recargando la página...");
-          window.location.reload(); // 👈 Fuerza la recarga de la página
-        },
-        error: (err) => {
-          console.error("❌ Error al dar like:", err);
-        }
+        next: () => console.log("✅ Like agregado en el servidor"),
+        error: (err) => console.error("❌ Error al dar like:", err)
+      });
+    } else {
+      console.log("🔽 Quitando like...");
+      this.publicacionService.quitarLike(this.id).subscribe({
+        next: () => console.log("✅ Like quitado en el servidor"),
+        error: (err) => console.error("❌ Error al quitar like:", err)
       });
     }
   }
+
+
 
 
 
