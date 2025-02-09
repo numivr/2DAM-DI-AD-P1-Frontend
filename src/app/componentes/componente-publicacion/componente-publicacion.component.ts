@@ -24,8 +24,8 @@ export class ComponentePublicacionComponent  implements OnInit
   @Input() url: string|null = null;
   @Input() alt: string|null = '';
   m_miNombre_s: string|null = "";
-  @Input() nombre: string|null = null;
-  @Input() texto: string = 'texto_ejemplo';
+  @Input() nombre: string|null = "";
+  @Input() texto: string = 'texto de ejemplo';
   @Input({transform: numberAttribute}) likes: number|null = null;
   @Input({transform: numberAttribute}) comentarios: number|null = null;
 
