@@ -41,6 +41,7 @@
   <div *ngIf="selectedSegment === 'Recomendado'">
     <app-componente-publicacion
       *ngFor="let publicacion of publicaciones"
+      [id]="publicacion.id"
       [nombre]="publicacion.perfil"
       [miUrl]="publicacion.fotoPerfil"
       [texto]="publicacion.texto"

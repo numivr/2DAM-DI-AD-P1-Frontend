@@ -1,6 +1,5 @@
-import { Comentario } from './Comentario';
-
 export class Publicacion {
+  id: number; // 👈 Se agrega el ID de la publicación
   perfil: string;
   fotoPerfil: string;
   texto: string;
@@ -8,18 +7,18 @@ export class Publicacion {
   numComentarios: number;
   numLikes: number;
   liked: boolean;
-  comentarios: Comentario[]; // Agregamos los comentarios como array de objetos
 
   constructor(
+    id: number = 0,
     perfil: string = '',
     fotoPerfil: string = '',
     texto: string = '',
     fotoPublicacion: string = '',
     numComentarios: number = 0,
     numLikes: number = 0,
-    liked: boolean = false,
-    comentarios: Comentario[] = []
+    liked: boolean = false
   ) {
+    this.id = id;
     this.perfil = perfil;
     this.fotoPerfil = fotoPerfil;
     this.texto = texto;
@@ -27,6 +26,5 @@ export class Publicacion {
     this.numComentarios = numComentarios;
     this.numLikes = numLikes;
     this.liked = liked;
-    this.comentarios = comentarios;
   }
 }

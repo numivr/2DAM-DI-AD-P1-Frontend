@@ -35,6 +35,7 @@ export class PrincipalComponent implements OnInit {
   newPostTitle: string = '';
   newPostDescription: string = '';
 
+
   constructor(private publicacionService: PublicacionService) {}
 
   @ViewChild('crearPublicacionModal') modal!: IonModal;
