@@ -3,16 +3,53 @@ ion-content {
   font-color: #5D1D38;
   --background: #96305A; /* Color de fondo */
 }
-ion-header {
-  --background: #520D3A; /* Color de barra superior */
-}
-toolbar-container{
-  --background: #520D3A; /* Color de barra superior */
-}
+
 
 ion-toolbar {
-  --background: #5D1D38; /* Color de barra superior */
-  --color: #FFFFFF;      /* Color del texto */
+  --background: #520D3A; /* Color de barra superior */
+  --color: #F5F5DC; /* Color del texto */
+  --border-radius: 8px; /* Bordes redondeados */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); /* Sombra */
+}
+
+ion-title {
+  color: #F5F5DC; /* Color del texto */
+  font-size: 24pt; /* Tamaño de fuente */
+  font-weight: bold; /* Texto en negrita */
+}
+
+ion-buttons {
+  --color: #F5F5DC; /* Color de los botones */
+}
+.image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative; /* Ensure absolute positioning of images works within this container */
+  width: auto; /* Use auto width to adjust based on content */
+  height: 70px; /* Set the height to match the image height */
+}
+
+.profile-img {
+  border-radius: 50%; /* Round the image */
+  width: 50px;
+  height: 50px;
+  margin-left: -40px; /* Add negative margin to overlap images */
+  overflow: hidden; /* Ensure content outside the border-radius is hidden */
+  object-fit: cover; /* Ensure the image covers the entire area */
+  object-position: center; /* Center the image */
+}
+
+.image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative; /* Ensure absolute positioning of images works within this container */
+  width: auto; /* Use auto width to adjust based on content */
+  height: 70px; /* Set the height to match the image height */
+}
+ion-card {
+  margin: 0;
 }
 
 input {
@@ -36,12 +73,11 @@ ion-avatar {
   border: 2px solid #F5F5DC;
 }
 
-ion-title {
-  color: #F5F5DC;
-}
+
 ion-searchbar {
   --background: #f1ead0;
   --color: #96305A;
+  --border-radius: 30px;
 }
 
 ion-text {

@@ -1,46 +1,39 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button class = "sc-ion-buttons-md md button back-button-has-icon-only in-toolbar ion-activatable ion-focusable"></ion-back-button>
+      <ion-back-button defaultHref="/principal"></ion-back-button>
     </ion-buttons>
     <ion-title>Chats</ion-title>
     <ion-buttons slot="end">
       <ion-button>
-        <ion-icon slot="icon-only" name="add-outline"></ion-icon>
+        <ion-icon slot="icon-only" src="assets/plus.svg"></ion-icon>
       </ion-button>
     </ion-buttons>
+    <ion-searchbar placeholder="¡Busca a tus grupos y amigos!" style=""></ion-searchbar>
   </ion-toolbar>
 </ion-header>
 
 <ion-content color="fondo">
-
   <ion-grid>
-    <!-- Barra de búsqueda -->
-    <ion-row class="ion-justify-content-center" style="margin-top: 20px;">
-      <ion-col size="10">
-        <ion-item color="secundario" lines="none" class="search-bar">
-          <ion-searchbar placeholder="¡Busca a tus grupos y amigos!"></ion-searchbar>
-          <ion-icon slot="end" name="search-outline"></ion-icon>
-        </ion-item>
-      </ion-col>
-    </ion-row>
-
     <!-- Lista de Chats -->
     <ion-row *ngFor="let chat of chats" class="ion-justify-content-center" style="margin-top: 15px;">
-      <ion-col size="10">
+      <ion-col size="10" (click)="goToPersonalChats(chat.id)">
         <ion-card color="secundario">
           <ion-card-header>
             <ion-row>
-              <ion-col size="3" style="align-items: center; display: flex; justify-content: center;">
-                <ion-avatar>
-                  <ion-img src="https://estaticos-cdn.prensaiberica.es/clip/ddd42d3e-7edd-4029-8ea1-00fc4eff1118_original-libre-aspect-ratio_default_0.jpg"></ion-img>
-                </ion-avatar>
+              <ion-col size="3" class="image-container">
+                <ng-container *ngFor="let img of chat.foto; let i = index">
+                  <ion-img [src]="img" class="profile-img" [style.margin-top.px]="i * 10"></ion-img>
+                </ng-container>
               </ion-col>
-              <ion-col size="9">
+              <ion-col size="9" style="position: relative;">
                 <ion-title style="font-size: 14pt; padding-bottom: 5px;">
                   <b>{{ chat.nombre }}</b>
                 </ion-title>
                 <ion-text style="font-size: 12pt;">{{ chat.ultimoMensaje }}</ion-text>
+                <ion-text style="font-size: 10pt; color: #8c8c8c; position: absolute; bottom: 0; right: 0;">
+                  {{ chat.fechaUltimoMensaje }}
+                </ion-text>
               </ion-col>
             </ion-row>
           </ion-card-header>
@@ -48,5 +41,4 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-
 </ion-content>
