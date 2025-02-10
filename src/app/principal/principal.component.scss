@@ -70,6 +70,8 @@ ion-toolbar {
     overflow: hidden;
   }
 
+  /*
+
   #modalPublicacion {
     border-radius: 10px;
     width: 90%;
@@ -80,6 +82,8 @@ ion-toolbar {
     margin-top: 60%;
     transition: height 0.3s ease;
   }
+
+   */
 
   #modalBusqueda.closed, #modalPublicacion.closed {
     height: 0 !important;

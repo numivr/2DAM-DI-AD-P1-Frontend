@@ -10,12 +10,12 @@
         <ion-icon name="trash-outline" class="delete-icon"></ion-icon>
       </div>
     </ion-card-header>
-    <ion-card-content [routerLink]="['/publicacion']">
+    <ion-card-content>
       <ion-row>
-        <img src="https://picsum.photos/80/80?random=3" class="publication-image">
+        <img [routerLink]="['/publicacion']" src="https://picsum.photos/80/80?random=3" class="publication-image">
       </ion-row>
       <ion-row>
-        <p>
+        <p [routerLink]="['/publicacion']">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dignissim rhoncus mi in vulputate. Sed suscipit,
           diam vel tincidunt consequat, tortor aliquet turpis, sed elementum nibh mauris sit amet elit.
         </p>
