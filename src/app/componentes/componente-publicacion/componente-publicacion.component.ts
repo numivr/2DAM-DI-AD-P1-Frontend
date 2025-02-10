@@ -1,10 +1,10 @@
 import {Component, Input, numberAttribute, OnInit} from '@angular/core';
 import {IonicModule} from "@ionic/angular";
 import {addIcons} from "ionicons";
-import {chatbubbleOutline, heart, heartOutline} from "ionicons/icons";
 import {NgIf} from "@angular/common";
 import {RouterLink} from "@angular/router";
 import {PublicacionService} from "../../1-Servicios/publicacion.service";
+import {chatbubbleOutline, heart, heartOutline, trashOutline} from "ionicons/icons";
 
 @Component({
   selector: 'app-componente-publicacion',
@@ -76,6 +76,7 @@ export class ComponentePublicacionComponent  implements OnInit
       'heart-outline': heartOutline,
       'chatbubble-outline': chatbubbleOutline,
       'heart': heart,
+      'trash-outline': trashOutline,
     })
 
     this.m_miNombre_s = '@' + (this.nombre !== null ? this.nombre : null);

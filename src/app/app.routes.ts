@@ -9,6 +9,7 @@ import {PublicacionComponent} from "./publicacion/publicacion.component";
 import {PrincipalComponent} from "./principal/principal.component";
 import {PerfilComponent} from "./perfil/perfil.component";
 import {authGuard} from "./1-Interceptor/Auth.guard";
+import {PerfilAjenoComponent} from "./perfil-ajeno/perfil-ajeno.component";
 
 export const routes: Routes = [
   {
@@ -57,6 +58,10 @@ export const routes: Routes = [
     path: 'perfil',
     component: PerfilComponent,
     canActivate: [authGuard]
+  },
+  {
+    path: 'perfilajeno',
+    component: PerfilAjenoComponent,
   },
   {
     path: '',
