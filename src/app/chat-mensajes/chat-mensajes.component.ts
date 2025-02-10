@@ -6,7 +6,7 @@ import {ActivatedRoute} from "@angular/router";
 import {ChatService} from "../servicio/chat.service";
 import {Mensaje} from "../models/Mensaje";
 import {CommonModule} from "@angular/common";
-import {Usuario} from "../models/Usuario";
+
 import {UsuarioService} from "../servicio/usuario.service";
 import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
 import {interval, Subscription} from "rxjs";
@@ -24,7 +24,7 @@ import {IonContent} from "@ionic/angular/standalone";
 export class ChatMensajesComponent  implements OnInit, OnDestroy, AfterViewInit {
   protected idPerfil: number = 0;
   protected mensajes: Mensaje[] = [];
-  protected perfil: Usuario = new Usuario();
+
   protected textoMensaje = "";
   protected nuevoMensaje: Mensaje = new Mensaje();
   protected readonly sessionStorage = sessionStorage;
@@ -49,7 +49,7 @@ export class ChatMensajesComponent  implements OnInit, OnDestroy, AfterViewInit 
         if (this.idPerfil !== nuevoId) {  // Solo recargar si el ID cambia
           this.idPerfil = nuevoId;
           this.nuevoMensaje.idReceptor = this.idPerfil;
-          this.cargarContacto();
+
           this.cargarChats(); // Recargar mensajes al cambiar la conversación
         }
       }
@@ -98,22 +98,6 @@ export class ChatMensajesComponent  implements OnInit, OnDestroy, AfterViewInit 
           // 🔽 Baja el scroll
           this.scrollToBottom();
         }
-
-      }
-    );
-  }
-
-
-  cargarContacto(): void {
-    this.usuarioService.getById(this.idPerfil).subscribe({
-        next: (p) => {
-          this.perfil = p;
-        },
-        error: (e) => {
-          console.error(e);
-        },
-        complete: () =>
-          console.info(this.perfil)
 
       }
     );

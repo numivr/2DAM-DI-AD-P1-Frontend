@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Chat} from "../models/Chat";
 import {BehaviorSubject, Observable} from "rxjs";
 import {environment} from "../../environments/environment";
@@ -22,8 +22,24 @@ export class ChatService {
 
   constructor(private http: HttpClient) { }
 
+  private getHeaders(): HttpHeaders {
+    const token = sessionStorage.getItem('auth-token');
+
+    if (!token) {
+      console.error('❌ No hay token en sessionStorage. Asegúrate de que el usuario haya iniciado sesión.');
+      return new HttpHeaders(); // Devolvemos headers vacíos para evitar errores
+    }
+
+    console.log('✅ Token enviado en el header:', token);
+
+    return new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    });
+  }
+
   getChats(): Observable<Chat[]> {
-    return this.http.get<any>('/api/chat/conversaciones');
+    return this.http.get<any>('/api/chat/conversaciones', { headers: this.getHeaders() });
   }
 
   setUsuarioId(id: number) {
