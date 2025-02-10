@@ -11,6 +11,6 @@ export class ChatService {
   constructor(private httpClient: HttpClient) { }
 
   getChats(): Observable<Chat[]> {
-    return this.httpClient.get<any>('/api/chat/conversaciones/2');
+    return this.httpClient.get<any>('/api/chat/conversaciones');
   }
 }
