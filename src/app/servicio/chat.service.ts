@@ -24,7 +24,7 @@ export class ChatService {
   constructor(private http: HttpClient) { }
 
   getChats(): Observable<Chat[]> {
-    return this.http.get<any>('/api/chat/conversaciones/2');
+    return this.http.get<any>('/api/chat/conversaciones');
   }
 
   setUsuarioId(id: number) {
