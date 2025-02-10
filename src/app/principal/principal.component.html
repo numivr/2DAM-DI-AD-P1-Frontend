@@ -37,7 +37,21 @@
     </ion-segment-button>
   </ion-segment>
 
-  <app-componente-publicacion *ngIf="selectedSegment === 'Recomendado'"></app-componente-publicacion>
+
+  <ng-container *ngIf="selectedSegment === 'Recomendado'">
+    <app-componente-publicacion
+      *ngFor="let publicacion of publicaciones"
+      [perfil]="publicacion.perfil"
+      [texto]="publicacion.texto"
+      [numLikes]="publicacion.numLikes"
+      [numComentarios]="publicacion.numComentarios"
+      [fotoPerfil]="publicacion.fotoPerfil"
+      [fotoPublicacion]="publicacion.fotoPublicacion"
+      [liked]="publicacion.liked"
+    ></app-componente-publicacion>
+  </ng-container>
+
+
 
   <ion-fab vertical="bottom" horizontal="center" slot="fixed">
     <ion-fab-button id="open-modal">

@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import {IonicModule} from "@ionic/angular";
-import {RouterLink} from "@angular/router";
-import {addIcons} from "ionicons";
-import {chatbubbleOutline, heart, heartOutline} from "ionicons/icons";
+import { Component, Input, OnInit } from '@angular/core';
+import { IonicModule } from "@ionic/angular";
+import { addIcons } from "ionicons";
+import { chatbubbleOutline, heart, heartOutline } from "ionicons/icons";
+import { NgIf } from "@angular/common";
+import { RouterLink } from "@angular/router";
 
 @Component({
   selector: 'app-componente-publicacion',
@@ -11,28 +12,31 @@ import {chatbubbleOutline, heart, heartOutline} from "ionicons/icons";
   standalone: true,
   imports: [
     IonicModule,
-    RouterLink
+    NgIf,
+    RouterLink,
   ]
 })
-export class ComponentePublicacionComponent  implements OnInit {
-
-  isFavorite: boolean = false;
+export class ComponentePublicacionComponent implements OnInit {
+  @Input() perfil: string | null = null;  // Nombre del creador
+  @Input() fotoPerfil: string | null = null;  // URL de la foto de perfil
+  @Input() texto: string = 'Texto de ejemplo';
+  @Input() fotoPublicacion: string | null = null; // URL de la imagen de la publicación
+  @Input() numLikes: number | null = 0;
+  @Input() numComentarios: number | null = 0;
+  @Input() liked: boolean = false;
 
   constructor() { }
 
   async toggleFavorite() {
-    this.isFavorite = !this.isFavorite; // Alterna entre true y false
-    console.log("Estado cambiado a:", this.isFavorite); // Debug
+    this.liked = !this.liked; // Alterna entre true y false
+    this.numLikes = this.liked ? (this.numLikes || 0) + 1 : (this.numLikes || 1) - 1;
   }
-
 
   ngOnInit() {
     addIcons({
       'heart-outline': heartOutline,
       'chatbubble-outline': chatbubbleOutline,
       'heart': heart,
-    })
-
+    });
   }
-
 }

@@ -1,3 +1,15 @@
+ion-content
+{
+  --ion-background-color: #96305a;
+}
+.cuerpo
+{
+  background-color: var(--color2);
+  border-radius: 15px;
+}
+
+
+/* CSS DE LA TARJETA */
 .custom-card {
   background-color: #5E2142; /* Color de fondo de la tarjeta */
   border-radius: 15px; /* Esquinas redondeadas */

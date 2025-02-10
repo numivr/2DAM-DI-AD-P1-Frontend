@@ -1,45 +1,45 @@
 <ion-content [fullscreen]="true">
 
-  <div>
-    <!-- El escope es un constructo social -->
-  </div>
-  <div>
-    <div class="centrar bajarUnPoco">
-      <img src="https://picsum.photos/80/80?random=2" class="ima0_grande" alt="">
+    <div style="max-width: 400px; margin: 0 auto;">
+      <div>
+        <div class="centrar bajarUnPoco">
+          <img src="https://picsum.photos/80/80?random=2" class="ima0_grande" alt="">
+        </div>
+
+        <p class="labelGrande">{{m_nombre_s}}</p>
+        <p class="labelChico">{{m_tipo_s}}</p>
+      </div>
+
+      <ion-grid>
+        <ion-row>
+
+          <ion-col>
+            <p class="labelMeiano">Seguidores</p>
+            <p class="labelGrande">{{m_seguidores_s}}</p>
+          </ion-col>
+          <ion-col>
+            <p class="labelMeiano">Seguidos</p>
+            <p class="labelGrande">{{m_seguidos_s}}</p>
+          </ion-col>
+
+        </ion-row>
+      </ion-grid>
+
+
+      <div class="centrar">
+        <ion-button class="btn_beige">Seguir</ion-button>
+      </div>
+
+
+      <!-- esto deveria hacerse con una metaTable -->
+
+
+
     </div>
-
-    <p class="labelGrande">{{m_nombre_s}}</p>
-    <p class="labelChico">{{m_tipo_s}}</p>
-  </div>
-
-  <ion-grid>
-    <ion-row>
-
-      <ion-col>
-        <p class="labelMeiano">Seguidores</p>
-        <p class="labelGrande">{{m_seguidores_s}}</p>
-      </ion-col>
-      <ion-col>
-        <p class="labelMeiano">Seguidos</p>
-        <p class="labelGrande">{{m_seguidos_s}}</p>
-      </ion-col>
-
-    </ion-row>
-  </ion-grid>
-
-
-  <div class="centrar">
-    <ion-button class="btn_beige">Seguir</ion-button>
-  </div>
-
-
-  <app-componente-publicacion></app-componente-publicacion>
-
 
   <ion-fab vertical="bottom" horizontal="center" slot="fixed">
     <ion-fab-button>
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
-
 </ion-content>
