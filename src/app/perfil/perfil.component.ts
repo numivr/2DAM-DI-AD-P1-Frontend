@@ -5,6 +5,9 @@ import {NgForOf, NgIf, NgOptimizedImage} from '@angular/common';
 import { RouterLink } from '@angular/router';
 import {addIcons} from "ionicons";
 import {add, chatbubblesOutline, personCircle} from "ionicons/icons";
+import {Perfil} from "../1-Modelos/Perfil";
+import {Publicacion} from "../1-Modelos/Publicacion";
+import {PerfilService} from "../1-Servicios/perfil.service";
 
 @Component({
   selector: 'app-perfil',
@@ -22,7 +25,11 @@ import {add, chatbubblesOutline, personCircle} from "ionicons/icons";
 })
 export class PerfilComponent implements OnInit
 {
-  constructor() { }
+
+  perfil!: Perfil;
+  publicaciones: Publicacion[] = []
+
+  constructor( private perfilService: PerfilService) {}
 
   // Declaraciones //
   m_nombre_s: string = '@Lucas';
@@ -33,54 +40,10 @@ export class PerfilComponent implements OnInit
   m_seguidores_s: string = "";
   m_seguidos_s: string = "";
 
-  publicacionesEjemplo =
-  [
-    {
-      url: 'https://picsum.photos/80/80?random=3',
-      alt: 'Perro',
-      texto: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dignissim rhoncus mi in vulputate. Sed suscipit, diam vel tincidunt consequat, tortor aliquet turpis, sed elementum nibh mauris sit amet elit. ',
-      likes: 321,
-      comentarios: 12
-    },
-    {
-      url: 'https://picsum.photos/80/80?random=3',
-      alt: 'Perro',
-      texto: '¡Hola! Soy Lucas, un Border Collie muy juguetón y amigable.',
-      likes: 123,
-      comentarios: 5
-    },
-    {
-      url: 'https://picsum.photos/80/80?random=3',
-      alt: 'Perro',
-      texto: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dignissim rhoncus mi in vulputate. Sed suscipit, diam vel tincidunt consequat, tortor aliquet turpis, sed elementum nibh mauris sit amet elit. ',
-      likes: 52,
-      comentarios: 8
-    },
-    {
-      url: 'https://picsum.photos/80/80?random=3',
-      alt: 'Lemur',
-      texto: '¡Hola! Soy Lucas, un Border Collie muy juguetón y amigable.',
-      likes: 234,
-      comentarios: 8
-    },
-    {
-      url: 'https://picsum.photos/80/80?random=3',
-      alt: 'Gato',
-      texto: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dignissim rhoncus mi in vulputate. Sed suscipit, diam vel tincidunt consequat, tortor aliquet turpis, sed elementum nibh mauris sit amet elit. ',
-      likes: 432,
-      comentarios: 12
-    },
-    {
-      url: 'https://picsum.photos/80/80?random=3',
-      alt: 'Patata',
-      texto: '¡anfasfjkbiaf!.',
-      likes: 1,
-      comentarios: 1
-    }
-  ];
 
   ngOnInit()
   {
+    this.obtenerPerfilLoggeado();
     addIcons({
       'add': add,
       'chatbubbles-outline': chatbubblesOutline,
@@ -106,6 +69,26 @@ export class PerfilComponent implements OnInit
     else
       this.m_seguidos_s = this.m_seguidos_i.toString();
 
+
+  }
+  obtenerPerfilLoggeado() {
+    this.perfilService.obtenerPerfilLoggeado().subscribe({
+      next: (data) => {
+        this.perfil = new Perfil(
+          data.nombre,
+          data.numeroSeguidores,
+          data.numeroSeguidos,
+          data.raza,
+          data.fotoPerfil,
+          data.publicaciones
+        );
+
+        this.publicaciones = this.perfil.publicaciones;
+      },
+      error: (error) => {
+        console.error('❌ Error al obtener el perfil:', error);
+      }
+    });
 
   }
 }

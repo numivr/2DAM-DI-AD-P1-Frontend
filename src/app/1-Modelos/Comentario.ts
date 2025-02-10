@@ -2,7 +2,8 @@ export class Comentario {
   id: number;
   idPublicacion: number;
   idUsuario: number;
-  usuarioNombre: string;
+  usuarioCreador: string;
+  fotoCreador: string; // ✅ Nuevo campo agregado
   texto: string;
   fecha: string;
 
@@ -11,13 +12,15 @@ export class Comentario {
     idPublicacion: number,
     idUsuario: number,
     usuarioNombre: string,
+    fotoCreador: string, // ✅ Se incluye en el constructor
     texto: string,
     fecha: string
   ) {
     this.id = id;
     this.idPublicacion = idPublicacion;
     this.idUsuario = idUsuario;
-    this.usuarioNombre = usuarioNombre;
+    this.usuarioCreador = usuarioNombre;
+    this.fotoCreador = fotoCreador; // ✅ Se asigna el valor recibido
     this.texto = texto;
     this.fecha = fecha;
   }

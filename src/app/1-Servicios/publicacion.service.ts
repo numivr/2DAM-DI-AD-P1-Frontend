@@ -37,6 +37,18 @@ export class PublicacionService {
       );
   }
 
+  obtenerPublicacionPorId(id: number): Observable<Publicacion> {
+    return this.http.get<Publicacion>(`${this.apiUrl}/${id}`, { headers: this.getHeaders() })
+      .pipe(
+        catchError(error => {
+          console.error(`❌ Error al obtener la publicación con ID ${id}:`, error);
+          return throwError(() => new Error('Error en la solicitud de la publicación'));
+        })
+      );
+  }
+
+
+
   darLike(idPublicacion: number): Observable<any> {
     return this.http.post(`${this.apiUrl}/${idPublicacion}`, {}, { headers: this.getHeaders() })
       .pipe(

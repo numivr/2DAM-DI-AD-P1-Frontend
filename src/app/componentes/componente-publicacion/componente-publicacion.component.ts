@@ -69,6 +69,9 @@ export class ComponentePublicacionComponent  implements OnInit
 
 
   ngOnInit() {
+
+
+
     addIcons({
       'heart-outline': heartOutline,
       'chatbubble-outline': chatbubbleOutline,

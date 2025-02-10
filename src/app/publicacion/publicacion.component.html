@@ -2,47 +2,31 @@
 
   <div style="max-width: 400px; margin: 0 auto;">
 
-    <div class="cuerpo p-3 m-2">
-      <div class="profile-container p-1">
-        <img src="https://picsum.photos/80/80?random=2" class="ima0_chica" alt="">
-        <div class="my-2">
-          <h5 class="labelMeiano">{{m_nombre_s}}</h5>
-        </div>
-      </div>
-      <div>
-        <p class="labelChico m-1 p-3">{{m_texto_s}}</p>
-        <img src="https://picsum.photos/80/80?random=3" alt="" class="publication-image">
-      </div>
 
 
-      <div style="display: flex;">
-        <ion-buttons slot="start">
-          <ion-button  (click)="toggleFavorite()">
-            <ion-icon  [name]="isFavorite ? 'heart' : 'heart-outline'">
-            </ion-icon>
-            <div>{{likes}}</div>
-          </ion-button>
-        </ion-buttons>
+      <app-componente-publicacion
+        [id]="publicacion.id"
+        [nombre]="publicacion.perfil"
+        [miUrl]="publicacion.fotoPerfil"
+        [texto]="publicacion.texto"
+        [url]="publicacion.fotoPublicacion"
+        [likes]="publicacion.numLikes"
+        [comentarios]="publicacion.numComentarios"
+        [isFavorite]="publicacion.liked">
+      </app-componente-publicacion>
 
-        <ion-buttons slot="end">
-          <ion-button >
-            <ion-icon name="chatbubble-outline"></ion-icon>
-            <div>{{comentarios}}</div>
-          </ion-button>
-        </ion-buttons>
-      </div>
-
-
-    </div>
 
     <!-- barra horizontal  -->
     <hr class="hr" style="border-top:2px solid var(--color3);">
 
-    <app-componente-publicacion
-      miUrl="https://picsum.photos/80/80?random=3"
-      nombre="Pepe"
-      texto="lorem impsun kafjga jigibijg biwsbgb iwefgwgw ghsngjhsr jaghdfjg naorg"
-    ></app-componente-publicacion>
+    <!-- Mostrar comentarios -->
+    <div *ngFor="let comentario of publicacion.comentarios">
+      <app-componente-publicacion
+        [miUrl]="comentario.fotoCreador"
+        [nombre]="comentario.usuarioCreador"
+        [texto]="comentario.texto">
+      </app-componente-publicacion>
+    </div>
 
   </div>
 </ion-content>

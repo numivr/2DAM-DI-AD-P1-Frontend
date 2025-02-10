@@ -44,7 +44,7 @@ export const routes: Routes = [
     component: RegistroCuentaComponent,
   },
   {
-    path: 'publicacion',
+    path: 'publicacion/:id',
     component: PublicacionComponent,
     canActivate: [authGuard]
   },

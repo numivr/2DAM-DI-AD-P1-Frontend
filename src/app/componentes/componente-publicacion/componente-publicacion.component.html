@@ -28,7 +28,7 @@
         </ion-buttons>
 
         <ion-buttons slot="end" *ngIf="comentarios !== null">
-          <ion-button >
+          <ion-button [routerLink]="['/publicacion', id]">
             <ion-icon name="chatbubble-outline"></ion-icon>
             <div>{{comentarios}}</div>
           </ion-button>
