@@ -23,14 +23,13 @@ import {PerfilService} from "../1-Servicios/perfil.service";
 })
 export class PerfilComponent implements OnInit
 {
-  constructor() { }
+  constructor( private perfilService: PerfilService) {}
 
   _admin_b: boolean = true;
 
   perfil!: Perfil;
   publicaciones: Publicacion[] = []
 
-  constructor( private perfilService: PerfilService) {}
 
   // Declaraciones //
   nombre: string = 'Lucas';
