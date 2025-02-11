@@ -7,6 +7,7 @@ export class Perfil {
   raza: string;
   fotoPerfil: string;
   publicaciones: Publicacion[];
+  siguiendo: boolean; // ✅ Se agrega el atributo siguiendo
 
   constructor(
     nombre: string = '',
@@ -14,7 +15,8 @@ export class Perfil {
     numeroSeguidos: number = 0,
     raza: string = 'Desconocida',
     fotoPerfil: string = '',
-    publicaciones: Publicacion[] = []
+    publicaciones: Publicacion[] = [],
+    siguiendo: boolean = false // ✅ Inicializamos el nuevo atributo
   ) {
     this.nombre = nombre;
     this.numeroSeguidores = numeroSeguidores;
@@ -22,5 +24,6 @@ export class Perfil {
     this.raza = raza;
     this.fotoPerfil = fotoPerfil;
     this.publicaciones = publicaciones;
+    this.siguiendo = siguiendo;
   }
 }

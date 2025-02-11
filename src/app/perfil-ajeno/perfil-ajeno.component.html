@@ -1,41 +1,47 @@
 <ion-content [fullscreen]="true">
+  <div style="max-width: 400px; margin: 0 auto;">
+    <div>
+      <div class="centrar bajarUnPoco">
+        <img [src]="perfil?.fotoPerfil || 'https://picsum.photos/80/80?random=1'" class="ima0_grande" alt="Foto de perfil">
+      </div>
 
-  <div>
-    <!-- El escope es un constructo social -->
-  </div>
-  <div>
-    <div class="centrar bajarUnPoco">
-      <img src="https://picsum.photos/80/80?random=2" class="ima0_grande" alt="">
+      <p class="labelGrande">{{ perfil?.nombre || '@Cargando...' }}</p>
+      <p class="labelChico">{{ perfil?.raza || '...' }}</p>
     </div>
 
-    <p class="labelGrande">{{m_nombre_s}}</p>
-    <p class="labelChico">{{m_tipo_s}}</p>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <p class="labelMeiano">Seguidores</p>
+          <p class="labelGrande">{{ perfil?.numeroSeguidores || 0 }}</p>
+        </ion-col>
+        <ion-col>
+          <p class="labelMeiano">Seguidos</p>
+          <p class="labelGrande">{{ perfil?.numeroSeguidos || 0 }}</p>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <!-- Botón de Seguir/Dejar de seguir -->
+    <div class="centrar">
+      <ion-button class="btn_beige" (click)="toggleSeguir()">
+        {{ siguiendoEstado ? 'Siguiendo' : 'Seguir' }}
+      </ion-button>
+    </div>
+
+    <!-- Publicaciones del usuario -->
+    <app-componente-publicacion
+      *ngFor="let publicacion of publicaciones"
+      [id]="publicacion.id"
+      [nombre]="publicacion.perfil"
+      [miUrl]="publicacion.fotoPerfil"
+      [texto]="publicacion.texto"
+      [url]="publicacion.fotoPublicacion"
+      [likes]="publicacion.numLikes"
+      [comentarios]="publicacion.numComentarios"
+      [isFavorite]="publicacion.liked">
+    </app-componente-publicacion>
   </div>
-
-  <ion-grid>
-    <ion-row>
-
-      <ion-col>
-        <p class="labelMeiano">Seguidores</p>
-        <p class="labelGrande">{{m_seguidores_s}}</p>
-      </ion-col>
-      <ion-col>
-        <p class="labelMeiano">Seguidos</p>
-        <p class="labelGrande">{{m_seguidos_s}}</p>
-      </ion-col>
-
-    </ion-row>
-  </ion-grid>
-
-
-  <div class="centrar">
-    <ion-button class="btn_beige">Seguir</ion-button>
-  </div>
-
-
-
-  <app-componente-publicacion></app-componente-publicacion>
-
 
   <ion-fab vertical="bottom" horizontal="center" slot="fixed">
     <ion-fab-button>

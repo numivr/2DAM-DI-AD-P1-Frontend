@@ -60,7 +60,7 @@ export const routes: Routes = [
     canActivate: [authGuard]
   },
   {
-    path: 'perfilajeno',
+    path: 'perfilajeno/:id',
     component: PerfilAjenoComponent,
   },
   {

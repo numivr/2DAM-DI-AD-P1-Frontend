@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import {Observable} from "rxjs";
-import {HttpClient, HttpParams} from "@angular/common/http";
-import {RegistroDTO} from "../1-Modelos/RegistroDTO";
+import { Observable } from "rxjs";
+import { HttpClient, HttpParams } from "@angular/common/http";
+import { RegistroDTO } from "../1-Modelos/RegistroDTO";
 
 export interface Registro {
   [key: string]: any;
@@ -31,11 +31,11 @@ export interface Registro {
 export class RegistroService {
   // Objeto que contendrá la información del registro
   registro: Registro = {
-    fotoUrl: '',  // URL de la foto de perfil del usuario
-    genero: 'M',  // Género predeterminado Masculino
-    edad: 'adulto',  // Edad predeterminada como "adulto"
-    raza: '',  // No hay raza seleccionada por defecto
-    nivelEnergia: 5,  // Valor predeterminado de 5 en una escala de 1 a 10
+    fotoUrl: '',
+    genero: 'M',
+    edad: 'adulto',
+    raza: '',
+    nivelEnergia: 5,
     sociabilidad: 5,
     tamano: 5,
     toleranciaEspecies: 5,
@@ -44,20 +44,20 @@ export class RegistroService {
     temperamento: 5,
     experiencia: 5,
     territorialidad: 5,
-    nombreUsuario: '',  // Nombre de usuario inicial vacío
-    email: '',  // Email inicial vacío
-    contrasena: '',  // Contraseña inicial vacía
-    contrasenaRepetida: ''  // Confirmación de contraseña vacía
+    nombreUsuario: '',
+    email: '',
+    contrasena: '',
+    contrasenaRepetida: ''
   };
 
+  constructor(private httpClient: HttpClient) {}
 
-
-  // Metodo para obtener el objeto registro
+  // Método para obtener el objeto registro
   getRegistro() {
     return this.registro;
   }
 
-  // Metodo para actualizar un campo específico
+  // Método para actualizar un campo específico
   actualizarCampo(campo: string, valor: any) {
     if (campo in this.registro) {
       this.registro[campo] = valor;
@@ -67,38 +67,29 @@ export class RegistroService {
     }
   }
 
-  // ✅ Metodo para registrar y mostrar los datos en un alert
+  // ✅ Método para registrar y enviar los datos al backend
   registrar() {
-      const datosRegistro = `
-  🔹 **Nombre de Usuario:** ${this.registro.nombreUsuario || 'N/A'}
-  🖼️ **Foto:** ${this.registro.fotoUrl || 'No subida'}
-  👤 **Género:** ${this.registro.genero === 'M' ? 'Masculino' : 'Femenino'}
-  📆 **Edad:** ${this.registro.edad}
-  🐶 **Raza:** ${this.registro.raza}
+    const registroDTO: RegistroDTO = {
+      usuario: this.registro.nombreUsuario,
+      password: this.registro.contrasena,
+      email: this.registro.email,
 
-  ⚡ **Nivel de Energía:** ${this.registro.nivelEnergia}/10
-  🤝 **Sociabilidad:** ${this.registro.sociabilidad}/10
-  📏 **Tamaño:** ${this.registro.tamano}/10
-  🦴 **Tolerancia a Especies:** ${this.registro.toleranciaEspecies}/10
-  👑 **Nivel de Dominancia:** ${this.registro.nivelDominancia}/10
-  🎾 **Tendencia de Juego:** ${this.registro.tendenciaJuego}/10
-  🧠 **Temperamento:** ${this.registro.temperamento}/10
-  🏆 **Experiencia:** ${this.registro.experiencia}/10
-  🏠 **Territorialidad:** ${this.registro.territorialidad}/10
-      `;
+      // 📌 Enviar las cualidades
+      foto: this.registro.fotoUrl,
+      genero: this.registro.genero,
+      edad: this.registro.edad,
+      raza: this.registro.raza,
+      nivelEnergia: this.registro.nivelEnergia,
+      sociabilidad: this.registro.sociabilidad,
+      tamaño: this.registro.tamano,
+      toleranciaEspecies: this.registro.toleranciaEspecies,
+      nivelDominancia: this.registro.nivelDominancia,
+      tendenciaJuego: this.registro.tendenciaJuego,
+      temperamento: this.registro.temperamento,
+      experiencia: this.registro.experiencia,
+      territorialidad: this.registro.territorialidad
+    };
 
-    // ✅ Usamos `alert` para mostrar los datos (sin formato Markdown)
-    window.alert(`Datos de registro:\n${datosRegistro.replace(/\*\*/g, '')}`);
-
-    //RegistroDTO
-// ✅ Crear una instancia de RegistroDTO
-    const registroDTO = new RegistroDTO(
-      this.registro.nombreUsuario,
-      this.registro.contrasena,
-      this.registro.email
-    );
-
-    // ✅ Hacer la petición POST al backend
     this.httpClient.post<any>('api/auth/registro', registroDTO).subscribe(
       (response) => {
         alert(`✅ Registro exitoso: Bienvenido, ${response.nombreUsuario}`);
@@ -108,21 +99,11 @@ export class RegistroService {
         console.error(error);
       }
     );
-
-
   }
 
-  constructor(private httpClient: HttpClient) {}
-
-  /*
-   * ✅ Metodo para verificar si la credencial (nombre de usuario) está disponible en el backend.
-   * Hace una petición `GET` al endpoint `/auth/credencialDisponible`.
-   * @param nombreUsuario - El nombre de usuario a verificar.
-   * @returns Observable<boolean> - `true` si está disponible, `false` si ya está en uso.
-   */
+  // Método para verificar si la credencial (nombre de usuario) está disponible en el backend
   GetverificarCredencialDisponible(nombreUsuario: string): Observable<any> {
     const params = new HttpParams().set('nombreUsuario', nombreUsuario);
     return this.httpClient.get<boolean>('api/auth/credencialDisponible', { params });
   }
-
 }

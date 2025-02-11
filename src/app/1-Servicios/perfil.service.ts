@@ -36,4 +36,17 @@ export class PerfilService {
         })
       );
   }
+
+  // 📌 Método para obtener un perfil por su ID
+  obtenerPerfilPorId(id: number): Observable<Perfil> {
+    return this.http.get<Perfil>(`${this.apiUrl}/${id}`, { headers: this.getHeaders() })
+      .pipe(
+        catchError(error => {
+          console.error(`❌ Error al obtener el perfil con ID ${id}:`, error);
+          return throwError(() => new Error(`Error en la solicitud del perfil con ID ${id}`));
+        })
+      );
+  }
+
+
 }
