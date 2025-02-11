@@ -1,33 +1,35 @@
-<ion-header class="responsiveHeader">
-  <ion-toolbar>
-    <div class="toolbar-container">
-      <ion-buttons slot="start">
-        <ion-button [routerLink]="['/perfil']">
-          <ion-icon class="white-icon" slot="icon-only" name="person-circle"></ion-icon>
-        </ion-button>
-      </ion-buttons>
+<ion-header>
+  <div class="responsiveHeader">
+    <ion-toolbar>
+      <div class="toolbar-container">
+        <ion-buttons slot="start">
+          <ion-button [routerLink]="['/perfil']">
+            <ion-icon class="white-icon" slot="icon-only" name="person-circle"></ion-icon>
+          </ion-button>
+        </ion-buttons>
 
-      <div class="logo-container">
-        <img src="assets/logo_beige.png" alt="Logo de la app"/>
+        <div class="logo-container">
+          <img src="assets/logo_beige.png" alt="Logo de la app"/>
+        </div>
+
+        <ion-buttons slot="end">
+          <ion-button [routerLink]="['/chatspersonas']">
+            <ion-icon class="white-icon" name="chatbubbles-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>
       </div>
+    </ion-toolbar>
 
-      <ion-buttons slot="end">
-        <ion-button [routerLink]="['/chatspersonas']">
-          <ion-icon class="white-icon" name="chatbubbles-outline"></ion-icon>
-        </ion-button>
-      </ion-buttons>
-    </div>
-  </ion-toolbar>
-
-  <ion-searchbar
-    class="custom-searchbar"
-    placeholder="Busca algo..."
-    [(ngModel)]="searchTerm"
-    (keyup)="handleSearch($event)">
-  </ion-searchbar>
+    <ion-searchbar
+      class="custom-searchbar"
+      placeholder="Busca algo..."
+      [(ngModel)]="searchTerm"
+      (keyup)="handleSearch($event)">
+    </ion-searchbar>
+  </div>
 </ion-header>
 
-<ion-content (click)="closeSearchModal()" class="responsiveDiv">
+<ion-content (click)="closeSearchModal()">
   <ion-segment [value]="selectedSegment" (ionChange)="segmentChanged($event)">
     <ion-segment-button value="Recomendado">
       <ion-label>Recomendado</ion-label>

@@ -28,13 +28,18 @@ ion-toolbar {
     margin: auto;
   }
 
-  ion-header {
+  ion-header > div
+  {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: #96305A;
     padding-bottom: 10px;
+  }
+
+  ion-header
+  {
+    background-color: var(--color7);
   }
 
   .toolbar-container {
@@ -128,3 +133,9 @@ ion-toolbar {
   }
 
 
+
+.responsiveHeader
+{
+  max-width: 600px;
+  margin: 0 auto;
+}

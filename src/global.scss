@@ -47,6 +47,7 @@
   --color4: #e5dab5;
   --color5: #2d3e50;
   --color6: #2c4251; // no se que ha pasado.
+  --color7: #96305A; // alguien no esta pillando bien los colores.
 }
 
 
@@ -56,7 +57,6 @@
   max-width: 400px;
   margin: 0 auto;
 }
-
 @media (max-width: 600px)
 {
   .responsiveDiv
@@ -66,11 +66,6 @@
     // minimi altura sea el doble del ancho
     // min-height: calc(3 * 100%);
   }
-}
-.responsiveHeader
-{
-  max-width: 600px;
-  margin: 0 auto;
 }
 /* FIN Responsive */
 
