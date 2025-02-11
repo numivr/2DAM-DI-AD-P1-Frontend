@@ -58,6 +58,7 @@ ion-item
 ion-radio
 {
   color: #f1ead0;
+  --color-checked: var(--color3);
 }
 
 ion-input
@@ -103,3 +104,11 @@ ion-item ion-label
 {
   padding-top: 6px;
 }
+
+
+.fondoAzul
+{
+  --ion-background-color: var(--color5);
+  background: var(--color5);
+}
+

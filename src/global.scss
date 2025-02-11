@@ -45,7 +45,8 @@
   --color2: #5D1D38;
   --color3: #f1ead0;
   --color4: #e5dab5;
-  --color5: #2c4251;
+  --color5: #2d3e50;
+  --color6: #2c4251; // no se que ha pasado.
 }
 
 
@@ -61,7 +62,7 @@
   .responsiveDiv
   {
     // height: 90%;
-    margin: 10% 0 10% 0;
+    margin: 10% auto;
     // minimi altura sea el doble del ancho
     // min-height: calc(3 * 100%);
   }
