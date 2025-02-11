@@ -5,6 +5,9 @@ import {NgForOf, NgIf, NgOptimizedImage} from '@angular/common';
 import { RouterLink } from '@angular/router';
 import {addIcons} from "ionicons";
 import {add, chatbubblesOutline, personCircle} from "ionicons/icons";
+import {Perfil} from "../1-Modelos/Perfil";
+import {Publicacion} from "../1-Modelos/Publicacion";
+import {PerfilService} from "../1-Servicios/perfil.service";
 
 @Component({
   selector: 'app-perfil',
@@ -23,6 +26,11 @@ export class PerfilComponent implements OnInit
   constructor() { }
 
   _admin_b: boolean = true;
+
+  perfil!: Perfil;
+  publicaciones: Publicacion[] = []
+
+  constructor( private perfilService: PerfilService) {}
 
   // Declaraciones //
   nombre: string = 'Lucas';
@@ -70,6 +78,7 @@ export class PerfilComponent implements OnInit
 
   ngOnInit()
   {
+    this.obtenerPerfilLoggeado();
     addIcons({
       'add': add,
       'chatbubbles-outline': chatbubblesOutline,
@@ -101,6 +110,26 @@ export class PerfilComponent implements OnInit
     else
       this._seguidos_s = this.m_seguidos_i.toString();
 
+
+  }
+  obtenerPerfilLoggeado() {
+    this.perfilService.obtenerPerfilLoggeado().subscribe({
+      next: (data) => {
+        this.perfil = new Perfil(
+          data.nombre,
+          data.numeroSeguidores,
+          data.numeroSeguidos,
+          data.raza,
+          data.fotoPerfil,
+          data.publicaciones
+        );
+
+        this.publicaciones = this.perfil.publicaciones;
+      },
+      error: (error) => {
+        console.error('❌ Error al obtener el perfil:', error);
+      }
+    });
 
   }
 

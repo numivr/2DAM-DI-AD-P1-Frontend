@@ -1,19 +1,46 @@
+import {Comentario} from "./Comentario";
+
+
 export class Publicacion {
+  id: number;
   perfil: string;
   fotoPerfil: string;
   texto: string;
   fotoPublicacion: string;
-  numComentarios: number;
+  numComentarios: string;
   numLikes: number;
   liked: boolean;
+  comentarios: Comentario[]; // 👈 Se agrega el array de comentarios
 
-  constructor(init?: Partial<Publicacion>) {
-    this.perfil = init?.perfil || "Usuario desconocido";
-    this.fotoPerfil = init?.fotoPerfil || "https://via.placeholder.com/80";
-    this.texto = init?.texto || "";
-    this.fotoPublicacion = init?.fotoPublicacion || "";
-    this.numComentarios = Number(init?.numComentarios) || 0; // Convertir a número
-    this.numLikes = init?.numLikes ?? 0;
-    this.liked = init?.liked ?? false;
+  constructor(
+    id: number = 0,
+    perfil: string = '',
+    fotoPerfil: string = '',
+    texto: string = '',
+    fotoPublicacion: string = '',
+    numComentarios: string = '',
+    numLikes: number = 0,
+    liked: boolean = false,
+    comentarios: Comentario[] = [] // 👈 Recibe los comentarios como array
+  ) {
+    this.id = id;
+    this.perfil = perfil;
+    this.fotoPerfil = fotoPerfil;
+    this.texto = texto;
+    this.fotoPublicacion = fotoPublicacion;
+    this.numComentarios = numComentarios;
+    this.numLikes = numLikes;
+    this.liked = liked;
+
+    // Convertir los datos recibidos en instancias de Comentario si es necesario
+    this.comentarios = comentarios.map(c => new Comentario(
+      c.id,
+      c.idPublicacion,
+      c.idUsuario,
+      c.usuarioCreador,
+      c.fotoCreador,
+      c.texto,
+      c.fecha
+    ));
   }
 }

@@ -1,8 +1,9 @@
+
 export class Chat{
   id?: number;
-  nombre?: string;
-  tipo?: string;
-  ultimoMensaje?: string;
-  fechaUltimoMensaje?: string;
-
+  nombre ?: string;
+  tipo ?: string;
+  foto ?: String[];
+  ultimoMensaje ?: string;
+  fechaUltimoMensaje ?: string;
 }

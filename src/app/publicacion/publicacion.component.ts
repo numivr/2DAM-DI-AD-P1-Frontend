@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ComponentePublicacionComponent } from '../componentes/componente-publicacion/componente-publicacion.component';
-import { NgIf } from '@angular/common';
+import {NgForOf, NgIf} from '@angular/common';
 import { IonicModule } from '@ionic/angular';
+import {ActivatedRoute} from "@angular/router";
+import {PublicacionService} from "../1-Servicios/publicacion.service";
+import {Publicacion} from "../1-Modelos/Publicacion";
 
 @Component({
   selector: 'app-publicacion',
@@ -11,16 +14,33 @@ import { IonicModule } from '@ionic/angular';
   imports: [
     IonicModule,
     ComponentePublicacionComponent,
-    NgIf
+    NgIf,
+    NgForOf
   ]
 })
 export class PublicacionComponent  implements OnInit
 {
-  constructor() { }
-  ngOnInit()
-  {
-    this.likes = 0;
-    this.comentarios = 0;
+
+  publicacion!: Publicacion;
+
+
+
+  constructor(private route: ActivatedRoute,
+              private publicacionService: PublicacionService) { }
+
+  ngOnInit() {
+    const id = Number(this.route.snapshot.paramMap.get('id'));
+
+    this.publicacionService.obtenerPublicacionPorId(id).subscribe({
+      next: (data) => {
+        this.publicacion = data;
+        console.log("✅ Publicación recibida:", this.publicacion); // 🔍 Verifica si comentarios llegan
+      },
+      error: (error) => {
+        console.error(`❌ Error al obtener la publicación con ID ${id}:`, error);
+      }
+    });
+
   }
 
   async toggleFavorite() {
