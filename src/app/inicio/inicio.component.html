@@ -1,21 +1,26 @@
-<ion-content class="login-page responsiveDiv">
-  <div class="login-container">
+<ion-content class="login-page">
+  <div class="login-container responsiveDiv">
     <img src="assets/logo_beige.png" alt="Logo" class="logo">
     <h1 class="titulo">Santuario</h1>
 
-    <ion-label>Nombre de usuario</ion-label>
-    <ion-item>
-      <ion-input id="usuario" type="text"
-                 [(ngModel)]="UsuarioLoggeado.username"
-      ></ion-input>
-    </ion-item>
+    <div class="campos">
+      <ion-label>Nombre de usuario</ion-label>
+      <ion-item>
+        <ion-input id="usuario" type="text"
+                   [(ngModel)]="UsuarioLoggeado.username"
+        ></ion-input>
+      </ion-item>
+    </div>
 
-    <ion-label>Contraseña</ion-label>
-    <ion-item>
-      <ion-input id="contrasena" type="password"
-                  [(ngModel)]="UsuarioLoggeado.password"
-      ></ion-input>
-    </ion-item>
+    <div class="campos">
+      <ion-label>Contraseña</ion-label>
+      <ion-item>
+        <ion-input id="contrasena" type="password"
+                   [(ngModel)]="UsuarioLoggeado.password"
+        ></ion-input>
+      </ion-item>
+    </div>
+
 
     <ion-button class="login-button" expand="block"  (click)="login()">Entrar</ion-button>
 
