@@ -1,4 +1,4 @@
-<ion-header>
+<ion-header class="responsiveHeader">
   <ion-toolbar>
     <div class="toolbar-container">
       <ion-buttons slot="start">
@@ -27,7 +27,7 @@
   </ion-searchbar>
 </ion-header>
 
-<ion-content (click)="closeSearchModal()">
+<ion-content (click)="closeSearchModal()" class="responsiveDiv">
   <ion-segment [value]="selectedSegment" (ionChange)="segmentChanged($event)">
     <ion-segment-button value="Recomendado">
       <ion-label>Recomendado</ion-label>
@@ -37,29 +37,21 @@
     </ion-segment-button>
   </ion-segment>
 
-  <!-- TODO: revisar esta hueva pos va ah explotar -->
+
   <!-- Iterar sobre las publicaciones obtenidas desde el backend -->
   <div *ngIf="selectedSegment === 'Recomendado'">
     <app-componente-publicacion
       *ngFor="let publicacion of publicaciones"
       [id]="publicacion.id"
-      [nombre]="publicacion.perfil"
-      [miUrl]="publicacion.fotoPerfil"
+      [urlImagen]="publicacion.fotoPerfil"
       [nombre]="publicacion.perfil"
       [texto]="publicacion.texto"
-      [url]="publicacion.fotoPublicacion"
+      [urlImgPerfil]="publicacion.fotoPublicacion"
       [likes]="publicacion.numLikes"
       [comentarios]="publicacion.numComentarios"
       [isFavorite]="publicacion.liked">
     </app-componente-publicacion>
   </div>
-      [likes]="publicacion.numLikes"
-      [comentarios]="publicacion.numComentarios"
-      [urlImagen]="publicacion.fotoPerfil"
-      [urlImgPerfil]="publicacion.fotoPublicacion"
-      [isFavorite]="publicacion.liked"
-    ></app-componente-publicacion>
-  </ng-container>
 
 
 
