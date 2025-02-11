@@ -22,6 +22,7 @@ import { UsuarioService } from "../1-Servicios/usuario.service"; // ✅ Importam
     NgOptimizedImage,
     RouterLink,
     NgForOf
+
   ]
 })
 export class PerfilAjenoComponent implements OnInit {
