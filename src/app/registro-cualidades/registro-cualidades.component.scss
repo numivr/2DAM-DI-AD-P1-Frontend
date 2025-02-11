@@ -17,9 +17,9 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 10% auto;
-  width: 90%;
-  padding: 20px;
+  // margin: 10% auto;
+  // width: 90%;
+  // padding: 20px;
   text-align: center;
 }
 
@@ -81,4 +81,12 @@ ion-item ion-label {
   --color: #f1ead0;
   margin-top: 1rem;
   width: 40%;
+}
+
+
+ion-range
+{
+  --bar-background-active: var(--color3);
+  --bar-background: var(--color6);
+  --knob-background: var(--color4);
 }
