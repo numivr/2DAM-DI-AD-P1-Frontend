@@ -8,7 +8,7 @@
 
     <!-- Rango para Nivel de Energía -->
     <ion-item>
-      <ion-label position="stacked">Nivel de energía: {{ registroService.registro.nivelEnergia }} </ion-label>
+      <ion-label position="stacked">Nivel de energía: {{ registroService.registro.nivelEnergia }}</ion-label>
       <ion-range min="1" max="10" step="1" [(ngModel)]="registroService.registro.nivelEnergia">
         <ion-label slot="start">1</ion-label>
         <ion-label slot="end">10</ion-label>
@@ -17,7 +17,7 @@
 
     <!-- Rango para Sociabilidad -->
     <ion-item>
-      <ion-label position="stacked">Sociabilidad: {{ registroService.registro.sociabilidad }} </ion-label>
+      <ion-label position="stacked">Sociabilidad: {{ registroService.registro.sociabilidad }}</ion-label>
       <ion-range min="1" max="10" step="1" [(ngModel)]="registroService.registro.sociabilidad">
         <ion-label slot="start">1</ion-label>
         <ion-label slot="end">10</ion-label>
@@ -26,7 +26,7 @@
 
     <!-- Rango para Tamaño -->
     <ion-item>
-      <ion-label position="stacked">Tamaño: {{ registroService.registro.tamano }} </ion-label>
+      <ion-label position="stacked">Tamaño: {{ registroService.registro.tamano }}</ion-label>
       <ion-range min="1" max="10" step="1" [(ngModel)]="registroService.registro.tamano">
         <ion-label slot="start">1</ion-label>
         <ion-label slot="end">10</ion-label>
@@ -35,7 +35,8 @@
 
     <!-- Rango para Tolerancia a Otras Especies -->
     <ion-item>
-      <ion-label position="stacked">Tolerancia a otras especies: {{ registroService.registro.toleranciaEspecies }} </ion-label>
+      <ion-label position="stacked">Tolerancia a otras especies: {{ registroService.registro.toleranciaEspecies }}
+      </ion-label>
       <ion-range min="1" max="10" step="1" [(ngModel)]="registroService.registro.toleranciaEspecies">
         <ion-label slot="start">1</ion-label>
         <ion-label slot="end">10</ion-label>
@@ -44,7 +45,7 @@
 
     <!-- Rango para Nivel de Dominancia -->
     <ion-item>
-      <ion-label position="stacked">Nivel de Dominancia: {{ registroService.registro.nivelDominancia }} </ion-label>
+      <ion-label position="stacked">Nivel de Dominancia: {{ registroService.registro.nivelDominancia }}</ion-label>
       <ion-range min="1" max="10" step="1" [(ngModel)]="registroService.registro.nivelDominancia">
         <ion-label slot="start">1</ion-label>
         <ion-label slot="end">10</ion-label>
@@ -53,7 +54,7 @@
 
     <!-- Rango para Tendencia de Juego -->
     <ion-item>
-      <ion-label position="stacked">Tendencia de Juego: {{ registroService.registro.tendenciaJuego }} </ion-label>
+      <ion-label position="stacked">Tendencia de Juego: {{ registroService.registro.tendenciaJuego }}</ion-label>
       <ion-range min="1" max="10" step="1" [(ngModel)]="registroService.registro.tendenciaJuego">
         <ion-label slot="start">1</ion-label>
         <ion-label slot="end">10</ion-label>
@@ -62,7 +63,7 @@
 
     <!-- Rango para Temperamento -->
     <ion-item>
-      <ion-label position="stacked">Temperamento: {{ registroService.registro.temperamento }} </ion-label>
+      <ion-label position="stacked">Temperamento: {{ registroService.registro.temperamento }}</ion-label>
       <ion-range min="1" max="10" step="1" [(ngModel)]="registroService.registro.temperamento">
         <ion-label slot="start">1</ion-label>
         <ion-label slot="end">10</ion-label>
@@ -71,7 +72,7 @@
 
     <!-- Rango para Experiencia -->
     <ion-item>
-      <ion-label position="stacked">Experiencia: {{ registroService.registro.experiencia }} </ion-label>
+      <ion-label position="stacked">Experiencia: {{ registroService.registro.experiencia }}</ion-label>
       <ion-range min="1" max="10" step="1" [(ngModel)]="registroService.registro.experiencia">
         <ion-label slot="start">1</ion-label>
         <ion-label slot="end">10</ion-label>
@@ -80,7 +81,7 @@
 
     <!-- Rango para Territorialidad -->
     <ion-item>
-      <ion-label position="stacked">Territorialidad: {{ registroService.registro.territorialidad }} </ion-label>
+      <ion-label position="stacked">Territorialidad: {{ registroService.registro.territorialidad }}</ion-label>
       <ion-range min="1" max="10" step="1" [(ngModel)]="registroService.registro.territorialidad">
         <ion-label slot="start">1</ion-label>
         <ion-label slot="end">10</ion-label>
@@ -88,6 +89,12 @@
     </ion-item>
 
     <!-- Botón de registro -->
-    <ion-button class="registro-button" expand="block" (click)="registroService.registrar()">Registrarse</ion-button>
+    <ion-button id="open-modal"  expand="block" class="registro-button" expand="block" (click)="registroService.registrar()">Registrarse</ion-button>
+    <ion-modal trigger="open-modal" [initialBreakpoint]="1" [breakpoints]="[0, 1]" (ionModalDidPresent)="enviarCorreo()">
+      <ng-template>
+        <div class="block">Comprueba tu correo electrónico y confirma</div>
+      </ng-template>
+    </ion-modal>
   </div>
 </ion-content>
+
