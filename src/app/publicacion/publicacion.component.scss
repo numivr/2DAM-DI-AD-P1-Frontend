@@ -59,3 +59,22 @@ h5{
 img{
   border-radius: 4%;
 }
+
+.comment-section {
+  width: 100%; /* Cambiar a automático según el contenedor */
+  max-width: 344px;  /* Ajusta el mismo ancho que los comentarios */
+  margin: 0 auto; /* Centrar horizontalmente */
+  color: #F5F5DC;
+  padding: 10px;
+  border-radius:  10px;
+  box-shadow: -2px 5px -2px 0 rgba(0, 0, 0, 0.2);
+}
+
+
+.comment-section ion-input {
+  color: #F5F5DC;
+}
+
+.comment-section ion-button {
+  color: #F5F5DC;
+}
