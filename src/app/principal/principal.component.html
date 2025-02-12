@@ -51,6 +51,21 @@
     </app-componente-publicacion>
   </div>
 
+  <!-- Publicaciones de seguidos -->
+  <div *ngIf="selectedSegment === 'Siguiendo'">
+    <app-componente-publicacion
+      *ngFor="let publicacion of publicacionesSeguidos"
+      [id]="publicacion.id"
+      [nombre]="publicacion.perfil"
+      [miUrl]="publicacion.fotoPerfil"
+      [texto]="publicacion.texto"
+      [url]="publicacion.fotoPublicacion"
+      [likes]="publicacion.numLikes"
+      [comentarios]="publicacion.numComentarios"
+      [isFavorite]="publicacion.liked">
+    </app-componente-publicacion>
+  </div>
+
   <ion-fab vertical="bottom" horizontal="center" slot="fixed">
     <ion-fab-button (click)="openFabModal()">
       <ion-icon name="add"></ion-icon>

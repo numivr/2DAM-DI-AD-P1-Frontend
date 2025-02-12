@@ -37,6 +37,17 @@ export class PublicacionService {
       );
   }
 
+  obtenerPublicacionesSeguidos(): Observable<Publicacion[]> {
+    return this.http.get<Publicacion[]>(`${this.apiUrl}/siguiendo`, { headers: this.getHeaders() })
+      .pipe(
+        catchError(error => {
+          console.error('❌ Error al obtener publicaciones de seguidos:', error);
+          return throwError(() => new Error('Error en la solicitud de publicaciones de seguidos'));
+        })
+      );
+  }
+
+
   obtenerPublicacionPorId(id: number): Observable<Publicacion> {
     return this.http.get<Publicacion>(`${this.apiUrl}/${id}`, { headers: this.getHeaders() })
       .pipe(

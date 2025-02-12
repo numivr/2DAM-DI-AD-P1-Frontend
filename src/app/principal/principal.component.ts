@@ -27,6 +27,7 @@ import { PublicacionService } from '../1-Servicios/publicacion.service';
 export class PrincipalComponent implements OnInit {
   selectedSegment: string = 'Recomendado';
   publicaciones: Publicacion[] = [];
+  publicacionesSeguidos: Publicacion[] = [];
   isSearchModalOpen: boolean = false;
   isFabModalOpen: boolean = false;
   searchTerm: string = '';
@@ -48,6 +49,7 @@ export class PrincipalComponent implements OnInit {
       'camera': camera
     });
     this.cargarPublicaciones();
+    this.cargarPublicacionesSeguidos();
   }
 
   handleSearch(event: any) {
@@ -124,12 +126,7 @@ export class PrincipalComponent implements OnInit {
   }
 
 
-  /**
-   * ✅ Valida si la URL ingresada es una imagen válida
-   */
-  validarURL(url: string): boolean {
-    return /^(https?:\/\/.*\.(?:png|jpg|jpeg|gif|bmp|webp))$/i.test(url);
-  }
+
 
 
   /**
@@ -180,4 +177,16 @@ export class PrincipalComponent implements OnInit {
       }
     });
   }
+
+  cargarPublicacionesSeguidos() {
+    this.publicacionService.obtenerPublicacionesSeguidos().subscribe({
+      next: (data: Publicacion[]) => {
+        this.publicacionesSeguidos = data;
+      },
+      error: (err) => {
+        console.error('Error al obtener publicaciones de seguidos:', err);
+      }
+    });
+  }
+
 }
