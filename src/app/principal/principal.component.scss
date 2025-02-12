@@ -151,8 +151,10 @@ ion-segment > ion-segment-button > ion-label // ::part(native)
 }
 
 // A cabezon no me gana nadie.
-.segment-button-after-checked
+.segment-button-after-checked,
+ion-segment > ion-segment-button:not(.segment-button-after-checked)
 {
   // En "Recomendado" y "Siguiendo" este es el color cuando no esta selecionado.
-  color: var(--color6) !important;
+  --color: var(--color6)!important;
 }
+

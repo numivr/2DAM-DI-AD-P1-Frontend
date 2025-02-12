@@ -25,7 +25,7 @@ export class PerfilComponent implements OnInit
 {
   constructor( private perfilService: PerfilService) {}
 
-  _admin_b: boolean = true;
+  _admin_b: boolean = false;
 
   perfil!: Perfil;
   publicaciones: Publicacion[] = []

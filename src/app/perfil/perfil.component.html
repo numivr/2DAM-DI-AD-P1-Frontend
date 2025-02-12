@@ -1,6 +1,11 @@
 <ion-content [fullscreen]="true">
 
     <div class="responsiveDiv">
+      <div class="m-3">
+        <ion-buttons slot="start">
+          <ion-back-button defaultHref="/principal"></ion-back-button>
+        </ion-buttons>
+      </div>
       <div>
         <div class="centrar bajarUnPoco">
           <img src="https://picsum.photos/80/80?random=2" class="ima0_grande" alt="">
@@ -37,6 +42,9 @@
         texto="{{publicacion.texto}}"
         likes="{{publicacion.likes}}"
         comentarios="{{publicacion.comentarios}}"
+
+        enlace="/publicacion/{{publicacion.id}}"
+
         _admin_b="{{_admin_b}}"
         btnTexto="Banear Publicacion"
         [btnFuncion]="banearPublicacion"

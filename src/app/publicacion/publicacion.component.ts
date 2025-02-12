@@ -23,12 +23,21 @@ export class PublicacionComponent  implements OnInit
 
   publicacion!: Publicacion;
 
+  _admin_b: boolean = false;
+  m_nombre_s: string = '@Lucas';
+  m_texto_s: string = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dignissim rhoncus mi in vulputate. Sed suscipit, diam vel tincidunt consequat, tortor aliquet turpis, sed elementum nibh mauris sit amet elit. ';
+  m_image_s: string = "";
+
+  isFavorite: boolean = false;
+  likes: number|null = null;
+  comentarios: number|null = null;
 
 
   constructor(private route: ActivatedRoute,
               private publicacionService: PublicacionService) { }
 
-  ngOnInit() {
+  ngOnInit()
+  {
     const id = Number(this.route.snapshot.paramMap.get('id'));
 
     this.publicacionService.obtenerPublicacionPorId(id).subscribe({
@@ -41,6 +50,11 @@ export class PublicacionComponent  implements OnInit
       }
     });
 
+
+    // TODO: quitar estos datos de ejemplo.
+    // Ejemplo de datos de publicación.
+    this.likes = 10;
+    this.comentarios = 5;
   }
 
   async toggleFavorite() {
@@ -48,15 +62,6 @@ export class PublicacionComponent  implements OnInit
     console.log("Estado cambiado a:", this.isFavorite); // Debug
   }
 
-
-  _admin_b: boolean = false;
-  m_nombre_s: string = '@Lucas';
-  m_texto_s: string = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dignissim rhoncus mi in vulputate. Sed suscipit, diam vel tincidunt consequat, tortor aliquet turpis, sed elementum nibh mauris sit amet elit. ';
-  m_image_s: string = "";
-
-  isFavorite: boolean = false;
-  likes: number|null = null;
-  comentarios: number|null = null;
 
 
   ejeBan(id:number)
