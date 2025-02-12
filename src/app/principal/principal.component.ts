@@ -8,6 +8,7 @@ import { RouterLink } from '@angular/router';
 import { NgForOf, NgIf, NgOptimizedImage } from '@angular/common';
 import { FormsModule } from "@angular/forms";
 import { PublicacionService } from '../1-Servicios/publicacion.service';
+import { ComponenteComentarioComponent } from '../componentes/componente-comentario/componente-comentario.component';
 
 @Component({
   selector: 'app-principal',
@@ -18,6 +19,7 @@ import { PublicacionService } from '../1-Servicios/publicacion.service';
     IonicModule,
     NgOptimizedImage,
     ComponentePublicacionComponent,
+    ComponenteComentarioComponent,
     RouterLink,
     NgIf,
     FormsModule,

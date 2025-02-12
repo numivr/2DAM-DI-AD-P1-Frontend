@@ -1,40 +1,38 @@
 <ion-content [fullscreen]="true">
-
   <div style="max-width: 400px; margin: 0 auto;">
+    <app-componente-publicacion
+      [id]="publicacion.id"
+      [nombre]="publicacion.perfil"
+      [miUrl]="publicacion.fotoPerfil"
+      [texto]="publicacion.texto"
+      [url]="publicacion.fotoPublicacion"
+      [likes]="publicacion.numLikes"
+      [comentarios]="publicacion.numComentarios"
+      [isFavorite]="publicacion.liked">
+    </app-componente-publicacion>
 
-
-
-      <app-componente-publicacion
-        [id]="publicacion.id"
-        [nombre]="publicacion.perfil"
-        [miUrl]="publicacion.fotoPerfil"
-        [texto]="publicacion.texto"
-        [url]="publicacion.fotoPublicacion"
-        [likes]="publicacion.numLikes"
-        [comentarios]="publicacion.numComentarios"
-        [isFavorite]="publicacion.liked">
-      </app-componente-publicacion>
-
-
-    <!-- barra horizontal  -->
+    <!-- barra horizontal -->
     <hr class="hr" style="border-top:2px solid var(--color3);">
 
-    <!-- Mostrar comentarios -->
-    <div *ngFor="let comentario of publicacion.comentarios">
-      <app-componente-publicacion
-        [miUrl]="comentario.fotoCreador"
-        [nombre]="comentario.usuarioCreador"
-        [texto]="comentario.texto">
-      </app-componente-publicacion>
+    <!-- 📌 Sección para escribir comentarios -->
+    <div style="max-width: 400px; margin: 0 auto;">
+      <ion-card class="comment-section">
+        <ion-card-content>
+          <ion-item>
+            <ion-input placeholder="Escribe un comentario..." [(ngModel)]="nuevoComentario"></ion-input>
+            <ion-button (click)="publicarComentario()">
+              <ion-icon name="send"></ion-icon>
+            </ion-button>
+          </ion-item>
+        </ion-card-content>
+      </ion-card>
     </div>
 
+    <!-- 📌 Mostrar comentarios -->
+    <app-componente-comentario *ngFor="let comentario of publicacion.comentarios"
+                               [miUrl]="comentario.fotoCreador"
+                               [nombre]="comentario.usuarioCreador"
+                               [texto]="comentario.texto">
+    </app-componente-comentario>
   </div>
 </ion-content>
-
-
-
-<!--
-<ion-content>
-  <app-componente-publicacion></app-componente-publicacion>
-</ion-content>
--->
