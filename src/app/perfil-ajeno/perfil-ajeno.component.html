@@ -22,9 +22,9 @@
       </ion-row>
     </ion-grid>
 
-    <!-- Botón de Seguir/Dejar de seguir -->
     <div class="centrar">
       <ion-button class="btn_beige" (click)="toggleSeguir()">
+        <ion-icon [name]="siguiendoEstado ? 'person-remove' : 'person-add'"></ion-icon>
         {{ siguiendoEstado ? 'Siguiendo' : 'Seguir' }}
       </ion-button>
     </div>

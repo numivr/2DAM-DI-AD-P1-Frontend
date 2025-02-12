@@ -3,12 +3,10 @@ import { IonicModule } from '@ionic/angular';
 import { ComponentePublicacionComponent } from '../componentes/componente-publicacion/componente-publicacion.component';
 import { NgForOf, NgIf, NgOptimizedImage } from '@angular/common';
 import { RouterLink, ActivatedRoute } from '@angular/router';
-import { addIcons } from "ionicons";
-import { add, chatbubblesOutline, personCircle } from "ionicons/icons";
 import { Perfil } from "../1-Modelos/Perfil";
 import { Publicacion } from "../1-Modelos/Publicacion";
 import { PerfilService } from "../1-Servicios/perfil.service";
-import { UsuarioService } from "../1-Servicios/usuario.service"; // ✅ Importamos UsuarioService
+import { UsuarioService } from "../1-Servicios/usuario.service";
 
 @Component({
   selector: 'app-perfil-ajeno',
@@ -22,13 +20,12 @@ import { UsuarioService } from "../1-Servicios/usuario.service"; // ✅ Importam
     NgOptimizedImage,
     RouterLink,
     NgForOf
-
   ]
 })
 export class PerfilAjenoComponent implements OnInit {
 
   perfil!: Perfil;
-  siguiendoEstado: boolean = false;  // ✅ Variable local para manejar el estado
+  siguiendoEstado: boolean = false;
   idUsuario!: number;
   publicaciones: Publicacion[] = [];
 
@@ -38,10 +35,44 @@ export class PerfilAjenoComponent implements OnInit {
     private route: ActivatedRoute
   ) {}
 
-  ngOnInit() {
-    // 📌 Obtener el ID de la URL
-    this.idUsuario = Number(this.route.snapshot.paramMap.get('id'));
+  toggleSeguir() {
+    console.log("🟡 Click en seguir - ID usuario:", this.idUsuario);
 
+    if (!this.idUsuario) {
+      console.error("❌ Error: No se recibió un ID válido de usuario.");
+      return;
+    }
+
+    // Alternar el estado local y actualizar el número de seguidores
+    this.siguiendoEstado = !this.siguiendoEstado;
+    this.perfil.numeroSeguidores = this.siguiendoEstado
+      ? this.perfil.numeroSeguidores + 1
+      : this.perfil.numeroSeguidores - 1;
+
+    if (this.siguiendoEstado) {
+      console.log("🔼 Siguiendo usuario...");
+      this.usuarioService.seguir(this.idUsuario).subscribe({
+        next: () => console.log("✅ Usuario seguido en el servidor"),
+        error: (err) => {
+          console.error("❌ Error al seguir usuario:", err);
+
+        }
+      });
+    } else {
+      console.log("🔽 Dejando de seguir usuario...");
+      this.usuarioService.dejarSeguir(this.idUsuario).subscribe({
+        next: () => console.log("✅ Usuario dejado de seguir en el servidor"),
+        error: (err) => {
+          console.error("❌ Error al dejar de seguir usuario:", err);
+
+        }
+      });
+    }
+  }
+
+
+  ngOnInit() {
+    this.idUsuario = Number(this.route.snapshot.paramMap.get('id'));
     if (this.idUsuario) {
       this.obtenerPerfilPorId(this.idUsuario);
     }
@@ -53,7 +84,7 @@ export class PerfilAjenoComponent implements OnInit {
         console.log("✅ Perfil recibido:", data);
         this.perfil = data;
         this.publicaciones = data.publicaciones;
-        this.siguiendoEstado = data.siguiendo; // ✅ Inicializar variable local
+        this.siguiendoEstado = data.siguiendo; // Inicializar el estado de seguimiento
       },
       error: (error) => {
         console.error(`❌ Error al obtener el perfil con ID ${id}:`, error);
@@ -61,29 +92,12 @@ export class PerfilAjenoComponent implements OnInit {
     });
   }
 
-  toggleSeguir() {
-    if (this.siguiendoEstado) {
-      this.usuarioService.dejarSeguir(this.idUsuario).subscribe({
-        next: () => {
-          console.log(`❌ Dejaste de seguir a ${this.perfil.nombre}`);
-          this.siguiendoEstado = false;
-          this.perfil.numeroSeguidores--; // 🔽 Reducimos seguidores
-        },
-        error: (error) => console.error("❌ Error al dejar de seguir:", error)
-      });
-    } else {
-      this.usuarioService.seguir(this.idUsuario).subscribe({
-        next: () => {
-          console.log(`✅ Ahora sigues a ${this.perfil.nombre}`);
-          this.siguiendoEstado = true;
-          this.perfil.numeroSeguidores++; // 🔼 Aumentamos seguidores
-        },
-        error: (error) => console.error("❌ Error al seguir usuario:", error)
-      });
-    }
-  }
+  /**
+   * Método para alternar el estado de seguimiento del perfil.
+   * Se actualiza el estado local, el contador de seguidores y se notifica al servidor.
+   */
+
+
+
+
 }
-
-
-
-

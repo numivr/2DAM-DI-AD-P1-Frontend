@@ -1,15 +1,13 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {IonicModule, IonModal} from '@ionic/angular';
-import {add, chatbubblesOutline, imageOutline, personCircle} from 'ionicons/icons';
-import {addIcons} from 'ionicons';
-import {Publicacion} from '../1-Modelos/Publicacion';
-import {ComponentePublicacionComponent} from '../componentes/componente-publicacion/componente-publicacion.component';
-import {RouterLink} from '@angular/router';
-import {NgForOf, NgIf, NgOptimizedImage} from '@angular/common';
-import {FormsModule} from "@angular/forms";
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import { IonicModule, IonModal } from '@ionic/angular';
+import {add, camera, chatbubblesOutline, imageOutline, personCircle} from 'ionicons/icons';
+import { addIcons } from 'ionicons';
+import { Publicacion } from '../1-Modelos/Publicacion';
+import { ComponentePublicacionComponent } from '../componentes/componente-publicacion/componente-publicacion.component';
+import { RouterLink } from '@angular/router';
+import { NgForOf, NgIf, NgOptimizedImage } from '@angular/common';
+import { FormsModule } from "@angular/forms";
 import { PublicacionService } from '../1-Servicios/publicacion.service';
-
-
 
 @Component({
   selector: 'app-principal',
@@ -32,20 +30,22 @@ export class PrincipalComponent implements OnInit {
   isSearchModalOpen: boolean = false;
   isFabModalOpen: boolean = false;
   searchTerm: string = '';
-  newPostTitle: string = '';
-  newPostDescription: string = '';
-
+  newPostDescription: string = ''; // Texto de la publicación
+  newPostImage: string = ''; // URL de la imagen de la publicación
 
   constructor(private publicacionService: PublicacionService) {}
 
   @ViewChild('crearPublicacionModal') modal!: IonModal;
+
+  @ViewChild('fileInput') fileInput!: ElementRef;
 
   ngOnInit() {
     addIcons({
       'add': add,
       'chatbubbles-outline': chatbubblesOutline,
       'person-circle': personCircle,
-      'image-outline': imageOutline
+      'image-outline': imageOutline,
+      'camera': camera
     });
     this.cargarPublicaciones();
   }
@@ -56,8 +56,16 @@ export class PrincipalComponent implements OnInit {
     }
   }
 
+  segmentChanged(event: any) {
+    this.selectedSegment = event.detail.value;
+  }
+
   openSearchModal() {
     this.isSearchModalOpen = true;
+  }
+
+  closeSearchModal() {
+    this.isSearchModalOpen = false;
   }
 
   openFabModal() {
@@ -68,47 +76,108 @@ export class PrincipalComponent implements OnInit {
     this.isFabModalOpen = false;
   }
 
-  closeSearchModal() {
-    this.isSearchModalOpen = false;
+
+  /**
+   * ✅ Abre el selector de archivos oculto
+   */
+  openFilePicker() {
+    this.fileInput.nativeElement.click();
   }
 
-  submitPost() {
-    if (this.newPostDescription.trim()) {
-      console.log('Publicación creada:', this.newPostDescription);
-      this.closeFabModal();
-    } else {
-      alert('Por favor, completa todos los campos.');
+  /**
+   * ✅ Maneja la selección de la imagen y la convierte a URL
+   */
+  onFileSelected(event: any) {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.newPostImage = e.target.result;
+      };
+      reader.readAsDataURL(file);
     }
   }
 
-  cancel() {
-    this.closeFabModal();
+  isUrlModalOpen: boolean = false; // Controla la visibilidad del modal
+  imageURL: string = ''; // Guarda la URL ingresada
+
+  /**
+   * ✅ Abre el modal para ingresar la URL de la imagen
+   */
+  openUrlModal() {
+    this.isUrlModalOpen = true;
   }
 
-  segmentChanged(event: any) {
-    this.selectedSegment = event.detail.value;
+
+  /**
+   * ✅ Permite ingresar una URL manualmente para la imagen y la muestra en la interfaz
+   */
+  addImageFromURL() {
+    if (!this.imageURL) {
+      alert("❌ La URL ingresada no es válida. Inténtalo de nuevo.");
+      return;
+    }
+
+    this.newPostImage = this.imageURL;
+    this.isUrlModalOpen = false; // Cierra el modal
+    this.imageURL = ''; // Limpia el campo de entrada
   }
 
-  truncateText(text: string, limit: number = 40): string {
-    return text.length > limit ? `${text.substring(0, limit)}...` : text;
+
+  /**
+   * ✅ Valida si la URL ingresada es una imagen válida
+   */
+  validarURL(url: string): boolean {
+    return /^(https?:\/\/.*\.(?:png|jpg|jpeg|gif|bmp|webp))$/i.test(url);
   }
 
-  protected readonly confirm = confirm;
 
-  cargarPublicaciones() {
-    this.publicacionService.obtenerPublicaciones().subscribe({
-      next: (data: any) => { // Cambia la desestructuración incorrecta
-        this.publicaciones = data;
+  /**
+   * ✅ Elimina la imagen seleccionada
+   */
+  removeImage() {
+    this.newPostImage = '';
+  }
+
+  /**
+   * ✅ Enviar la publicación al backend
+   */
+  submitPost() {
+    if (!this.newPostDescription.trim() && !this.newPostImage.trim()) {
+      alert('Por favor, introduce texto o una imagen antes de publicar.');
+      return;
+    }
+
+    const nuevaPublicacion = {
+      texto: this.newPostDescription,
+      fotoPublicacion: this.newPostImage
+    };
+
+    console.log("📢 Publicando...", nuevaPublicacion);
+
+    this.publicacionService.crearPublicacion(nuevaPublicacion).subscribe({
+      next: (response) => {
+        console.log("✅ Publicación enviada:", response);
+        this.publicaciones.unshift(response); // Agregar la nueva publicación al inicio del feed
+        this.closeFabModal(); // Cerrar modal
+        this.newPostDescription = ''; // Resetear campo
+        this.newPostImage = ''; // Resetear imagen
       },
       error: (err) => {
-        console.error('Error al obtener publicaciones:', err);
-      },
-      complete: () => {
-        console.log('Carga de publicaciones completada');
+        console.error("❌ Error al enviar publicación:", err);
+        alert("Hubo un error al publicar. Inténtalo nuevamente.");
       }
     });
   }
 
-
-
+  cargarPublicaciones() {
+    this.publicacionService.obtenerPublicaciones().subscribe({
+      next: (data: Publicacion[]) => {
+        this.publicaciones = data;
+      },
+      error: (err) => {
+        console.error('Error al obtener publicaciones:', err);
+      }
+    });
+  }
 }

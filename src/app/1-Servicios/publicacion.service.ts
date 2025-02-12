@@ -68,4 +68,15 @@ export class PublicacionService {
         })
       );
   }
+
+  crearPublicacion(nuevaPublicacion: { texto: string; fotoPublicacion: string }): Observable<Publicacion> {
+    return this.http.post<Publicacion>(`${this.apiUrl}/crear`, nuevaPublicacion, { headers: this.getHeaders() })
+      .pipe(
+        catchError(error => {
+          console.error('❌ Error al crear la publicación:', error);
+          return throwError(() => new Error('Error al crear la publicación'));
+        })
+      );
+  }
+
 }
