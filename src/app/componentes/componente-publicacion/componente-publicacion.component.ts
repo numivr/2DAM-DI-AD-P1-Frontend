@@ -1,7 +1,6 @@
 import {booleanAttribute, Component, Input, numberAttribute, OnInit} from '@angular/core';
 import {IonicModule} from "@ionic/angular";
 import {addIcons} from "ionicons";
-import {chatbubbleOutline, heart, heartOutline} from "ionicons/icons";
 import {NgIf} from "@angular/common";
 import {Router, RouterLink} from "@angular/router";
 import {PublicacionService} from "../../1-Servicios/publicacion.service";

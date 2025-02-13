@@ -102,27 +102,6 @@ export class PublicacionComponent  implements OnInit
     });
   }
 
-  /**
-   * ✅ Método para publicar un comentario
-   */
-  publicarComentario() {
-    if (!this.nuevoComentario.trim()) {
-      alert('❌ El comentario no puede estar vacío.');
-      return;
-    }
-
-    this.comentarioService.crearComentario(this.publicacion.id, this.nuevoComentario).subscribe({
-      next: (comentario) => {
-        console.log("✅ Comentario publicado:", comentario);
-        this.publicacion.comentarios.push(comentario);  // 📌 Agregar el comentario en tiempo real
-        this.nuevoComentario = '';  // Limpiar el campo de entrada
-      },
-      error: (error) => {
-        console.error('❌ Error al publicar el comentario:', error);
-        alert('Hubo un error al publicar el comentario. Inténtalo de nuevo.');
-      }
-    });
-  }
 
   ejeBan(id:number)
   {

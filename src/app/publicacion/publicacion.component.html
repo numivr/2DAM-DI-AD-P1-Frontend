@@ -1,15 +1,17 @@
 <ion-content [fullscreen]="true">
-  <div style="max-width: 400px; margin: 0 auto;">
-    <app-componente-publicacion
+
+  <!-- TODO: Habia un div que no se cerraba.
+   <app-componente-publicacion
       [id]="publicacion.id"
       [nombre]="publicacion.perfil"
-      [miUrl]="publicacion.fotoPerfil"
+      [urlImgPerfil]="publicacion.fotoPerfil"
       [texto]="publicacion.texto"
-      [url]="publicacion.fotoPublicacion"
+      [urlImagen]="publicacion.fotoPublicacion"
       [likes]="publicacion.numLikes"
       [comentarios]="publicacion.numComentarios"
       [isFavorite]="publicacion.liked">
     </app-componente-publicacion>
+   -->
 
     <!-- barra horizontal -->
 
@@ -54,7 +56,7 @@
     <hr class="hr" style="border-top:2px solid var(--color3);">
 
     <!-- 📌 Sección para escribir comentarios -->
-    <div style="max-width: 400px; margin: 0 auto;">
+    <div>
       <ion-card class="comment-section">
         <ion-card-content>
           <ion-item>
@@ -68,15 +70,18 @@
     </div>
 
     <!-- 📌 Mostrar comentarios -->
+    <!--
     <app-componente-comentario *ngFor="let comentario of publicacion.comentarios"
                                [miUrl]="comentario.fotoCreador"
                                [nombre]="comentario.usuarioCreador"
                                [texto]="comentario.texto">
     </app-componente-comentario>
+    -->
+
     <app-componente-publicacion
       urlImgPerfil="https://picsum.photos/80/80?random=3"
       nombre="Pepe 1"
-      texto="lorem impsun kafjga jigibijg biwsbgb iwefgwgw ghsngjhsr jaghdfjg naorg"
+      texto="ESTO ES UN COMENTARIO"
       _admin_b="{{_admin_b}}"
       btnTexto="Banear"
       [btnFuncion]="BanearComentario"
@@ -86,7 +91,7 @@
     <app-componente-publicacion
       urlImgPerfil="https://picsum.photos/80/80?random=3"
       nombre="Pepe 2"
-      texto="lorem impsun kafjga jigibijg biwsbgb iwefgwgw ghsngjhsr jaghdfjg naorg"
+      texto="ESTO ES UN COMENTARIOESTO ES UN COMENTARIOESTO ES UN COMENTARIOESTO ES UN COMENTARIOESTO ES UN COMENTARIO"
       _admin_b="{{_admin_b}}"
       btnTexto="Banear"
       [btnFuncion]="BanearComentario"
