@@ -30,3 +30,52 @@ ion-content
 {
   padding: 2em 0 1em 0;
 }
+
+
+
+ion-textarea {
+  height: 200px;
+  width: 300px;
+}
+
+.white-icon {
+  color: #f1ead0;
+}
+
+.post-textarea {
+  max-height: 200px;
+  overflow-y: auto;
+  resize: none;
+}
+
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.modal-content ion-label {
+  color: #2d3e50;
+  text-align: center;
+}
+
+ion-modal {
+  --ion-background-color: #f1ead0;
+}
+
+.modalPublicacion ion-item {
+  margin-top: 20px;
+}
+
+
+ion-toolbar {
+  --background: #96305A;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+ion-button {
+  --color: #96305A;
+}

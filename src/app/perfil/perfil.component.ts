@@ -1,13 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import { IonicModule } from '@ionic/angular';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import {IonModal, IonicModule } from '@ionic/angular';
 import { ComponentePublicacionComponent } from '../componentes/componente-publicacion/componente-publicacion.component';
 import {NgForOf, NgIf, NgOptimizedImage} from '@angular/common';
 import { RouterLink } from '@angular/router';
 import {addIcons} from "ionicons";
-import {add, chatbubblesOutline, personCircle} from "ionicons/icons";
+import {add, chatbubblesOutline, imageOutline, personCircle} from "ionicons/icons";
 import {Perfil} from "../1-Modelos/Perfil";
 import {Publicacion} from "../1-Modelos/Publicacion";
 import {PerfilService} from "../1-Servicios/perfil.service";
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-perfil',
@@ -20,16 +21,20 @@ import {PerfilService} from "../1-Servicios/perfil.service";
     NgIf,
     NgOptimizedImage,
     RouterLink,
-    NgForOf
+    NgForOf,
+    FormsModule
   ]
 })
 export class PerfilComponent implements OnInit
 {
-
+  isFabModalOpen: boolean = false;
+  newPostTitle: string = '';
+  newPostDescription: string = '';
   perfil!: Perfil;
   publicaciones: Publicacion[] = []
 
   constructor( private perfilService: PerfilService) {}
+  @ViewChild('crearPublicacionModal') modal!: IonModal;
 
   // Declaraciones //
   m_nombre_s: string = '@Lucas';
@@ -48,6 +53,7 @@ export class PerfilComponent implements OnInit
       'add': add,
       'chatbubbles-outline': chatbubblesOutline,
       'person-circle': personCircle,
+      'image-outline': imageOutline
     });
 
     if (this.m_seguidores_i > 999999)
@@ -71,6 +77,28 @@ export class PerfilComponent implements OnInit
 
 
   }
+
+  openFabModal() {
+    this.isFabModalOpen = true;
+  }
+
+  closeFabModal() {
+    this.isFabModalOpen = false;
+  }
+
+  submitPost() {
+    if (this.newPostDescription.trim()) {
+      console.log('Publicación creada:', this.newPostDescription);
+      this.closeFabModal();
+    } else {
+      alert('Por favor, completa todos los campos.');
+    }
+  }
+
+  cancel() {
+    this.closeFabModal();
+  }
+
   obtenerPerfilLoggeado() {
     this.perfilService.obtenerPerfilLoggeado().subscribe({
       next: (data) => {
