@@ -12,7 +12,7 @@ export class ChatService {
   private urlChats  = '/mensaje/chats';
   private urlMensajeEnviar  = '/mensaje/enviar';
   private urlMensajesChatPrivado  = '/mensaje/chat/';
-  private apiUrl = environment.apiUrl;
+  private apiUrl = '/api'; // 👈 Proxy para evitar CORS
   private contactoObservable = new BehaviorSubject<number>(0);
   contacto = this.contactoObservable.asObservable();
 

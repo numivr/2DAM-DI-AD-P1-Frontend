@@ -2,10 +2,10 @@
   <ion-card-header>
     <div class="profile-container" *ngIf="miUrl !== null && nombre !== null">
       <!-- ✅ Al hacer clic en la imagen, redirige al perfil -->
-      <img (click)="irAlPerfil()" [src]="miUrl" alt="Profile" class="ima0_chica" *ngIf="miUrl !== null">
+      <img [routerLink]="['/perfilajeno', idUsuario]" [src]="miUrl" alt="Profile" class="ima0_chica" *ngIf="miUrl !== null">
       <div class="profile-info" *ngIf="nombre !== null">
         <!-- ✅ Al hacer clic en el nombre, redirige al perfil -->
-        <h5 (click)="irAlPerfil()">{{ nombre }}</h5>
+        <h5 [routerLink]="['/perfilajeno', idUsuario]">{{ nombre }}</h5>
       </div>
       <ion-icon name="trash-outline" class="delete-icon"></ion-icon>
     </div>

@@ -9,7 +9,7 @@ import {environment} from "../../environments/environment";
 })
 export class UsuarioService {
 
-  private apiUrl = environment.apiUrl;
+  private apiUrl = '/api/usuarios'; // 👈 Proxy para evitar CORS
   private perfilUrl = '/perfil/id/';
 
 
