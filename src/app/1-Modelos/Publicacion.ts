@@ -1,8 +1,8 @@
-import {Comentario} from "./Comentario";
-
+import { Comentario } from "./Comentario";
 
 export class Publicacion {
   id: number;
+  idCreador: number; // ✅ Nuevo campo para almacenar el ID del creador
   perfil: string;
   fotoPerfil: string;
   texto: string;
@@ -10,10 +10,11 @@ export class Publicacion {
   numComentarios: string;
   numLikes: number;
   liked: boolean;
-  comentarios: Comentario[]; // 👈 Se agrega el array de comentarios
+  comentarios: Comentario[];
 
   constructor(
     id: number = 0,
+    idCreador: number = 0, // ✅ Se inicializa el ID del creador
     perfil: string = '',
     fotoPerfil: string = '',
     texto: string = '',
@@ -21,9 +22,10 @@ export class Publicacion {
     numComentarios: string = '',
     numLikes: number = 0,
     liked: boolean = false,
-    comentarios: Comentario[] = [] // 👈 Recibe los comentarios como array
+    comentarios: Comentario[] = []
   ) {
     this.id = id;
+    this.idCreador = idCreador; // ✅ Se almacena el ID del creador
     this.perfil = perfil;
     this.fotoPerfil = fotoPerfil;
     this.texto = texto;
@@ -32,7 +34,6 @@ export class Publicacion {
     this.numLikes = numLikes;
     this.liked = liked;
 
-    // Convertir los datos recibidos en instancias de Comentario si es necesario
     this.comentarios = comentarios.map(c => new Comentario(
       c.id,
       c.idPublicacion,

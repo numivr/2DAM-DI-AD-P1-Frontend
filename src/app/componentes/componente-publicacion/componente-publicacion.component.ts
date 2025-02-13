@@ -2,7 +2,7 @@ import {Component, Input, numberAttribute, OnInit} from '@angular/core';
 import {IonicModule} from "@ionic/angular";
 import {addIcons} from "ionicons";
 import {NgIf} from "@angular/common";
-import {RouterLink} from "@angular/router";
+import {Router, RouterLink} from "@angular/router";
 import {PublicacionService} from "../../1-Servicios/publicacion.service";
 import {chatbubbleOutline, heart, heartOutline, trashOutline} from "ionicons/icons";
 
@@ -21,6 +21,7 @@ export class ComponentePublicacionComponent  implements OnInit
 {
   @Input() id: number = 0;
   @Input() enlaceUsuario: string = '#';
+  @Input() idUsuario: number = 0;
   @Input() enlace: string = '#';
   @Input() isFavorite: boolean = false;
   @Input() url: string|null = null;
@@ -33,7 +34,8 @@ export class ComponentePublicacionComponent  implements OnInit
 
   @Input() miUrl: string|null = null;
 
-  constructor(private publicacionService: PublicacionService) { }
+  constructor(private publicacionService: PublicacionService,
+              private router: Router) { }
 
   toggleFavorite() {
     console.log("🟡 Click en like - ID de la publicación:", this.id);
@@ -62,7 +64,12 @@ export class ComponentePublicacionComponent  implements OnInit
     }
   }
 
-
+  // ✅ Método para navegar al perfil del usuario
+  irAlPerfil() {
+    if (this.idUsuario) {
+      this.router.navigate(['/perfil-ajeno', this.idUsuario]);
+    }
+  }
 
 
 
