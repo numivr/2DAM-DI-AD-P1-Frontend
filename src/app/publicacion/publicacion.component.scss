@@ -60,15 +60,7 @@ img{
   border-radius: 4%;
 }
 
-.comment-section {
-  width: 100%; /* Cambiar a automático según el contenedor */
-  max-width: 344px;  /* Ajusta el mismo ancho que los comentarios */
-  margin: 0 auto; /* Centrar horizontalmente */
-  color: #F5F5DC;
-  padding: 10px;
-  border-radius:  10px;
-  box-shadow: -2px 5px -2px 0 rgba(0, 0, 0, 0.2);
-}
+
 
 
 .comment-section ion-input {
@@ -80,12 +72,12 @@ img{
 }
 
 .comment-section {
-  width: 100%;
-  max-width: 344px;  /* Mismo ancho que los comentarios */
-  margin: 10px auto;
-  background-color: #5E2142; /* Igual al fondo de las tarjetas */
+  width: 100%; /* Cambiar a automático según el contenedor */
+  max-width: 344px;  /* Ajusta el mismo ancho que los comentarios */
+  margin: 0 auto; /* Centrar horizontalmente */
+  color: #F5F5DC;
   padding: 10px;
-  border-radius: 10px;
+  border-radius:  10px;
   box-shadow: -2px 5px -2px 0 rgba(0, 0, 0, 0.2);
 }
 
