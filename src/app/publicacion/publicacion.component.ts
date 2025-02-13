@@ -10,6 +10,7 @@ import { Comentario } from '../1-Modelos/Comentario';
 import { FormsModule } from '@angular/forms';
 import { send } from 'ionicons/icons';
 import { addIcons } from 'ionicons';
+import {ComentarioService} from "../1-Servicios/comentario.service";
 
 @Component({
   selector: 'app-publicacion',
@@ -34,7 +35,8 @@ export class PublicacionComponent  implements OnInit
 
 
   constructor(private route: ActivatedRoute,
-              private publicacionService: PublicacionService) { }
+              private publicacionService: PublicacionService,
+              private comentarioService: ComentarioService) { }
 
   ngOnInit() {
     addIcons({
@@ -62,13 +64,27 @@ export class PublicacionComponent  implements OnInit
 
 
 
+  /**
+   * ✅ Método para publicar un comentario
+   */
   publicarComentario() {
-    if (this.nuevoComentario.trim() !== '') {
-      console.log('Comentario publicado:', this.nuevoComentario);
-      this.nuevoComentario = '';
+    if (!this.nuevoComentario.trim()) {
+      alert('❌ El comentario no puede estar vacío.');
+      return;
     }
-  }
 
+    this.comentarioService.crearComentario(this.publicacion.id, this.nuevoComentario).subscribe({
+      next: (comentario) => {
+        console.log("✅ Comentario publicado:", comentario);
+        this.publicacion.comentarios.push(comentario);  // 📌 Agregar el comentario en tiempo real
+        this.nuevoComentario = '';  // Limpiar el campo de entrada
+      },
+      error: (error) => {
+        console.error('❌ Error al publicar el comentario:', error);
+        alert('Hubo un error al publicar el comentario. Inténtalo de nuevo.');
+      }
+    });
+  }
 
   isFavorite: boolean = false;
   likes: number|null = 10;

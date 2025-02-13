@@ -14,6 +14,7 @@
     <!-- barra horizontal -->
     <hr class="hr" style="border-top:2px solid var(--color3);">
 
+    <!-- 📌 Sección para escribir comentarios -->
     <div style="max-width: 400px; margin: 0 auto;">
       <ion-card class="comment-section">
         <ion-card-content>
@@ -27,13 +28,11 @@
       </ion-card>
     </div>
 
-    <!-- Mostrar comentarios solo si hay comentarios -->
+    <!-- 📌 Mostrar comentarios -->
     <app-componente-comentario *ngFor="let comentario of publicacion.comentarios"
                                [miUrl]="comentario.fotoCreador"
                                [nombre]="comentario.usuarioCreador"
                                [texto]="comentario.texto">
     </app-componente-comentario>
-
-
   </div>
 </ion-content>
