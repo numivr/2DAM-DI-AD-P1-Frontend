@@ -1,5 +1,5 @@
 <ion-card class="custom-card">
-
+ <!-- TODO: Revisar los desavarios -->
   <ion-card-header [routerLink]="[enlaceUsuario]">
     <div class="profile-container" *ngIf="urlImgPerfil !== null && m_miNombre_s !== null">
 
@@ -10,7 +10,7 @@
       alt="Profile"
       class="ima0_chica"
       *ngIf="urlImgPerfil !== null"> <!-- profile-image -->
-      
+
       <div class="profile-info" *ngIf="m_miNombre_s !== null">
         <!-- ✅ Al hacer clic en el nombre, redirige al perfil -->
         <h5 [routerLink]="[enlaceUsuario]">{{m_miNombre_s}}</h5> <!-- ['/perfilajeno', idUsuario] -->
@@ -20,6 +20,7 @@
   </ion-card-header>
 
   <ion-card-content >
+    
     <ion-row *ngIf="urlImagen !== null" [routerLink]="[enlace]">
       <img src="{{urlImagen}}" class="publication-image" alt="Imagen de la Publicacion">
     </ion-row>
