@@ -17,9 +17,9 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 10% auto;
-  width: 90%;
-  padding: 20px;
+  // margin: 10% auto;
+  // width: 90%;
+  // padding: 20px;
   text-align: center;
 }
 
@@ -83,6 +83,7 @@ ion-item ion-label {
   width: 40%;
 }
 
+// revisar responsive.
 .block {
   width: 100%;
   height: 300px;
@@ -95,4 +96,12 @@ ion-modal {
   --background: #f1ead0;
   --color: #2d3e50;
   --height: auto;
+}
+//
+
+ion-range
+{
+  --bar-background-active: var(--color3);
+  --bar-background: var(--color6);
+  --knob-background: var(--color4);
 }

@@ -30,6 +30,17 @@ export class PublicacionComponent  implements OnInit
 {
 
   publicacion!: Publicacion;
+
+  _admin_b: boolean = false;
+  m_nombre_s: string = '@Lucas';
+  m_texto_s: string = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dignissim rhoncus mi in vulputate. Sed suscipit, diam vel tincidunt consequat, tortor aliquet turpis, sed elementum nibh mauris sit amet elit. ';
+  m_image_s: string = "";
+
+  isFavorite: boolean = false;
+  likes: number|null = null;
+  comentarios: number|null = null;
+
+
   comentario!: Comentario;
   nuevoComentario: string = '';
 
@@ -55,6 +66,11 @@ export class PublicacionComponent  implements OnInit
       }
     });
 
+
+    // TODO: quitar estos datos de ejemplo.
+    // Ejemplo de datos de publicación.
+    this.likes = 10;
+    this.comentarios = 5;
   }
 
   async toggleFavorite() {
@@ -86,7 +102,35 @@ export class PublicacionComponent  implements OnInit
     });
   }
 
-  isFavorite: boolean = false;
-  likes: number|null = 10;
-  comentarios: number|null = 10;
+  /**
+   * ✅ Método para publicar un comentario
+   */
+  publicarComentario() {
+    if (!this.nuevoComentario.trim()) {
+      alert('❌ El comentario no puede estar vacío.');
+      return;
+    }
+
+    this.comentarioService.crearComentario(this.publicacion.id, this.nuevoComentario).subscribe({
+      next: (comentario) => {
+        console.log("✅ Comentario publicado:", comentario);
+        this.publicacion.comentarios.push(comentario);  // 📌 Agregar el comentario en tiempo real
+        this.nuevoComentario = '';  // Limpiar el campo de entrada
+      },
+      error: (error) => {
+        console.error('❌ Error al publicar el comentario:', error);
+        alert('Hubo un error al publicar el comentario. Inténtalo de nuevo.');
+      }
+    });
+  }
+
+  ejeBan(id:number)
+  {
+    console.log("Ejemplo de ban: " + id);
+  }
+
+  BanearComentario(datos: any[])
+  {
+    console.log("Comentario baneado con id: " + datos[0]);
+  }
 }

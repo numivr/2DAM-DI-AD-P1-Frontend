@@ -1,6 +1,7 @@
-import {Component, Input, numberAttribute, OnInit} from '@angular/core';
+import {booleanAttribute, Component, Input, numberAttribute, OnInit} from '@angular/core';
 import {IonicModule} from "@ionic/angular";
 import {addIcons} from "ionicons";
+import {chatbubbleOutline, heart, heartOutline} from "ionicons/icons";
 import {NgIf} from "@angular/common";
 import {Router, RouterLink} from "@angular/router";
 import {PublicacionService} from "../../1-Servicios/publicacion.service";
@@ -19,60 +20,45 @@ import {chatbubbleOutline, heart, heartOutline, trashOutline} from "ionicons/ico
 })
 export class ComponentePublicacionComponent  implements OnInit
 {
-  @Input() id: number = 0;
-  @Input() enlaceUsuario: string = '#';
+  // --- Identificación --- //
+  @Input() idPublicacion: number = 0;
   @Input() idUsuario: number = 0;
-  @Input() enlace: string = '#';
-  @Input() isFavorite: boolean = false;
-  @Input() url: string|null = null;
-  @Input() alt: string|null = '';
-  m_miNombre_s: string|null = "";
-  @Input() nombre: string|null = "";
-  @Input() texto: string = 'texto de ejemplo';
-  @Input({transform: numberAttribute}) likes: number = 0;
-  @Input({transform: numberAttribute}) comentarios: number|null = null;
 
-  @Input() miUrl: string|null = null;
+  // --- Declaración cabeza --- //
+  @Input() enlaceUsuario: string = '#'; // Enlace al perfil del usuario
+  @Input() urlImgPerfil: string|null = null; // URL de la imagen de perfil
+  @Input() nombre: string|null = null; // Nombre del usuario
+  m_miNombre_s: string|null = ""; // Nombre del usuario, Porcesado
 
-  constructor(private publicacionService: PublicacionService,
-              private router: Router) { }
+  // --- Declaración cuerpo --- //
+  @Input() urlImagen: string|null = null; // URL de la imagen
+  @Input() texto: string = 'texto_ejemplo';  // Texto de la publicación
+  @Input() enlace: string = '#'; // Enlace a la publicación
 
-  toggleFavorite() {
-    console.log("🟡 Click en like - ID de la publicación:", this.id);
+  // --- Declaración pie --- //
+  @Input({transform: numberAttribute}) likes: number|null = null; // Número de likes
+  @Input({transform: numberAttribute}) comentarios: number|null = null; // Número de comentarios
+  @Input() isFavorite: boolean = false; // Indica si la publicación es favorita
 
-    if (!this.id) {
-      console.error("❌ Error: No se recibió un ID válido para la publicación.");
-      return;
-    }
+  // --- Declaración de administrador --- //
+  @Input({transform: booleanAttribute}) _admin_b: boolean = false; // Indica si el usuario es administrador
+  @Input() btnTexto: string = 'Eliminar'; // Texto del botón de administrador
+  @Input() btnFuncion: (datos: any[]) => void = () => {}; // Función del botón de administrador
+  @Input() datos: any[] = []; // pila de datos para la funcion
 
-    // Alternar estado y actualizar número de likes
-    this.isFavorite = !this.isFavorite;
-    this.likes = this.isFavorite ? this.likes + 1 : this.likes - 1;
 
-    if (this.isFavorite) {
-      console.log("🔼 Dando like...");
-      this.publicacionService.darLike(this.id).subscribe({
-        next: () => console.log("✅ Like agregado en el servidor"),
-        error: (err) => console.error("❌ Error al dar like:", err)
-      });
-    } else {
-      console.log("🔽 Quitando like...");
-      this.publicacionService.quitarLike(this.id).subscribe({
-        next: () => console.log("✅ Like quitado en el servidor"),
-        error: (err) => console.error("❌ Error al quitar like:", err)
-      });
-    }
+
+  constructor
+  (
+    private publicacionService: PublicacionService,
+    private router: Router
+  )
+  {}
+
+  async toggleFavorite() {
+    this.isFavorite = !this.isFavorite; // Alterna entre true y false
+    console.log("Estado cambiado a:", this.isFavorite); // Debug
   }
-
-  // ✅ Método para navegar al perfil del usuario
-  irAlPerfil() {
-    if (this.idUsuario) {
-      this.router.navigate(['/perfil-ajeno', this.idUsuario]);
-    }
-  }
-
-
-
 
 
   ngOnInit() {
@@ -83,12 +69,17 @@ export class ComponentePublicacionComponent  implements OnInit
       'heart-outline': heartOutline,
       'chatbubble-outline': chatbubbleOutline,
       'heart': heart,
-      'trash-outline': trashOutline,
     })
 
     this.m_miNombre_s = '@' + (this.nombre !== null ? this.nombre : null);
+  }
 
-    console.log(this.url);
+  ejeFuncion()
+  {
+    if (this.btnFuncion)
+    {
+      this.btnFuncion(this.datos);
+    }
   }
 
 }

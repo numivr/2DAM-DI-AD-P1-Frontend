@@ -1,31 +1,35 @@
 <ion-header>
   <ion-toolbar>
     <div class="toolbar-container">
+
       <ion-buttons slot="start">
         <ion-button [routerLink]="['/perfil']">
           <ion-icon class="white-icon" slot="icon-only" name="person-circle"></ion-icon>
-        </ion-button><ion-button [routerLink]="['/publicacion/1']">hola
-      </ion-button>
-      </ion-buttons>
-
-      <div class="logo-container">
-        <img src="assets/logo_beige.png" alt="Logo de la app"/>
-      </div>
-
-      <ion-buttons slot="end">
-        <ion-button [routerLink]="['/chatspersonas']">
-          <ion-icon class="white-icon" name="chatbubbles-outline"></ion-icon>
         </ion-button>
-      </ion-buttons>
-    </div>
-  </ion-toolbar>
 
-  <ion-searchbar
-    class="custom-searchbar"
-    placeholder="Busca algo..."
-    [(ngModel)]="searchTerm"
-    (keyup)="handleSearch($event)">
-  </ion-searchbar>
+        <ion-button [routerLink]="['/publicacion/1']">hola</ion-button> <!-- TODO: Revisar -->
+      </ion-buttons>
+
+        <div class="logo-container">
+          <img src="assets/logo_beige.png" alt="Logo de la app"/>
+        </div>
+
+        <ion-buttons slot="end">
+          <ion-button [routerLink]="['/chatspersonas']">
+            <ion-icon class="white-icon" name="chatbubbles-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+
+      </div>
+    </ion-toolbar>
+
+    <ion-searchbar
+      class="custom-searchbar"
+      placeholder="Busca algo..."
+      [(ngModel)]="searchTerm"
+      (keyup)="handleSearch($event)">
+    </ion-searchbar>
+  </div>
 </ion-header>
 
 <ion-content (click)="closeSearchModal()">
@@ -38,11 +42,15 @@
     </ion-segment-button>
   </ion-segment>
 
+
+
   <div *ngIf="selectedSegment === 'Recomendado'">
     <app-componente-publicacion
       *ngFor="let publicacion of publicaciones"
       [id]="publicacion.id"
       [idUsuario]="publicacion.idCreador"
+      
+      [urlImagen]="publicacion.fotoPerfil"
       [nombre]="publicacion.perfil"
       [miUrl]="publicacion.fotoPerfil"
       [texto]="publicacion.texto"
@@ -60,14 +68,15 @@
       [id]="publicacion.id"
       [idUsuario]="publicacion.idCreador"
       [nombre]="publicacion.perfil"
-      [miUrl]="publicacion.fotoPerfil"
       [texto]="publicacion.texto"
-      [url]="publicacion.fotoPublicacion"
+      [urlImgPerfil]="publicacion.fotoPublicacion"
       [likes]="publicacion.numLikes"
       [comentarios]="publicacion.numComentarios"
       [isFavorite]="publicacion.liked">
     </app-componente-publicacion>
   </div>
+
+
 
   <ion-fab vertical="bottom" horizontal="center" slot="fixed">
     <ion-fab-button (click)="openFabModal()">

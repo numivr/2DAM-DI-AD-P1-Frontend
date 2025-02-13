@@ -28,13 +28,18 @@ ion-toolbar {
     margin: auto;
   }
 
-  ion-header {
+  ion-header > div
+  {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: #96305A;
     padding-bottom: 10px;
+  }
+
+  ion-header
+  {
+    background-color: var(--color7);
   }
 
   .toolbar-container {
@@ -178,4 +183,29 @@ ion-toolbar {
 }
 
 
+
+
+.responsiveHeader
+{
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+ion-segment > ion-segment-button > ion-label // ::part(native)
+{
+  // color: var(--color5);
+  // colo del texto sin seleccionar
+  // --color: rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.6);
+  // --color: var(--color6)!important;
+  // --color-hover: var(--color6);
+  // color: var(--color6);
+}
+
+// A cabezon no me gana nadie.
+.segment-button-after-checked,
+ion-segment > ion-segment-button:not(.segment-button-after-checked)
+{
+  // En "Recomendado" y "Siguiendo" este es el color cuando no esta selecionado.
+  --color: var(--color6)!important;
+}
 
