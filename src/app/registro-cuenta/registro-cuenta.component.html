@@ -56,19 +56,6 @@
     </p>
 
 
-    <!-- Repetir Contraseña -->
-    <ion-label>Repetir contraseña</ion-label>
-    <ion-item>
-      <ion-input
-        [(ngModel)]="registroService.registro.contrasenaRepetida"
-        type="password"
-        (ionBlur)="onPasswordBlur()">
-      </ion-input>
-    </ion-item>
-    <p *ngIf="mostrarErrores && !passwordsValid" class="error-mensaje">
-      ⚠️ Las contraseñas no coinciden.
-    </p>
-
     <!-- Botón para continuar al registro de perro -->
     <ion-button expand="block" (click)="continuarRegistro()">Continuar</ion-button>
 
