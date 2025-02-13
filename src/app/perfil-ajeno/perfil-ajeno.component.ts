@@ -50,7 +50,7 @@ export class PerfilAjenoComponent implements OnInit {
       console.log("🔼 Siguiendo usuario...");
       this.usuarioService.seguir(this.idUsuario).subscribe({
         next: () => console.log("✅ Usuario seguido en el servidor"),
-        error: (err) => {
+        error: (err: any) => {
           console.error("❌ Error al seguir usuario:", err);
 
         }
@@ -59,7 +59,7 @@ export class PerfilAjenoComponent implements OnInit {
       console.log("🔽 Dejando de seguir usuario...");
       this.usuarioService.dejarSeguir(this.idUsuario).subscribe({
         next: () => console.log("✅ Usuario dejado de seguir en el servidor"),
-        error: (err) => {
+        error: (err: any) => {
           console.error("❌ Error al dejar de seguir usuario:", err);
 
         }
@@ -95,6 +95,6 @@ export class PerfilAjenoComponent implements OnInit {
    */
 
 
-
-
+  protected readonly String = String;
+  protected readonly Number = Number;
 }
