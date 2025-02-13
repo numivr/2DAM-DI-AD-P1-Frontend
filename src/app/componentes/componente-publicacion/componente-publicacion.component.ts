@@ -20,8 +20,6 @@ import {chatbubbleOutline, heart, heartOutline, trashOutline} from "ionicons/ico
 export class ComponentePublicacionComponent  implements OnInit
 {
   @Input() id: number = 0;
-  @Input() enlaceUsuario: string = '#';
-  @Input() enlace: string = '#';
   @Input() isFavorite: boolean = false;
   @Input() url: string|null = null;
   @Input() alt: string|null = '';
