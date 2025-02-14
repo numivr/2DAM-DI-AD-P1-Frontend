@@ -41,27 +41,24 @@ export class PerfilComponent implements OnInit
   ) {}
   @ViewChild('crearPublicacionModal') modal!: IonModal;
 
-  // ****** Declaraciones ****** //
 
+  // ****** Declaraciones ****** //
   _perfilLogueado_Perfil!: Perfil;
   _perfilPorId_Perfil!: Perfil;
   _perfilFinal_Perfil!: Perfil;
+
   _siguiendoEstado_b: boolean = false;
   _nombreUsuario_s: string|null = null;
   _publicaciones_list: Publicacion[] = [];
 
   _admin_b: boolean = false;
 
-
-
-  // nombre: string = '';
-  _nombre_s: string = 'Cargando...';
-
-  _tipo_s: string = 'Cargando...';
+  _nombre_s: string = 'Cargando Nombre...';
+  _tipo_s: string = 'Cargando Raza...';
   _yoMismo_b: boolean = false;
 
-  private m_seguidores_i: number = 10;
-  private m_seguidos_i: number = 10;
+  private m_seguidores_i: number = -1;
+  private m_seguidos_i: number = -1;
   _seguidores_s: string = "";
   _seguidos_s: string = "";
 
@@ -84,6 +81,10 @@ export class PerfilComponent implements OnInit
   continuarOnInit()
   {
     this._nombre_s = '@' + this._perfilFinal_Perfil.nombre;
+
+    this.m_seguidores_i = this._perfilFinal_Perfil.numeroSeguidores;
+    this.m_seguidos_i = this._perfilFinal_Perfil.numeroSeguidos;
+    this._tipo_s = this._perfilFinal_Perfil.raza;
 
     if (this.m_seguidores_i > 999999)
       this._seguidores_s = (this.m_seguidores_i / 1000000).toFixed(1) + 'M';

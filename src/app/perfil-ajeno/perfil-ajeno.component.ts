@@ -76,6 +76,7 @@ export class PerfilAjenoComponent implements OnInit {
   }
 
   obtenerPerfilPorId(id: number) {
+    /*
     this.perfilService.obtenerPerfilPorId(id).subscribe({
       next: (data) => {
         console.log("✅ Perfil recibido:", data);
@@ -87,6 +88,7 @@ export class PerfilAjenoComponent implements OnInit {
         console.error(`❌ Error al obtener el perfil con ID ${id}:`, error);
       }
     });
+    */
   }
 
   /**
