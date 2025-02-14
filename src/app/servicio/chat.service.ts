@@ -11,7 +11,7 @@ import { Mensaje } from "../models/Mensaje";
 export class ChatService {
   private urlChats  = '/mensaje/chats';
   private urlMensajeEnviar  = '/mensaje/enviar';
-  private urlMensajesChatPrivado  = '/mensaje/chat/';
+  private urlMensajesChatPrivado  = '/mensajes/conversacion/';
   private apiUrl = '/api'; // 👈 Proxy para evitar CORS
   private contactoObservable = new BehaviorSubject<number>(0);
   contacto = this.contactoObservable.asObservable();
@@ -58,6 +58,7 @@ export class ChatService {
     sessionStorage.setItem('chat', String(chatId));
     return this.http.get<any>(`${this.apiUrl + this.urlMensajesChatPrivado}` + chatId);
   }
+
 
   enviarMensaje(mensaje: Mensaje) {
     return this.http.post<any>(`${this.apiUrl + this.urlMensajeEnviar}`, mensaje);
