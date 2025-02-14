@@ -105,7 +105,8 @@ ion-avatar {
 ion-content {
   --background: #96305A;
 }
-.item-native {
-  background: #96305A !important;
+
+::part(native) {
+  background-color: #96305A ;
 }
 
