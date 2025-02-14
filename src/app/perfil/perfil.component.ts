@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import { addIcons } from "ionicons";
 import { add, chatbubblesOutline, personCircle } from "ionicons/icons";
-import { IonicModule } from '@ionic/angular';
+import {IonicModule, IonModal} from '@ionic/angular';
 import { ComponentePublicacionComponent } from '../componentes/componente-publicacion/componente-publicacion.component';
 import { NgForOf, NgIf, NgOptimizedImage } from '@angular/common';
 import { RouterLink, ActivatedRoute } from '@angular/router';
@@ -9,6 +9,7 @@ import { Perfil } from "../1-Modelos/Perfil";
 import { Publicacion } from "../1-Modelos/Publicacion";
 import { PerfilService } from "../1-Servicios/perfil.service";
 import { UsuarioService } from "../1-Servicios/usuario.service";
+import {FormsModule} from "@angular/forms";
 
 
 @Component({
@@ -20,8 +21,6 @@ import { UsuarioService } from "../1-Servicios/usuario.service";
     IonicModule,
     ComponentePublicacionComponent,
     NgIf,
-    NgOptimizedImage,
-    RouterLink,
     NgForOf,
     FormsModule
   ]
@@ -70,11 +69,12 @@ export class PerfilComponent implements OnInit
   {
     this.obtenerPerfilLoggeado();
 
-    addIcons({
+    addIcons
+    ({
       'add': add,
       'chatbubbles-outline': chatbubblesOutline,
       'person-circle': personCircle,
-      'image-outline': imageOutline
+      /* 'image-outline': imageOutline */
     });
 
   }
