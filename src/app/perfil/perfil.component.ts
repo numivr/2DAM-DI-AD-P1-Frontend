@@ -20,18 +20,25 @@ import { UsuarioService } from "../1-Servicios/usuario.service";
     IonicModule,
     ComponentePublicacionComponent,
     NgIf,
+    NgOptimizedImage,
+    RouterLink,
     NgForOf,
-    NgOptimizedImage
+    FormsModule
   ]
 })
 export class PerfilComponent implements OnInit
 {
+  isFabModalOpen: boolean = false;
+  newPostTitle: string = '';
+  newPostDescription: string = '';
+
   constructor
   (
     private perfilService: PerfilService,
     private usuarioService: UsuarioService,
     private route: ActivatedRoute
   ) {}
+  @ViewChild('crearPublicacionModal') modal!: IonModal;
 
   // ****** Declaraciones ****** //
 
@@ -67,6 +74,7 @@ export class PerfilComponent implements OnInit
       'add': add,
       'chatbubbles-outline': chatbubblesOutline,
       'person-circle': personCircle,
+      'image-outline': imageOutline
     });
 
   }
@@ -95,8 +103,28 @@ export class PerfilComponent implements OnInit
       this._seguidos_s = this.m_seguidos_i.toString();
   }
 
-  obtenerPerfilLoggeado()
-  {
+  openFabModal() {
+    this.isFabModalOpen = true;
+  }
+
+  closeFabModal() {
+    this.isFabModalOpen = false;
+  }
+
+  submitPost() {
+    if (this.newPostDescription.trim()) {
+      console.log('Publicación creada:', this.newPostDescription);
+      this.closeFabModal();
+    } else {
+      alert('Por favor, completa todos los campos.');
+    }
+  }
+
+  cancel() {
+    this.closeFabModal();
+  }
+
+  obtenerPerfilLoggeado() {
     this.perfilService.obtenerPerfilLoggeado().subscribe({
       next: (data) =>
       {
