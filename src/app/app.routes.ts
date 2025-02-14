@@ -23,7 +23,7 @@ export const routes: Routes = [
     component: InicioComponent,
   },
   {
-    path: 'chatmensajes',
+    path: 'mensajes/conversacion/:id',
     component: ChatMensajesComponent,
     canActivate: [authGuard]
   },

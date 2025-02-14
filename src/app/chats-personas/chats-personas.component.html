@@ -22,8 +22,8 @@
   <ion-grid>
     <!-- Lista de Chats -->
     <ion-row *ngFor="let chat of chats" class="ion-justify-content-center" style="margin-top: 15px;">
-      <ion-col size="10" (click)="goToPersonalChats(chat.id)">
-        <ion-card color="secundario">
+      <ion-col size="10">
+        <ion-card color="secundario" (click)="navigateToChat(chat.id)">
           <ion-card-header>
             <ion-row>
               <ion-col size="3" class="image-container">

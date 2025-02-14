@@ -37,7 +37,6 @@ import {Router} from "@angular/router";
     IonCol,
     IonCard,
     IonCardHeader,
-    IonAvatar,
     IonImg,
     IonText,
     IonSearchbar,
@@ -83,10 +82,10 @@ export class ChatsPersonasComponent implements OnInit {
 
   protected readonly style = style;
 
-  goToPersonalChats(id: any) {
-    this.chatService.setUsuarioId(id);
-    console.log(this.chatService.getUsuarioId());
-    this.router.navigate(['chatMensajes'])
+  navigateToChat(chatId: any) {
+    this.chatService.setChatId(chatId);
+    console.log(this.chatService.getChatId());
+    this.router.navigate(['/mensajes/conversacion/', chatId])
 
   }
 }

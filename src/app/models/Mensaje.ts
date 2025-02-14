@@ -2,8 +2,9 @@
 
 export class Mensaje{
   id?:number;
-  mensaje?:string;
+  contenido?:string;
+  idChat?:number;
   idEmisor?:number;
-  idReceptor?:number | null;
+  nombreEmisor?:string;
   fecha?:string;
 }
