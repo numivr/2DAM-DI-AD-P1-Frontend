@@ -37,13 +37,13 @@ export class PerfilService {
       );
   }
 
-  // 📌 Método para obtener un perfil por su ID
-  obtenerPerfilPorId(id: number): Observable<Perfil> {
-    return this.http.get<Perfil>(`${this.apiUrl}/${id}`, { headers: this.getHeaders() })
+  // 📌 Método para obtener un perfil por su Nombre (string)
+  obtenerPerfilPorNombre(_nombre_s: string): Observable<Perfil> {
+    return this.http.get<Perfil>(`${this.apiUrl}/perfil/perfilPorNombre${_nombre_s}`, { headers: this.getHeaders() })
       .pipe(
         catchError(error => {
-          console.error(`❌ Error al obtener el perfil con ID ${id}:`, error);
-          return throwError(() => new Error(`Error en la solicitud del perfil con ID ${id}`));
+          console.error(`❌ Error al obtener el perfil con Nombre ${_nombre_s}:`, error);
+          return throwError(() => new Error(`Error en la solicitud del perfil con Nombre ${_nombre_s}`));
         })
       );
   }

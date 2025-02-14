@@ -165,15 +165,16 @@ export class PerfilComponent implements OnInit
         }
         else
         {
-          this.obtenerPerfilPorId(1); // this._nombreUsuario_s
+          this.obtenerPerfilPorNombre(this._nombreUsuario_s || '');
         }
       }
     });
   }
 
-  obtenerPerfilPorId(id: number)
+  obtenerPerfilPorNombre(_nombre_s: string)
   {
-    this.perfilService.obtenerPerfilPorId(id).subscribe({
+    this.perfilService.obtenerPerfilPorNombre(_nombre_s).subscribe
+    ({
       next: (data) =>
       {
         console.log("✅ Perfil recibido:", data);
@@ -183,7 +184,7 @@ export class PerfilComponent implements OnInit
       },
       error: (error) =>
       {
-        console.error(`❌ Error al obtener el perfil con ID ${id}:`, error);
+        console.error(`❌ Error al obtener el perfil con Nombre ${_nombre_s}:`, error);
       },
       complete: () =>
       {
