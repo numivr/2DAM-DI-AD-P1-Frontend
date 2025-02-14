@@ -4,12 +4,13 @@ import {Observable} from "rxjs";
 
 import {environment} from "../../environments/environment";
 import {Mensaje} from "../models/Mensaje";
-import {Perfil} from "../models/Perfil";
+// import {Perfil} from "../models/Perfil";
+import {Perfil} from "../1-Modelos/Perfil"; // DTO de Rodrigo, No se si puede provocar errores.
 
 @Injectable({
   providedIn: 'root'
 })
-export class UsuarioService {
+export class UsuarioServiceNombre {
 
   private apiUrl = '/api/usuarios'; // 👈 Proxy para evitar CORS
   private perfilUrl = '/perfil/id/';

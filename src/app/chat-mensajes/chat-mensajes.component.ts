@@ -6,11 +6,12 @@ import { ActivatedRoute } from "@angular/router";
 import { ChatService } from "../servicio/chat.service";
 import { Mensaje } from "../models/Mensaje";
 import { CommonModule } from "@angular/common";
-import { UsuarioService } from "../servicio/usuario.service";
+import { UsuarioServiceNombre } from "../servicio/usuario-service-nombre.service";
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from "@angular/forms";
 import {Observable, Subscription} from "rxjs";
 import { IonContent } from "@ionic/angular/standalone";
 import {Perfil} from "../models/Perfil";
+// import {Perfil} from "../1-Modelos/Perfil";
 
 @Component({
   selector: 'app-chat-mensajes',
@@ -39,7 +40,7 @@ export class ChatMensajesComponent implements OnInit, OnDestroy, AfterViewInit {
   constructor(
     private route: ActivatedRoute,
     private chatService: ChatService,
-    private usuarioService: UsuarioService,
+    private usuarioService: UsuarioServiceNombre,
     private fb: FormBuilder
   ) {
     addIcons({ paperPlaneOutline });

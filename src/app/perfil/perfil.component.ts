@@ -1,7 +1,7 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { addIcons } from "ionicons";
 import { add, chatbubblesOutline, personCircle } from "ionicons/icons";
-import {IonicModule, IonModal} from '@ionic/angular';
+import { IonicModule, IonModal } from '@ionic/angular';
 import { ComponentePublicacionComponent } from '../componentes/componente-publicacion/componente-publicacion.component';
 import { NgForOf, NgIf, NgOptimizedImage } from '@angular/common';
 import { RouterLink, ActivatedRoute } from '@angular/router';
@@ -9,7 +9,8 @@ import { Perfil } from "../1-Modelos/Perfil";
 import { Publicacion } from "../1-Modelos/Publicacion";
 import { PerfilService } from "../1-Servicios/perfil.service";
 import { UsuarioService } from "../1-Servicios/usuario.service";
-import {FormsModule} from "@angular/forms";
+import { UsuarioServiceNombre } from "../servicio/usuario-service-nombre.service";
+import { FormsModule } from "@angular/forms";
 
 
 @Component({
@@ -35,6 +36,7 @@ export class PerfilComponent implements OnInit
   (
     private perfilService: PerfilService,
     private usuarioService: UsuarioService,
+    private usuarioServiceNombre: UsuarioServiceNombre,
     private route: ActivatedRoute
   ) {}
   @ViewChild('crearPublicacionModal') modal!: IonModal;
@@ -45,14 +47,14 @@ export class PerfilComponent implements OnInit
   _perfilPorId_Perfil!: Perfil;
   _perfilFinal_Perfil!: Perfil;
   _siguiendoEstado_b: boolean = false;
-  _idUsuario_i!: number;
+  _nombreUsuario_s: string|null = null;
   _publicaciones_list: Publicacion[] = [];
 
   _admin_b: boolean = false;
 
 
 
-  nombre: string = '';
+  // nombre: string = '';
   _nombre_s: string = 'Cargando...';
 
   _tipo_s: string = 'Cargando...';
@@ -103,29 +105,38 @@ export class PerfilComponent implements OnInit
       this._seguidos_s = this.m_seguidos_i.toString();
   }
 
-  openFabModal() {
+  openFabModal()
+  {
     this.isFabModalOpen = true;
   }
 
-  closeFabModal() {
+  closeFabModal()
+  {
     this.isFabModalOpen = false;
   }
 
-  submitPost() {
-    if (this.newPostDescription.trim()) {
+  submitPost()
+  {
+    if (this.newPostDescription.trim())
+    {
       console.log('Publicación creada:', this.newPostDescription);
       this.closeFabModal();
-    } else {
+    }
+    else
+    {
       alert('Por favor, completa todos los campos.');
     }
   }
 
-  cancel() {
+  cancel()
+  {
     this.closeFabModal();
   }
 
-  obtenerPerfilLoggeado() {
-    this.perfilService.obtenerPerfilLoggeado().subscribe({
+  obtenerPerfilLoggeado()
+  {
+    this.perfilService.obtenerPerfilLoggeado().subscribe
+    ({
       next: (data) =>
       {
         this._perfilLogueado_Perfil = new Perfil
@@ -144,8 +155,8 @@ export class PerfilComponent implements OnInit
       },
       complete: () =>
       {
-        this._idUsuario_i = Number(this.route.snapshot.paramMap.get('id'));
-        if (this._idUsuario_i == 1) // this._perfilLogueado_Perfil.id
+        this._nombreUsuario_s = this.route.snapshot.paramMap.get('nombre');
+        if (this._nombreUsuario_s == this._perfilLogueado_Perfil.nombre) // this._perfilLogueado_Perfil.id
         {
           this._yoMismo_b = true;
           this._perfilFinal_Perfil = this._perfilLogueado_Perfil;
@@ -154,7 +165,7 @@ export class PerfilComponent implements OnInit
         }
         else
         {
-          this.obtenerPerfilPorId(this._idUsuario_i);
+          this.obtenerPerfilPorId(1); // this._nombreUsuario_s
         }
       }
     });
@@ -182,12 +193,12 @@ export class PerfilComponent implements OnInit
     });
   }
 
-
+  // NOTA: "seguir" y "dejarSeguir" está picado el 1.
   toggleSeguir()
   {
-    console.log("🟡 Click en seguir - ID usuario:", this._idUsuario_i);
+    console.log("🟡 Click en seguir - ID usuario:", this._nombreUsuario_s);
 
-    if (!this._idUsuario_i)
+    if (!this._nombreUsuario_s)
     {
       console.error("❌ Error: No se recibió un ID válido de usuario.");
       return;
@@ -202,7 +213,7 @@ export class PerfilComponent implements OnInit
     if (this._siguiendoEstado_b)
     {
       console.log("🔼 Siguiendo usuario...");
-      this.usuarioService.seguir(this._idUsuario_i).subscribe({
+      this.usuarioService.seguir(1).subscribe({
         next: () => console.log("✅ Usuario seguido en el servidor"),
         error: (err: any) =>
         {
@@ -213,7 +224,7 @@ export class PerfilComponent implements OnInit
     else
     {
       console.log("🔽 Dejando de seguir usuario...");
-      this.usuarioService.dejarSeguir(this._idUsuario_i).subscribe({
+      this.usuarioService.dejarSeguir(1).subscribe({
         next: () => console.log("✅ Usuario dejado de seguir en el servidor"),
         error: (err: any) =>
         {

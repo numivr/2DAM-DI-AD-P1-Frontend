@@ -55,7 +55,7 @@ export const routes: Routes = [
     canActivate: [authGuard]
   },
   {
-    path: 'perfil/:id',
+    path: 'perfil/:nombre',
     component: PerfilComponent,
     canActivate: [authGuard]
   },
