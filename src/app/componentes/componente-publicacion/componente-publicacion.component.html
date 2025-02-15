@@ -4,12 +4,11 @@
     <div class="profile-container" *ngIf="urlImgPerfil !== null && m_miNombre_s !== null">
 
       <!-- ✅ Al hacer clic en la imagen, redirige al perfil -->
-      <img
+      <img *ngIf="urlImgPerfil !== null"
       [routerLink]="[enlaceUsuario]"
       src="{{urlImgPerfil}}"
       alt="Profile"
-      class="ima0_chica"
-      *ngIf="urlImgPerfil !== null"> <!-- profile-image -->
+      class="ima0_chica"> <!-- profile-image -->
 
       <div class="profile-info" *ngIf="m_miNombre_s !== null">
         <!-- ✅ Al hacer clic en el nombre, redirige al perfil -->
@@ -20,7 +19,7 @@
   </ion-card-header>
 
   <ion-card-content >
-    
+
     <ion-row *ngIf="urlImagen !== null" [routerLink]="[enlace]">
       <img src="{{urlImagen}}" class="publication-image" alt="Imagen de la Publicacion">
     </ion-row>

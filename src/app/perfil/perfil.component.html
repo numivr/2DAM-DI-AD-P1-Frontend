@@ -8,7 +8,7 @@
       </div>
       <div>
         <div class="centrar bajarUnPoco">
-          <img src="https://picsum.photos/80/80?random=2" class="ima0_grande" alt="Imagen de perfil">
+          <img src="{{_imagePerfil_s}}" class="ima0_grande" alt="Imagen de perfil">
         </div>
 
         <p class="labelGrande centrarLabel">{{_nombre_s}}</p>
@@ -32,7 +32,7 @@
 
       <div class="centrar">
         <ion-button class="btn_beige" (click)="toggleSeguir()" *ngIf="!_yoMismo_b">
-          <ion-icon [name]="_siguiendoEstado_b ? 'person-remove' : 'person-add'"></ion-icon>
+          <!-- <ion-icon [name]="_siguiendoEstado_b ? 'person-remove' : 'person-add'"></ion-icon> -->
           <!-- Espacio generado por el icono -->
           {{ _siguiendoEstado_b ? 'Siguiendo' : 'Seguir' }}
         </ion-button>
@@ -43,14 +43,13 @@
 
 
       <app-componente-publicacion *ngFor="let publicacion of _publicaciones_list"
-        urlImagen="{{publicacion.fotoPublicacion}}"
+        [urlImagen]="publicacion.fotoPublicacion ||'assets/perro_placeholder.jpg'"
         texto="{{publicacion.texto}}"
         [likes]=[publicacion.numLikes]
         [comentarios]=[publicacion.numComentarios]
         [isFavorite]="publicacion.liked"
 
-        enlace="/publicacion/{{publicacion.id}}"
-
+        [enlace]="'/publicacion/' + publicacion.id"
         _admin_b="{{_admin_b}}"
         btnTexto="Banear Publicacion"
         [btnFuncion]="banearPublicacion"

@@ -22,6 +22,7 @@ import { ComentarioService } from "../1-Servicios/comentario.service";
     ComponentePublicacionComponent,
     NgIf,
     FormsModule,
+    NgForOf,
   ]
 })
 export class PublicacionComponent  implements OnInit

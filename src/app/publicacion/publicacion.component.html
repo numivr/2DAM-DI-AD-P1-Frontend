@@ -77,16 +77,17 @@
                                [texto]="comentario.texto">
     </app-componente-comentario>
     -->
-
-    <app-componente-publicacion *ngFor="let comentario of publicacion.comentarios"
-      urlImgPerfil='{{comentario.fotoCreador || "assets/persona_placeholder.jpg"}}'
-      [nombre]="comentario.usuarioCreador"
-      [texto]="comentario.texto"
-      _admin_b="{{_admin_b}}"
-      btnTexto="Banear comentario"
-      [btnFuncion]="BanearComentario"
-      [datos]="comentario.id"
-    ></app-componente-publicacion>
+    <div *ngIf="publicacion !== undefined">
+      <app-componente-publicacion *ngFor="let comentario of publicacion.comentarios"
+                                  urlImgPerfil='{{comentario.fotoCreador || "assets/persona_placeholder.jpg"}}'
+                                  [nombre]="comentario.usuarioCreador"
+                                  [texto]="comentario.texto"
+                                  _admin_b="{{_admin_b}}"
+                                  btnTexto="Banear comentario"
+                                  [btnFuncion]="BanearComentario"
+                                  [datos]="[comentario.id]"
+      ></app-componente-publicacion>
+    </div>
 
   </div>
 </ion-content>

@@ -53,6 +53,7 @@ export class PerfilComponent implements OnInit
 
   _admin_b: boolean = false;
 
+  _imagePerfil_s: string = 'assets/persona_placeholder.jpg';
   _nombre_s: string = 'Cargando Nombre...';
   _tipo_s: string = 'Cargando Raza...';
   _yoMismo_b: boolean = false;
@@ -80,6 +81,8 @@ export class PerfilComponent implements OnInit
 
   continuarOnInit()
   {
+    this._imagePerfil_s = this._perfilFinal_Perfil.fotoPerfil || this._imagePerfil_s;
+
     this._nombre_s = '@' + this._perfilFinal_Perfil.nombre;
 
     this.m_seguidores_i = this._perfilFinal_Perfil.numeroSeguidores;
