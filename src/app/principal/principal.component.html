@@ -6,9 +6,7 @@
       <ion-buttons slot="start">
         <ion-button [routerLink]="['/perfil']">
           <ion-icon class="white-icon" slot="icon-only" name="person-circle"></ion-icon>
-        </ion-button>
-
-        <ion-button [routerLink]="['/publicacion/1']">hola</ion-button> <!-- TODO: Revisar -->
+      </ion-button>
       </ion-buttons>
 
       <div class="logo-container">
@@ -51,13 +49,12 @@
   <div *ngIf="selectedSegment === 'Recomendado'">
     <app-componente-publicacion
       *ngFor="let publicacion of publicaciones"
-      [idPublicacion]="publicacion.id"
+      [id]="publicacion.id"
       [idUsuario]="publicacion.idCreador"
-
       [nombre]="publicacion.perfil"
-      [urlImgPerfil]="publicacion.fotoPerfil"
+      [miUrl]="publicacion.fotoPerfil"
       [texto]="publicacion.texto"
-      [urlImagen]="publicacion.fotoPublicacion"
+      [url]="publicacion.fotoPublicacion"
       [likes]="publicacion.numLikes"
       [comentarios]="publicacion.numComentarios"
       [isFavorite]="publicacion.liked">
@@ -72,6 +69,7 @@
       [idUsuario]="publicacion.idCreador"
 
       [nombre]="publicacion.perfil"
+      [miUrl]="publicacion.fotoPerfil"
       [texto]="publicacion.texto"
       [urlImgPerfil]="publicacion.fotoPublicacion"
       [likes]="publicacion.numLikes"

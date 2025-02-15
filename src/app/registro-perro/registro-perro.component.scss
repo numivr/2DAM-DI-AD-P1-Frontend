@@ -112,3 +112,44 @@ ion-item ion-label
   background: var(--color5);
 }
 
+
+.custom-modal {
+  --height: 50%;  /* Reduce la altura del modal */
+  --width: 80%;   /* Ajusta el ancho */
+  --border-radius: 15px; /* Esquinas redondeadas */
+  --background: #2d3e50; /* Fondo oscuro */
+}
+
+/* Ajustar contenido del modal */
+.modal-content {
+  background: #2d3e50 !important;
+  color: white;
+  border-radius: 15px;
+}
+
+/* Estilo de los botones */
+ion-footer ion-button {
+  --background: #7C274B;
+  color: white;
+  font-weight: bold;
+}
+
+.image-preview {
+  position: relative;
+  text-align: center;
+}
+
+.image-preview img {
+  max-width: 150px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.delete-icon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: red;
+  cursor: pointer;
+}
+

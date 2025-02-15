@@ -68,7 +68,7 @@ export class RegistroService {
   }
 
   // ✅ Método para registrar y enviar los datos al backend
-  registrar() {
+  registrar():Observable<any> {
     const registroDTO: RegistroDTO = {
       usuario: this.registro.nombreUsuario,
       password: this.registro.contrasena,
@@ -90,15 +90,8 @@ export class RegistroService {
       territorialidad: this.registro.territorialidad
     };
 
-    this.httpClient.post<any>('api/auth/registro', registroDTO).subscribe(
-      (response) => {
-        alert(`✅ Registro exitoso: Bienvenido, ${response.nombreUsuario}`);
-      },
-      (error) => {
-        alert("❌ Error en el registro. Inténtalo de nuevo.");
-        console.error(error);
-      }
-    );
+
+    return this.httpClient.post<any>('api/auth/registro', registroDTO); // ✅ Retornamos el Observable
   }
 
   // Método para verificar si la credencial (nombre de usuario) está disponible en el backend
