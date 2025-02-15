@@ -20,8 +20,9 @@ import {chatbubbleOutline, heart, heartOutline, trashOutline} from "ionicons/ico
 export class ComponentePublicacionComponent  implements OnInit
 {
   // --- Identificación --- //
-  @Input() idPublicacion: number = 0;
-  @Input() idUsuario: number = 0;
+  //@Input() idPublicacion: number = 0;
+  //@Input() nombreUsuario: string = "";
+  @Input() yoMismo: boolean = false;
 
   // --- Declaración cabeza --- //
   @Input() enlaceUsuario: string = '#'; // Enlace al perfil del usuario

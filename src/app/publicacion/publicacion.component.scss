@@ -23,12 +23,13 @@ ion-content
   border-radius: 8px;
 }
 
-// TODO: que funcione o se borra.
-ion-input // Intentar cambiar la barra
+
+ion-input // Cambia la barra VERTICAL al escribir
 {
-  --highlight-color-focused: transparent !important;
-  --highlight-color-valid: transparent !important;
-  --highlight-color-invalid: transparent !important;
+  // --highlight-color-focused: transparent !important;
+  // --highlight-color-valid: transparent !important;
+  // --highlight-color-invalid: transparent !important;
+  --border-color: white;
 }
 
 .comment-section {

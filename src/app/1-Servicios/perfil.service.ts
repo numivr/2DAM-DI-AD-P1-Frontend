@@ -39,7 +39,7 @@ export class PerfilService {
 
   // 📌 Método para obtener un perfil por su Nombre (string)
   obtenerPerfilPorNombre(_nombre_s: string): Observable<Perfil> {
-    return this.http.get<Perfil>(`${this.apiUrl}/perfil/nombre${_nombre_s}`, { headers: this.getHeaders() })
+    return this.http.get<Perfil>(`${this.apiUrl}/nombre/${_nombre_s}`, { headers: this.getHeaders() })
       .pipe(
         catchError(error => {
           console.error(`❌ Error al obtener el perfil con Nombre ${_nombre_s}:`, error);

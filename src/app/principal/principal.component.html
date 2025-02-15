@@ -52,7 +52,7 @@
     <app-componente-publicacion
       *ngFor="let publicacion of publicaciones"
       [idPublicacion]="publicacion.id"
-      [idUsuario]="publicacion.idCreador"
+      [nombreUsuario]="publicacion.idCreador"
 
       [nombre]="publicacion.perfil"
       [urlImgPerfil]="publicacion.fotoPerfil"
@@ -69,7 +69,7 @@
     <app-componente-publicacion
       *ngFor="let publicacion of publicacionesSeguidos"
       [idPublicacion]="publicacion.id"
-      [idUsuario]="publicacion.idCreador"
+      [nombreUsuario]="publicacion.idCreador"
 
       [nombre]="publicacion.perfil"
       [texto]="publicacion.texto"
