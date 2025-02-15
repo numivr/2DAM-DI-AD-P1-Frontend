@@ -1,17 +1,19 @@
 <ion-content class="login-page">
-  <div class="login-container">
+  <div class="login-container responsiveDiv">
     <img src="assets/logo_beige.png" alt="Logo" class="logo">
     <h1 class="titulo">Santuario</h1>
 
     <!-- Nombre de Usuario con verificación de disponibilidad -->
-    <ion-label>Nombre de usuario</ion-label>
-    <ion-item>
-      <ion-input
-        [(ngModel)]="registroService.registro.nombreUsuario"
-        (ionBlur)="verificarDisponibilidad()"
-        type="text">
-      </ion-input>
-    </ion-item>
+    <div class="campos">
+      <ion-label>Nombre de usuario</ion-label>
+      <ion-item>
+        <ion-input
+          [(ngModel)]="registroService.registro.nombreUsuario"
+          (ionBlur)="verificarDisponibilidad()"
+          type="text">
+        </ion-input>
+      </ion-item>
+    </div>
     <p class="mensaje-disponibilidad">
       {{ mensajeDisponibilidad }}
     </p>
@@ -19,52 +21,48 @@
       ⚠️ El nombre de usuario no ha sido verificado o ya está en uso.
     </p>
 
+
     <!-- Email -->
-    <ion-label>Email</ion-label>
-    <ion-item>
-      <ion-input
-        [(ngModel)]="registroService.registro.email"
-        type="email"
-        (ionBlur)="onEmailBlur()">
-      </ion-input>
-    </ion-item>
+    <div class="campos">
+      <ion-label>Email</ion-label>
+      <ion-item>
+        <ion-input
+          [(ngModel)]="registroService.registro.email"
+          type="email"
+          (ionBlur)="onEmailBlur()">
+        </ion-input>
+      </ion-item>
+    </div>
     <!-- Se muestra el error cuando el email no es válido -->
     <p *ngIf="!emailValido" class="error-mensaje">
       ⚠️ Ingresa un email válido.
     </p>
 
-    <!-- Contraseñas -->
-    <ion-label>Contraseña</ion-label>
-    <ion-item>
-      <ion-input
-        [(ngModel)]="registroService.registro.contrasena"
-        type="password"
-        (ionBlur)="onPasswordBlur()">
-      </ion-input>
-    </ion-item>
 
-    <ion-label>Repetir contraseña</ion-label>
-    <ion-item>
-      <ion-input
-        [(ngModel)]="registroService.registro.contrasenaRepetida"
-        type="password"
-        (ionBlur)="onPasswordBlur()">
-      </ion-input>
-    </ion-item>
-    <p *ngIf="!passwordsValid" class="error-mensaje">
-      ⚠️ Las contraseñas no coinciden.
-    </p>
+    <!-- Contraseñas -->
+    <div class="campos">
+      <ion-label>Contraseña</ion-label>
+      <ion-item>
+        <ion-input
+          [(ngModel)]="registroService.registro.contrasena"
+          type="password"
+          (ionBlur)="onPasswordBlur()">
+        </ion-input>
+      </ion-item>
+    </div>
 
 
     <!-- Repetir Contraseña -->
-    <ion-label>Repetir contraseña</ion-label>
-    <ion-item>
-      <ion-input
-        [(ngModel)]="registroService.registro.contrasenaRepetida"
-        type="password"
-        (ionBlur)="onPasswordBlur()">
-      </ion-input>
-    </ion-item>
+    <div class="campos">
+      <ion-label>Repetir contraseña</ion-label>
+      <ion-item>
+        <ion-input
+          [(ngModel)]="registroService.registro.contrasenaRepetida"
+          type="password"
+          (ionBlur)="onPasswordBlur()">
+        </ion-input>
+      </ion-item>
+    </div>
     <p *ngIf="mostrarErrores && !passwordsValid" class="error-mensaje">
       ⚠️ Las contraseñas no coinciden.
     </p>

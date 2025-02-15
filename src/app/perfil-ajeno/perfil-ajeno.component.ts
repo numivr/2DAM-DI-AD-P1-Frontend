@@ -16,9 +16,6 @@ import { UsuarioService } from "../1-Servicios/usuario.service";
   imports: [
     IonicModule,
     ComponentePublicacionComponent,
-    NgIf,
-    NgOptimizedImage,
-    RouterLink,
     NgForOf
   ]
 })

@@ -18,28 +18,62 @@ import {PerfilService} from "../1-Servicios/perfil.service";
     IonicModule,
     ComponentePublicacionComponent,
     NgIf,
-    NgOptimizedImage,
-    RouterLink,
     NgForOf
   ]
 })
 export class PerfilComponent implements OnInit
 {
+  constructor( private perfilService: PerfilService) {}
+
+  _admin_b: boolean = false;
 
   perfil!: Perfil;
   publicaciones: Publicacion[] = []
 
-  constructor( private perfilService: PerfilService) {}
 
   // Declaraciones //
-  m_nombre_s: string = '@Lucas';
-  m_tipo_s: string = 'Border Collie';
+  nombre: string = 'Lucas';
+  _nombre_s: string = '';
+
+  _tipo_s: string = 'Border Collie';
+  _yoMismo_b: boolean = false;
 
   private m_seguidores_i: number = 197000;
   private m_seguidos_i: number = 123000;
-  m_seguidores_s: string = "";
-  m_seguidos_s: string = "";
+  _seguidores_s: string = "";
+  _seguidos_s: string = "";
 
+  publicacionesEjemplo =
+  [
+    {
+      id: 1,
+      url: 'https://picsum.photos/80/80?random=3',
+      texto: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dignissim rhoncus mi in vulputate. Sed suscipit, diam vel tincidunt consequat, tortor aliquet turpis, sed elementum nibh mauris sit amet elit. ',
+      likes: 321,
+      comentarios: 12
+    },
+    {
+      id: 2,
+      url: 'https://picsum.photos/80/80?random=3',
+      texto: '¡Hola! Soy Lucas, un Border Collie muy juguetón y amigable.',
+      likes: 123,
+      comentarios: 5
+    },
+    {
+      id: 3,
+      url: 'https://picsum.photos/80/80?random=3',
+      texto: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dignissim rhoncus mi in vulputate. Sed suscipit, diam vel tincidunt consequat, tortor aliquet turpis, sed elementum nibh mauris sit amet elit. ',
+      likes: 52,
+      comentarios: 8
+    },
+    {
+      id: 4,
+      url: 'https://picsum.photos/80/80?random=3',
+      texto: '¡anfasfjkbiaf!.',
+      likes: 1,
+      comentarios: 1
+    }
+  ];
 
   ngOnInit()
   {
@@ -50,24 +84,30 @@ export class PerfilComponent implements OnInit
       'person-circle': personCircle,
     });
 
+    this._nombre_s = '@' + this.nombre;
+
+    if (true) // comrpobar si es el usuario estrando a su perfil.
+      this._yoMismo_b = true;
+
+
     if (this.m_seguidores_i > 999999)
-      this.m_seguidores_s = (this.m_seguidores_i / 1000000).toFixed(1) + 'M';
+      this._seguidores_s = (this.m_seguidores_i / 1000000).toFixed(1) + 'M';
 
     else if (this.m_seguidores_i > 999)
-      this.m_seguidores_s = (this.m_seguidores_i / 1000).toFixed(1) + 'K';
+      this._seguidores_s = (this.m_seguidores_i / 1000).toFixed(1) + 'K';
 
     else
-      this.m_seguidores_s = this.m_seguidores_i.toString();
+      this._seguidores_s = this.m_seguidores_i.toString();
 
 
     if (this.m_seguidos_i > 999999)
-      this.m_seguidos_s = (this.m_seguidos_i / 1000000).toFixed(1) + 'M';
+      this._seguidos_s = (this.m_seguidos_i / 1000000).toFixed(1) + 'M';
 
     else if (this.m_seguidos_i > 999)
-      this.m_seguidos_s = (this.m_seguidos_i / 1000).toFixed(1) + 'K';
+      this._seguidos_s = (this.m_seguidos_i / 1000).toFixed(1) + 'K';
 
     else
-      this.m_seguidos_s = this.m_seguidos_i.toString();
+      this._seguidos_s = this.m_seguidos_i.toString();
 
 
   }
@@ -91,4 +131,20 @@ export class PerfilComponent implements OnInit
     });
 
   }
+
+  ejeBan(id:number)
+  {
+    console.log("Ejemplo de ban: " + id);
+  }
+
+  seguir()
+  {
+    console.log("Seguir");
+  }
+
+  banearPublicacion(datos: any[])
+  {
+    console.log("Publicación baneada con id: " + datos[0]);
+  }
+
 }

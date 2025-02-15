@@ -1,36 +1,61 @@
 <ion-card class="custom-card">
-  <ion-card-header>
-    <div class="profile-container" *ngIf="miUrl !== null && nombre !== null">
+ <!-- TODO: Revisar los desavarios -->
+  <ion-card-header [routerLink]="[enlaceUsuario]">
+    <div class="profile-container" *ngIf="urlImgPerfil !== null && m_miNombre_s !== null">
+
       <!-- ✅ Al hacer clic en la imagen, redirige al perfil -->
-      <img [routerLink]="['/perfilajeno', idUsuario]" [src]="miUrl" alt="Profile" class="ima0_chica" *ngIf="miUrl !== null">
-      <div class="profile-info" *ngIf="nombre !== null">
+      <img
+      [routerLink]="[enlaceUsuario]"
+      src="{{urlImgPerfil}}"
+      alt="Profile"
+      class="ima0_chica"
+      *ngIf="urlImgPerfil !== null"> <!-- profile-image -->
+
+      <div class="profile-info" *ngIf="m_miNombre_s !== null">
         <!-- ✅ Al hacer clic en el nombre, redirige al perfil -->
-        <h5 [routerLink]="['/perfilajeno', idUsuario]">{{ nombre }}</h5>
+        <h5 [routerLink]="[enlaceUsuario]">{{m_miNombre_s}}</h5> <!-- ['/perfilajeno', idUsuario] -->
       </div>
-      <ion-icon name="trash-outline" class="delete-icon"></ion-icon>
+
     </div>
   </ion-card-header>
 
-  <ion-card-content>
-    <ion-row *ngIf="url !== null">
-      <img [src]="url" class="publication-image" alt="{{ alt }}">
+  <ion-card-content >
+    
+    <ion-row *ngIf="urlImagen !== null" [routerLink]="[enlace]">
+      <img src="{{urlImagen}}" class="publication-image" alt="Imagen de la Publicacion">
     </ion-row>
-    <ion-row>
-      <p>{{ texto }}</p>
+    <ion-row [routerLink]="[enlace]">
+      <p>
+        {{texto}}
+      </p>
     </ion-row>
 
+
+    <!-- Botones de Like y Comentarios -->
     <ion-buttons slot="start" *ngIf="likes !== null">
-      <ion-button (click)="toggleFavorite()">
-        <ion-icon [name]="isFavorite ? 'heart' : 'heart-outline'"></ion-icon>
-        <div>{{ likes }}</div>
+      <ion-button  (click)="toggleFavorite()">
+        <ion-icon  [name]="isFavorite ? 'heart' : 'heart-outline'">
+        </ion-icon>
+        <div>{{likes}}</div>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end" *ngIf="comentarios !== null">
+      <ion-button >
+        <ion-icon name="chatbubble-outline"></ion-icon>
+        <div>{{comentarios}}</div>
       </ion-button>
     </ion-buttons>
 
-    <ion-buttons slot="end" *ngIf="comentarios !== null">
-      <ion-button [routerLink]="['/publicacion', id]">
-        <ion-icon name="chatbubble-outline"></ion-icon>
-        <div>{{ comentarios }}</div>
+
+    <!-- Botones de Baneo -->
+    <br *ngIf="_admin_b">
+    <ion-buttons slot="end" *ngIf="_admin_b">
+      <ion-button (click)="ejeFuncion()" class="btn_beige">
+        <!-- <ion-icon name=""></ion-icon> -->
+        <div>{{btnTexto}}</div>
       </ion-button>
     </ion-buttons>
+
   </ion-card-content>
 </ion-card>
+

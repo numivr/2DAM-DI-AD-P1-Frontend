@@ -45,11 +45,29 @@
   --color2: #5D1D38;
   --color3: #f1ead0;
   --color4: #e5dab5;
-  --color5: #2c4251;
+  --color5: #2d3e50;
+  --color6: #2c4251; // no se que ha pasado.
+  --color7: #96305A; // alguien no esta pillando bien los colores.
 }
 
 
-
+/* Parte de Responsive */
+.responsiveDiv
+{
+  max-width: 400px;
+  margin: 0 auto;
+}
+@media (max-width: 600px)
+{
+  .responsiveDiv
+  {
+    // height: 90%;
+    margin: 10% auto;
+    // minimi altura sea el doble del ancho
+    // min-height: calc(3 * 100%);
+  }
+}
+/* FIN Responsive */
 
 
 /* CSS especializado para label*/
@@ -58,16 +76,11 @@
 {
   font-family: "Inter", sans-serif !important;
   color: var(--ion-color-tertiary);
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0;
 }
 
 .labelChico
 {
-  font-size: 0.5em;
+  font-size: 0.7em;
   font-weight: normal !important;
 }
 .labelMeiano
@@ -80,6 +93,14 @@
   font-size: 1.5em;
   font-weight: bold;
   margin: 0.2em 0 0.2em 0;
+}
+
+.centrarLabel
+{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
 }
 /* Fin de label */
 
@@ -111,7 +132,7 @@
 }
 .ima0_chica
 {
-  width: 17vw;
+  width: 18vw;
   max-width: 65px;
   min-width: 40px;
 
@@ -131,3 +152,44 @@
 }
 /* Fin Boton */
 
+
+/* CSS de los Campos */
+.campos
+{
+  width: 100%;
+  margin: 5px 10px 1rem 10px;
+  padding: 5px;
+}
+.campos > ion-label
+{
+  font-family: "Inter", sans-serif !important;
+  color: var(--ion-color-tertiary);
+
+  font-size: 1em;
+  font-weight: normal !important;
+
+  display: flex;
+  align-self: flex-start;
+  width: 100%;
+
+  margin-left: 20px;
+}
+.campos > ion-item
+{
+  --background: var(--ion-color-secondary);
+  --border-radius: 1em;
+  --placeholder-color: var(--ion-color-tertiary);
+  margin-top: 4px !important;
+  width: 100%;
+
+  // san copilot, ya no mas desplazamientos.
+  -moz-appearance: none;
+}
+.campos > ion-item > ion-input
+{
+  color: var(--ion-color-tertiary);
+  font-family: "Inter", sans-serif !important;
+  font-size: 1em;
+  font-weight: normal !important;
+}
+/* Fin Campos */

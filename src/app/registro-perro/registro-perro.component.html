@@ -1,5 +1,5 @@
 <ion-content class="login-page">
-  <div class="login-container">
+  <div class="login-container responsiveDiv">
     <img src="assets/logo_beige.png" alt="Logo" class="logo">
     <h1 class="titulo">Santuario</h1>
 
@@ -7,13 +7,13 @@
 
     <ion-label>Raza</ion-label>
     <ion-item>
-      <<ion-select [(ngModel)]="registroService.registro.raza">
+      <ion-select [(ngModel)]="registroService.registro.raza">
       <ion-select-option *ngFor="let raza of razas" [value]="raza">{{ raza }}</ion-select-option>
     </ion-select>
     </ion-item>
 
     <ion-label>Género</ion-label>
-    <ion-list>
+    <ion-list class="fondoAzul">
       <ion-radio-group [(ngModel)]="registroService.registro.genero" class="radio-group-horizontal">
         <ion-item style="margin-right: 30px;">
           <ion-label>♂</ion-label>
@@ -27,7 +27,7 @@
     </ion-list>
 
     <ion-label>Edad</ion-label>
-    <ion-list>
+    <ion-list class="fondoAzul">
       <ion-radio-group [(ngModel)]="registroService.registro.edad">
         <ion-item>
           <ion-radio slot="start" value="cachorro"></ion-radio>

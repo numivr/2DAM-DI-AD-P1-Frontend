@@ -1,15 +1,18 @@
 <ion-header>
+
   <ion-toolbar>
     <div class="toolbar-container">
+
       <ion-buttons slot="start">
         <ion-button [routerLink]="['/perfil']">
           <ion-icon class="white-icon" slot="icon-only" name="person-circle"></ion-icon>
-        </ion-button><ion-button [routerLink]="['/publicacion/1']">hola
-      </ion-button>
+        </ion-button>
+
+        <ion-button [routerLink]="['/publicacion/1']">hola</ion-button> <!-- TODO: Revisar -->
       </ion-buttons>
 
       <div class="logo-container">
-        <img src="assets/logo_beige.png" alt="Logo de la app"/>
+        <img ngSrc="assets/logo_beige.png" alt="Logo de la app" height="512" width="512"/>
       </div>
 
       <ion-buttons slot="end">
@@ -17,6 +20,7 @@
           <ion-icon class="white-icon" name="chatbubbles-outline"></ion-icon>
         </ion-button>
       </ion-buttons>
+
     </div>
   </ion-toolbar>
 
@@ -26,27 +30,34 @@
     [(ngModel)]="searchTerm"
     (keyup)="handleSearch($event)">
   </ion-searchbar>
+  <!-- </div> -->
 </ion-header>
 
 <ion-content (click)="closeSearchModal()">
+
   <ion-segment [value]="selectedSegment" (ionChange)="segmentChanged($event)">
+
     <ion-segment-button value="Recomendado">
       <ion-label>Recomendado</ion-label>
     </ion-segment-button>
     <ion-segment-button value="Siguiendo">
       <ion-label>Siguiendo</ion-label>
     </ion-segment-button>
+
   </ion-segment>
+
+
 
   <div *ngIf="selectedSegment === 'Recomendado'">
     <app-componente-publicacion
       *ngFor="let publicacion of publicaciones"
-      [id]="publicacion.id"
+      [idPublicacion]="publicacion.id"
       [idUsuario]="publicacion.idCreador"
+
       [nombre]="publicacion.perfil"
-      [miUrl]="publicacion.fotoPerfil"
+      [urlImgPerfil]="publicacion.fotoPerfil"
       [texto]="publicacion.texto"
-      [url]="publicacion.fotoPublicacion"
+      [urlImagen]="publicacion.fotoPublicacion"
       [likes]="publicacion.numLikes"
       [comentarios]="publicacion.numComentarios"
       [isFavorite]="publicacion.liked">
@@ -57,17 +68,19 @@
   <div *ngIf="selectedSegment === 'Siguiendo'">
     <app-componente-publicacion
       *ngFor="let publicacion of publicacionesSeguidos"
-      [id]="publicacion.id"
+      [idPublicacion]="publicacion.id"
       [idUsuario]="publicacion.idCreador"
+
       [nombre]="publicacion.perfil"
-      [miUrl]="publicacion.fotoPerfil"
       [texto]="publicacion.texto"
-      [url]="publicacion.fotoPublicacion"
+      [urlImgPerfil]="publicacion.fotoPublicacion"
       [likes]="publicacion.numLikes"
       [comentarios]="publicacion.numComentarios"
       [isFavorite]="publicacion.liked">
     </app-componente-publicacion>
   </div>
+
+
 
   <ion-fab vertical="bottom" horizontal="center" slot="fixed">
     <ion-fab-button (click)="openFabModal()">
