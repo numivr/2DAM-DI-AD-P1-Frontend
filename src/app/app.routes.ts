@@ -14,7 +14,8 @@ import {PerfilAjenoComponent} from "./perfil-ajeno/perfil-ajeno.component";
 export const routes: Routes = [
   {
     path: 'home',
-    loadComponent: () => import('./home/home.page').then((m) => m.HomePage),
+    redirectTo: 'inicio', // 🔹 Redirige directamente a 'inicio'
+    pathMatch: 'full'
   },
 
 
@@ -62,6 +63,7 @@ export const routes: Routes = [
   {
     path: 'perfilajeno/:id',
     component: PerfilAjenoComponent,
+    canActivate: [authGuard]
   },
   {
     path: '',
