@@ -31,13 +31,13 @@
       </ion-grid>
 
       <div class="centrar">
-        <ion-button class="btn_beige" (click)="toggleSeguir()" *ngIf="!_yoMismo_b">
+        <ion-button *ngIf="!_yoMismo_b" class="btn_beige" (click)="toggleSeguir()">
           <!-- <ion-icon [name]="_siguiendoEstado_b ? 'person-remove' : 'person-add'"></ion-icon> -->
           <!-- Espacio generado por el icono -->
           {{ _siguiendoEstado_b ? 'Siguiendo' : 'Seguir' }}
         </ion-button>
 
-        <ion-button class="btn_beige" *ngIf="_admin_b" (click)="ejeBan(1)">Banear</ion-button>
+        <ion-button *ngIf="_admin_b" class="btn_beige" (click)="ejeBan(1)">Banear</ion-button>
       </div>
 
 

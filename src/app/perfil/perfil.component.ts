@@ -45,7 +45,7 @@ export class PerfilComponent implements OnInit
 
   // ****** Declaraciones ****** //
   _perfilLogueado_Perfil!: Perfil;
-  _perfilPorId_Perfil!: Perfil;
+  _perfilPorNombre_Perfil!: Perfil;
   _perfilFinal_Perfil!: Perfil;
 
   _siguiendoEstado_b: boolean = false;
@@ -182,7 +182,7 @@ export class PerfilComponent implements OnInit
       next: (data) =>
       {
         console.log("✅ Perfil recibido:", data);
-        this._perfilPorId_Perfil = data;
+        this._perfilPorNombre_Perfil = data;
         this._publicaciones_list = data.publicaciones;
         this._siguiendoEstado_b = data.siguiendo; // Inicializar el estado de seguimiento
       },
@@ -192,14 +192,13 @@ export class PerfilComponent implements OnInit
       },
       complete: () =>
       {
-        this._perfilFinal_Perfil = this._perfilPorId_Perfil;
+        this._perfilFinal_Perfil = this._perfilPorNombre_Perfil;
         this.continuarOnInit();
       }
     });
   }
 
   // TODO: Implementar la función de seguir y dejar de seguir
-  // NOTA: "seguir" y "dejarSeguir" está picado el 1.
   toggleSeguir()
   {
     console.log("🟡 Click en seguir - ID usuario:", this._nombreUsuario_s);
@@ -212,32 +211,35 @@ export class PerfilComponent implements OnInit
 
     // Alternar el estado local y actualizar el número de seguidores
     this._siguiendoEstado_b = !this._siguiendoEstado_b;
-    this._perfilPorId_Perfil.numeroSeguidores = this._siguiendoEstado_b
-      ? this._perfilPorId_Perfil.numeroSeguidores + 1
-      : this._perfilPorId_Perfil.numeroSeguidores - 1;
+    this._perfilFinal_Perfil.numeroSeguidores = this._siguiendoEstado_b
+      ? this._perfilFinal_Perfil.numeroSeguidores + 1
+      : this._perfilFinal_Perfil.numeroSeguidores - 1;
+
 
     if (this._siguiendoEstado_b)
     {
-      console.log("🔼 Siguiendo usuario...");
-      this.usuarioService.seguir(1).subscribe({
-        next: () => console.log("✅ Usuario seguido en el servidor"),
-        error: (err: any) =>
-        {
-          console.error("❌ Error al seguir usuario:", err);
-        }
+
+      console.log("🔼 Siguiendo usuario..."); // Ariba ariba y ariba
+      this.usuarioService.seguir(this._perfilFinal_Perfil.nombre).subscribe
+      ({
+        next: () =>           console.log("✅ Usuario seguido en el servidor"),
+        error: (err: any) =>  console.error("❌ (fronted) Error al seguir usuario:", err),
       });
+
     }
     else
     {
-      console.log("🔽 Dejando de seguir usuario...");
-      this.usuarioService.dejarSeguir(1).subscribe({
-        next: () => console.log("✅ Usuario dejado de seguir en el servidor"),
-        error: (err: any) =>
-        {
-          console.error("❌ Error al dejar de seguir usuario:", err);
-        }
+
+      console.log("🔽 Dejando de seguir usuario..."); // abajo como mi autoestima
+      this.usuarioService.dejarSeguir(this._perfilFinal_Perfil.nombre).subscribe
+      ({
+        next: () =>           console.log("✅ Usuario dejado de seguir en el servidor"),
+        error: (err: any) =>  console.error("❌ (fronted) Error al dejar de seguir usuario:", err),
       });
+
     }
+
+    this.continuarOnInit();
   }
 
 

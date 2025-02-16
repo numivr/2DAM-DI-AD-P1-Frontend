@@ -51,21 +51,21 @@ export class UsuarioService {
   }
 
 
-  seguir(idUsuario: number): Observable<any> {
-    return this.http.post(`${this.apiUrl}/${idUsuario}/seguir`, {}, { headers: this.getHeaders() })
+  seguir(nombreUsuario: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}/${nombreUsuario}/seguir`, {}, { headers: this.getHeaders() })
       .pipe(
         catchError(error => {
-          console.error("❌ Error al seguir usuario:", error);
+          console.error("❌ (frontend:services) Error al seguir usuario:", error);
           return throwError(() => new Error("Error en la solicitud de seguir usuario"));
         })
       );
   }
 
-  dejarSeguir(idUsuario: number): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/${idUsuario}/dejarSeguir`, { headers: this.getHeaders() })
+  dejarSeguir(nombreUsuario: string): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/${nombreUsuario}/dejarSeguir`, { headers: this.getHeaders() })
       .pipe(
         catchError(error => {
-          console.error("❌ Error al dejar de seguir usuario:", error);
+          console.error("❌ (frontend:services) Error al dejar de seguir usuario:", error);
           return throwError(() => new Error("Error en la solicitud de dejar de seguir usuario"));
         })
       );

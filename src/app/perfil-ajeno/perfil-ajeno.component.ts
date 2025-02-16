@@ -33,6 +33,7 @@ export class PerfilAjenoComponent implements OnInit {
   ) {}
 
   toggleSeguir() {
+    /*
     console.log("🟡 Click en seguir - ID usuario:", this.idUsuario);
 
     if (!this.idUsuario) {
@@ -65,6 +66,7 @@ export class PerfilAjenoComponent implements OnInit {
         }
       });
     }
+    */
   }
 
 
