@@ -24,18 +24,6 @@ export class RegistroCualidadesComponent implements OnInit {
 
   ngOnInit() {}
 
-  enviarCorreo() {
-    const datos = {
-      email: this.registroService.registro.email,
-      nombre: this.registroService.registro.nombreUsuario,
-    };
-
-    this.http.post('https://tu-backend.com/api/enviar-correo', datos)
-      .subscribe({
-        next: () => console.log('Correo enviado correctamente'),
-        error: (error) => console.error('Error al enviar correo:', error),
-      });
-  }
 
   /**
    * ✅ Envía el registro y redirige a inicio si es exitoso
@@ -44,6 +32,9 @@ export class RegistroCualidadesComponent implements OnInit {
     this.registroService.registrar().subscribe({
       next: async (response) => {
         console.log('✅ Registro exitoso:', response);
+
+        // 🚀 Llamar a enviar correo de verificación después del registro
+        this.enviarCorreo();
 
         const alert = await this.alertController.create({
           header: 'Registro Exitoso',
@@ -67,6 +58,16 @@ export class RegistroCualidadesComponent implements OnInit {
 
         await alert.present();
       }
+    });
+  }
+
+  /**
+   * 📩 Llama al servicio para enviar el correo de verificación
+   */
+  enviarCorreo() {
+    this.registroService.enviarEmailVerificacion(this.registroService.registro.nombreUsuario).subscribe({
+      next: () => console.log('✅ Correo de verificación enviado correctamente'),
+      error: (error) => console.error('❌ Error al enviar correo:', error)
     });
   }
 

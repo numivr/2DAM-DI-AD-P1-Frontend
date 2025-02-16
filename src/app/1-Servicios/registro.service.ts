@@ -29,6 +29,9 @@ export interface Registro {
   providedIn: 'root'
 })
 export class RegistroService {
+
+  private API_URL = '/api/auth';
+
   // Objeto que contendrá la información del registro
   registro: Registro = {
     fotoUrl: '',
@@ -99,4 +102,16 @@ export class RegistroService {
     const params = new HttpParams().set('nombreUsuario', nombreUsuario);
     return this.httpClient.get<boolean>('api/auth/credencialDisponible', { params });
   }
+
+  enviarEmailVerificacion(nombreUsuario: string): Observable<string> {
+    const params = new HttpParams().set('usuario', nombreUsuario);
+    return this.httpClient.post<string>(`${this.API_URL}/verificarCuenta`, null, { params });
+  }
+
+
+  verificarCuenta(usuario: string): Observable<any> {
+    return this.httpClient.post<any>('api/auth/confirmarVerificacion', { usuario });
+  }
+
+
 }
