@@ -42,7 +42,7 @@ export class ComponentePublicacionComponent  implements OnInit
 
   // --- Declaración de administrador --- //
   @Input({transform: booleanAttribute}) _admin_b: boolean = false; // Indica si el usuario es administrador
-  @Input() btnTexto: string = 'Eliminar'; // Texto del botón de administrador
+  @Input() btnTexto: string = 'Banear'; // Texto del botón de administrador
   @Input() btnFuncion: (datos: any[]) => void = () => {}; // Función del botón de administrador
   @Input() datos: any[] = []; // pila de datos para la funcion
 
