@@ -68,6 +68,7 @@ export class ComponentePublicacionComponent  implements OnInit
       'heart-outline': heartOutline,
       'chatbubble-outline': chatbubbleOutline,
       'heart': heart,
+      'trash-outline': trashOutline,
     })
     this.m_miNombre_s = '@' + (this.nombre !== null ? this.nombre : null);
   }

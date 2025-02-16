@@ -12,9 +12,10 @@
 
       <div class="profile-info" *ngIf="m_miNombre_s !== null">
         <!-- ✅ Al hacer clic en el nombre, redirige al perfil -->
-        <h5 [routerLink]="[enlaceUsuario]">{{m_miNombre_s}}</h5> <!-- ['/perfilajeno', idUsuario] -->
+        <h5 [routerLink]="[enlaceUsuario]">{{m_miNombre_s}}</h5>
       </div>
 
+      <ion-icon *ngIf="yoMismo" name="trash-outline" class="delete-icon"></ion-icon>
     </div>
   </ion-card-header>
 
