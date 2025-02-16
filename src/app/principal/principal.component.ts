@@ -9,6 +9,7 @@ import { NgForOf, NgIf, NgOptimizedImage } from '@angular/common';
 import { FormsModule } from "@angular/forms";
 import { PublicacionService } from '../1-Servicios/publicacion.service';
 import { ComponenteComentarioComponent } from '../componentes/componente-comentario/componente-comentario.component';
+import {PerfilService} from "../1-Servicios/perfil.service";
 
 @Component({
   selector: 'app-principal',
@@ -36,7 +37,9 @@ export class PrincipalComponent implements OnInit {
   newPostDescription: string = ''; // Texto de la publicación
   newPostImage: string = ''; // URL de la imagen de la publicación
 
-  constructor(private publicacionService: PublicacionService) {}
+  usuario: string = ''; // Nombre del usuario loggeado
+
+  constructor(private publicacionService: PublicacionService, private perfilService: PerfilService) {}
 
   @ViewChild('crearPublicacionModal') modal!: IonModal;
 
@@ -52,6 +55,18 @@ export class PrincipalComponent implements OnInit {
     });
     this.cargarPublicaciones();
     this.cargarPublicacionesSeguidos();
+    this.obtenerPerfilLoggeado(); // ✅ Llamamos al método para obtener el perfil loggeado
+  }
+
+  obtenerPerfilLoggeado() {
+    this.perfilService.obtenerPerfilLoggeado().subscribe({
+      next: (perfil) => {
+        this.usuario = perfil.nombre; // ✅ Guardamos el nombre del usuario
+      },
+      error: (err) => {
+        console.error('❌ Error al obtener el perfil loggeado:', err);
+      }
+    });
   }
 
   handleSearch(event: any) {
