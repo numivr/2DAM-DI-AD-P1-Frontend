@@ -40,7 +40,8 @@ export class PerfilComponent implements OnInit
     private perfilService: PerfilService,
     private usuarioService: UsuarioService,
     private usuarioServiceNombre: UsuarioServiceNombre,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    protected delFun: DelFun
   ) {}
   @ViewChild('crearPublicacionModal') modal!: IonModal;
 
@@ -213,5 +214,4 @@ export class PerfilComponent implements OnInit
 
 
   protected readonly Number = Number;
-  protected readonly DelFun = DelFun;
 }

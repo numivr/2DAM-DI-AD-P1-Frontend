@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { send } from 'ionicons/icons';
 import { addIcons } from 'ionicons';
 import { ComentarioService } from "../1-Servicios/comentario.service";
+import { DelFun} from "../1-Servicios/DelFun";
 
 
 @Component({
@@ -49,7 +50,8 @@ export class PublicacionComponent  implements OnInit
   (
     private route: ActivatedRoute,
     private publicacionService: PublicacionService,
-    private comentarioService: ComentarioService
+    private comentarioService: ComentarioService,
+    protected delFun: DelFun
   ) { }
 
   ngOnInit()
@@ -122,16 +124,5 @@ export class PublicacionComponent  implements OnInit
         alert('Hubo un error al publicar el comentario. Inténtalo de nuevo.');
       }
     });
-  }
-
-
-  ejeBan(id:number)
-  {
-    console.log("Ejemplo de ban: " + id);
-  }
-
-  BanearComentario(datos: any[])
-  {
-    console.log("Comentario baneado con id: " + datos[0]);
   }
 }

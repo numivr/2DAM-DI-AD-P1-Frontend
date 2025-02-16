@@ -37,7 +37,7 @@
           {{ _siguiendoEstado_b ? 'Siguiendo' : 'Seguir' }}
         </ion-button>
 
-        <ion-button *ngIf="_admin_b" class="btn_beige" (click)=DelFun.banearPerfil([1])>Banear</ion-button>
+        <ion-button *ngIf="_admin_b" class="btn_beige" (click)=delFun.banearPerfil([1])>Banear</ion-button>
       </div>
 
 
@@ -52,7 +52,7 @@
         [enlace]="'/publicacion/' + publicacion.id"
         _admin_b="{{_admin_b}}"
         btnTexto="Banear Publicacion"
-        [btnFuncion]="DelFun.banearPublicacion"
+        [btnFuncion]="delFun.banearPublicacion"
         [datos]=[publicacion.id]
       ></app-componente-publicacion>
 

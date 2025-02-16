@@ -46,7 +46,7 @@
           </ion-button>
         </ion-buttons>
 
-        <ion-button class="btn_beige" *ngIf="_admin_b" (click)="ejeBan(1)">Banear Publicacion</ion-button>
+        <ion-button class="btn_beige" *ngIf="_admin_b" (click)="delFun.banearPublicacion([this.publicacion.id])">Banear Publicacion</ion-button>
       </div>
 
 
@@ -84,7 +84,7 @@
                                   [texto]="comentario.texto"
                                   _admin_b="{{_admin_b}}"
                                   btnTexto="Banear comentario"
-                                  [btnFuncion]="BanearComentario"
+                                  [btnFuncion]="delFun.banearComentario"
                                   [datos]="[comentario.id]"
       ></app-componente-publicacion>
     </div>

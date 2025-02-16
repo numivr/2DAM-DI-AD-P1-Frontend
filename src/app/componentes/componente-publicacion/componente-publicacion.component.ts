@@ -5,6 +5,7 @@ import {NgIf} from "@angular/common";
 import {Router, RouterLink} from "@angular/router";
 import {PublicacionService} from "../../1-Servicios/publicacion.service";
 import {chatbubbleOutline, heart, heartOutline, trashOutline} from "ionicons/icons";
+import {DelFun} from "../../1-Servicios/DelFun";
 
 @Component({
   selector: 'app-componente-publicacion',
@@ -51,7 +52,8 @@ export class ComponentePublicacionComponent  implements OnInit
   constructor
   (
     private publicacionService: PublicacionService,
-    private router: Router
+    private router: Router,
+    protected delFun: DelFun
   ) { }
 
   async toggleFavorite()
@@ -80,5 +82,6 @@ export class ComponentePublicacionComponent  implements OnInit
       this.btnFuncion(this.datos);
     }
   }
+
 
 }

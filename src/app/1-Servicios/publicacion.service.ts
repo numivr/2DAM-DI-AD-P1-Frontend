@@ -90,4 +90,17 @@ export class PublicacionService {
       );
   }
 
+  eliminarPublicacion(_idPublicacion_i: number): Observable<any>
+  {
+    return this.http.delete(`${this.apiUrl}/eliminar/${_idPublicacion_i}`, { headers: this.getHeaders() })
+      .pipe
+      (
+        catchError(_error_any =>
+        {
+          console.error('❌ Error al eliminar la publicación:', _error_any);
+          return throwError(() => new Error('Error al eliminar la publicación'));
+        })
+      );
+  }
+
 }
