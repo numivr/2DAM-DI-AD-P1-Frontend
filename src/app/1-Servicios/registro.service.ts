@@ -104,8 +104,11 @@ export class RegistroService {
   }
 
   enviarEmailVerificacion(nombreUsuario: string): Observable<string> {
-    const params = new HttpParams().set('usuario', nombreUsuario);
-    return this.httpClient.post<string>(`${this.API_URL}/verificarCuenta`, null, { params });
+    const body = { usuario: nombreUsuario }; // ✅ Enviar en el cuerpo
+
+    const headers = { 'Content-Type': 'application/json' }; // ✅ Asegurar JSON
+
+    return this.httpClient.post<string>(`${this.API_URL}/verificarCuenta`, body, { headers });
   }
 
 
