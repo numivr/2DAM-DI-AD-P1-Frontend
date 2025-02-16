@@ -37,7 +37,7 @@
           {{ _siguiendoEstado_b ? 'Siguiendo' : 'Seguir' }}
         </ion-button>
 
-        <ion-button *ngIf="_admin_b" class="btn_beige" (click)="ejeBan(1)">Banear</ion-button>
+        <ion-button *ngIf="_admin_b" class="btn_beige" (click)=DelFun.banearPerfil([1])>Banear</ion-button>
       </div>
 
 
@@ -64,33 +64,9 @@
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
-  <ion-modal id="modalPublicacion" #crearPublicacionModal [isOpen]="isFabModalOpen" (ionModalDidDismiss)="isFabModalOpen = false">
-    <ng-template>
-      <div class="modal-content" (click)="$event.stopPropagation()">
-        <ion-toolbar>
-          <ion-buttons slot="start">
-            <ion-button style="color: #f1ead0" (click)="modal.dismiss()">Cancelar</ion-button>
-          </ion-buttons>
-          <ion-title style="color: #f1ead0;text-align: center">New Post</ion-title>
-          <ion-buttons slot="end">
-            <ion-button style="color: #f1ead0" (click)="submitPost()" [strong]="true">Publicar</ion-button>
-          </ion-buttons>
-        </ion-toolbar>
-        <ion-item>
-          <ion-textarea
-            class="post-textarea"
-            placeholder="¿Qué deseas compartir de los perretes...?"
-            [(ngModel)]="newPostDescription"
-            autoGrow="true">
-          </ion-textarea>
-        </ion-item>
-        <ion-buttons slot="end" style="margin-left: auto; margin-right: 30px">
-          <ion-button>
-            <ion-icon style="color: #7C274B" slot="icon-only" name="image-outline"></ion-icon>
-          </ion-button>
-        </ion-buttons>
-      </div>
-    </ng-template>
-  </ion-modal>
+
+  <app-modal-publicacion [isFabModalOpen]="isFabModalOpen"></app-modal-publicacion>
+
+
 
 </ion-content>

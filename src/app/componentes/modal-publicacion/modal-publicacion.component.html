@@ -1,3 +1,81 @@
-<p>
-  modal-publicacion works!
-</p>
+<ion-modal id="modalPublicacion" #crearPublicacionModal [isOpen]="isFabModalOpen" (ionModalDidDismiss)="isFabModalOpen = false">
+  <ng-template>
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-button style="color: #f1ead0" (click)="closeFabModal()">Cancelar</ion-button>
+        </ion-buttons>
+        <ion-title style="color: #f1ead0;text-align: center">Nuevo Post</ion-title>
+        <ion-buttons slot="end">
+          <ion-button style="color: #f1ead0" (click)="submitPost()" [strong]="true">Publicar</ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+
+      <!-- Textarea para la publicación -->
+      <ion-item>
+        <ion-textarea
+          class="post-textarea"
+          placeholder="¿Qué deseas compartir de los perretes...?"
+          [(ngModel)]="newPostDescription"
+          autoGrow="true">
+        </ion-textarea>
+      </ion-item>
+
+      <!-- Vista previa de la imagen seleccionada -->
+      <div class="image-preview" *ngIf="newPostImage">
+        <img [src]="newPostImage" alt="Vista previa de la imagen">
+        <ion-icon name="trash-outline" (click)="removeImage()" class="delete-icon"></ion-icon>
+      </div>
+
+      <!-- Botones para agregar imagen -->
+      <ion-buttons slot="end" style="margin-left: auto; margin-right: 30px">
+        <!-- 📸 Botón para subir imagen desde el dispositivo -->
+        <ion-button (click)="openFilePicker()">
+          <ion-icon style="color: #7C274B" slot="icon-only" name="camera"></ion-icon>
+        </ion-button>
+
+        <!-- 🌐 Botón para agregar imagen desde URL -->
+        <ion-button (click)="openUrlModal()">
+          <ion-icon style="color: #7C274B" slot="icon-only" name="image-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+
+      <!-- Campo de selección de archivos oculto -->
+      <input type="file" #fileInput style="display: none" (change)="onFileSelected($event)">
+
+      <!-- Modal para ingresar URL -->
+      <ion-modal [isOpen]="isUrlModalOpen" (ionModalDidDismiss)="isUrlModalOpen = false">
+        <ng-template>
+          <ion-content class="modal-content">
+            <ion-toolbar>
+              <ion-title style="color: #7C274B; text-align: center">Añadir imagen desde URL</ion-title>
+              <ion-buttons slot="end">
+                <ion-button (click)="isUrlModalOpen = false">Cerrar</ion-button>
+              </ion-buttons>
+            </ion-toolbar>
+
+            <ion-item>
+              <ion-input
+                [(ngModel)]="imageURL"
+                placeholder="Introduce la URL de la imagen"
+                type="url">
+              </ion-input>
+            </ion-item>
+
+            <!-- Vista previa de la imagen -->
+            <div class="image-preview" *ngIf="imageURL">
+              <img [src]="imageURL" alt="Vista previa de la imagen" class="uploaded-image">
+            </div>
+
+            <ion-footer>
+              <ion-button expand="full" (click)="addImageFromURL()">Confirmar</ion-button>
+            </ion-footer>
+          </ion-content>
+        </ng-template>
+      </ion-modal>
+
+
+
+    </div>
+  </ng-template>
+</ion-modal>

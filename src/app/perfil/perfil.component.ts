@@ -3,6 +3,7 @@ import { addIcons } from "ionicons";
 import { add, chatbubblesOutline, personCircle } from "ionicons/icons";
 import { IonicModule, IonModal } from '@ionic/angular';
 import { ComponentePublicacionComponent } from '../componentes/componente-publicacion/componente-publicacion.component';
+import { ModalPublicacionComponent } from "../componentes/modal-publicacion/modal-publicacion.component";
 import { NgForOf, NgIf, NgOptimizedImage } from '@angular/common';
 import { RouterLink, ActivatedRoute } from '@angular/router';
 import { Perfil } from "../1-Modelos/Perfil";
@@ -11,7 +12,7 @@ import { PerfilService } from "../1-Servicios/perfil.service";
 import { UsuarioService } from "../1-Servicios/usuario.service";
 import { UsuarioServiceNombre } from "../servicio/usuario-service-nombre.service";
 import { FormsModule } from "@angular/forms";
-import {DelFun} from "../1-Servicios/DelFun";
+import { DelFun } from "../1-Servicios/DelFun";
 
 
 @Component({
@@ -22,6 +23,7 @@ import {DelFun} from "../1-Servicios/DelFun";
   imports: [
     IonicModule,
     ComponentePublicacionComponent,
+    ModalPublicacionComponent,
     NgIf,
     NgForOf,
     FormsModule
@@ -123,23 +125,6 @@ export class PerfilComponent implements OnInit
     this.isFabModalOpen = false;
   }
 
-  submitPost()
-  {
-    if (this.newPostDescription.trim())
-    {
-      console.log('Publicación creada:', this.newPostDescription);
-      this.closeFabModal();
-    }
-    else
-    {
-      alert('Por favor, completa todos los campos.');
-    }
-  }
-
-  cancel()
-  {
-    this.closeFabModal();
-  }
 
   obtenerPerfilLoggeado()
   {
@@ -231,16 +216,6 @@ export class PerfilComponent implements OnInit
     this.continuarOnInit();
   }
 
-
-  ejeBan(id:number)
-  {
-    console.log("Ejemplo de ban: " + id);
-  }
-
-  banearPublicacion(datos: any[])
-  {
-    console.log("Publicación baneada con id: " + datos[0]);
-  }
 
   protected readonly Number = Number;
   protected readonly DelFun = DelFun;
