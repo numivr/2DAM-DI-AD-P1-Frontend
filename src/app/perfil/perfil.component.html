@@ -42,12 +42,13 @@
 
 
       <app-componente-publicacion *ngFor="let publicacion of _publicaciones_list"
-        [urlImagen]="publicacion.fotoPublicacion ||'assets/perro_placeholder.jpg'"
+        [urlImagen]="publicacion.fotoPublicacion || 'assets/perro_placeholder.jpg'"
         texto="{{publicacion.texto}}"
         [likes]=[publicacion.numLikes]
         [comentarios]=[publicacion.numComentarios]
         [isFavorite]="publicacion.liked"
 
+        [yoMismo]=_yoMismo_b
         [enlace]="'/publicacion/' + publicacion.id"
         _admin_b="{{_admin_b}}"
         btnTexto="Banear Publicacion"

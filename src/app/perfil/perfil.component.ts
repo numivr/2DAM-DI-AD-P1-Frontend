@@ -81,6 +81,10 @@ export class PerfilComponent implements OnInit
 
   continuarOnInit()
   {
+    console.log("🟢 Perfil Logueado:", this._perfilLogueado_Perfil);
+    if (this._perfilLogueado_Perfil.esAdmin)
+      this._admin_b = true;
+
     this._imagePerfil_s = this._perfilFinal_Perfil.fotoPerfil || this._imagePerfil_s;
 
     this._nombre_s = '@' + this._perfilFinal_Perfil.nombre;
@@ -141,22 +145,8 @@ export class PerfilComponent implements OnInit
   {
     this.perfilService.obtenerPerfilLoggeado().subscribe
     ({
-      next: (data) =>
-      {
-        this._perfilLogueado_Perfil = new Perfil
-        (
-          data.nombre,
-          data.numeroSeguidores,
-          data.numeroSeguidos,
-          data.raza,
-          data.fotoPerfil,
-          data.publicaciones
-        );
-      },
-      error: (error) =>
-      {
-        console.error('❌ Error al obtener el perfil:', error);
-      },
+      next: (data) => this._perfilLogueado_Perfil = data,
+      error: (error) => console.error('❌ Error al obtener el perfil:', error),
       complete: () =>
       {
         this._nombreUsuario_s = this.route.snapshot.paramMap.get('nombre');
@@ -168,9 +158,8 @@ export class PerfilComponent implements OnInit
           this.continuarOnInit();
         }
         else
-        {
           this.obtenerPerfilPorNombre(this._nombreUsuario_s || '');
-        }
+
       }
     });
   }

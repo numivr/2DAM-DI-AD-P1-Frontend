@@ -40,7 +40,7 @@
       </ion-button>
     </ion-buttons>
     <ion-buttons slot="end" *ngIf="comentarios !== null">
-      <ion-button >
+      <ion-button>
         <ion-icon name="chatbubble-outline"></ion-icon>
         <div>{{comentarios}}</div>
       </ion-button>
@@ -56,6 +56,7 @@
       </ion-button>
     </ion-buttons>
 
+    <ion-icon *ngIf="yoMismo" name="trash-outline" class="delete-icon"></ion-icon>
   </ion-card-content>
 </ion-card>
 
