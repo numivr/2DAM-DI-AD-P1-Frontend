@@ -120,11 +120,6 @@ export class PerfilComponent implements OnInit
     this.isFabModalOpen = true;
   }
 
-  closeFabModal()
-  {
-    this.isFabModalOpen = false;
-  }
-
 
   obtenerPerfilLoggeado()
   {
