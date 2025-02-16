@@ -51,9 +51,6 @@
   <div *ngIf="selectedSegment === 'Recomendado'">
     <app-componente-publicacion
       *ngFor="let publicacion of publicaciones"
-      [idPublicacion]="publicacion.id"
-      [nombreUsuario]="publicacion.idCreador"
-
       [nombre]="publicacion.perfil"
       [urlImgPerfil]="publicacion.fotoPerfil"
       [texto]="publicacion.texto"
@@ -68,9 +65,6 @@
   <div *ngIf="selectedSegment === 'Siguiendo'">
     <app-componente-publicacion
       *ngFor="let publicacion of publicacionesSeguidos"
-      [idPublicacion]="publicacion.id"
-      [nombreUsuario]="publicacion.idCreador"
-
       [nombre]="publicacion.perfil"
       [texto]="publicacion.texto"
       [urlImgPerfil]="publicacion.fotoPublicacion"
