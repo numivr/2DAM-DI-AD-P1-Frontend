@@ -14,6 +14,7 @@ import {
 import {FormsModule} from "@angular/forms";
 import {addIcons} from "ionicons";
 import {add, camera, chatbubblesOutline, imageOutline, personCircle} from "ionicons/icons";
+import {NgIf} from "@angular/common";
 
 @Component
 ({
@@ -32,7 +33,8 @@ import {add, camera, chatbubblesOutline, imageOutline, personCircle} from "ionic
     IonTitle,
     IonModal,
     IonIcon,
-    IonTextarea
+    IonTextarea,
+    NgIf
   ],
   standalone: true
 })
