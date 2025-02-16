@@ -89,12 +89,11 @@
     </ion-item>
 
     <!-- Botón de registro -->
-    <ion-button id="open-modal"  expand="block" class="registro-button" expand="block" (click)="registroService.registrar()">Registrarse</ion-button>
-    <ion-modal trigger="open-modal" [initialBreakpoint]="1" [breakpoints]="[0, 1]" (ionModalDidPresent)="enviarCorreo()">
-      <ng-template>
-        <div class="block">Comprueba tu correo electrónico y confirma</div>
-      </ng-template>
-    </ion-modal>
+    <!-- Botón de registro -->
+    <ion-button id="open-modal" expand="block" class="registro-button" (click)="registrarUsuario()">
+      Registrarse
+    </ion-button>
+
   </div>
 </ion-content>
 

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {IonicModule} from "@ionic/angular";
-import {RouterLink} from "@angular/router";
+import {AlertController, IonicModule} from "@ionic/angular";
+import {Router, RouterLink} from "@angular/router";
 import {addIcons} from "ionicons";
-import {arrowForwardOutline} from "ionicons/icons";
+import {arrowForwardOutline, camera, imageOutline} from "ionicons/icons";
 import {RegistroService} from "../1-Servicios/registro.service";
 import {FormsModule} from "@angular/forms";
 import {NgForOf} from "@angular/common";
@@ -20,6 +20,11 @@ import {NgForOf} from "@angular/common";
   ]
 })
 export class RegistroPerroComponent  implements OnInit {
+
+
+  isUrlModalOpen: boolean = false;
+  imageURL: string = '';
+  mostrarErrores: boolean = false;
 
   razas: string[] = [
     'Airedale Terrier', 'Akita', 'Akita Americano', 'American Bully', 'American Pit Bull Terrier',
@@ -61,11 +66,73 @@ export class RegistroPerroComponent  implements OnInit {
     'West Highland White Terrier', 'Whippet', 'Yorkshire Terrier'
   ];
 
-  constructor(public registroService: RegistroService) { }
+  constructor(public registroService: RegistroService, private router: Router, private alertController: AlertController) { }
 
   ngOnInit() {
     addIcons({
-      'arrow-forward-outline': arrowForwardOutline,
+      'camera': camera,
+      'image-outline': imageOutline,
+      'arrow-forward-outline': arrowForwardOutline
+
     });
   }
+
+  /**
+   * ✅ Abre el modal para ingresar la URL de la imagen
+   */
+  openUrlModal() {
+    this.isUrlModalOpen = true;
+  }
+
+  addImageFromURL() {
+    if (!this.imageURL) {
+      alert("❌ La URL ingresada no es válida. Inténtalo de nuevo.");
+      return;
+    }
+    this.registroService.registro.fotoUrl = this.imageURL;
+    this.isUrlModalOpen = false;
+    this.imageURL = '';
+  }
+
+  /**
+   * ✅ Elimina la imagen seleccionada
+   */
+  removeImage() {
+    this.registroService.registro.fotoUrl = '';
+  }
+
+  /**
+   * ✅ Valida y continúa con el registro
+   */
+  async continuarRegistro() {
+    this.mostrarErrores = true;
+
+    // Validar si la foto ha sido añadida
+    if (!this.registroService.registro.fotoUrl) {
+      const alert = await this.alertController.create({
+        header: 'Falta Foto',
+        message: '⚠️ Debes añadir una foto del perro antes de continuar.',
+        buttons: ['OK']
+      });
+      await alert.present();
+      return;
+    }
+
+    // Validar si se ha seleccionado una raza
+    if (!this.registroService.registro.raza) {
+      const alert = await this.alertController.create({
+        header: 'Falta Raza',
+        message: '⚠️ Debes seleccionar una raza para continuar.',
+        buttons: ['OK']
+      });
+      await alert.present();
+      return;
+    }
+
+    // Si ambas validaciones pasan, continuar al siguiente paso
+    this.router.navigate(['/registrocualidades']);
+  }
+
+
+
 }

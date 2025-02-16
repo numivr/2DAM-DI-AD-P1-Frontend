@@ -10,6 +10,7 @@ import {PrincipalComponent} from "./principal/principal.component";
 import {PerfilComponent} from "./perfil/perfil.component";
 import {authGuard} from "./1-Interceptor/Auth.guard";
 import {PerfilAjenoComponent} from "./perfil-ajeno/perfil-ajeno.component";
+import {VerificarCuentaComponent} from "./verificar-cuenta/verificar-cuenta.component";
 
 export const routes: Routes = [
   {
@@ -17,7 +18,6 @@ export const routes: Routes = [
     redirectTo: 'inicio', // 🔹 Redirige directamente a 'inicio'
     pathMatch: 'full'
   },
-
 
   {
     path: 'inicio',
@@ -70,4 +70,6 @@ export const routes: Routes = [
     redirectTo: 'inicio',
     pathMatch: 'full',
   },
+
+  { path: 'auth/verificarCuenta', component: VerificarCuentaComponent },
 ];

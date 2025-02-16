@@ -67,6 +67,7 @@
     <app-componente-publicacion
       *ngFor="let publicacion of publicacionesSeguidos"
       [nombre]="publicacion.perfil"
+      [urlImagen]="publicacion.fotoPerfil"
       [texto]="publicacion.texto"
       [urlImgPerfil]="publicacion.fotoPublicacion"
       [likes]="publicacion.numLikes"

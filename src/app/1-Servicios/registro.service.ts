@@ -29,6 +29,9 @@ export interface Registro {
   providedIn: 'root'
 })
 export class RegistroService {
+
+  private API_URL = '/api/auth';
+
   // Objeto que contendrá la información del registro
   registro: Registro = {
     fotoUrl: '',
@@ -68,7 +71,7 @@ export class RegistroService {
   }
 
   // ✅ Método para registrar y enviar los datos al backend
-  registrar() {
+  registrar():Observable<any> {
     const registroDTO: RegistroDTO = {
       usuario: this.registro.nombreUsuario,
       password: this.registro.contrasena,
@@ -90,15 +93,8 @@ export class RegistroService {
       territorialidad: this.registro.territorialidad
     };
 
-    this.httpClient.post<any>('api/auth/registro', registroDTO).subscribe(
-      (response) => {
-        alert(`✅ Registro exitoso: Bienvenido, ${response.nombreUsuario}`);
-      },
-      (error) => {
-        alert("❌ Error en el registro. Inténtalo de nuevo.");
-        console.error(error);
-      }
-    );
+
+    return this.httpClient.post<any>('api/auth/registro', registroDTO); // ✅ Retornamos el Observable
   }
 
   // Método para verificar si la credencial (nombre de usuario) está disponible en el backend
@@ -106,4 +102,16 @@ export class RegistroService {
     const params = new HttpParams().set('nombreUsuario', nombreUsuario);
     return this.httpClient.get<boolean>('api/auth/credencialDisponible', { params });
   }
+
+  enviarEmailVerificacion(nombreUsuario: string): Observable<string> {
+    const params = new HttpParams().set('usuario', nombreUsuario);
+    return this.httpClient.post<string>(`${this.API_URL}/verificarCuenta`, null, { params });
+  }
+
+
+  verificarCuenta(usuario: string): Observable<any> {
+    return this.httpClient.post<any>('api/auth/confirmarVerificacion', { usuario });
+  }
+
+
 }

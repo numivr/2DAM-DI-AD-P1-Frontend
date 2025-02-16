@@ -114,6 +114,7 @@ export class RegistroCuentaComponent implements OnInit {
   continuarRegistro() {
     this.mostrarErrores = true;
 
+
     // Puedes volver a validar aquí en caso de que no se hayan ejecutado los onBlur
     this.emailValido = this.validarEmail();
     this.passwordsValid = this.validarContrasenas();
