@@ -11,6 +11,7 @@ import { PerfilService } from "../1-Servicios/perfil.service";
 import { UsuarioService } from "../1-Servicios/usuario.service";
 import { UsuarioServiceNombre } from "../servicio/usuario-service-nombre.service";
 import { FormsModule } from "@angular/forms";
+import {DelFun} from "../1-Servicios/DelFun";
 
 
 @Component({
@@ -76,7 +77,6 @@ export class PerfilComponent implements OnInit
       'person-circle': personCircle,
       /* 'image-outline': imageOutline */
     });
-
   }
 
   continuarOnInit()
@@ -198,6 +198,7 @@ export class PerfilComponent implements OnInit
     });
   }
 
+  // TODO: Implementar la función de seguir y dejar de seguir
   // NOTA: "seguir" y "dejarSeguir" está picado el 1.
   toggleSeguir()
   {
@@ -251,4 +252,5 @@ export class PerfilComponent implements OnInit
   }
 
   protected readonly Number = Number;
+  protected readonly DelFun = DelFun;
 }

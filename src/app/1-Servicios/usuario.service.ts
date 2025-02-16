@@ -25,6 +25,32 @@ export class UsuarioService {
     });
   }
 
+
+  bannearUsuario(nombreUsuario: string): Observable<any>
+  {
+    return this.http.post(`${this.apiUrl}/banear/${nombreUsuario}`, {}, { headers: this.getHeaders() })
+      .pipe(
+        catchError(error =>
+        {
+          console.error("❌ Error al banear usuario:", error);
+          return throwError(() => new Error("Error en la solicitud de banear usuario"));
+        })
+      );
+  }
+  // PREPARADO PARA EL NOMBRE, TODAVÍA LO TIENE QUE CAMBIAR.
+  eliminarUsuario(nombreUsuario: string): Observable<any>
+  {
+    return this.http.post(`${this.apiUrl}/eliminar/${nombreUsuario}`, {}, { headers: this.getHeaders() })
+      .pipe(
+        catchError(error =>
+        {
+          console.error("❌ Error al eliminar usuario:", error);
+          return throwError(() => new Error("Error en la solicitud de eliminar usuario"));
+        })
+      );
+  }
+
+
   seguir(idUsuario: number): Observable<any> {
     return this.http.post(`${this.apiUrl}/${idUsuario}/seguir`, {}, { headers: this.getHeaders() })
       .pipe(
