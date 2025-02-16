@@ -20,8 +20,9 @@ import {chatbubbleOutline, heart, heartOutline, trashOutline} from "ionicons/ico
 export class ComponentePublicacionComponent  implements OnInit
 {
   // --- Identificación --- //
-  @Input() idPublicacion: number = 0;
-  @Input() idUsuario: number = 0;
+  // @Input() idPublicacion: number = 0;   // NO SE USA
+  // @Input() nombreUsuario: string = "";  // NO SE USA
+  @Input() yoMismo: boolean = false;
 
   // --- Declaración cabeza --- //
   @Input() enlaceUsuario: string = '#'; // Enlace al perfil del usuario
@@ -51,25 +52,24 @@ export class ComponentePublicacionComponent  implements OnInit
   (
     private publicacionService: PublicacionService,
     private router: Router
-  )
-  {}
+  ) { }
 
-  async toggleFavorite() {
+  async toggleFavorite()
+  {
     this.isFavorite = !this.isFavorite; // Alterna entre true y false
     console.log("Estado cambiado a:", this.isFavorite); // Debug
   }
 
 
-  ngOnInit() {
-
-
-
-    addIcons({
+  ngOnInit()
+  {
+    addIcons
+    ({
       'heart-outline': heartOutline,
       'chatbubble-outline': chatbubbleOutline,
       'heart': heart,
+      'trash-outline': trashOutline,
     })
-
     this.m_miNombre_s = '@' + (this.nombre !== null ? this.nombre : null);
   }
 

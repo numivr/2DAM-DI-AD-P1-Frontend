@@ -24,7 +24,7 @@ export const routes: Routes = [
     component: InicioComponent,
   },
   {
-    path: 'chatmensajes',
+    path: 'mensajes/conversacion/:id',
     component: ChatMensajesComponent,
     canActivate: [authGuard]
   },
@@ -56,7 +56,7 @@ export const routes: Routes = [
     canActivate: [authGuard]
   },
   {
-    path: 'perfil',
+    path: 'perfil/:nombre',
     component: PerfilComponent,
     canActivate: [authGuard]
   },

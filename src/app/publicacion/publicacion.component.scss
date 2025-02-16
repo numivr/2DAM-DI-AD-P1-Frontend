@@ -1,7 +1,9 @@
+
 ion-content
 {
   --ion-background-color: #96305a;
 }
+
 .cuerpo
 {
   background-color: var(--color2);
@@ -9,9 +11,49 @@ ion-content
 }
 
 
-/* CSS DE LA TARJETA */
+
+.custom-card > ion-card-content > *
+{
+  color: var(--color3);
+}
+
+.custom-card ion-item
+{
+  --ion-item-background: var(--color1);
+  border-radius: 8px;
+}
+
+
+ion-input // Cambia la barra VERTICAL al escribir
+{
+  // --highlight-color-focused: transparent !important;
+  // --highlight-color-valid: transparent !important;
+  // --highlight-color-invalid: transparent !important;
+  --border-color: white;
+}
+
+.comment-section {
+  width: 100%; /* Cambiar a automático según el contenedor */
+  max-width: 344px;  /* Ajusta el mismo ancho que los comentarios */
+  margin: 0 auto; /* Centrar horizontalmente */
+  color: #F5F5DC;
+  padding: 10px;
+  border-radius:  10px;
+  box-shadow: -2px 5px -2px 0 rgba(0, 0, 0, 0.2);
+}
+
+.crearComentario
+{
+
+}
+
+
+
+
+
+/* SECION DE CSS DEL ANTIGUO componente publicacion componente */
 .custom-card {
-  background-color: #5E2142; /* Color de fondo de la tarjeta */
+  background-color: var(--color2); /* Color de fondo de la tarjeta */ // MQM
   border-radius: 15px; /* Esquinas redondeadas */
   color: #F5F5DC; /* Color de texto */
   margin: 7%;
@@ -60,37 +102,4 @@ img{
   border-radius: 4%;
 }
 
-.comment-section {
-  width: 100%; /* Cambiar a automático según el contenedor */
-  max-width: 344px;  /* Ajusta el mismo ancho que los comentarios */
-  margin: 0 auto; /* Centrar horizontalmente */
-  color: #F5F5DC;
-  padding: 10px;
-  border-radius:  10px;
-  box-shadow: -2px 5px -2px 0 rgba(0, 0, 0, 0.2);
-}
-
-
-.comment-section ion-input {
-  color: #F5F5DC;
-}
-
-.comment-section ion-button {
-  color: #F5F5DC;
-}
-
-.comment-section {
-  width: 100%;
-  max-width: 344px;  /* Mismo ancho que los comentarios */
-  margin: 10px auto;
-  background-color: #5E2142; /* Igual al fondo de las tarjetas */
-  padding: 10px;
-  border-radius: 10px;
-  box-shadow: -2px 5px -2px 0 rgba(0, 0, 0, 0.2);
-}
-
-.comment-section ion-card {
-  background-color: #5E2142 !important; /* Mismo color de comentarios */
-  border-radius: 10px;
-}
 

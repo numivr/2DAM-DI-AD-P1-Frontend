@@ -19,14 +19,14 @@
 
     <div class="cuerpo p-3 m-2">
       <div class="profile-container p-1">
-        <img src="https://picsum.photos/80/80?random=2" class="ima0_chica" alt="">
+        <img [src]="_imagePerfil_s" class="ima0_chica" alt="">
         <div class="my-2">
-          <h5 class="labelMeiano centrarLabel">{{m_nombre_s}}</h5>
+          <h5 class="labelMeiano centrarLabel">{{_nombre_s}}</h5>
         </div>
       </div>
       <div>
-        <p class="labelChico centrarLabel m-1 p-3">{{m_texto_s}}</p>
-        <img src="https://picsum.photos/80/80?random=3" alt="" class="publication-image">
+        <p class="labelChico m-1 p-3">{{_texto_s}}</p>
+        <img [src]="_image_s" alt="" class="publication-image">
       </div>
 
 
@@ -56,8 +56,8 @@
     <hr class="hr" style="border-top:2px solid var(--color3);">
 
     <!-- 📌 Sección para escribir comentarios -->
-    <div>
-      <ion-card class="comment-section">
+    <div class="crearComentario">
+      <ion-card class="custom-card">
         <ion-card-content>
           <ion-item>
             <ion-input placeholder="Escribe un comentario..." [(ngModel)]="nuevoComentario"></ion-input>
@@ -77,26 +77,17 @@
                                [texto]="comentario.texto">
     </app-componente-comentario>
     -->
-
-    <app-componente-publicacion
-      urlImgPerfil="https://picsum.photos/80/80?random=3"
-      nombre="Pepe 1"
-      texto="ESTO ES UN COMENTARIO"
-      _admin_b="{{_admin_b}}"
-      btnTexto="Banear"
-      [btnFuncion]="BanearComentario"
-      [datos]=[1]
-    ></app-componente-publicacion>
-
-    <app-componente-publicacion
-      urlImgPerfil="https://picsum.photos/80/80?random=3"
-      nombre="Pepe 2"
-      texto="ESTO ES UN COMENTARIOESTO ES UN COMENTARIOESTO ES UN COMENTARIOESTO ES UN COMENTARIOESTO ES UN COMENTARIO"
-      _admin_b="{{_admin_b}}"
-      btnTexto="Banear"
-      [btnFuncion]="BanearComentario"
-      [datos]=[2]
-    ></app-componente-publicacion>
+    <div *ngIf="publicacion !== undefined">
+      <app-componente-publicacion *ngFor="let comentario of publicacion.comentarios"
+                                  urlImgPerfil='{{comentario.fotoCreador || "assets/persona_placeholder.jpg"}}'
+                                  [nombre]="comentario.usuarioCreador"
+                                  [texto]="comentario.texto"
+                                  _admin_b="{{_admin_b}}"
+                                  btnTexto="Banear comentario"
+                                  [btnFuncion]="BanearComentario"
+                                  [datos]="[comentario.id]"
+      ></app-componente-publicacion>
+    </div>
 
   </div>
 </ion-content>

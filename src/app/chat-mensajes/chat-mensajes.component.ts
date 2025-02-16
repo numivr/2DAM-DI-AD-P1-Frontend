@@ -1,135 +1,147 @@
-import {Component, OnInit, OnDestroy, ViewChild, AfterViewInit} from '@angular/core';
-import {IonicModule} from "@ionic/angular";
-import {addIcons} from "ionicons";
-import {paperPlaneOutline} from "ionicons/icons";
-import {ActivatedRoute} from "@angular/router";
-import {ChatService} from "../servicio/chat.service";
-import {Mensaje} from "../models/Mensaje";
-import {CommonModule} from "@angular/common";
-
-import {UsuarioService} from "../servicio/usuario.service";
-import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
-import {interval, Subscription} from "rxjs";
-import {IonContent} from "@ionic/angular/standalone";
+import {Component, OnInit, OnDestroy, ViewChild, AfterViewInit, ViewEncapsulation} from '@angular/core';
+import { IonicModule } from "@ionic/angular";
+import { addIcons } from "ionicons";
+import { paperPlaneOutline } from "ionicons/icons";
+import { ActivatedRoute } from "@angular/router";
+import { ChatService } from "../servicio/chat.service";
+import { Mensaje } from "../models/Mensaje";
+import { CommonModule } from "@angular/common";
+import { UsuarioServiceNombre } from "../servicio/usuario-service-nombre.service";
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from "@angular/forms";
+import {Observable, Subscription} from "rxjs";
+import { IonContent } from "@ionic/angular/standalone";
+import {Perfil} from "../models/Perfil";
+// import {Perfil} from "../1-Modelos/Perfil";
 
 @Component({
   selector: 'app-chat-mensajes',
   templateUrl: './chat-mensajes.component.html',
   styleUrls: ['./chat-mensajes.component.scss'],
+  encapsulation: ViewEncapsulation.None,
   standalone: true,
   imports: [
     IonicModule, CommonModule, FormsModule, ReactiveFormsModule
   ]
 })
-export class ChatMensajesComponent  implements OnInit, OnDestroy, AfterViewInit {
-  protected idPerfil: number = 0;
+export class ChatMensajesComponent implements OnInit, OnDestroy, AfterViewInit {
+  protected chatId: number = 0;
   protected mensajes: Mensaje[] = [];
-
   protected textoMensaje = "";
   protected nuevoMensaje: Mensaje = new Mensaje();
-  protected readonly sessionStorage = sessionStorage;
   protected mensajeForm: FormGroup;
   private chatSubscription!: Subscription;
+
   @ViewChild('content') content!: IonContent;
+  protected username: string | undefined = "";
+  protected userId: number | null = null;
+  private idPerfil: string | undefined | Observable<Perfil> = "";
+  private perfil: Perfil = new Perfil();
 
-  constructor(private route: ActivatedRoute, private chatService: ChatService,
-              private usuarioService: UsuarioService, private fb: FormBuilder) {
-    addIcons({paperPlaneOutline});
+  constructor(
+    private route: ActivatedRoute,
+    private chatService: ChatService,
+    private usuarioService: UsuarioServiceNombre,
+    private fb: FormBuilder
+  ) {
+    addIcons({ paperPlaneOutline });
+
     this.mensajeForm = this.fb.group({
-      texto: [this.nuevoMensaje.mensaje, Validators.required],
+      texto: ["", Validators.required],
     });
-
   }
 
   ngOnInit() {
-    this.chatService.usuario.subscribe({
+    this.usuarioService.getNombrePerfil().subscribe({
+      next: (d: Perfil) => { // Ahora se espera un objeto de tipo Perfil
+        this.perfil = d;     // Asigna el objeto completo
+        this.username = this.perfil.nombre; // Obtén el nombre desde el objeto perfil
+        console.log(this.username);
+      },
+      error: (e) => console.error("Error al cargar el nombre de perfil:", e)
+    });
+
+    this.chatService.chatObservable.subscribe({
       next: (v) => {
-        const nuevoId = v === 0 || v == null ? Number(sessionStorage.getItem('usuario')) : this.chatService.getUsuarioId();
+        const nuevoId = v === 0 || v == null ? this.username : this.usuarioService.getNombrePerfil();
 
         if (this.idPerfil !== nuevoId) {  // Solo recargar si el ID cambia
           this.idPerfil = nuevoId;
-          this.nuevoMensaje.idReceptor = this.idPerfil;
+          this.nuevoMensaje.nombreEmisor = String(this.idPerfil);
 
           this.cargarChats(); // Recargar mensajes al cambiar la conversación
+
+          console.log(this.idPerfil);
         }
       }
     });
 
-    this.chatSubscription = interval(30000).subscribe(() => {
-      this.cargarChats();
+    // Suscripción al cambio de contacto
+    this.chatSubscription = this.chatService.chatObservable.subscribe({
+      next: (v) => {
+        const nuevoId = v === 0 || v == null ? this.userId : v;
+        if (nuevoId !== this.userId) {
+          this.userId = nuevoId;
+          this.username = sessionStorage.getItem('username') || "";
+          this.cargarChats();
+        }
+      }
     });
+
+    this.cargarChats(); // Asegurar que se cargan los mensajes al iniciar
   }
 
-
   ngAfterViewInit() {
-    // Asegurar scroll automático cuando se cargue el chat
-    setTimeout(() => {
-      this.scrollToBottom();
-    }, 500);
+    this.scrollToBottom();
   }
 
   private scrollToBottom(): void {
     setTimeout(() => {
       if (this.content) {
-        this.content.scrollToBottom(0); // Prueba con 500ms para un desplazamiento más suave
+        this.content.scrollToBottom(300);
       }
-    }, 0); // Esperar 300ms antes de ejecutar el scroll
+    }, 100);
   }
 
-
   ngOnDestroy() {
-    // 🚀 Cancela la suscripción cuando el componente se destruye
     if (this.chatSubscription) {
       this.chatSubscription.unsubscribe();
     }
   }
 
-
   cargarChats(): void {
-    this.chatService.cargarMensajesChat(this.idPerfil).subscribe({
-        next: (d) => {
-          this.mensajes = d;
-        },
-        error: (e) => {
-          console.error(e);
-        },
-        complete: () => {
-
-          // 🔽 Baja el scroll
-          this.scrollToBottom();
-        }
-
+    this.chatId = Number(sessionStorage.getItem('chat'));
+    this.chatService.cargarMensajesChat(this.chatId).subscribe({
+      next: (d) => {
+        this.mensajes = d;
+      },
+      error: (e) => console.error("Error al cargar mensajes:", e),
+      complete: () => {
+        this.scrollToBottom();
       }
-    );
+    });
   }
-
 
   enviarMensaje(): void {
-
-    if (this.mensajeForm.valid) {
-      this.nuevoMensaje = {...this.nuevoMensaje, ...this.mensajeForm.value};
-      console.info(this.nuevoMensaje);
+    if (this.mensajeForm.valid && this.userId !== null) {
+      this.nuevoMensaje = {
+        contenido: this.mensajeForm.value.texto,
+        idChat: this.chatId,
+        idEmisor: this.userId,
+        nombreEmisor: this.username, // Asegurar que se envía el nombre correcto
+        fecha: new Date().toISOString()
+      };
 
       this.chatService.enviarMensaje(this.nuevoMensaje).subscribe({
-          next: (p) => {
-
-          },
-          error: (e) => {
-            console.error(e);
-          },
-          complete: () => {
-            this.mensajeForm.reset();
-            this.cargarChats(); // 🔄 Llamar cargarChats() en vez de `ngOnInit()`
-          }
-
+        next: () => {},
+        error: (e) => console.error("Error al enviar mensaje:", e),
+        complete: () => {
+          this.mensajeForm.reset();
+          this.cargarChats();
         }
-      );
-
-    } else {
-
+      });
     }
-
   }
 
-
+  protected readonly sessionStorage = sessionStorage;
 }
+

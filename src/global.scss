@@ -48,6 +48,7 @@
   --color5: #2d3e50;
   --color6: #2c4251; // no se que ha pasado.
   --color7: #96305A; // alguien no esta pillando bien los colores.
+  --color8: #5E2142; // antiguamente el color fondo de las publiciones/comentarios.
 }
 
 
@@ -193,3 +194,11 @@
   font-weight: normal !important;
 }
 /* Fin Campos */
+
+
+// Solucionar color negro todos modales
+.modal-content > ion-item
+{
+  --background: var(--color3), var(--color5);
+  --color: var(--color5);
+}

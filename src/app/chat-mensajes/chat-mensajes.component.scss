@@ -1,13 +1,112 @@
-/* Para hacer que el contenido sea desplazable */
-.scrollable-content {
-  height: calc(100vh - 60px); /* Ajusta este valor dependiendo del tamaño de tu input */
-  overflow-y: auto;
+/* Fondo general del chat */
+.chat-container {
+  background: #5D1D38;
+  padding: 15px;
+  border-radius: 15px;
+  margin: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
 }
 
-/* Estilo para fijar el input en la parte inferior */
-.fixed-input {
-  position: fixed;
-  bottom: 80px;
-  width: 100%;
-  background-color: white;
+/* Mensajes alineados según el emisor */
+.own-message {
+  display: flex;
+  justify-content: flex-end;
+  text-align: right;
+}
+
+.other-message {
+  display: flex;
+  justify-content: flex-start;
+  text-align: left;
+}
+
+.message-wrapper {
+  display: flex;
+  flex-direction: column;
+  max-width: 70%;
+}
+
+/* Burbuja de mensaje */
+.message-bubble {
+  padding: 12px 16px;
+  border-radius: 15px;
+  margin: 5px 0;
+  font-size: 14px;
+  line-height: 1.4;
+  word-wrap: break-word;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Mensajes del usuario */
+.own-message .message-bubble {
+  background-color: #96305A;
+  color: #F5F5DC;
+  border-bottom-right-radius: 2px;
+}
+
+/* Mensajes de otros usuarios */
+.other-message .message-bubble {
+  background-color: #F5F5DC;
+  color: #5D1D38;
+  border-bottom-left-radius: 2px;
+}
+
+/* Hora del mensaje */
+.message-time {
+  font-size: 10px;
+  color: #F5F5DC;
+  display: block;
+  margin-top: 5px;
+}
+
+/* Pie de chat con input */
+.chat-footer {
+  background: #520D3A;
+  padding: 10px;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Input de chat */
+.input-chat {
+  border-radius: 25px;
+  padding: 5px 10px;
+  background: #f1ead0;
+  display: flex;
+  align-items: center;
+}
+
+/* Campo de texto */
+.chat-input {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  background: none;
+  color: #96305A;
+}
+
+/* Ícono de envío */
+.send-icon {
+  color: #96305A;
+  font-size: 24px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.send-icon:hover {
+  color: #F5F5DC;
+}
+
+/* Bordes y colores en avatares */
+ion-avatar {
+  border: 2px solid #F5F5DC;
+}
+
+/* Ajuste del fondo */
+ion-content {
+  --background: #96305A;
+}
+
+
+::part(native){
+  background: #2c4251 !important;
 }
