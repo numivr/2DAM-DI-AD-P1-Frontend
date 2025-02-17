@@ -5,6 +5,7 @@ import {PublicacionService} from "./publicacion.service";
 import {ComentarioService} from "./comentario.service";
 import {Injectable} from "@angular/core";
 import { Subject } from 'rxjs';
+import {UsuarioService} from "./usuario.service";
 
 @Injectable
 ({
@@ -17,6 +18,7 @@ export class DelFun
     private http: HttpClient,
     private publicacionService: PublicacionService,
     private comentarioService: ComentarioService,
+    private usuarioService: UsuarioService,
     private router: Router
   )
   { }
@@ -40,26 +42,56 @@ export class DelFun
         complete: () => this.recargar()
       });
   }
+  // Al final no se puede banear.
+  banearPublicacion(datos: any[])
+  {
+
+  }
+
 
   borraComentario(datos: any[])
   {
-    console.log("Comentario borrado: " + datos[0]);
+    this.comentarioService.borrarComentario(datos[0]).subscribe
+    ({
+      next: (data) =>
+      {
+        this.recargar();
+        console.log("Comentario borrado: " + datos[0])
+      },
+      error: (error) =>
+      {
+        this.recargar();
+        console.error("Error al borrar el comentario: " + error)
+      },
+      complete: () => this.recargar()
+    });
   }
-
-  banearPublicacion(datos: any[])
-  {
-    console.log("Publicación baneada con id: " + datos[0]);
-  }
-
+  // Al final no se puede banear.
   banearComentario(datos: any[])
   {
 
   }
 
+
   banearPerfil(datos: any[])
   {
-    console.log("Perfil baneado con nombre: " + datos[0]);
+    console.log("Baneando perfil: " + datos[0]);
+    this.usuarioService.bannearUsuario(datos[0]).subscribe
+    ({
+      next: (data) =>
+      {
+        //this.recargar();
+        console.log("Perfil baneado: " + datos[0])
+      },
+      error: (error) =>
+      {
+        //this.recargar();
+        console.error("Error al banear el perfil: " + error)
+      },
+      //complete: () => this.recargar()
+    });
   }
+
 
 
   recargar()

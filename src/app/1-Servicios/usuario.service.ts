@@ -37,7 +37,6 @@ export class UsuarioService {
         })
       );
   }
-  // PREPARADO PARA EL NOMBRE, TODAVÍA LO TIENE QUE CAMBIAR.
   eliminarUsuario(nombreUsuario: string): Observable<any>
   {
     return this.http.post(`${this.apiUrl}/eliminar/${nombreUsuario}`, {}, { headers: this.getHeaders() })

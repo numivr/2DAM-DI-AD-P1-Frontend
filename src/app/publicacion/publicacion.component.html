@@ -46,7 +46,13 @@
           </ion-button>
         </ion-buttons>
 
-        <ion-button class="btn_beige" *ngIf="_admin_b" (click)="delFun.banearPublicacion([this.publicacion.id])">Banear Publicacion</ion-button>
+        <ion-buttons *ngIf="_yoMismo_b || _admin_b" (click)=this.delFun.borraPublicacion([this.publicacion.id]) [routerLink]="'/perfil/' + publicacion.perfil">
+          <ion-button>
+            <ion-icon name="trash-outline" class="delete-icon"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+
+        <!-- <ion-button class="btn_beige" *ngIf="_admin_b" (click)="delFun.borraPublicacion([this.publicacion.id])" [routerLink]="'/perfil/' + publicacion.perfil">Borrar</ion-button> -->
       </div>
 
 
@@ -70,21 +76,15 @@
     </div>
 
     <!-- 📌 Mostrar comentarios -->
-    <!--
-    <app-componente-comentario *ngFor="let comentario of publicacion.comentarios"
-                               [miUrl]="comentario.fotoCreador"
-                               [nombre]="comentario.usuarioCreador"
-                               [texto]="comentario.texto">
-    </app-componente-comentario>
-    -->
     <div *ngIf="publicacion !== undefined">
       <app-componente-publicacion *ngFor="let comentario of publicacion.comentarios"
                                   urlImgPerfil='{{comentario.fotoCreador || "assets/persona_placeholder.jpg"}}'
                                   [nombre]="comentario.usuarioCreador"
                                   [texto]="comentario.texto"
+                                  [enlaceUsuario]="'/perfil/' + comentario.usuarioCreador"
+
+                                  [yoMismo]=_yoMismo_b
                                   _admin_b="{{_admin_b}}"
-                                  btnTexto="Banear comentario"
-                                  [btnFuncion]="delFun.banearComentario"
                                   [datos]="[comentario.id]"
       ></app-componente-publicacion>
     </div>

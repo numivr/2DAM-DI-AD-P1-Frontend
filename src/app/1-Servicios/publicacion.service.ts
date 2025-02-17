@@ -64,7 +64,7 @@ export class PublicacionService {
     return this.http.post(`${this.apiUrl}/${idPublicacion}`, {}, { headers: this.getHeaders() })
       .pipe(
         catchError(error => {
-          console.error('❌ Error al dar like:', error);
+          console.error('❌ (fronted:services) Error al dar like:', error);
           return throwError(() => new Error('Error al dar like'));
         })
       );
@@ -74,7 +74,7 @@ export class PublicacionService {
     return this.http.delete(`${this.apiUrl}/${idPublicacion}`, { headers: this.getHeaders() })
       .pipe(
         catchError(error => {
-          console.error('❌ Error al quitar like:', error);
+          console.error('❌ (fronted:services) Error al quitar like:', error);
           return throwError(() => new Error('Error al quitar like'));
         })
       );

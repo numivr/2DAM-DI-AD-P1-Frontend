@@ -15,7 +15,7 @@
         <h5 [routerLink]="[enlaceUsuario]">{{m_miNombre_s}}</h5>
       </div>
 
-      <ion-buttons *ngIf="(yoMismo)" (click)=[this.delFun.borraPublicacion(datos)]>
+      <ion-buttons *ngIf="yoMismo || _admin_b" (click)=this.delFun.borraPublicacion(datos)>
         <ion-button>
           <ion-icon name="trash-outline" class="delete-icon"></ion-icon>
         </ion-button>
@@ -51,15 +51,15 @@
       </ion-button>
     </ion-buttons>
 
-    <ion-buttons *ngIf="(yoMismo) && (urlImgPerfil === null)" (click)="delFun.borraPublicacion(datos);">
+    <ion-buttons *ngIf="(_admin_b || yoMismo) && (urlImgPerfil === null)" (click)="delFun.borraPublicacion(datos);">
       <ion-button>
         <ion-icon name="trash-outline" class="delete-icon"></ion-icon>
       </ion-button>
     </ion-buttons>
 
-    <!-- Botones de Baneo -->
-    <br *ngIf="_admin_b">
-    <ion-buttons *ngIf="_admin_b">
+    <!-- Botones de Admin -->
+    <br *ngIf="_admin_b && btnTexto !== ''">
+    <ion-buttons *ngIf="_admin_b && btnTexto !== ''">
       <ion-button (click)="ejeFuncion()" class="btn_beige">
         <!-- <ion-icon name=""></ion-icon> -->
         <div>{{btnTexto}}</div>

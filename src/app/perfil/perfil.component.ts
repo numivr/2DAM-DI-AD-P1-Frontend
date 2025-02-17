@@ -168,7 +168,7 @@ export class PerfilComponent implements OnInit
     });
   }
 
-  // TODO: Implementar la función de seguir y dejar de seguir
+
   toggleSeguir()
   {
     console.log("🟡 Click en seguir - ID usuario:", this._nombreUsuario_s);
