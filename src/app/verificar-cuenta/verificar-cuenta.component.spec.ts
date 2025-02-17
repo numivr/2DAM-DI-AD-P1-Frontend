@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { IonicModule } from '@ionic/angular';
 
 import { VerificarCuentaComponent } from './verificar-cuenta.component';
 
@@ -9,6 +10,8 @@ describe('VerificarCuentaComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [VerificarCuentaComponent],
+      declarations: [ VerificarCuentaComponent ],
+      imports: [IonicModule.forRoot()]
     }).compileComponents();
 
     fixture = TestBed.createComponent(VerificarCuentaComponent);

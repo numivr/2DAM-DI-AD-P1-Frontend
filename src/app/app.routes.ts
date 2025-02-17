@@ -11,6 +11,7 @@ import {PerfilComponent} from "./perfil/perfil.component";
 import {authGuard} from "./1-Interceptor/Auth.guard";
 import {PerfilAjenoComponent} from "./perfil-ajeno/perfil-ajeno.component";
 import {VerificarCuentaComponent} from "./verificar-cuenta/verificar-cuenta.component";
+import {ResetearContrasenaComponent} from "./resetear-contrasena/resetear-contrasena.component";
 
 export const routes: Routes = [
   {
@@ -71,5 +72,9 @@ export const routes: Routes = [
     pathMatch: 'full',
   },
 
-  { path: 'auth/verificarCuenta', component: VerificarCuentaComponent },
+  { path: 'auth/verificarCuenta',
+    component: VerificarCuentaComponent },
+
+  { path: 'resetear-contrasena',
+    component: ResetearContrasenaComponent },
 ];

@@ -1,0 +1,57 @@
+.login-page {
+  --ion-background-color: #2d3e50;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  color: #fdf4c3;
+}
+
+.logo {
+  width: 200px;
+  height: 200px;
+}
+
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  text-align: center;
+}
+
+.titulo {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  color: #fdf4c3;
+}
+
+.mensaje-container {
+  margin-top: 1rem;
+  font-size: 1.2rem;
+}
+
+.success {
+  color: green;
+  font-weight: bold;
+}
+
+.error {
+  color: red;
+  font-weight: bold;
+}
+
+.login-button {
+  --background: #7d2942;
+  --border-radius: 10px;
+  --color: #fdf4c3;
+  margin-top: 1rem;
+  width: 60%;
+}
+
+ion-spinner {
+  margin-top: 1rem;
+  color: #fdf4c3;
+}
