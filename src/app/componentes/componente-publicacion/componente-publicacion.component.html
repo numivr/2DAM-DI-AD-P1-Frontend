@@ -1,18 +1,18 @@
 <ion-card class="custom-card">
  <!-- TODO: Revisar los desavarios -->
-  <ion-card-header [routerLink]="[enlaceUsuario]">
+  <ion-card-header [routerLink]=enlaceUsuario>
     <div class="profile-container" *ngIf="urlImgPerfil !== null && m_miNombre_s !== null">
 
       <!-- ✅ Al hacer clic en la imagen, redirige al perfil -->
       <img *ngIf="urlImgPerfil !== null"
-      [routerLink]="[enlaceUsuario]"
+      [routerLink]=enlaceUsuario
       src="{{urlImgPerfil}}"
       alt="Profile"
       class="ima0_chica"> <!-- profile-image -->
 
       <div class="profile-info" *ngIf="m_miNombre_s !== null">
         <!-- ✅ Al hacer clic en el nombre, redirige al perfil -->
-        <h5 [routerLink]="[enlaceUsuario]">{{m_miNombre_s}}</h5>
+        <h5 [routerLink]=enlaceUsuario>{{m_miNombre_s}}</h5>
       </div>
 
       <ion-buttons *ngIf="yoMismo || _admin_b" (click)=this.delFun.borraPublicacion(datos)>
@@ -25,14 +25,16 @@
 
   <ion-card-content >
 
-    <ion-row *ngIf="urlImagen !== null" [routerLink]="[enlace]">
-      <img src="{{urlImagen}}" class="publication-image" alt="Imagen de la Publicacion">
-    </ion-row>
-    <ion-row [routerLink]="[enlace]">
-      <p>
-        {{texto}}
-      </p>
-    </ion-row>
+    <div [routerLink]=enlace>
+      <ion-row *ngIf="urlImagen !== null" [routerLink]=enlace>
+        <img src="{{urlImagen}}" [routerLink]=enlace class="publication-image" alt="Imagen de la Publicacion">
+      </ion-row>
+      <ion-row [routerLink]=enlace>
+        <p [routerLink]=enlace>
+          {{texto}}
+        </p>
+      </ion-row>
+    </div>
 
 
 
@@ -44,7 +46,7 @@
         <div>{{likes}}</div>
       </ion-button>
     </ion-buttons>
-    <ion-buttons *ngIf="comentarios !== null" [routerLink]="[enlace]">
+    <ion-buttons *ngIf="comentarios !== null" [routerLink]=enlace>
       <ion-button>
         <ion-icon name="chatbubble-outline"></ion-icon>
         <div>{{comentarios}}</div>
