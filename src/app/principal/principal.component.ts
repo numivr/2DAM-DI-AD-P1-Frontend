@@ -58,13 +58,13 @@ export class PrincipalComponent implements OnInit {
   handleSearch(event: any) {
     if (event.key === 'Enter') {
       this.openSearchModal();
-      this.buscarPublicaciones();
+      this.buscarPalabras();
     }
   }
 
-  buscarPublicaciones() {
+  buscarPalabras() {
     if (this.searchTerm.trim()) {
-      this.publicacionService.buscarPublicaciones(this.searchTerm).subscribe(
+      this.publicacionService.buscarPalabras(this.searchTerm).subscribe(
         (publicaciones) => {
           this.publicacionesBusqueda = publicaciones;
         },
