@@ -116,5 +116,13 @@ export class RegistroService {
     return this.httpClient.post<any>('api/auth/confirmarVerificacion', { usuario });
   }
 
+  resetearContraseña(nombreUsuario: string): Observable<string> {
+    const body = { usuario: nombreUsuario };  // 📌 Asegurar formato JSON
+    return this.httpClient.post<string>(`${this.API_URL}/resetearContraseña`, body, {
+      headers: { 'Content-Type': 'application/json' }
+    });
+  }
+
+
 
 }
