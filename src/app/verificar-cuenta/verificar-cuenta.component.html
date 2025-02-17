@@ -1,0 +1,18 @@
+<ion-content class="login-page">
+  <div class="login-container responsiveDiv">
+    <img src="assets/logo_beige.png" alt="Logo" class="logo">
+    <h1 class="titulo">Santuario</h1>
+
+    <div class="mensaje-container">
+      <ion-label class="success">
+        ✅ Cuenta verificada correctamente. Ahora puedes volver al inicio.
+      </ion-label>
+    </div>
+
+    <ion-spinner *ngIf="cargando"></ion-spinner>
+
+    <ion-button class="login-button" expand="block" (click)="irALogin()">
+      Volver al inicio
+    </ion-button>
+  </div>
+</ion-content>
