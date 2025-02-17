@@ -1,0 +1,16 @@
+<ion-content class="reset-password-page">
+  <div class="reset-container responsiveDiv">
+    <h1 class="titulo">Restablecer Contraseña</h1>
+
+    <ion-item>
+      <ion-label position="stacked">Nombre de usuario</ion-label>
+      <ion-input type="text" [(ngModel)]="nombreUsuario"></ion-input>
+    </ion-item>
+
+    <ion-button expand="block" class="reset-button" (click)="resetearContrasena()">Restablecer Contraseña</ion-button>
+
+    <ion-text class="back-to-login">
+      <a [routerLink]="'/inicio'">Volver al inicio</a>
+    </ion-text>
+  </div>
+</ion-content>
