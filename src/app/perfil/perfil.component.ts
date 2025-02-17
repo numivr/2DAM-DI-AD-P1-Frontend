@@ -3,6 +3,7 @@ import { addIcons } from "ionicons";
 import { add, chatbubblesOutline, personCircle } from "ionicons/icons";
 import { IonicModule, IonModal } from '@ionic/angular';
 import { ComponentePublicacionComponent } from '../componentes/componente-publicacion/componente-publicacion.component';
+import { ModalPublicacionComponent } from "../componentes/modal-publicacion/modal-publicacion.component";
 import { NgForOf, NgIf, NgOptimizedImage } from '@angular/common';
 import { RouterLink, ActivatedRoute } from '@angular/router';
 import { Perfil } from "../1-Modelos/Perfil";
@@ -11,6 +12,7 @@ import { PerfilService } from "../1-Servicios/perfil.service";
 import { UsuarioService } from "../1-Servicios/usuario.service";
 import { UsuarioServiceNombre } from "../servicio/usuario-service-nombre.service";
 import { FormsModule } from "@angular/forms";
+import { DelFun } from "../1-Servicios/DelFun";
 
 
 @Component({
@@ -21,6 +23,7 @@ import { FormsModule } from "@angular/forms";
   imports: [
     IonicModule,
     ComponentePublicacionComponent,
+    ModalPublicacionComponent,
     NgIf,
     NgForOf,
     FormsModule
@@ -37,14 +40,15 @@ export class PerfilComponent implements OnInit
     private perfilService: PerfilService,
     private usuarioService: UsuarioService,
     private usuarioServiceNombre: UsuarioServiceNombre,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    protected delFun: DelFun
   ) {}
   @ViewChild('crearPublicacionModal') modal!: IonModal;
 
 
   // ****** Declaraciones ****** //
   _perfilLogueado_Perfil!: Perfil;
-  _perfilPorId_Perfil!: Perfil;
+  _perfilPorNombre_Perfil!: Perfil;
   _perfilFinal_Perfil!: Perfil;
 
   _siguiendoEstado_b: boolean = false;
@@ -53,6 +57,7 @@ export class PerfilComponent implements OnInit
 
   _admin_b: boolean = false;
 
+  _imagePerfil_s: string = 'assets/persona_placeholder.jpg';
   _nombre_s: string = 'Cargando Nombre...';
   _tipo_s: string = 'Cargando Raza...';
   _yoMismo_b: boolean = false;
@@ -75,11 +80,16 @@ export class PerfilComponent implements OnInit
       'person-circle': personCircle,
       /* 'image-outline': imageOutline */
     });
-
   }
 
   continuarOnInit()
   {
+    console.log("🟢 Perfil Logueado:", this._perfilLogueado_Perfil);
+    if (this._perfilLogueado_Perfil.esAdmin)
+      this._admin_b = true;
+
+    this._imagePerfil_s = this._perfilFinal_Perfil.fotoPerfil || this._imagePerfil_s;
+
     this._nombre_s = '@' + this._perfilFinal_Perfil.nombre;
 
     this.m_seguidores_i = this._perfilFinal_Perfil.numeroSeguidores;
@@ -111,49 +121,13 @@ export class PerfilComponent implements OnInit
     this.isFabModalOpen = true;
   }
 
-  closeFabModal()
-  {
-    this.isFabModalOpen = false;
-  }
-
-  submitPost()
-  {
-    if (this.newPostDescription.trim())
-    {
-      console.log('Publicación creada:', this.newPostDescription);
-      this.closeFabModal();
-    }
-    else
-    {
-      alert('Por favor, completa todos los campos.');
-    }
-  }
-
-  cancel()
-  {
-    this.closeFabModal();
-  }
 
   obtenerPerfilLoggeado()
   {
     this.perfilService.obtenerPerfilLoggeado().subscribe
     ({
-      next: (data) =>
-      {
-        this._perfilLogueado_Perfil = new Perfil
-        (
-          data.nombre,
-          data.numeroSeguidores,
-          data.numeroSeguidos,
-          data.raza,
-          data.fotoPerfil,
-          data.publicaciones
-        );
-      },
-      error: (error) =>
-      {
-        console.error('❌ Error al obtener el perfil:', error);
-      },
+      next: (data) => this._perfilLogueado_Perfil = data,
+      error: (error) => console.error('❌ Error al obtener el perfil:', error),
       complete: () =>
       {
         this._nombreUsuario_s = this.route.snapshot.paramMap.get('nombre');
@@ -165,9 +139,8 @@ export class PerfilComponent implements OnInit
           this.continuarOnInit();
         }
         else
-        {
           this.obtenerPerfilPorNombre(this._nombreUsuario_s || '');
-        }
+
       }
     });
   }
@@ -179,7 +152,7 @@ export class PerfilComponent implements OnInit
       next: (data) =>
       {
         console.log("✅ Perfil recibido:", data);
-        this._perfilPorId_Perfil = data;
+        this._perfilPorNombre_Perfil = data;
         this._publicaciones_list = data.publicaciones;
         this._siguiendoEstado_b = data.siguiendo; // Inicializar el estado de seguimiento
       },
@@ -189,13 +162,13 @@ export class PerfilComponent implements OnInit
       },
       complete: () =>
       {
-        this._perfilFinal_Perfil = this._perfilPorId_Perfil;
+        this._perfilFinal_Perfil = this._perfilPorNombre_Perfil;
         this.continuarOnInit();
       }
     });
   }
 
-  // NOTA: "seguir" y "dejarSeguir" está picado el 1.
+
   toggleSeguir()
   {
     console.log("🟡 Click en seguir - ID usuario:", this._nombreUsuario_s);
@@ -208,44 +181,37 @@ export class PerfilComponent implements OnInit
 
     // Alternar el estado local y actualizar el número de seguidores
     this._siguiendoEstado_b = !this._siguiendoEstado_b;
-    this._perfilPorId_Perfil.numeroSeguidores = this._siguiendoEstado_b
-      ? this._perfilPorId_Perfil.numeroSeguidores + 1
-      : this._perfilPorId_Perfil.numeroSeguidores - 1;
+    this._perfilFinal_Perfil.numeroSeguidores = this._siguiendoEstado_b
+      ? this._perfilFinal_Perfil.numeroSeguidores + 1
+      : this._perfilFinal_Perfil.numeroSeguidores - 1;
+
 
     if (this._siguiendoEstado_b)
     {
-      console.log("🔼 Siguiendo usuario...");
-      this.usuarioService.seguir(1).subscribe({
-        next: () => console.log("✅ Usuario seguido en el servidor"),
-        error: (err: any) =>
-        {
-          console.error("❌ Error al seguir usuario:", err);
-        }
+
+      console.log("🔼 Siguiendo usuario..."); // Ariba ariba y ariba
+      this.usuarioService.seguir(this._perfilFinal_Perfil.nombre).subscribe
+      ({
+        next: () =>           console.log("✅ Usuario seguido en el servidor"),
+        error: (err: any) =>  console.error("❌ (fronted) Error al seguir usuario:", err),
       });
+
     }
     else
     {
-      console.log("🔽 Dejando de seguir usuario...");
-      this.usuarioService.dejarSeguir(1).subscribe({
-        next: () => console.log("✅ Usuario dejado de seguir en el servidor"),
-        error: (err: any) =>
-        {
-          console.error("❌ Error al dejar de seguir usuario:", err);
-        }
+
+      console.log("🔽 Dejando de seguir usuario..."); // abajo como mi autoestima
+      this.usuarioService.dejarSeguir(this._perfilFinal_Perfil.nombre).subscribe
+      ({
+        next: () =>           console.log("✅ Usuario dejado de seguir en el servidor"),
+        error: (err: any) =>  console.error("❌ (fronted) Error al dejar de seguir usuario:", err),
       });
+
     }
+
+    this.continuarOnInit();
   }
 
-
-  ejeBan(id:number)
-  {
-    console.log("Ejemplo de ban: " + id);
-  }
-
-  banearPublicacion(datos: any[])
-  {
-    console.log("Publicación baneada con id: " + datos[0]);
-  }
 
   protected readonly Number = Number;
 }

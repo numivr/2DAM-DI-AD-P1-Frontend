@@ -209,3 +209,12 @@ ion-segment > ion-segment-button:not(.segment-button-after-checked)
   --color: var(--color6)!important;
 }
 
+@media (min-width: 600px)
+{
+  .contenedorPublicaciones
+  {
+    margin-left: calc(50% - 300px);
+    max-width: 600px;
+  }
+}
+

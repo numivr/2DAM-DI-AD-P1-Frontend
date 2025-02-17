@@ -5,6 +5,8 @@ import {NgIf} from "@angular/common";
 import {Router, RouterLink} from "@angular/router";
 import {PublicacionService} from "../../1-Servicios/publicacion.service";
 import {chatbubbleOutline, heart, heartOutline, trashOutline} from "ionicons/icons";
+import {DelFun} from "../../1-Servicios/DelFun";
+import {PerfilService} from "../../1-Servicios/perfil.service";
 
 @Component({
   selector: 'app-componente-publicacion',
@@ -20,8 +22,9 @@ import {chatbubbleOutline, heart, heartOutline, trashOutline} from "ionicons/ico
 export class ComponentePublicacionComponent  implements OnInit
 {
   // --- Identificación --- //
-  @Input() idPublicacion: number = 0;
-  @Input() idUsuario: number = 0;
+  @Input() idPublicacion: number = 0; // ID de la publicación
+  // @Input() nombreUsuario: string = "";  // NO SE USA
+  @Input() yoMismo: boolean = false;
 
   // --- Declaración cabeza --- //
   @Input() enlaceUsuario: string = '#'; // Enlace al perfil del usuario
@@ -41,7 +44,7 @@ export class ComponentePublicacionComponent  implements OnInit
 
   // --- Declaración de administrador --- //
   @Input({transform: booleanAttribute}) _admin_b: boolean = false; // Indica si el usuario es administrador
-  @Input() btnTexto: string = 'Eliminar'; // Texto del botón de administrador
+  @Input() btnTexto: string = ''; // Texto del botón de administrador
   @Input() btnFuncion: (datos: any[]) => void = () => {}; // Función del botón de administrador
   @Input() datos: any[] = []; // pila de datos para la funcion
 
@@ -50,26 +53,63 @@ export class ComponentePublicacionComponent  implements OnInit
   constructor
   (
     private publicacionService: PublicacionService,
-    private router: Router
-  )
-  {}
+    private router: Router,
+    protected delFun: DelFun,
+    private perfilService: PerfilService,
+  ) { }
 
-  async toggleFavorite() {
-    this.isFavorite = !this.isFavorite; // Alterna entre true y false
-    console.log("Estado cambiado a:", this.isFavorite); // Debug
+  sacarPublicacion(_id_i: number)
+  {
+    this.publicacionService.obtenerPublicacionPorId(_id_i).subscribe
+    ({
+      next: (data) =>
+      {
+        console.log("✅ Publicación obtenida:", data);
+        this.likes = data.numLikes;
+        this.comentarios = Number(data.numComentarios);
+        this.isFavorite = data.liked;
+      },
+      error: (error) => console.error(`❌ (fronted) Error al obtener la publicación con ID ${_id_i}:`, error),
+    });
+  }
+
+  async toggleFavorite()
+  {
+    this.isFavorite = !this.isFavorite;
+    if (this.likes !== null)
+      this.likes = (this.isFavorite) ? this.likes + 1 : this.likes - 1;
+
+
+    if (this.isFavorite)
+    {
+      this.publicacionService.darLike(this.idPublicacion).subscribe
+      ({
+        next: () =>             console.log("✅ Like dado."),
+        error: (error) => console.error('❌ (fronted) Error al dar like:', error)
+      });
+    }
+    else
+    {
+      this.publicacionService.quitarLike(this.idPublicacion).subscribe
+      ({
+        next: () =>             console.log("✅ Like quitado."),
+        error: (error) => console.error('❌ (fronted) Error al quitar like:', error)
+      });
+    }
+
+    this.sacarPublicacion(this.idPublicacion);
   }
 
 
-  ngOnInit() {
-
-
-
-    addIcons({
+  ngOnInit()
+  {
+    addIcons
+    ({
       'heart-outline': heartOutline,
       'chatbubble-outline': chatbubbleOutline,
       'heart': heart,
+      'trash-outline': trashOutline,
     })
-
     this.m_miNombre_s = '@' + (this.nombre !== null ? this.nombre : null);
   }
 
@@ -80,5 +120,6 @@ export class ComponentePublicacionComponent  implements OnInit
       this.btnFuncion(this.datos);
     }
   }
+
 
 }

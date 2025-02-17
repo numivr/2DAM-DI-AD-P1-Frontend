@@ -8,7 +8,7 @@
       </div>
       <div>
         <div class="centrar bajarUnPoco">
-          <img src="https://picsum.photos/80/80?random=2" class="ima0_grande" alt="Imagen de perfil">
+          <img src="{{_imagePerfil_s}}" class="ima0_grande" alt="Imagen de perfil">
         </div>
 
         <p class="labelGrande centrarLabel">{{_nombre_s}}</p>
@@ -31,67 +31,47 @@
       </ion-grid>
 
       <div class="centrar">
-        <ion-button class="btn_beige" (click)="toggleSeguir()" *ngIf="!_yoMismo_b">
-          <ion-icon [name]="_siguiendoEstado_b ? 'person-remove' : 'person-add'"></ion-icon>
+        <ion-button *ngIf="!_yoMismo_b" class="btn_beige" (click)="toggleSeguir()">
+          <!-- <ion-icon [name]="_siguiendoEstado_b ? 'person-remove' : 'person-add'"></ion-icon> -->
           <!-- Espacio generado por el icono -->
           {{ _siguiendoEstado_b ? 'Siguiendo' : 'Seguir' }}
         </ion-button>
 
-        <ion-button class="btn_beige" *ngIf="_admin_b" (click)="ejeBan(1)">Banear</ion-button>
+        <ion-button *ngIf="_admin_b"
+                    class="btn_beige"
+                    (click)=delFun.banearPerfil([this._perfilFinal_Perfil.nombre])
+        >
+          Banear/Desbanear
+        </ion-button>
       </div>
 
 
-
       <app-componente-publicacion *ngFor="let publicacion of _publicaciones_list"
-        urlImagen="{{publicacion.fotoPublicacion}}"
+        [urlImagen]="publicacion.fotoPublicacion || 'assets/perro_placeholder.jpg'"
         texto="{{publicacion.texto}}"
         [likes]=[publicacion.numLikes]
         [comentarios]=[publicacion.numComentarios]
         [isFavorite]="publicacion.liked"
+        [idPublicacion]=publicacion.id
 
-        enlace="/publicacion/{{publicacion.id}}"
-
+        [yoMismo]=_yoMismo_b
+        [enlace]="'/publicacion/' + publicacion.id"
         _admin_b="{{_admin_b}}"
-        btnTexto="Banear Publicacion"
-        [btnFuncion]="banearPublicacion"
         [datos]=[publicacion.id]
       ></app-componente-publicacion>
 
 
     </div>
 
-  <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+  <ion-fab *ngIf="_yoMismo_b" vertical="bottom" horizontal="center" slot="fixed">
     <ion-fab-button (click)="openFabModal()">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
-  <ion-modal id="modalPublicacion" #crearPublicacionModal [isOpen]="isFabModalOpen" (ionModalDidDismiss)="isFabModalOpen = false">
-    <ng-template>
-      <div class="modal-content" (click)="$event.stopPropagation()">
-        <ion-toolbar>
-          <ion-buttons slot="start">
-            <ion-button style="color: #f1ead0" (click)="modal.dismiss()">Cancelar</ion-button>
-          </ion-buttons>
-          <ion-title style="color: #f1ead0;text-align: center">New Post</ion-title>
-          <ion-buttons slot="end">
-            <ion-button style="color: #f1ead0" (click)="submitPost()" [strong]="true">Publicar</ion-button>
-          </ion-buttons>
-        </ion-toolbar>
-        <ion-item>
-          <ion-textarea
-            class="post-textarea"
-            placeholder="¿Qué deseas compartir de los perretes...?"
-            [(ngModel)]="newPostDescription"
-            autoGrow="true">
-          </ion-textarea>
-        </ion-item>
-        <ion-buttons slot="end" style="margin-left: auto; margin-right: 30px">
-          <ion-button>
-            <ion-icon style="color: #7C274B" slot="icon-only" name="image-outline"></ion-icon>
-          </ion-button>
-        </ion-buttons>
-      </div>
-    </ng-template>
-  </ion-modal>
+
+  <!-- Recuerda que igualmenet necesitas la funcion "openFabModal" linea 118 en perfil -->
+  <app-modal-publicacion [isFabModalOpen]="isFabModalOpen"></app-modal-publicacion>
+
+
 
 </ion-content>

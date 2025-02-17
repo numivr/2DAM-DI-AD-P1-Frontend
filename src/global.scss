@@ -194,3 +194,11 @@
   font-weight: normal !important;
 }
 /* Fin Campos */
+
+
+// Solucionar color negro todos modales
+.modal-content > ion-item
+{
+  --background: var(--color3), var(--color5);
+  --color: var(--color5);
+}

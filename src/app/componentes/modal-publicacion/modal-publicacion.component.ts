@@ -1,96 +1,81 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import { IonicModule, IonModal } from '@ionic/angular';
-import {add, camera, chatbubblesOutline, imageOutline, personCircle} from 'ionicons/icons';
-import { addIcons } from 'ionicons';
-import { Publicacion } from '../1-Modelos/Publicacion';
-import { ComponentePublicacionComponent } from '../componentes/componente-publicacion/componente-publicacion.component';
-import { RouterLink } from '@angular/router';
-import { NgForOf, NgIf, NgOptimizedImage } from '@angular/common';
-import { FormsModule } from "@angular/forms";
-import { PublicacionService } from '../1-Servicios/publicacion.service';
-import { ComponenteComentarioComponent } from '../componentes/componente-comentario/componente-comentario.component';
-import {PerfilService} from "../1-Servicios/perfil.service";
+import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
+import {Publicacion} from "../../1-Modelos/Publicacion";
+import {PublicacionService} from "../../1-Servicios/publicacion.service";
+import {
+  IonButton,
+  IonButtons,
+  IonContent,
+  IonFooter, IonIcon,
+  IonInput,
+  IonItem, IonModal, IonTextarea,
+  IonTitle,
+  IonToolbar
+} from "@ionic/angular/standalone";
+import {FormsModule} from "@angular/forms";
+import {addIcons} from "ionicons";
+import {add, camera, chatbubblesOutline, imageOutline, personCircle} from "ionicons/icons";
+import {NgIf} from "@angular/common";
 
-@Component({
-  selector: 'app-principal',
-  templateUrl: './principal.component.html',
-  styleUrls: ['./principal.component.scss'],
-  standalone: true,
+@Component
+({
+  selector: 'app-modal-publicacion',
+  templateUrl: './modal-publicacion.component.html',
+  styleUrls: ['./modal-publicacion.component.scss'],
   imports: [
-    IonicModule,
-    NgOptimizedImage,
-    ComponentePublicacionComponent,
-    ComponenteComentarioComponent,
-    RouterLink,
-    NgIf,
+    IonButton,
+    IonFooter,
+    IonItem,
+    IonInput,
     FormsModule,
-    NgForOf
+    IonButtons,
+    IonToolbar,
+    IonContent,
+    IonTitle,
+    IonModal,
+    IonIcon,
+    IonTextarea,
+    NgIf
   ],
+  standalone: true
 })
-export class PrincipalComponent implements OnInit {
+
+export class ModalPublicacionComponent  implements OnInit
+{
+  @Input() isFabModalOpen: boolean = false;
+  @ViewChild('crearPublicacionModal') modal!: IonModal;
+  @ViewChild('fileInput') fileInput!: ElementRef;
+
   selectedSegment: string = 'Recomendado';
   publicaciones: Publicacion[] = [];
   publicacionesSeguidos: Publicacion[] = [];
   isSearchModalOpen: boolean = false;
-  isFabModalOpen: boolean = false;
   searchTerm: string = '';
   newPostDescription: string = ''; // Texto de la publicación
   newPostImage: string = ''; // URL de la imagen de la publicación
-  publicacionesBusqueda: Publicacion[] = [];
 
-  usuario: string = ''; // Nombre del usuario loggeado
+  constructor(private publicacionService: PublicacionService) {}
 
-  constructor(private publicacionService: PublicacionService, private perfilService: PerfilService) {}
 
-  @ViewChild('crearPublicacionModal') modal!: IonModal;
 
-  @ViewChild('fileInput') fileInput!: ElementRef;
 
-  ngOnInit() {
-    addIcons({
+  ngOnInit()
+  {
+    addIcons
+    ({
       'add': add,
       'chatbubbles-outline': chatbubblesOutline,
       'person-circle': personCircle,
       'image-outline': imageOutline,
       'camera': camera
     });
-    this.cargarPublicaciones();
-    this.cargarPublicacionesSeguidos();
-    this.obtenerPerfilLoggeado(); // ✅ Llamamos al método para obtener el perfil loggeado
   }
 
-  obtenerPerfilLoggeado() {
-    this.perfilService.obtenerPerfilLoggeado().subscribe({
-      next: (perfil) => {
-        this.usuario = perfil.nombre; // ✅ Guardamos el nombre del usuario
-      },
-      error: (err) => {
-        console.error('❌ Error al obtener el perfil loggeado:', err);
-      }
-    });
-  }
 
   handleSearch(event: any) {
     if (event.key === 'Enter') {
       this.openSearchModal();
-      this.buscarPalabras();
     }
   }
-
-  buscarPalabras() {
-    if (this.searchTerm.trim()) {
-      this.publicacionService.buscarPalabras(this.searchTerm).subscribe(
-        (publicaciones) => {
-          this.publicacionesBusqueda = publicaciones;
-        },
-        (error) => {
-          console.error('Error al buscar publicaciones:', error);
-        }
-      );
-    }
-  }
-
-
 
   segmentChanged(event: any) {
     this.selectedSegment = event.detail.value;
@@ -201,29 +186,4 @@ export class PrincipalComponent implements OnInit {
     });
   }
 
-  cargarPublicaciones() {
-    this.publicacionService.obtenerPublicaciones().subscribe({
-      next: (data: Publicacion[]) => {
-        this.publicaciones = data;
-      },
-      error: (err) => {
-        console.error('Error al obtener publicaciones:', err);
-      }
-    });
-  }
-
-  cargarPublicacionesSeguidos() {
-    this.publicacionService.obtenerPublicacionesSeguidos().subscribe({
-      next: (data: Publicacion[]) => {
-        this.publicacionesSeguidos = data;
-      },
-      error: (err) => {
-        console.error('Error al obtener publicaciones de seguidos:', err);
-      }
-    });
-  }
-
-  truncateText(text: string, limit: number = 40): string {
-    return text.length > limit ? `${text.substring(0, limit)}...` : text;
-  }
 }

@@ -4,23 +4,27 @@
     <div class="profile-container" *ngIf="urlImgPerfil !== null && m_miNombre_s !== null">
 
       <!-- ✅ Al hacer clic en la imagen, redirige al perfil -->
-      <img
+      <img *ngIf="urlImgPerfil !== null"
       [routerLink]="[enlaceUsuario]"
       src="{{urlImgPerfil}}"
       alt="Profile"
-      class="ima0_chica"
-      *ngIf="urlImgPerfil !== null"> <!-- profile-image -->
+      class="ima0_chica"> <!-- profile-image -->
 
       <div class="profile-info" *ngIf="m_miNombre_s !== null">
         <!-- ✅ Al hacer clic en el nombre, redirige al perfil -->
-        <h5 [routerLink]="[enlaceUsuario]">{{m_miNombre_s}}</h5> <!-- ['/perfilajeno', idUsuario] -->
+        <h5 [routerLink]="[enlaceUsuario]">{{m_miNombre_s}}</h5>
       </div>
 
+      <ion-buttons *ngIf="yoMismo || _admin_b" (click)=this.delFun.borraPublicacion(datos)>
+        <ion-button>
+          <ion-icon name="trash-outline" class="delete-icon"></ion-icon>
+        </ion-button>
+      </ion-buttons>
     </div>
   </ion-card-header>
 
   <ion-card-content >
-    
+
     <ion-row *ngIf="urlImagen !== null" [routerLink]="[enlace]">
       <img src="{{urlImagen}}" class="publication-image" alt="Imagen de la Publicacion">
     </ion-row>
@@ -31,6 +35,7 @@
     </ion-row>
 
 
+
     <!-- Botones de Like y Comentarios -->
     <ion-buttons slot="start" *ngIf="likes !== null">
       <ion-button  (click)="toggleFavorite()">
@@ -39,17 +44,22 @@
         <div>{{likes}}</div>
       </ion-button>
     </ion-buttons>
-    <ion-buttons slot="end" *ngIf="comentarios !== null">
-      <ion-button >
+    <ion-buttons *ngIf="comentarios !== null" [routerLink]="[enlace]">
+      <ion-button>
         <ion-icon name="chatbubble-outline"></ion-icon>
         <div>{{comentarios}}</div>
       </ion-button>
     </ion-buttons>
 
+    <ion-buttons *ngIf="(_admin_b || yoMismo) && (urlImgPerfil === null)" (click)="delFun.borraPublicacion(datos);">
+      <ion-button>
+        <ion-icon name="trash-outline" class="delete-icon"></ion-icon>
+      </ion-button>
+    </ion-buttons>
 
-    <!-- Botones de Baneo -->
-    <br *ngIf="_admin_b">
-    <ion-buttons slot="end" *ngIf="_admin_b">
+    <!-- Botones de Admin -->
+    <br *ngIf="_admin_b && btnTexto !== ''">
+    <ion-buttons *ngIf="_admin_b && btnTexto !== ''">
       <ion-button (click)="ejeFuncion()" class="btn_beige">
         <!-- <ion-icon name=""></ion-icon> -->
         <div>{{btnTexto}}</div>

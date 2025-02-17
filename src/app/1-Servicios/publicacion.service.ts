@@ -64,7 +64,7 @@ export class PublicacionService {
     return this.http.post(`${this.apiUrl}/${idPublicacion}`, {}, { headers: this.getHeaders() })
       .pipe(
         catchError(error => {
-          console.error('❌ Error al dar like:', error);
+          console.error('❌ (fronted:services) Error al dar like:', error);
           return throwError(() => new Error('Error al dar like'));
         })
       );
@@ -74,7 +74,7 @@ export class PublicacionService {
     return this.http.delete(`${this.apiUrl}/${idPublicacion}`, { headers: this.getHeaders() })
       .pipe(
         catchError(error => {
-          console.error('❌ Error al quitar like:', error);
+          console.error('❌ (fronted:services) Error al quitar like:', error);
           return throwError(() => new Error('Error al quitar like'));
         })
       );
@@ -96,6 +96,20 @@ export class PublicacionService {
         catchError(error => {
           console.error('❌ Error al buscar:', error);
           return throwError(() => new Error('Error en la búsqueda.'));
+        })
+      );
+  }
+  
+
+  eliminarPublicacion(_idPublicacion_i: number): Observable<any>
+  {
+    return this.http.delete(`${this.apiUrl}/eliminar/${_idPublicacion_i}`, { headers: this.getHeaders() })
+      .pipe
+      (
+        catchError(_error_any =>
+        {
+          console.error('❌ Error al eliminar la publicación:', _error_any);
+          return throwError(() => new Error('Error al eliminar la publicación'));
         })
       );
   }
