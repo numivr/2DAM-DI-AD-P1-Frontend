@@ -28,7 +28,7 @@ export class UsuarioService {
 
   bannearUsuario(nombreUsuario: string): Observable<any>
   {
-    return this.http.post(`${this.apiUrl}/banear/${nombreUsuario}`, {}, { headers: this.getHeaders() })
+    return this.http.put(`${this.apiUrl}/banear/${nombreUsuario}`, {}, { headers: this.getHeaders() })
       .pipe(
         catchError(error =>
         {
