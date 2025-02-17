@@ -72,6 +72,10 @@ ion-card {
 ion-avatar {
   border: 2px solid #F5F5DC;
 }
+ion-icon {
+  width: 32px; /* Ajusta el tamaño según tus necesidades */
+  height: 32px; /* Ajusta el tamaño según tus necesidades */
+}
 
 
 ion-searchbar {
@@ -83,3 +87,28 @@ ion-searchbar {
 ion-text {
   color: #F5F5DC;
 }
+::part(native){
+  display: flex;
+  justify-content: center;
+  width: 50px;
+}
+
+ion-button::part(native) {
+  --padding-start: 0;
+  --padding-end: 0;
+  --padding-top: 0;
+  --padding-bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+ion-button::part(native) .button-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+ion-icon{
+  color: #F5F5DC;
+}
+
