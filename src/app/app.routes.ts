@@ -10,13 +10,14 @@ import {PrincipalComponent} from "./principal/principal.component";
 import {PerfilComponent} from "./perfil/perfil.component";
 import {authGuard} from "./1-Interceptor/Auth.guard";
 import {PerfilAjenoComponent} from "./perfil-ajeno/perfil-ajeno.component";
+import {VerificarCuentaComponent} from "./verificar-cuenta/verificar-cuenta.component";
 
 export const routes: Routes = [
   {
     path: 'home',
-    loadComponent: () => import('./home/home.page').then((m) => m.HomePage),
+    redirectTo: 'inicio', // 🔹 Redirige directamente a 'inicio'
+    pathMatch: 'full'
   },
-
 
   {
     path: 'inicio',
@@ -62,10 +63,13 @@ export const routes: Routes = [
   {
     path: 'perfilajeno/:id',
     component: PerfilAjenoComponent,
+    canActivate: [authGuard]
   },
   {
     path: '',
     redirectTo: 'inicio',
     pathMatch: 'full',
   },
+
+  { path: 'auth/verificarCuenta', component: VerificarCuentaComponent },
 ];

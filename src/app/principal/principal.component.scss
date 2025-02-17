@@ -62,7 +62,7 @@ ion-toolbar {
     width: 50px;
   }
 
-  #modalBusqueda {
+  .modalSearch {
     border-radius: 10px;
     width: 90%;
     height: 50%;
@@ -207,5 +207,14 @@ ion-segment > ion-segment-button:not(.segment-button-after-checked)
 {
   // En "Recomendado" y "Siguiendo" este es el color cuando no esta selecionado.
   --color: var(--color6)!important;
+}
+
+@media (min-width: 600px)
+{
+  .contenedorPublicaciones
+  {
+    margin-left: calc(50% - 300px);
+    max-width: 600px;
+  }
 }
 

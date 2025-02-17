@@ -37,7 +37,12 @@
           {{ _siguiendoEstado_b ? 'Siguiendo' : 'Seguir' }}
         </ion-button>
 
-        <ion-button *ngIf="_admin_b" class="btn_beige" (click)=DelFun.banearPerfil([1])>Banear</ion-button>
+        <ion-button *ngIf="_admin_b"
+                    class="btn_beige"
+                    (click)=delFun.banearPerfil([this._perfilFinal_Perfil.nombre])
+        >
+          Banear/Desbanear
+        </ion-button>
       </div>
 
 
@@ -47,12 +52,11 @@
         [likes]=[publicacion.numLikes]
         [comentarios]=[publicacion.numComentarios]
         [isFavorite]="publicacion.liked"
+        [idPublicacion]=publicacion.id
 
         [yoMismo]=_yoMismo_b
         [enlace]="'/publicacion/' + publicacion.id"
         _admin_b="{{_admin_b}}"
-        btnTexto="Banear Publicacion"
-        [btnFuncion]="DelFun.banearPublicacion"
         [datos]=[publicacion.id]
       ></app-componente-publicacion>
 
@@ -65,6 +69,7 @@
     </ion-fab-button>
   </ion-fab>
 
+  <!-- Recuerda que igualmenet necesitas la funcion "openFabModal" linea 118 en perfil -->
   <app-modal-publicacion [isFabModalOpen]="isFabModalOpen"></app-modal-publicacion>
 
 

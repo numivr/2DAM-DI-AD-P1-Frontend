@@ -43,4 +43,17 @@ export class ComentarioService {
         })
       );
   }
+
+  borrarComentario(_id_i: number): Observable<Comentario>
+  {
+    return this.http.delete<Comentario>(`${this.apiUrl}/${_id_i}`, { headers: this.getHeaders() })
+      .pipe
+      (
+        catchError(error =>
+        {
+          console.error(`❌ (fronted:services) Error al borrar el comentario con ID ${_id_i}:`, error);
+          return throwError(() => new Error('Error al borrar el comentario'));
+        })
+      );
+  }
 }

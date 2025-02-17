@@ -9,6 +9,7 @@ describe('VerificarCuentaComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
+      imports: [VerificarCuentaComponent],
       declarations: [ VerificarCuentaComponent ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
