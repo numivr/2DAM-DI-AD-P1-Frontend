@@ -90,4 +90,14 @@ export class PublicacionService {
       );
   }
 
+  buscarPublicaciones(searchTerm: string): Observable<Publicacion[]> {
+    return this.http.get<Publicacion[]>(`${this.apiUrl}/buscar?palabra=${searchTerm}`, { headers: this.getHeaders() })
+      .pipe(
+        catchError(error => {
+          console.error('❌ Error al buscar publicaciones:', error);
+          return throwError(() => new Error('Error en la búsqueda de publicaciones'));
+        })
+      );
+  }
+
 }

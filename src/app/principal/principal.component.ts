@@ -35,6 +35,7 @@ export class PrincipalComponent implements OnInit {
   searchTerm: string = '';
   newPostDescription: string = ''; // Texto de la publicación
   newPostImage: string = ''; // URL de la imagen de la publicación
+  publicacionesBusqueda: Publicacion[] = [];
 
   constructor(private publicacionService: PublicacionService) {}
 
@@ -57,8 +58,24 @@ export class PrincipalComponent implements OnInit {
   handleSearch(event: any) {
     if (event.key === 'Enter') {
       this.openSearchModal();
+      this.buscarPublicaciones();
     }
   }
+
+  buscarPublicaciones() {
+    if (this.searchTerm.trim()) {
+      this.publicacionService.buscarPublicaciones(this.searchTerm).subscribe(
+        (publicaciones) => {
+          this.publicacionesBusqueda = publicaciones;
+        },
+        (error) => {
+          console.error('Error al buscar publicaciones:', error);
+        }
+      );
+    }
+  }
+
+
 
   segmentChanged(event: any) {
     this.selectedSegment = event.detail.value;
@@ -191,4 +208,7 @@ export class PrincipalComponent implements OnInit {
     });
   }
 
+  truncateText(text: string, limit: number = 40): string {
+    return text.length > limit ? `${text.substring(0, limit)}...` : text;
+  }
 }
