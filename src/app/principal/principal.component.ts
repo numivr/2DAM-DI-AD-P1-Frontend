@@ -20,7 +20,6 @@ import {PerfilService} from "../1-Servicios/perfil.service";
     IonicModule,
     NgOptimizedImage,
     ComponentePublicacionComponent,
-    ComponenteComentarioComponent,
     RouterLink,
     NgIf,
     FormsModule,

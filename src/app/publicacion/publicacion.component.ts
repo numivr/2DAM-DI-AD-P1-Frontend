@@ -33,7 +33,7 @@ export class PublicacionComponent  implements OnInit
 {
 
   _perfilLogueado_Perfil!: Perfil;
-  publicacion!: Publicacion;
+  publicacion: Publicacion = new Publicacion();
 
   _yoMismo_b: boolean = false;
   _admin_b: boolean = false;
@@ -93,8 +93,7 @@ export class PublicacionComponent  implements OnInit
 
   sacarPublicacion(_id_i: number)
   {
-    this.publicacionService.obtenerPublicacionPorId(_id_i).subscribe
-    ({
+    this.publicacionService.obtenerPublicacionPorId(_id_i).subscribe({
       next: (data) =>
       {
         console.log("✅ Publicación obtenida:", data);
@@ -111,8 +110,7 @@ export class PublicacionComponent  implements OnInit
 
   obtenerPerfilLoggeado()
   {
-    this.perfilService.obtenerPerfilLoggeado().subscribe
-    ({
+    this.perfilService.obtenerPerfilLoggeado().subscribe({
       next: (data) => this._perfilLogueado_Perfil = data,
       error: (error) => console.error('❌ (fronted) Error al obtener el perfil:', error),
       complete: () =>
@@ -135,16 +133,14 @@ export class PublicacionComponent  implements OnInit
 
     if (this.isFavorite)
     {
-      this.publicacionService.darLike(this.publicacion.id).subscribe
-      ({
+      this.publicacionService.darLike(this.publicacion.id).subscribe({
         next: () =>             console.log("✅ Like dado."),
         error: (error) => console.error('❌ (fronted) Error al dar like:', error)
       });
     }
     else
     {
-      this.publicacionService.quitarLike(this.publicacion.id).subscribe
-      ({
+      this.publicacionService.quitarLike(this.publicacion.id).subscribe({
         next: () =>             console.log("✅ Like quitado."),
         error: (error) => console.error('❌ (fronted) Error al quitar like:', error)
       });
@@ -165,8 +161,7 @@ export class PublicacionComponent  implements OnInit
       return;
     }
 
-    this.comentarioService.crearComentario(this.publicacion.id, this.nuevoComentario).subscribe
-    ({
+    this.comentarioService.crearComentario(this.publicacion.id, this.nuevoComentario).subscribe({
       next: (comentario) =>
       {
         console.log("✅ Comentario publicado:", comentario);

@@ -1,27 +1,22 @@
 <ion-header>
   <ion-toolbar>
-
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/principal"></ion-back-button>
     </ion-buttons>
-
     <ion-title>Chats</ion-title>
-
     <ion-buttons slot="end">
       <ion-button>
-        <ion-icon slot="icon-only" src="assets/plus.svg"></ion-icon>
+        <ion-icon slot="icon-only" src="assets/icon/plus.svg"></ion-icon>
       </ion-button>
     </ion-buttons>
-
-    <ion-searchbar placeholder="¡Busca a tus grupos y amigos!" style=""></ion-searchbar>
-
+    <ion-searchbar placeholder="¡Busca a tus grupos y amigos!" (ionInput)="filterChats($event)"></ion-searchbar>
   </ion-toolbar>
 </ion-header>
 
 <ion-content color="fondo">
   <ion-grid>
     <!-- Lista de Chats -->
-    <ion-row *ngFor="let chat of chats" class="ion-justify-content-center" style="margin-top: 15px;">
+    <ion-row *ngFor="let chat of filteredChats" class="ion-justify-content-center" style="margin-top: 15px;">
       <ion-col size="10">
         <ion-card color="secundario" (click)="navigateToChat(chat.id)">
           <ion-card-header>
@@ -33,7 +28,7 @@
               </ion-col>
               <ion-col size="9" style="position: relative;">
                 <ion-title style="font-size: 14pt; padding-bottom: 5px;">
-                  <b>{{ chat.nombre }}</b>
+                  <b [innerHTML]="chat.highlightedName || chat.nombre"></b>
                 </ion-title>
                 <ion-text style="font-size: 12pt;">{{ chat.ultimoMensaje }}</ion-text>
                 <ion-text style="font-size: 10pt; color: #8c8c8c; position: absolute; bottom: 0; right: 0;">

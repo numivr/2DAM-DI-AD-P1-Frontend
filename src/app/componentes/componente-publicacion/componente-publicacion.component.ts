@@ -22,8 +22,8 @@ import {PerfilService} from "../../1-Servicios/perfil.service";
 export class ComponentePublicacionComponent  implements OnInit
 {
   // --- Identificación --- //
-  @Input() idPublicacion: number = 0; // ID de la publicación
-  // @Input() nombreUsuario: string = "";  // NO SE USA
+  @Input() idPublicacion: number = -1; // ID de la publicación
+  @Input() idComentario: number = -1;  // ID del comentario
   @Input() yoMismo: boolean = false;
 
   // --- Declaración cabeza --- //
@@ -121,5 +121,16 @@ export class ComponentePublicacionComponent  implements OnInit
     }
   }
 
+  borrar()
+  {
+    if ((this.idPublicacion === -1 || this.idComentario === -1) && (this.idPublicacion !== -1 && this.idComentario !== -1))
+      return;
+
+    else if (this.idPublicacion !== -1)
+      this.delFun.borraPublicacion([this.idPublicacion]);
+
+    else
+      this.delFun.borraComentario([this.idComentario]);
+  }
 
 }

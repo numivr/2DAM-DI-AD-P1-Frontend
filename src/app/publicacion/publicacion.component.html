@@ -22,7 +22,7 @@
       </ion-buttons>
     </div>
     <div class="cuerpo p-3 m-2">
-      <div class="profile-container p-1" [routerLink]="['/perfil', publicacion.perfil]">
+      <div class="profile-container p-1" [routerLink]="'/perfil' + publicacion.perfil">
         <img [src]="_imagePerfil_s" class="ima0_chica" alt="">
         <div class="my-2">
           <h5 class="labelMeiano centrarLabel">{{_nombre_s}}</h5>
@@ -89,7 +89,7 @@
 
                                   [yoMismo]=_yoMismo_b
                                   _admin_b="{{_admin_b}}"
-                                  [datos]="[comentario.id]"
+                                  [idComentario]="comentario.id"
       ></app-componente-publicacion>
     </div>
 

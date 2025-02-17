@@ -9,7 +9,7 @@
         <ion-icon class="white-icon" slot="icon-only" name="person-circle"></ion-icon>
         </ion-button>
 
-        <ion-button [routerLink]="['/publicacion/1']">hola</ion-button> <!-- TODO: Revisar -->
+        <!-- <ion-button [routerLink]="['/publicacion/1']">hola =D</ion-button> -->
       </ion-buttons>
 
       <div class="logo-container">
@@ -73,9 +73,9 @@
         [enlaceUsuario]="'/perfil/' + publicacion.perfil"
         [enlace]="'/publicacion/' + publicacion.id"
         [nombre]="publicacion.perfil"
-        [urlImagen]="publicacion.fotoPerfil"
+        [urlImgPerfil]="publicacion.fotoPerfil || 'assets/persona_placeholder.jpg'"
         [texto]="publicacion.texto"
-        [urlImgPerfil]="publicacion.fotoPublicacion"
+        [urlImagen]="publicacion.fotoPublicacion"
         [likes]="publicacion.numLikes"
         [comentarios]="publicacion.numComentarios"
         [isFavorite]="publicacion.liked"
