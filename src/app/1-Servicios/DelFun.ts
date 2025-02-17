@@ -80,15 +80,15 @@ export class DelFun
     ({
       next: (data) =>
       {
-        //this.recargar();
+        this.recargar();
         console.log("Perfil baneado: " + datos[0])
       },
       error: (error) =>
       {
-        //this.recargar();
+        this.recargar();
         console.error("Error al banear el perfil: " + error)
       },
-      //complete: () => this.recargar()
+      complete: () => this.recargar()
     });
   }
 

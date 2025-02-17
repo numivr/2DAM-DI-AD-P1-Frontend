@@ -30,6 +30,9 @@
         </ion-row>
       </ion-grid>
 
+      <p *ngIf="_perfilFinal_Perfil.baneado" class="labelGrande centrarLabel">
+        Este Usuario ah sido baneado
+      </p>
       <div class="centrar">
         <ion-button *ngIf="!_yoMismo_b" class="btn_beige" (click)="toggleSeguir()">
           <!-- <ion-icon [name]="_siguiendoEstado_b ? 'person-remove' : 'person-add'"></ion-icon> -->
@@ -41,7 +44,7 @@
                     class="btn_beige"
                     (click)=delFun.banearPerfil([this._perfilFinal_Perfil.nombre])
         >
-          Banear/Desbanear
+          {{ _perfilFinal_Perfil.baneado ? 'Desbanear' : 'Banear' }}
         </ion-button>
       </div>
 
