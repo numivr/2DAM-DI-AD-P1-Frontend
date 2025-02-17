@@ -7,7 +7,7 @@ import { PublicacionService } from "../1-Servicios/publicacion.service";
 import { Publicacion } from "../1-Modelos/Publicacion";
 import { Comentario } from '../1-Modelos/Comentario';
 import { FormsModule } from '@angular/forms';
-import {chatbubbleOutline, heart, heartOutline, send, trashOutline} from 'ionicons/icons';
+import {arrowForward, chatbubbleOutline, heart, heartOutline, send, trashOutline} from 'ionicons/icons';
 import { addIcons } from 'ionicons';
 import { ComentarioService } from "../1-Servicios/comentario.service";
 import { DelFun} from "../1-Servicios/DelFun";
@@ -71,7 +71,8 @@ export class PublicacionComponent  implements OnInit
       'send': send,
       'trash-outline': trashOutline,
       'heart-outline': heartOutline,
-      'chatbubble-outline': chatbubbleOutline
+      'chatbubble-outline': chatbubbleOutline,
+      'arrow-forward': arrowForward
     });
   }
 
