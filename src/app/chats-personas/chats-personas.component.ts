@@ -45,6 +45,8 @@ import {Router} from "@angular/router";
 export class ChatsPersonasComponent implements OnInit {
 
   chats : Chat[] = [];
+  filteredChats: any[] = [];
+  searchTerm: string = '';
 
 
 
@@ -67,20 +69,44 @@ export class ChatsPersonasComponent implements OnInit {
     }
   ];
 
+
+
+  filterChats(event: any) {
+    const searchTerm = event.target.value.toLowerCase();
+    if (searchTerm.trim() === '') {
+      this.filteredChats = this.chats.map(chat => ({
+        ...chat,
+        highlightedName: chat.nombre
+      }));
+    } else {
+      this.filteredChats = this.chats
+        .filter(chat => chat.nombre?.toLowerCase().includes(searchTerm))
+        .map(chat => {
+          const regex = new RegExp(`(${searchTerm})`, 'gi');
+          const highlightedName = chat.nombre?.replace(regex, '<mark>$1</mark>');
+          return {
+            ...chat,
+            highlightedName
+          };
+        });
+    }
+  }
+
   constructor(private chatService: ChatService, private router: Router) {
     addIcons({eye})
   }
 
   ngOnInit() {
     this.chatService.getChats().subscribe({
-      next: (data) => this.chats = data,
+      next: (data) => {
+        this.chats = data;
+        this.filteredChats = data; // Initialize filteredChats with all chats
+      },
       error: (error) => console.error('Error:', error),
       complete: () => console.log('Completado')
-
-    })
+    });
   }
 
-  protected readonly style = style;
 
   navigateToChat(chatId: any) {
     this.chatService.setChatId(chatId);
