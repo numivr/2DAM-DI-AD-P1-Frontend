@@ -49,36 +49,41 @@
 
 
 
-  <div *ngIf="selectedSegment === 'Recomendado'">
-    <app-componente-publicacion
-      *ngFor="let publicacion of publicaciones"
-      [enlaceUsuario]="'/perfil/' + publicacion.perfil"
-      [enlace]="'/publicacion/' + publicacion.id"
-      [nombre]="publicacion.perfil"
-      [urlImgPerfil]="publicacion.fotoPerfil"
-      [texto]="publicacion.texto"
-      [urlImagen]="publicacion.fotoPublicacion"
-      [likes]="publicacion.numLikes"
-      [comentarios]="publicacion.numComentarios"
-      [isFavorite]="publicacion.liked">
-    </app-componente-publicacion>
+  <div class="contenedorPublicaciones">
+    <div *ngIf="selectedSegment === 'Recomendado'">
+      <app-componente-publicacion
+        *ngFor="let publicacion of publicaciones"
+        [enlaceUsuario]="'/perfil/' + publicacion.perfil"
+        [enlace]="'/publicacion/' + publicacion.id"
+        [nombre]="publicacion.perfil"
+        [urlImgPerfil]="publicacion.fotoPerfil || 'assets/persona_placeholder.jpg'"
+        [texto]="publicacion.texto"
+        [urlImagen]="publicacion.fotoPublicacion"
+        [likes]="publicacion.numLikes"
+        [comentarios]="publicacion.numComentarios"
+        [isFavorite]="publicacion.liked"
+        [idPublicacion]="publicacion.id">
+      </app-componente-publicacion>
+    </div>
+
+    <!-- Publicaciones de seguidos -->
+    <div *ngIf="selectedSegment === 'Siguiendo'">
+      <app-componente-publicacion
+        *ngFor="let publicacion of publicacionesSeguidos"
+        [enlaceUsuario]="'/perfil/' + publicacion.perfil"
+        [enlace]="'/publicacion/' + publicacion.id"
+        [nombre]="publicacion.perfil"
+        [urlImagen]="publicacion.fotoPerfil"
+        [texto]="publicacion.texto"
+        [urlImgPerfil]="publicacion.fotoPublicacion"
+        [likes]="publicacion.numLikes"
+        [comentarios]="publicacion.numComentarios"
+        [isFavorite]="publicacion.liked"
+        [idPublicacion]="publicacion.id">
+      </app-componente-publicacion>
+    </div>
   </div>
 
-  <!-- Publicaciones de seguidos -->
-  <div *ngIf="selectedSegment === 'Siguiendo'">
-    <app-componente-publicacion
-      *ngFor="let publicacion of publicacionesSeguidos"
-      [enlaceUsuario]="'/perfil/' + publicacion.perfil"
-      [enlace]="'/publicacion/' + publicacion.id"
-      [nombre]="publicacion.perfil"
-      [urlImagen]="publicacion.fotoPerfil"
-      [texto]="publicacion.texto"
-      [urlImgPerfil]="publicacion.fotoPublicacion"
-      [likes]="publicacion.numLikes"
-      [comentarios]="publicacion.numComentarios"
-      [isFavorite]="publicacion.liked">
-    </app-componente-publicacion>
-  </div>
 
 
 
