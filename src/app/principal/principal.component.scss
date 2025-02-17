@@ -65,14 +65,17 @@ ion-toolbar {
   .modalSearch {
     border-radius: 10px;
     width: 90%;
-    height: 50%;
+    height: 20%;
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 0 auto;
     margin-top: 32%;
+    max-margin-top: 200px;
     transition: height 0.3s ease;
     overflow: hidden;
+
+    max-width: 600px;
   }
 
   /*

@@ -92,17 +92,18 @@
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
-  <ion-modal class="modalSearch" id="modalBusqueda" [isOpen]="isSearchModalOpen" (ionModalDidDismiss)="closeSearchModal()">
+
+  <ion-modal  class="modalSearch" id="modalBusqueda" [isOpen]="isSearchModalOpen" (ionModalDidDismiss)="closeSearchModal()" >
     <ng-template>
       <div class="modal-container" (click)="$event.stopPropagation()">
         <ion-list *ngIf="publicacionesBusqueda.length > 0; else noResults">
-          <ion-item *ngFor="let publicacion of publicacionesBusqueda" >
-            <ion-avatar slot="start" *ngIf="publicacion.fotoPerfil">
+          <ion-item *ngFor="let publicacion of publicacionesBusqueda" [routerLink]="['/publicacion', publicacion.id]">
+            <ion-avatar slot="start" *ngIf="publicacion.fotoPerfil" >
               <ion-img [src]="publicacion.fotoPerfil"></ion-img>
             </ion-avatar>
-            <ion-label>
+            <ion-label >
               <h2 *ngIf="publicacion.perfil">{{ publicacion.perfil }}</h2>
-              <p *ngIf="publicacion.texto">{{ publicacion.texto }}</p>
+              <p *ngIf="publicacion.texto">{{ publicacion.texto }} </p>
             </ion-label>
             <ion-img *ngIf="publicacion.fotoPublicacion" [src]="publicacion.fotoPublicacion"></ion-img>
           </ion-item>

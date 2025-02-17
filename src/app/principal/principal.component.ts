@@ -37,7 +37,7 @@ export class PrincipalComponent implements OnInit {
   newPostImage: string = ''; // URL de la imagen de la publicación
   publicacionesBusqueda: Publicacion[] = [];
 
-  usuario: string = ''; // Nombre del usuario loggeado
+  usuario?: string; // Nombre del usuario loggeado
 
   constructor(private publicacionService: PublicacionService, private perfilService: PerfilService) {}
 
@@ -88,6 +88,7 @@ export class PrincipalComponent implements OnInit {
       );
     }
   }
+
 
 
 
