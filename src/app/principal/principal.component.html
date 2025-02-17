@@ -89,19 +89,23 @@
     <ng-template>
       <div class="modal-container" (click)="$event.stopPropagation()">
         <ion-list *ngIf="publicacionesBusqueda.length > 0; else noResults">
-          <ion-item *ngFor="let publicacion of publicacionesBusqueda">
-            <ion-avatar slot="start">
+          <ion-item *ngFor="let publicacion of publicacionesBusqueda" >
+            <ion-avatar slot="start" *ngIf="publicacion.fotoPerfil">
               <ion-img [src]="publicacion.fotoPerfil"></ion-img>
             </ion-avatar>
             <ion-label>
-              <h2>{{ publicacion.perfil }}</h2>
-              <p>{{ publicacion.texto }}</p>
+              <h2 *ngIf="publicacion.perfil">{{ publicacion.perfil }}</h2>
+              <p *ngIf="publicacion.texto">{{ publicacion.texto }}</p>
             </ion-label>
-          </ion-item>
-          <ion-item *ngFor="let publicacion of publicacionesBusqueda">
-            <ion-img [src]="publicacion.fotoPublicacion"></ion-img>
+            <ion-img *ngIf="publicacion.fotoPublicacion" [src]="publicacion.fotoPublicacion"></ion-img>
           </ion-item>
         </ion-list>
+
+        <ng-template #noResults>
+          <ion-text>No se encontraron resultados</ion-text>
+        </ng-template>
+
+
 
         <ng-template #noResults>
           <p>No hay resultados.</p>
