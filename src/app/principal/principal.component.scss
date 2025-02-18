@@ -221,3 +221,17 @@ ion-segment > ion-segment-button:not(.segment-button-after-checked)
   }
 }
 
+// Que ganas de poner las cosas en ingles.
+.modalSearch *
+{
+  --background: var(--color3);
+  background-color: var(--color3);
+
+  --color: var(--color5);
+}
+
+// cojo las cuadradas.
+.modalSearch ion-img:not(.ima0_chica)
+{
+
+}
