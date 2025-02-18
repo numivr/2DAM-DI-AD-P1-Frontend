@@ -230,8 +230,25 @@ ion-segment > ion-segment-button:not(.segment-button-after-checked)
   --color: var(--color5);
 }
 
+.modalSearch ion-label
+{
+  // background-color: transparent !important;
+
+}
+
 // cojo las cuadradas.
 .modalSearch ion-img:not(.ima0_chica)
 {
+  object-fit: cover;
+  --tamano: 21vw;
+  --max: 75px;
+  --min: 50px;
 
+  width: var(--tamano);
+  max-width: var(--max);
+  min-width: var(--min);
+
+  height: var(--tamano);
+  max-height: var(--max);
+  min-height: var(--min);
 }
