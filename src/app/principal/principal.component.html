@@ -98,10 +98,11 @@
       <div class="modal-container" (click)="$event.stopPropagation()">
 
         <ion-list *ngIf="publicacionesBusqueda.length > 0; else noResults">
-          <ion-item *ngFor="let publicacion of publicacionesBusqueda" [routerLink]="['/publicacion', publicacion.id]">
+          <ion-item *ngFor="let publicacion of publicacionesBusqueda" [routerLink]="['/publicacion', publicacion.id]" [ngStyle]="{'--publicaciones-busqueda-length': publicacionesBusqueda.length}">
+            <!-- Necesito guardar en css la cantidad de objetos de "publicacionesBusqueda" -->
 
             <ion-avatar slot="start" *ngIf="publicacion.fotoPerfil" >
-              <ion-img class="imaAvatar" [src]="publicacion.fotoPerfil || 'assets/persona_placeholder.jpg'"></ion-img>
+              <ion-img class="imaAvatar" [src]="publicacion.fotoPerfil"></ion-img>
             </ion-avatar>
 
             <ion-label >

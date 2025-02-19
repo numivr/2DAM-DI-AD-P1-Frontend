@@ -5,7 +5,7 @@ import { addIcons } from 'ionicons';
 import { Publicacion } from '../1-Modelos/Publicacion';
 import { ComponentePublicacionComponent } from '../componentes/componente-publicacion/componente-publicacion.component';
 import { RouterLink } from '@angular/router';
-import { NgForOf, NgIf, NgOptimizedImage } from '@angular/common';
+import {NgForOf, NgIf, NgOptimizedImage, NgStyle} from '@angular/common';
 import { FormsModule } from "@angular/forms";
 import { PublicacionService } from '../1-Servicios/publicacion.service';
 import { ComponenteComentarioComponent } from '../componentes/componente-comentario/componente-comentario.component';
@@ -23,7 +23,8 @@ import {PerfilService} from "../1-Servicios/perfil.service";
     RouterLink,
     NgIf,
     FormsModule,
-    NgForOf
+    NgForOf,
+    NgStyle
   ],
 })
 export class PrincipalComponent implements OnInit {
