@@ -12,7 +12,7 @@ import {Perfil} from "../1-Modelos/Perfil"; // DTO de Rodrigo, No se si puede pr
 })
 export class UsuarioServiceNombre {
 
-  private apiUrl = '/api/usuarios'; // 👈 Proxy para evitar CORS
+  private apiUrl = `${environment.apiUrl}/usuarios`; // 👈 Proxy para evitar CORS
   private perfilUrl = '/perfil/id/';
 
 
@@ -33,7 +33,7 @@ export class UsuarioServiceNombre {
   }
   // Método para obtener el perfil de un usuario
   getNombrePerfil(): Observable<Perfil> {
-    return this.http.get<Perfil>(`/api/perfil/perfilLoggeado`, { headers: this.getHeaders() });
+    return this.http.get<Perfil>(`${environment.apiUrl}/perfil/perfilLoggeado`, { headers: this.getHeaders() });
   }
 
 

@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, Observable, throwError } from 'rxjs';
 import { Publicacion } from "../1-Modelos/Publicacion";
+import {environment} from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class PublicacionService {
-  private apiUrl = '/api/publicacion'; // 👈 Usamos el proxy en lugar de la URL completa
+  private apiUrl = `${environment.apiUrl}/publicacion`; // 👈 Usamos el proxy en lugar de la URL completa
 
   constructor(private http: HttpClient) {}
 
@@ -99,7 +100,7 @@ export class PublicacionService {
         })
       );
   }
-  
+
 
   eliminarPublicacion(_idPublicacion_i: number): Observable<any>
   {
