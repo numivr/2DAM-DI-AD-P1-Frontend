@@ -221,7 +221,15 @@ ion-segment > ion-segment-button:not(.segment-button-after-checked)
   }
 }
 
+
+
 // Que ganas de poner las cosas en ingles.
+.modalSearch
+{
+  max-width: 600px;
+  padding: 10px;
+}
+
 .modalSearch *
 {
   --background: var(--color3);
@@ -230,14 +238,21 @@ ion-segment > ion-segment-button:not(.segment-button-after-checked)
   --color: var(--color5);
 }
 
+.modalSearch modal-container
+{
+  margin: 5px;
+}
+
 .modalSearch ion-label
 {
   // background-color: transparent !important;
-
+  margin: 0 15px 0 15px;
+  padding: 0 5px 0 5px;
 }
 
+
 // cojo las cuadradas.
-.modalSearch ion-img:not(.ima0_chica)
+.modalSearch ion-img:not(.imaAvatar)
 {
   object-fit: cover;
   --tamano: 21vw;
@@ -251,4 +266,6 @@ ion-segment > ion-segment-button:not(.segment-button-after-checked)
   height: var(--tamano);
   max-height: var(--max);
   min-height: var(--min);
+
+  margin: 8px;
 }
