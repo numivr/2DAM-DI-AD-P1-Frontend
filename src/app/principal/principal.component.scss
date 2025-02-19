@@ -1,3 +1,8 @@
+:root
+{
+  --publicaciones-busqueda-length: 0px;
+}
+
 ion-toolbar {
     --background: #96305A;
     display: flex;
@@ -60,22 +65,6 @@ ion-toolbar {
   .logo-container img {
     height: 50px;
     width: 50px;
-  }
-
-  .modalSearch {
-    border-radius: 10px;
-    width: 90%;
-    height: 20%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0 auto;
-    margin-top: 32%;
-    max-margin-top: 200px;
-    transition: height 0.3s ease;
-    overflow: hidden;
-
-    max-width: 600px;
   }
 
   /*
@@ -219,5 +208,91 @@ ion-segment > ion-segment-button:not(.segment-button-after-checked)
     margin-left: calc(50% - 300px);
     max-width: 600px;
   }
+}
+
+// MATENME PORFAVOR
+.modalSearch
+{
+  // TODO: esto ya pa mi pero no soy capaz de guardarlo.
+  --altura: calc((var(--publicaciones-busqueda-length) * 50px));
+  --height: auto !important;
+}
+
+// Que ganas de poner las cosas en ingles.
+.modalSearch > .ion-page
+{
+
+
+
+  //padding: 10px;
+  max-width: 600px;
+  min-height: 200px;
+  --height: 200px !important;
+
+  //border: 3px solid var(--color5);
+  //border-radius: 10px;
+
+  // justify-content: center;
+  // align-items: center;
+  // display: flex;
+
+  //margin-top: 32%;
+  // max-margin-top: 200px; // Esto no funciona.
+  transition: height 0.3s ease;
+  overflow: hidden;
+}
+
+.modal-container > ion-list
+{
+  background: var(--color3);
+
+  ion-item
+  {
+    --background: var(--color3);
+
+    ion-label
+    {
+      --color: var(--color5);
+    }
+  }
+}
+/*
+.modalSearch ion-list
+{
+  width: 100%;
+  max-height: 100%;
+  overflow-y: auto;
+}
+
+.modalSearch modal-container
+{
+  margin: 5px;
+}
+
+.modalSearch ion-label
+{
+  // background-color: transparent !important;
+  margin: 0 15px 0 15px;
+  padding: 0 5px 0 5px;
+}
+*/
+
+// cojo las cuadradas.
+.modalSearch ion-img:not(.imaAvatar)
+{
+  object-fit: cover;
+  --tamano: 21vw;
+  --max: 90px;
+  --min: 50px;
+
+  width: var(--tamano);
+  max-width: var(--max);
+  min-width: var(--min);
+
+  height: var(--tamano);
+  max-height: var(--max);
+  min-height: var(--min);
+
+  margin: 8px;
 }
 
