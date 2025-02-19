@@ -31,9 +31,14 @@ export class UsuarioServiceNombre {
       'Content-Type': 'application/json'
     });
   }
+
   // Método para obtener el perfil de un usuario
   getNombrePerfil(): Observable<Perfil> {
     return this.http.get<Perfil>(`${environment.apiUrl}/perfil/perfilLoggeado`, { headers: this.getHeaders() });
+  }
+
+  getAmigos(): Observable<Perfil[]>{
+   return this.http.get<Perfil[]>(`${environment.apiUrl}/chat/listarAmigos`, {headers: this.getHeaders()});
   }
 
 

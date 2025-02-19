@@ -1,9 +1,11 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Chat } from "../models/Chat";
-import { BehaviorSubject, Observable } from "rxjs";
+import {BehaviorSubject, catchError, Observable, throwError} from "rxjs";
 import { environment } from "../../environments/environment";
 import { Mensaje } from "../models/Mensaje";
+import {Publicacion} from "../1-Modelos/Publicacion";
+import {Perfil} from "../models/Perfil";
 
 @Injectable({
   providedIn: 'root'
@@ -60,9 +62,7 @@ export class ChatService {
   }
 
 
-  enviarMensaje(mensaje: Mensaje) {
-    return this.http.post<any>(`${this.apiUrl + this.urlMensajeEnviar}`, mensaje);
-  }
+
 
   setChatId(chatId: number) {
     sessionStorage.setItem('chat', String(chatId));
@@ -73,5 +73,35 @@ export class ChatService {
       return Number(sessionStorage.getItem('contacto'));
     }
     return this.chatObservable.value;
+  }
+
+  crearGrupo(nuevoGrupo: { nombre: string; descripcion: string; miembros: string[]}): Observable<Chat> {
+    return this.http.post<Chat>(`${this.apiUrl}/chat/crear`, nuevoGrupo, { headers: this.getHeaders() })
+      .pipe(
+        catchError(error => {
+          console.error('❌ Error al crear el grupo:', error);
+          return throwError(() => new Error('Error al crear el grupo'));
+        })
+      );
+  }
+
+  enviarMensaje(nuevoMensaje: { idChat?: number; contenido?: string;}): Observable<Mensaje> {
+    return this.http.post<Chat>(`${this.apiUrl}/mensajes/conversacion/{id}/enviar`, nuevoMensaje, { headers: this.getHeaders() })
+      .pipe(
+        catchError(error => {
+          console.error('❌ Error al crear el grupo:', error);
+          return throwError(() => new Error('Error al crear el grupo'));
+        })
+      );
+  }
+
+  crearPublicacion(nuevaPublicacion: { texto: string; fotoPublicacion: string }): Observable<Publicacion> {
+    return this.http.post<Publicacion>(`${this.apiUrl}/crear`, nuevaPublicacion, { headers: this.getHeaders() })
+      .pipe(
+        catchError(error => {
+          console.error('❌ Error al crear la publicación:', error);
+          return throwError(() => new Error('Error al crear la publicación'));
+        })
+      );
   }
 }

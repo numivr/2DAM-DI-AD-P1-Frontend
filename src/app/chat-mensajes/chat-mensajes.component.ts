@@ -34,7 +34,7 @@ export class ChatMensajesComponent implements OnInit, OnDestroy, AfterViewInit {
   @ViewChild('content') content!: IonContent;
   protected username: string | undefined = "";
   protected userId: number | null = null;
-  private idPerfil: string | undefined | Observable<Perfil> = "";
+  private usermame: string | undefined | Observable<Perfil> = "";
   private perfil: Perfil = new Perfil();
 
   constructor(
@@ -64,13 +64,13 @@ export class ChatMensajesComponent implements OnInit, OnDestroy, AfterViewInit {
       next: (v) => {
         const nuevoId = v === 0 || v == null ? this.username : this.usuarioService.getNombrePerfil();
 
-        if (this.idPerfil !== nuevoId) {  // Solo recargar si el ID cambia
-          this.idPerfil = nuevoId;
-          this.nuevoMensaje.nombreEmisor = String(this.idPerfil);
+        if (this.usermame !== nuevoId) {  // Solo recargar si el ID cambia
+          this.usermame = nuevoId;
+          this.nuevoMensaje.nombreEmisor = String(this.usermame);
 
           this.cargarChats(); // Recargar mensajes al cambiar la conversación
 
-          console.log(this.idPerfil);
+          console.log(this.usermame);
         }
       }
     });
@@ -122,17 +122,18 @@ export class ChatMensajesComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   enviarMensaje(): void {
-    if (this.mensajeForm.valid && this.userId !== null) {
+    this.chatId = Number(sessionStorage.getItem('chat'));
+    if (this.mensajeForm.valid) {
+      console.log("Enviando mensaje:", this.mensajeForm.value.texto);
       this.nuevoMensaje = {
         contenido: this.mensajeForm.value.texto,
         idChat: this.chatId,
-        idEmisor: this.userId,
-        nombreEmisor: this.username, // Asegurar que se envía el nombre correcto
-        fecha: new Date().toISOString()
       };
-
       this.chatService.enviarMensaje(this.nuevoMensaje).subscribe({
-        next: () => {},
+        next: (e) => {
+          console.log("Mensaje enviado:", e);
+
+        },
         error: (e) => console.error("Error al enviar mensaje:", e),
         complete: () => {
           this.mensajeForm.reset();

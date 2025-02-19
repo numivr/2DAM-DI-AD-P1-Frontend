@@ -49,6 +49,7 @@
   --color6: #2c4251; // no se que ha pasado.
   --color7: #96305A; // alguien no esta pillando bien los colores.
   --color8: #5E2142; // antiguamente el color fondo de las publiciones/comentarios.
+
 }
 
 
@@ -113,6 +114,8 @@
   border-radius: 50% !important;
   box-shadow: 0 6px 18px 0 rgba(0,0,0,0.8);
   border: 2px solid var(--ion-color-tertiary);
+  object-fit: cover;
+
 
   /*
   display: block;
@@ -123,9 +126,17 @@
 
 .ima0_grande
 {
-  width: 64vw;
-  max-width: 300px;
-  min-width: 90px;
+  --tamano: 64vw;
+  --max: 300px;
+  --min: 90px;
+
+  width: var(--tamano);
+  max-width: var(--max);
+  min-width: var(--min);
+
+  height: var(--tamano);
+  max-height: var(--max);
+  min-height: var(--min);
 
   display: block;
   margin-left: auto;
@@ -133,9 +144,17 @@
 }
 .ima0_chica
 {
-  width: 18vw;
-  max-width: 65px;
-  min-width: 40px;
+  --tamano: 18vw;
+  --max: 65px;
+  --min: 40px;
+
+  width: var(--tamano);
+  max-width: var(--max);
+  min-width: var(--min);
+
+  height: var(--tamano);
+  max-height: var(--max);
+  min-height: var(--min);
 
   margin-right: 15px
 }
@@ -196,7 +215,7 @@
 /* Fin Campos */
 
 
-// Solucionar color negro todos modales
+// Solucionar color negro todos modales de publicacion
 .modal-content > ion-item
 {
   --background: var(--color3), var(--color5);

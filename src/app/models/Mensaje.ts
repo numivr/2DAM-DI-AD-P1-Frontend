@@ -7,4 +7,5 @@ export class Mensaje{
   idEmisor?:number;
   nombreEmisor?:string;
   fecha?:string;
+  fotoEmisor?:string;
 }

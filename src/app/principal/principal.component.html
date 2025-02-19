@@ -96,35 +96,39 @@
   <ion-modal  class="modalSearch" id="modalBusqueda" [isOpen]="isSearchModalOpen" (ionModalDidDismiss)="closeSearchModal()" >
     <ng-template>
       <div class="modal-container" (click)="$event.stopPropagation()">
+
         <ion-list *ngIf="publicacionesBusqueda.length > 0; else noResults">
-          <ion-item *ngFor="let publicacion of publicacionesBusqueda" [routerLink]="['/publicacion', publicacion.id]">
+          <ion-item *ngFor="let publicacion of publicacionesBusqueda" [routerLink]="['/publicacion', publicacion.id]" [ngStyle]="{'--publicaciones-busqueda-length': publicacionesBusqueda.length}">
+            <!-- Necesito guardar en css la cantidad de objetos de "publicacionesBusqueda" -->
+
             <ion-avatar slot="start" *ngIf="publicacion.fotoPerfil" >
-              <ion-img [src]="publicacion.fotoPerfil"></ion-img>
+              <ion-img class="imaAvatar" [src]="publicacion.fotoPerfil"></ion-img>
             </ion-avatar>
+
             <ion-label >
               <h2 *ngIf="publicacion.perfil">{{ publicacion.perfil }}</h2>
               <p *ngIf="publicacion.texto">{{ publicacion.texto }} </p>
             </ion-label>
+
             <ion-img *ngIf="publicacion.fotoPublicacion" [src]="publicacion.fotoPublicacion"></ion-img>
+
           </ion-item>
         </ion-list>
 
         <ng-template #noResults>
           <ion-text>No se encontraron resultados</ion-text>
         </ng-template>
-
-
-
         <ng-template #noResults>
           <p>No hay resultados.</p>
         </ng-template>
+
       </div>
     </ng-template>
   </ion-modal>
 
 
 
-  <ion-modal id="modalPublicacion" #crearPublicacionModal [isOpen]="isFabModalOpen" (ionModalDidDismiss)="isFabModalOpen = false">
+  <ion-modal class="modalPublicacion" id="modalPublicacion" #crearPublicacionModal [isOpen]="isFabModalOpen" (ionModalDidDismiss)="isFabModalOpen = false">
     <ng-template>
       <div class="modal-content" (click)="$event.stopPropagation()">
         <ion-toolbar>
