@@ -99,7 +99,7 @@
         <ion-list *ngIf="publicacionesBusqueda.length > 0; else noResults">
           <ion-item *ngFor="let publicacion of publicacionesBusqueda" [routerLink]="['/publicacion', publicacion.id]">
             <ion-avatar slot="start" *ngIf="publicacion.fotoPerfil" >
-              <ion-img [src]="publicacion.fotoPerfil"></ion-img>
+              <ion-img class="ima0_chica" [src]="publicacion.fotoPerfil || 'assets/persona_placeholder.jpg'"></ion-img>
             </ion-avatar>
             <ion-label >
               <h2 *ngIf="publicacion.perfil">{{ publicacion.perfil }}</h2>
