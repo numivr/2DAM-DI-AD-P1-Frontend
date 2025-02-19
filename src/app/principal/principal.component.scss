@@ -1,4 +1,7 @@
-
+:root
+{
+  --publicaciones-busqueda-length: 0px;
+}
 
 ion-toolbar {
     --background: #96305A;
@@ -210,6 +213,7 @@ ion-segment > ion-segment-button:not(.segment-button-after-checked)
 // MATENME PORFAVOR
 .modalSearch
 {
+  // TODO: esto ya pa mi pero no soy capaz de guardarlo.
   --altura: calc((var(--publicaciones-busqueda-length) * 50px));
   --height: auto !important;
 }
