@@ -1,53 +1,53 @@
-<ion-content color="fondo">
-  <ion-card class="chat-container">
-    <ion-list #chatList>
-      <ion-item
-        lines="none"
-        *ngFor="let m of mensajes"
-        class="item-native"
-        [ngClass]="{
-    'own-message': m.nombreEmisor === username,
-    'other-message': m.nombreEmisor !== username
-  }"
-        style="background-color: #96305A;">
-        <ion-avatar slot="start" *ngIf="m.nombreEmisor !== username">
-          <ion-img src="{{sessionStorage.getItem('avatar')}}"></ion-img>
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Chat
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-text color="medium" text-center>
+      <p>Has iniciado sesión como {{ username }}</p>
+    </ion-text>
+    <ion-row *ngFor="let m of mensajes">
+      <ion-col size="9" *ngIf="m.nombreEmisor !== username" class="message other-message">
+        <ion-avatar slot="start">
+          <ion-img src="{{ m.fotoEmisor }}"></ion-img>
         </ion-avatar>
+        <b>{{ m.nombreEmisor }}</b><br>
+        <span>{{ m.contenido }}</span>
+        <div class="time" text-right><br>{{ m.fecha?.substring(11, 16) }}</div>
+      </ion-col>
 
-        <div class="message-wrapper">
-          <ion-label class="message-bubble">
-            {{ m.contenido }}
-            <br />
-            <ion-text class="message-time">{{ m.fecha?.substring(11, 16) }}</ion-text>
-          </ion-label>
-        </div>
-
-        <ion-avatar slot="end" *ngIf="m.nombreEmisor === username">
-          <ion-img src="{{sessionStorage.getItem('avatar')}}"></ion-img>
-        </ion-avatar>
-      </ion-item>
-    </ion-list>
-  </ion-card>
-
-  <ion-footer class="chat-footer">
-    <form [formGroup]="mensajeForm" id="formularioMensaje">
-      <ion-item class="input-chat">
-        <ion-input
-          formControlName="texto"
-          id="textoMensaje"
-          name="texto"
-          class="chat-input"
-          placeholder="Escribe algo..."
-          [value]="textoMensaje"
-        ></ion-input>
-        <ion-icon
-          name="paper-plane-outline"
-          aria-hidden="true"
-          class="send-icon"
-          (click)="enviarMensaje()"
-        ></ion-icon>
-      </ion-item>
-    </form>
-  </ion-footer>
+      <ion-col offset="3" size="9" *ngIf="m.nombreEmisor === username" class="message my-message">
+        <b>{{ m.nombreEmisor }}</b><br>
+        <span>{{ m.contenido }}</span>
+        <div class="time" text-right><br>{{ m.fecha?.substring(11, 16) }}</div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
+
+<ion-footer class="chat-footer">
+  <form [formGroup]="mensajeForm" id="formularioMensaje">
+    <ion-item class="input-chat">
+      <ion-input
+        formControlName="texto"
+        id="textoMensaje"
+        name="texto"
+        class="chat-input"
+        placeholder="Escribe algo..."
+        [value]="textoMensaje"
+      ></ion-input>
+      <ion-icon
+        name="paper-plane-outline"
+        aria-hidden="true"
+        class="send-icon"
+        (click)="enviarMensaje()"
+      ></ion-icon>
+    </ion-item>
+  </form>
+</ion-footer>
 
