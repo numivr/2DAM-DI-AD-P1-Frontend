@@ -13,7 +13,7 @@ import {Perfil} from "../models/Perfil";
 export class ChatService {
   private urlChats  = '/mensaje/chats';
   private urlMensajeEnviar  = '/mensaje/enviar';
-  private urlMensajesChatPrivado  = '/chat/mensajes/conversacion/';
+  private urlMensajesChatPrivado  = '/mensajes/conversacion/';
   private apiUrl = environment.apiUrl; // 👈 Proxy para evitar CORS
   private contactoObservable = new BehaviorSubject<number>(0);
   contacto = this.contactoObservable.asObservable();
