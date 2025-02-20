@@ -13,8 +13,8 @@
     </ion-text>
     <ion-row *ngFor="let m of mensajes">
       <ion-col size="9" *ngIf="m.nombreEmisor !== username" class="message other-message">
-        <ion-avatar slot="start">
-          <ion-img src="{{ m.fotoEmisor }}"></ion-img>
+        <ion-avatar style="width: 30px; height: 30px" >
+          <ion-img src="{{ m.fotoEmisor }}" ></ion-img>
         </ion-avatar>
         <b>{{ m.nombreEmisor }}</b><br>
         <span>{{ m.contenido }}</span>
