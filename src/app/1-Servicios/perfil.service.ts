@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, Observable, throwError } from 'rxjs';
 import { Perfil } from "../1-Modelos/Perfil";
+import {environment} from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class PerfilService {
-  private apiUrl = '/api/perfil'; // 👈 Usamos proxy para evitar CORS
+  private apiUrl = `${environment.apiUrl}/perfil`; // 👈 Usamos proxy para evitar CORS
 
   constructor(private http: HttpClient) {}
 

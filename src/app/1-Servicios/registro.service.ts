@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from "rxjs";
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { RegistroDTO } from "../1-Modelos/RegistroDTO";
+import {environment} from "../../environments/environment";
 
 export interface Registro {
   [key: string]: any;
@@ -30,7 +31,7 @@ export interface Registro {
 })
 export class RegistroService {
 
-  private API_URL = '/api/auth';
+  private API_URL = `${environment.apiUrl}/auth`;
 
   // Objeto que contendrá la información del registro
   registro: Registro = {
@@ -94,13 +95,13 @@ export class RegistroService {
     };
 
 
-    return this.httpClient.post<any>('api/auth/registro', registroDTO); // ✅ Retornamos el Observable
+    return this.httpClient.post<any>(`${environment.apiUrl}/auth/registro`, registroDTO); // ✅ Retornamos el Observable
   }
 
   // Método para verificar si la credencial (nombre de usuario) está disponible en el backend
   GetverificarCredencialDisponible(nombreUsuario: string): Observable<any> {
     const params = new HttpParams().set('nombreUsuario', nombreUsuario);
-    return this.httpClient.get<boolean>('api/auth/credencialDisponible', { params });
+    return this.httpClient.get<boolean>(`${environment.apiUrl}/auth/credencialDisponible`, { params });
   }
 
   enviarEmailVerificacion(nombreUsuario: string): Observable<string> {
@@ -113,7 +114,7 @@ export class RegistroService {
 
 
   verificarCuenta(usuario: string): Observable<any> {
-    return this.httpClient.post<any>('api/auth/confirmarVerificacion', { usuario });
+    return this.httpClient.post<any>(`${environment.apiUrl}/auth/confirmarVerificacion`, { usuario });
   }
 
   resetearContraseña(nombreUsuario: string): Observable<string> {

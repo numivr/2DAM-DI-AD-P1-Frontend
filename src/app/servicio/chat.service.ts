@@ -13,8 +13,8 @@ import {Perfil} from "../models/Perfil";
 export class ChatService {
   private urlChats  = '/mensaje/chats';
   private urlMensajeEnviar  = '/mensaje/enviar';
-  private urlMensajesChatPrivado  = '/mensajes/conversacion/';
-  private apiUrl = '/api'; // 👈 Proxy para evitar CORS
+  private urlMensajesChatPrivado  = 'chat/mensajes/conversacion/';
+  private apiUrl = environment.apiUrl; // 👈 Proxy para evitar CORS
   private contactoObservable = new BehaviorSubject<number>(0);
   contacto = this.contactoObservable.asObservable();
   chatObservable = new BehaviorSubject<number>(0);
@@ -40,7 +40,7 @@ export class ChatService {
   }
 
   getChats(): Observable<Chat[]> {
-    return this.http.get<any>('/api/chat/conversaciones', { headers: this.getHeaders() });
+    return this.http.get<any>(`${this.apiUrl}/chat/conversaciones`, { headers: this.getHeaders() });
   }
 
   setUsuarioId(id: number) {
@@ -86,7 +86,7 @@ export class ChatService {
   }
 
   enviarMensaje(nuevoMensaje: { idChat?: number; contenido?: string;}): Observable<Mensaje> {
-    return this.http.post<Chat>(`${this.apiUrl}/mensajes/conversacion/{id}/enviar`, nuevoMensaje, { headers: this.getHeaders() })
+    return this.http.post<Chat>(`${this.apiUrl}/chat/mensajes/conversacion/{id}/enviar`, nuevoMensaje, { headers: this.getHeaders() })
       .pipe(
         catchError(error => {
           console.error('❌ Error al crear el grupo:', error);
@@ -96,7 +96,7 @@ export class ChatService {
   }
 
   crearPublicacion(nuevaPublicacion: { texto: string; fotoPublicacion: string }): Observable<Publicacion> {
-    return this.http.post<Publicacion>(`${this.apiUrl}/crear`, nuevaPublicacion, { headers: this.getHeaders() })
+    return this.http.post<Publicacion>(`${this.apiUrl}/chat/crear`, nuevaPublicacion, { headers: this.getHeaders() })
       .pipe(
         catchError(error => {
           console.error('❌ Error al crear la publicación:', error);
