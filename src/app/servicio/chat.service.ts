@@ -86,7 +86,7 @@ export class ChatService {
   }
 
   enviarMensaje(nuevoMensaje: { idChat?: number; contenido?: string;}): Observable<Mensaje> {
-    return this.http.post<Chat>(`${this.apiUrl}/chat/mensajes/conversacion/{id}/enviar`, nuevoMensaje, { headers: this.getHeaders() })
+    return this.http.post<Chat>(`${this.apiUrl}/mensajes/conversacion/{id}/enviar`, nuevoMensaje, { headers: this.getHeaders() })
       .pipe(
         catchError(error => {
           console.error('❌ Error al crear el grupo:', error);
