@@ -16,7 +16,8 @@ export class UsuarioServiceNombre {
   private perfilUrl = '/perfil/id/';
 
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
 
   private getHeaders(): HttpHeaders {
@@ -31,9 +32,14 @@ export class UsuarioServiceNombre {
       'Content-Type': 'application/json'
     });
   }
+
   // Método para obtener el perfil de un usuario
   getNombrePerfil(): Observable<Perfil> {
-    return this.http.get<Perfil>(`/api/perfil/perfilLoggeado`, { headers: this.getHeaders() });
+    return this.http.get<Perfil>(`/api/perfil/perfilLoggeado`, {headers: this.getHeaders()});
+  }
+
+  getAmigos(): Observable<Perfil[]>{
+   return this.http.get<Perfil[]>(`/api/chat/listarAmigos`, {headers: this.getHeaders()});
   }
 
 

@@ -47,24 +47,39 @@
       <ion-header>
         <ion-toolbar>
           <ion-buttons slot="start">
-            <ion-button (click)="cancel()">Cancel</ion-button>
+            <ion-button (click)="cancel()" id="botonCancelar">Cancelar</ion-button>
           </ion-buttons>
-          <ion-title>Welcome</ion-title>
+          <ion-title id="tituloModal" style="text-align: center">Nuevo Chat</ion-title>
           <ion-buttons slot="end">
-            <ion-button (click)="confirm()" [strong]="true">Confirm</ion-button>
+            <ion-button (click)="confirm()" id="botonCrear"  [disabled]="miembros.length === 0" [strong]="true">Crear</ion-button>
           </ion-buttons>
         </ion-toolbar>
       </ion-header>
       <ion-content class="ion-padding">
-        <ion-item>
-          <ion-input
-            label="Enter your name"
-            labelPlacement="stacked"
-            type="text"
-            placeholder="Your name"
-            [(ngModel)]="name"
-          ></ion-input>
-        </ion-item>
+          <ion-item>
+            <ion-input labelPlacement="stacked" label="Ingresa nombre de grupo" [(ngModel)]="name" placeholder="Border Collies al Poder"></ion-input>
+          </ion-item>
+
+        <!-- Lista de usuarios desplazable -->
+        <ion-title style="text-align: center"> ¡Invita a tus amigos al chat! </ion-title>
+        <ion-searchbar placeholder="Añade a tus amigos, seguidores seguidos" (ionInput)="filterAmigos($event)"></ion-searchbar>
+
+        <ion-list style="overflow-y: auto;">
+          <ion-item *ngFor="let usuario of filteredAmigos">
+            <ion-avatar slot="start">
+              <img [src]="usuario.foto" />
+            </ion-avatar>
+            <ion-label>
+              <h2> <b [innerHTML]="usuario.highlightedName || usuario.nombre"></b></h2>
+              <p>{{ usuario.mail }}</p>
+            </ion-label>
+            <ion-checkbox
+              slot="end"
+              [checked]="isSeleccionado(usuario.nombre)"
+              (ionChange)="toggleSeleccion(usuario.nombre)">
+            </ion-checkbox>
+          </ion-item>
+        </ion-list>
       </ion-content>
     </ng-template>
   </ion-modal>
