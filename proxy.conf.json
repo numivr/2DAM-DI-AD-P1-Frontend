@@ -1,6 +1,6 @@
 {
   "/api": {
-    "target": "https://twodam-di-ad-p1-backend-qzpm.onrender.com",
+    "target": "https://Esto-No-Deberia-Salir.com:8080",
     "secure": false,
     "changeOrigin": true,
     "pathRewrite": {
