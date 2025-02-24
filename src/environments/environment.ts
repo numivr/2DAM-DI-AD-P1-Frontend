@@ -3,7 +3,7 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  apiUrl : '/api',
+  apiUrl : 'https://twodam-di-ad-p1-backend-onxx.onrender.com',
   production: false
 };
 

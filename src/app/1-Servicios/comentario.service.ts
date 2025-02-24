@@ -3,12 +3,13 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Comentario } from '../1-Modelos/Comentario';
+import {environment} from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ComentarioService {
-  private apiUrl = '/api/comentario'; // ✅ Usamos el proxy en lugar de la URL completa
+  private apiUrl = `${environment.apiUrl}/comentario`; // ✅ Usamos el proxy en lugar de la URL completa
 
   constructor(private http: HttpClient) {}
 
